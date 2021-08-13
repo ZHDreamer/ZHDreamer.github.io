@@ -275,7 +275,7 @@
 <p>like <code>print()</code> has no return value</p>
 <h3 id="nested-expressions-with-print">Nested Expressions with Print</h3>
 <p><code>print(print(1),print(2))</code> will display:</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span></span><br><span class="line"><span class="number">2</span></span><br><span class="line"><span class="attribute">None</span> <span class="attribute">None</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">None None</span><br></pre></td></tr></table></figure>
 <p>Because <code>print()</code> has no return value, and <code>print(None)</code> will display a None, so 1,2 will display first following by two None.</p>
 <p><strong>Unassigned variable's</strong> value is also None.</p>
 <span id="more"></span>
