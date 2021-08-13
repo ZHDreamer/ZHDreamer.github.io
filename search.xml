@@ -1,0 +1,600 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>01 Intro</title>
+    <url>/2021/07/07/01-Intro/</url>
+    <content><![CDATA[<h2 id="学习cs-61a个人体会">学习CS-61A个人体会</h2>
+<p>现在我刚好学到11节，期中考试之前的最后一节，算是学过一半了。</p>
+<p>当初想要学CS-61A是我一个朋友和我介绍的，放假后没什么事干，本这实在不行学个英语也行的态度开始了61A的学习。</p>
+<span id="more"></span>
+<h3 id="和国内课程的区别">和国内课程的区别</h3>
+<p>我就读于西安电子科技大学，目前大一上了2个有关程序的课，大一上的计算机导论与程序设计（C语言），下的Python程序设计，还有一个程序设计（C语言做几个题写报告）。</p>
+<p>整个大一上下来给我的感觉就是老师讲的东西没有什么用，基本就是照着教材说一遍。教材的编排更偏向于让你学会如何运用一个语音去编写程序，对于算法的教学大多是上机时做题自己参悟出来的。我不知道是不是国内的大学都是这样，反正就我的学习体验来说，这些课程对与提高我对于编程理解的作用是很有限的。</p>
+<p>CS-61A不同的是，它一开始就会教你程序是如何运行的，让你学会如何解释程序的运行，也会教你一些非常神奇的操作，比如各种high-order function。61a的作业量其实是比较大的，但是很多作业都很有趣，比如project系列会让你去完成一个可执行的游戏或者程序，他给你了一个大的框架，你只需要填一些东西，就可以感受到自己写的东西运行起来的快乐。有些题也很烧脑，比如hw03的Extra Questions让你写Church numerals，是一个利用函数定义自然数的程序，最后的程序不过几行，但是可能要花数小时思考。</p>
+<h3 id="资料丰富">资料丰富</h3>
+<p>61A的课程资料是对外公开的，所以即便不是伯克利的学生也可以运用课程资料自学，作业也可以用自带的python ok来检测，只需加上<code>--local</code>就可以不用填写邮箱，GitHub上也有人上传了作业代码，包括我也上传了我的版本，所以上课和写作业的过程是非常顺畅的。</p>
+<p>未完待续</p>
+]]></content>
+      <categories>
+        <category>SICP</category>
+        <category>CS61-A</category>
+      </categories>
+      <tags>
+        <tag>笔记</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>02 Function</title>
+    <url>/2021/07/08/02-Function/</url>
+    <content><![CDATA[<h2 id="expressions">Expressions</h2>
+<h3 id="primitive-expressions">Primitive Expressions</h3>
+<p>numbers, strings and names</p>
+<h3 id="arithmetic-expressions">Arithmetic Expressions</h3>
+<p>like 1 + 2 or 15 // 3</p>
+<h3 id="call-expressions">Call Expressions</h3>
+<p>like add(3, 4)</p>
+<h3 id="nested-call-expressions">Nested Call Expressions</h3>
+<p><img src="https://gitee.com/ZHDreamer/markdown-images/raw/master/images/Snipaste_2021-07-08_18-05-23.png" /></p>
+<span id="more"></span>
+<h2 id="values">Values</h2>
+<p>Expressions evaluate to values in one or more steps</p>
+<ul>
+<li>Primitive expression's value is itself</li>
+<li>Arithmetic expression's value is the result</li>
+<li>Call expression's value is the return value</li>
+</ul>
+<h2 id="names">Names</h2>
+<p>Values can be assigned to <strong>names</strong> to make referring to them easier.</p>
+<p>A name can only be bound to a single value.</p>
+<p>One way to introduce a new name in a program is with an <strong>assignment statement</strong>.</p>
+<p><code>x = 1 +2 *3 -4 // 5</code></p>
+<p>assignment statement like <code>x,y = 1,2</code> called <strong>parallel statement</strong> or <strong>multiple statement</strong></p>
+<h3 id="executing-an-assignment-statement">Executing an assignment statement</h3>
+<ol type="1">
+<li><strong>Evaluate</strong> the expression to the right of =</li>
+<li><strong>Bind</strong> the value of the expression to the name to the left of = in the current environment.</li>
+</ol>
+<p>When bind is done, the value of a name is invariable until rebind. Changing the other variable won't automatically sync the other variable.</p>
+<h2 id="functions">Functions</h2>
+<p><strong>Functions</strong> allow us to abstract away entire expressions and sequences of computation just in one call expression.</p>
+<p>It take in some input (<strong>arguments</strong>) and transform it into an output (<strong>return values</strong>).</p>
+<p>To create a functions use def statements.</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> &lt;<span class="title">name</span>&gt; (<span class="params">[parameters]</span>):</span></span><br><span class="line">	<span class="keyword">return</span> &lt;<span class="keyword">return</span> expression&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="execution-rule-for-def-statements">Execution Rule For Def Statements</h3>
+<ol type="1">
+<li>Create a function with signature <code>&lt;name&gt; ([parameters])</code></li>
+<li>Set the body of that function to be everything indented after the first line</li>
+<li>Bind <code>&lt;name&gt;</code> to that function in the current frame</li>
+</ol>
+<p>def statements are a type of assignment that bind names to function values.</p>
+<p>When you evaluate the name of function, you will get a function value back.</p>
+<h3 id="calling-user-defined-functions">Calling User-Defined Functions</h3>
+<ol type="1">
+<li>Create a new <strong>environment frame</strong></li>
+<li>Bind the function's parameters to its arguments in that frame</li>
+<li>Execute the body of the function in the new environment</li>
+</ol>
+<p>Creating new frame only after evaluate the operator and operand subexpressions.</p>
+]]></content>
+      <categories>
+        <category>SICP</category>
+        <category>CS61-A</category>
+      </categories>
+      <tags>
+        <tag>笔记</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>04 Environment Diagrams</title>
+    <url>/2021/07/09/04-Environment-Diagrams/</url>
+    <content><![CDATA[<p>A visual tool to keep track of bindings &amp; state of a computer program</p>
+<p>They are helpful for debugging.</p>
+<h2 id="frames">Frames</h2>
+<p>A <strong>frame</strong> keeps track of variable-to-value bindings. Every call expression has a corresponding frame.</p>
+<h3 id="global-frame">Global frame</h3>
+<p><strong>Global frame</strong> is the starting frame.</p>
+<ul>
+<li>It doesn't correspond to a specific call expression.</li>
+</ul>
+<h3 id="parent-frames">Parent frames</h3>
+<ul>
+<li>The parent of a function is the frame in which <strong>it was defined</strong></li>
+<li>If you can't find a variable in the current frame, you check it's parent frame, and so on. If you can't find the variable, <code>NameError</code>.</li>
+</ul>
+<span id="more"></span>
+<h2 id="local-names">Local Names</h2>
+<p>Variable Lookup:</p>
+<ol type="1">
+<li>Lookup name in the current frame</li>
+<li>Lookup name in parent frame, its parent frame, and so on</li>
+<li>Stop at the global frame</li>
+<li>If not found, an error is thrown</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">f</span>(<span class="params">x, y</span>):</span></span><br><span class="line">    <span class="keyword">return</span> g(x)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">g</span>(<span class="params">z</span>):</span></span><br><span class="line">    <span class="keyword">return</span> z + x</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">result = f(<span class="number">5</span>, <span class="number">10</span>)</span><br></pre></td></tr></table></figure>
+<p>When call g, g's parent frame is Global. So name x will not be found, and python will throw an error.</p>
+<h2 id="lambda-expression">Lambda Expression</h2>
+<p>Expression that evaluate to functions</p>
+<p><img src="https://gitee.com/ZHDreamer/markdown-images/raw/master/images/Snipaste_2021-08-13_22-01-53.png" /></p>
+<p> </p>
+]]></content>
+      <categories>
+        <category>SICP</category>
+        <category>CS61-A</category>
+      </categories>
+      <tags>
+        <tag>笔记</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>05 Higher-Order Functions</title>
+    <url>/2021/07/11/05-Higher-Order-Functions/</url>
+    <content><![CDATA[<h2 id="higher-order-functions">Higher-Order Functions</h2>
+<p>Functions are <strong>first-class</strong>, meaning they can be manipulated as values</p>
+<p>A <strong>higher-order function</strong> is:</p>
+<ol type="1">
+<li>A function that a function as an argument</li>
+<li>A function that returns a function as a return value</li>
+</ol>
+<h3 id="designing-functions">Designing Functions</h3>
+<h4 id="describing-functions">Describing Functions</h4>
+<p>A function's <strong>domain</strong> is the set of all inputs it might possibly take as arguments.</p>
+<p>A function's <strong>range</strong> is the set of output values it might possibly return.</p>
+<p>A pure function's <strong>behavior</strong> is the relationship it creates between input and output.</p>
+<span id="more"></span>
+<h5 id="assert">assert</h5>
+<p><code>assert expression [, arguments]</code> equals to</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> <span class="keyword">not</span> expression:</span><br><span class="line">    <span class="keyword">raise</span> AssertionError(arguments)</span><br></pre></td></tr></table></figure>
+<p>It can limit the input to satisfy the domain</p>
+<h5 id="how-to-designing-functions">How to designing functions</h5>
+<p>Give each function exactly <strong>one job</strong>, but make it apply to <strong>many related situations</strong>.</p>
+<h4 id="generalizing-patterns-with-arguments">Generalizing Patterns with Arguments</h4>
+<p><img src="https://gitee.com/ZHDreamer/markdown-images/raw/master/images/Snipaste_2021-07-11_14-22-12_compressed.jpg" /></p>
+<h4 id="generalizing-over-computational-processes">Generalizing Over Computational Processes</h4>
+<p>The common structure among functions may be a computational process, rather than a number.</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">summation</span>(<span class="params">n, term</span>):</span></span><br><span class="line">    total, k = <span class="number">0</span>, <span class="number">1</span></span><br><span class="line">    <span class="keyword">while</span> k &lt;= n:</span><br><span class="line">        total, k = total + term(k), k + <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> total</span><br><span class="line"><span class="comment"># summation takes in a function term, so it is a high-order function.</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">identity</span>(<span class="params">x</span>):</span></span><br><span class="line">    <span class="keyword">return</span> x</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">cube</span>(<span class="params">x</span>):</span></span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">pow</span>(x, <span class="number">3</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">sum_naturals</span>(<span class="params">n</span>):</span></span><br><span class="line">    <span class="keyword">return</span> summation(n, identity)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">sum_cubes</span>(<span class="params">n</span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    Sum the first N cubes.</span></span><br><span class="line"><span class="string">    </span></span><br><span class="line"><span class="string">    &gt;&gt;&gt; sum_cubes(5)</span></span><br><span class="line"><span class="string">    225</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">return</span> summation(n, cube)</span><br></pre></td></tr></table></figure>
+<h5 id="doctest">Doctest</h5>
+<p>You can run test lines in comment by typing <code>python -m doctest -v .py</code> . It will be tested in the interactive interpreter. When you write the comment, just write like what it's like in interactive interpreter.</p>
+<h3 id="locally-defined-functions">Locally Defined Functions</h3>
+<p> Functions defined within other function bodies are bound to names in a local frame.</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">make_adder</span>(<span class="params">n</span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;Return a function that takes one argument k and returns k + n.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    &gt;&gt;&gt; add_three = make_adder(3)</span></span><br><span class="line"><span class="string">    &gt;&gt;&gt; add_three(4)</span></span><br><span class="line"><span class="string">    7</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">adder</span>(<span class="params">k</span>):</span></span><br><span class="line">        <span class="keyword">return</span> k + n</span><br><span class="line">    <span class="keyword">return</span> adder</span><br></pre></td></tr></table></figure>
+<p><code>adder</code> is a locally defined functions. When you call <code>make_adder</code> with different <code>n</code>, the return values are <strong>function</strong> <code>adder</code> in the <code>make_adder</code> <strong>frame</strong> with different <code>n</code> value.</p>
+]]></content>
+      <categories>
+        <category>SICP</category>
+        <category>CS61-A</category>
+      </categories>
+      <tags>
+        <tag>笔记</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>03 Control</title>
+    <url>/2021/07/08/03-Control/</url>
+    <content><![CDATA[<h2 id="print-and-none">Print and None</h2>
+<ul>
+<li><strong>None</strong> represents nothing in python</li>
+<li>A function that does not explicitly return a value will return None</li>
+<li>None is a value that will not displayed by the interpreter</li>
+</ul>
+<h3 id="pure-functions-non-pure-functions">Pure Functions &amp; Non-Pure Functions</h3>
+<h4 id="pure-functions">Pure Functions</h4>
+<p>just return values</p>
+<h4 id="non-pure-functions">Non-Pure Functions</h4>
+<p>have side effects</p>
+<p>like <code>print()</code> has no return value</p>
+<h3 id="nested-expressions-with-print">Nested Expressions with Print</h3>
+<p><code>print(print(1),print(2))</code> will display:</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="number">1</span></span><br><span class="line"><span class="number">2</span></span><br><span class="line"><span class="attribute">None</span> <span class="attribute">None</span></span><br></pre></td></tr></table></figure>
+<p>Because <code>print()</code> has no return value, and <code>print(None)</code> will display a None, so 1,2 will display first following by two None.</p>
+<p><strong>Unassigned variable's</strong> value is also None.</p>
+<span id="more"></span>
+<h2 id="control">Control</h2>
+<ul>
+<li><strong>Expressions</strong> in programs evaluate to values</li>
+<li><strong>Statements</strong> are executed to perform actions</li>
+</ul>
+<p>In some case we don't want to executed all the code, we just want some of them or make deferent out put from input. To do this we introduce the concept of <strong>control</strong>.</p>
+<h3 id="conditional-statements">Conditional Statements</h3>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> &lt;conditional expression&gt;:</span><br><span class="line">    &lt;suite of statements&gt;</span><br><span class="line"><span class="keyword">elif</span> &lt;conditional expression&gt;:</span><br><span class="line">    &lt;suite of statements&gt;</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    &lt;suite of statements&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="boolean-contexts">Boolean Contexts</h4>
+<p><strong>Boolean context</strong> is any place where an expression is evaluated to check if it's a True or a False value.</p>
+<h4 id="boolean-expressions">Boolean Expressions</h4>
+<p><strong>Boolean Expressions</strong> contain special operators and, or, not.</p>
+<p>They can be used in Boolean contexts to connect sub contexts. And will evaluate from left to right.</p>
+<p><code>1 and True</code> will display <code>True</code></p>
+<p><code>True and 1</code> will display <code>1</code></p>
+<p><code>0 and True</code> will display <code>0</code></p>
+<p><code>1 or True</code> will display <code>1</code></p>
+<p><code>True or 1</code> will display <code>True</code></p>
+<p><code>0 or True</code> will display <code>True</code></p>
+<p><code>0 or False</code> will display <code>False</code></p>
+<p>These are examples that show the evaluation order.</p>
+<ul>
+<li><exp1> <strong>and</strong> <exp2> <strong>and</strong> <exp3> <strong>and</strong>
+<ul>
+<li>Evaluate to the first false value. If none are false, evaluates to the last expression</li>
+</ul></li>
+<li><exp1> <strong>or</strong> <exp2> <strong>or</strong> <exp3> <strong>or</strong>
+<ul>
+<li>Evaluate to first true value. If none are true, evaluates to the last expression</li>
+</ul></li>
+<li><strong>not</strong> <exp>
+<ul>
+<li>Evaluates to True if <exp> if a <em>false value</em> and False if <exp> is a <em>true value</em></li>
+</ul></li>
+</ul>
+<h3 id="iteration">Iteration</h3>
+<h4 id="while-statements">While Statements</h4>
+<p><strong>Execution Rule for While Statements:</strong></p>
+<ol type="1">
+<li>Evaluate the header’s expression</li>
+<li>If it is a true value, execute the (whole) suite, then return to step 1</li>
+</ol>
+]]></content>
+      <categories>
+        <category>SICP</category>
+        <category>CS61-A</category>
+      </categories>
+      <tags>
+        <tag>笔记</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>06 Recursion</title>
+    <url>/2021/07/13/06-Recursion/</url>
+    <content><![CDATA[<h3 id="functional-abstraction">Functional Abstraction</h3>
+<h4 id="mechanics">Mechanics</h4>
+<p>How does Python execute this program line-by-line</p>
+<h4 id="use">Use</h4>
+<p>What can a function do</p>
+<h2 id="recursion">Recursion</h2>
+<h3 id="iterative-algorithm">Iterative Algorithm</h3>
+<p>eg.</p>
+<p><span class="math display">\[n!=\prod\limits_{k=1}^{n} k\]</span></p>
+<h3 id="recursive-algorithm">Recursive Algorithm</h3>
+<p>Recursive is useful for solving problems with a naturally repeating structure - they are defined in terms of themselves.</p>
+<p>eg.</p>
+<p><span class="math display">\[n!=\begin{cases}1 &amp;\text{if n=0}\\n  (n-1)!  &amp;\text{otherwise}\end{cases}\]</span></p>
+<span id="more"></span>
+<h3 id="recursive-functions">Recursive Functions</h3>
+<p>A function is called recursive if the body of that function calls itself, either directly or indirectly.</p>
+<h4 id="structure">Structure</h4>
+<ol type="1">
+<li>One or more <strong>base cases</strong>, usually the smallest input.</li>
+<li>One or more ways of <strong>reducing the problem</strong>, and then solving the smaller problem using recursion.</li>
+<li>One or more ways of <strong>using the solution to each smaller problem</strong> to solve our larger problem.</li>
+</ol>
+]]></content>
+      <categories>
+        <category>SICP</category>
+        <category>CS61-A</category>
+      </categories>
+      <tags>
+        <tag>笔记</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>08 Sequences &amp; Data Abstraction</title>
+    <url>/2021/07/19/08-Sequences-Data-Abstraction/</url>
+    <content><![CDATA[<h2 id="sequences">Sequences</h2>
+<p>A <strong>sequences</strong> is an ordered collection of values.</p>
+<ul>
+<li><strong>strings</strong>: sequence of characters</li>
+<li><strong>lists</strong>: sequence of any data type</li>
+</ul>
+<h3 id="sequences-abstraction">Sequences Abstraction</h3>
+<p>All sequences have <strong>finite length</strong></p>
+<p>Each element in a sequence has a discrete integer <strong>index</strong></p>
+<span id="more"></span>
+<h3 id="sequences-function">Sequences function</h3>
+<p><strong>get item</strong>: get the <em>ith</em> element <code>&lt;seq&gt;[i]</code></p>
+<p><strong>slice a subsequence</strong>: create a copy of the sequence from i to j <code>&lt;seq&gt;[i:j:step]</code></p>
+<p><strong>check membership</strong>: check if the value of <code>&lt;expr&gt;</code> is in <code>&lt;seq&gt;</code> <code>&lt;expr&gt; in &lt;seq&gt;</code></p>
+<p><strong>concatenate</strong>: combine two sequence into a single sequence <code>&lt;s1&gt; + &lt;s2&gt;</code></p>
+<h3 id="sequences-processing">Sequences Processing</h3>
+<h4 id="iterating-through-sequence">Iterating through sequence</h4>
+<p>You can use a <strong>for statement</strong> to iterate through the elements of a sequence</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> &lt;name&gt; <span class="keyword">in</span> &lt;seq&gt;:</span><br><span class="line">    &lt;body&gt;</span><br></pre></td></tr></table></figure>
+<p><em>Rules for execution</em>:</p>
+<p>For each element in <code>&lt;seq&gt;</code>:</p>
+<ol type="1">
+<li>Bind it to <code>&lt;name&gt;</code></li>
+<li>Execute <code>&lt;body&gt;</code></li>
+</ol>
+<h4 id="range">Range</h4>
+<p>The <strong>range</strong> function creates a sequence containing the values within a specified range.</p>
+<p><code>range(&lt;start&gt;, &lt;end&gt;, &lt;step&gt;)</code></p>
+<p>Creates a range object from <code>&lt;start&gt;</code> (inclusive) to <code>&lt;end&gt;</code>(exclusive), skipping every<code>&lt;step&gt;</code> element</p>
+<h4 id="list-comprehensions">List Comprehensions</h4>
+<p>Yon can create out a list out of a sequence using a <strong>list comprehension</strong>:</p>
+<p><code>[&lt;expr&gt; for &lt;name&gt; in &lt;seq&gt; if &lt;cond&gt;]</code></p>
+<p><em>Rules for execution</em>:</p>
+<ol type="1">
+<li>Create an empty result list that will be the value of the list comprehension</li>
+<li>For each element in <code>&lt;seq&gt;</code>:
+<ul>
+<li>Bind to that element to <code>&lt;name&gt;</code></li>
+<li>If <code>&lt;cond&gt;</code> evaluates to a true value, then add the value of <code>&lt;expr&gt;</code> to the result list</li>
+<li><strong>Note</strong>: binding to <code>&lt;name&gt;</code> will not overwrite local bindings</li>
+</ul></li>
+</ol>
+<h2 id="data-abstraction">Data Abstraction</h2>
+<ul>
+<li><strong>Compound values</strong> combine other values together
+<ul>
+<li>A data: a year, a month and a day</li>
+<li>A geographic position: latitude and longitude</li>
+</ul></li>
+<li><strong>Data abstraction</strong> lets us manipulate compound values as units</li>
+<li>Isolate two parts of any program that uses data:
+<ul>
+<li>How data are <strong>represented</strong></li>
+<li>How data are <strong>manipulated</strong></li>
+</ul></li>
+<li>Data abstraction: A methodology by which functions enforce an abstraction barrier between <strong>representation</strong> and <strong>use</strong></li>
+</ul>
+<h3 id="rational-numbers">Rational Numbers</h3>
+<p><span class="math display">\[\frac{numerator}{denominator}\]</span></p>
+<p>Exact representation as fractions</p>
+<p>A pair of integers</p>
+<p>As soon as division occurs, the exact representation may be lost! (Demo)</p>
+<p>Assume we can compose and decompose rational numbers:</p>
+<ul>
+<li><code>rational(n, d)</code> returns a rational number x <strong>Constructor</strong></li>
+<li><code>numer(x)</code> returns the numerator of x <strong>Selectors</strong></li>
+<li><code>denom(x)</code> returns the denominator of x <strong>Selectors</strong></li>
+</ul>
+]]></content>
+      <categories>
+        <category>SICP</category>
+        <category>CS61-A</category>
+      </categories>
+      <tags>
+        <tag>笔记</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>09 Functional Decomposition &amp; Debugging</title>
+    <url>/2021/07/22/09-Functional-Decomposition-Debugging/</url>
+    <content><![CDATA[<h2 id="program-decomposition">Program Decomposition</h2>
+<ul>
+<li>The process of breaking a large problem into more manageable sub-problems</li>
+<li>Goals of Program Decomposition
+<ul>
+<li>Complexity Management</li>
+<li>Reusability and abstraction</li>
+</ul></li>
+</ul>
+<h3 id="the-black-box">The "Black Box"</h3>
+<ul>
+<li>A "black box" is opaque - its inner workings are <strong>not revealed</strong></li>
+<li>Decomposition is a divide and conquer strategy.</li>
+</ul>
+<span id="more"></span>
+<h3 id="function-rules-in-practice">Function Rules in Practice</h3>
+<p>A function should solve <strong>one problem</strong></p>
+<p>A function should have the <strong>smallest number of parameters</strong> possible to solve its problem</p>
+<p>A <strong>repeated sequence</strong> should be put in its own function</p>
+<h2 id="debugging">Debugging</h2>
+<h3 id="doctests">Doctests</h3>
+<p>python -m doctest test.py</p>
+<h4 id="environment-diagrams">Environment Diagrams</h4>
+<h3 id="print-debugging">Print Debugging</h3>
+<h3 id="preventing-bugs-assert-statements">Preventing Bugs: Assert Statements</h3>
+]]></content>
+      <categories>
+        <category>SICP</category>
+        <category>CS61-A</category>
+      </categories>
+      <tags>
+        <tag>笔记</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>10 Trees</title>
+    <url>/2021/08/01/10-Trees/</url>
+    <content><![CDATA[<h2 id="sequence-aggregation">Sequence Aggregation</h2>
+<p><strong>Iterable</strong> - an object capable of returning its members one at a time.</p>
+<p>Some functions take iterable arguments and aggregate them into a value:</p>
+<ul>
+<li><code>sum(iterable[, start]) -&gt; value</code></li>
+<li><code>max(iterable[, key=func]) -&gt; value</code></li>
+</ul>
+<h2 id="tree">Tree</h2>
+<h3 id="tree-abstraction">Tree Abstraction</h3>
+<p><img src="https://gitee.com/ZHDreamer/markdown-images/raw/master/images/2021-07-22_17-09-57_compressed.jpg"  /></p>
+<span id="more"></span>
+<h3 id="tree-abstraction-implementation">Tree Abstraction Implementation</h3>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Constructor</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">tree</span>(<span class="params">label, branches=[]</span>):</span></span><br><span class="line">    <span class="keyword">for</span> branch <span class="keyword">in</span> branches:</span><br><span class="line">        <span class="keyword">assert</span> is_tree(branch)</span><br><span class="line">    <span class="keyword">return</span> [label] + <span class="built_in">list</span>(branches)</span><br><span class="line">    </span><br><span class="line"><span class="comment"># Selectors</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">label</span>(<span class="params">tree</span>):</span></span><br><span class="line">    <span class="keyword">return</span> tree[<span class="number">0</span>]</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">branches</span>(<span class="params">tree</span>):</span></span><br><span class="line">    <span class="keyword">return</span> tree[<span class="number">1</span>:]</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">is_tree</span>(<span class="params">tree</span>):</span></span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">type</span>(tree) !=<span class="built_in">list</span> <span class="keyword">or</span> <span class="built_in">len</span>(tree) &lt; <span class="number">1</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">    <span class="keyword">for</span> branch <span class="keyword">in</span> branches(tree):</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> is_tree(branch):</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">     <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">is_leaf</span>(<span class="params">tree</span>):</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">not</span> branches(tree)</span><br></pre></td></tr></table></figure>
+<h2 id="tree-processing">Tree Processing</h2>
+<h3 id="recursion">Recursion</h3>
+<ol type="1">
+<li>The base case is the smallest version of the problem, many times if its a leaf</li>
+<li>The recursive call happens on smaller subproblems, which tend to be branches</li>
+<li>We use the recursive calls with some type of aggregation afterward to get our final solution</li>
+</ol>
+<h3 id="count-nodes-in-a-tree">Count Nodes in a Tree</h3>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">count_tree</span>(<span class="params">t</span>):</span></span><br><span class="line">    <span class="keyword">if</span> is_leaf(t):</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">    total = <span class="number">1</span></span><br><span class="line">    <span class="keyword">for</span> b <span class="keyword">in</span> branches(t):</span><br><span class="line">        total += count_nodes(b)</span><br><span class="line">    <span class="keyword">return</span> total</span><br></pre></td></tr></table></figure>
+<h3 id="collect-the-leaves">Collect the Leaves</h3>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">collect_leaves</span>():</span></span><br><span class="line">    <span class="keyword">if</span> is_leaf(t):</span><br><span class="line">        <span class="keyword">return</span> [label(t)]</span><br><span class="line">    lst = []</span><br><span class="line">    <span class="keyword">for</span> b <span class="keyword">in</span> branches(t):</span><br><span class="line">        lst += collect_leaves()</span><br><span class="line">    <span class="keyword">return</span> lst</span><br></pre></td></tr></table></figure>
+<h3 id="print-tree"> Print Tree</h3>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">print_tree</span>(<span class="params">t, indent=<span class="number">0</span></span>):</span></span><br><span class="line">    <span class="keyword">if</span> is_leaf(t):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27; &#x27;</span>*indent, label(t))</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27; &#x27;</span>*indent, label(t))</span><br><span class="line">        <span class="keyword">for</span> b <span class="keyword">in</span> branches(t):</span><br><span class="line">            print_tree(b, indent + <span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="creating-tree">Creating Tree</h3>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">square_tree</span>(<span class="params">t</span>):</span></span><br><span class="line">    <span class="keyword">if</span> is_leaf(t):</span><br><span class="line">        <span class="keyword">return</span> tree(label(t)**<span class="number">2</span>)</span><br><span class="line">    lst = []</span><br><span class="line">    <span class="keyword">for</span> b <span class="keyword">in</span> branches(t):</span><br><span class="line">        lst += square_tree(b)</span><br><span class="line">     <span class="keyword">return</span> tree(label(t) ** <span class="number">2</span>, lst)</span><br></pre></td></tr></table></figure>
+<h3 id="fib-tree">Fib Tree</h3>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fib_tree</span>(<span class="params">n</span>):</span></span><br><span class="line">    <span class="keyword">if</span> n == <span class="number">0</span>:</span><br><span class="line">        <span class="keyword">return</span> tree(<span class="number">0</span>)</span><br><span class="line">    <span class="keyword">elif</span> n == <span class="number">1</span>:</span><br><span class="line">        <span class="keyword">return</span> tree(<span class="number">1</span>)</span><br><span class="line">    left = fib_tree(n-<span class="number">2</span>)</span><br><span class="line">    right = fib_tree(n-<span class="number">1</span>)</span><br><span class="line">    <span class="keyword">return</span> tree(label(left) + label(right), [left, ight])</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>SICP</category>
+        <category>CS61-A</category>
+      </categories>
+      <tags>
+        <tag>笔记</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>11 Mutable Sequences</title>
+    <url>/2021/08/11/11-Mutable-Sequences/</url>
+    <content><![CDATA[<p>本质上用+、切片得到的列表都是浅复制的新列表，是将列表视为immutable的</p>
+<h2 id="mutation-operations">Mutation Operations</h2>
+<h5 id="use-index-to-change-value">Use index to change value</h5>
+<p><code>lst[0] = 0</code></p>
+<h4 id="list-mutation">List Mutation</h4>
+<p><code>append(el)</code>: adds el to the end of the list</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>lst = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>lst.append(<span class="number">6</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>lst</span><br><span class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>]</span><br></pre></td></tr></table></figure>
+<span id="more"></span>
+<p><code>insert(i, el)</code>: inserts el at index i</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>lst = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>lst.insert(<span class="number">2</span>, <span class="number">2.5</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>lst</span><br><span class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">2.5</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]</span><br></pre></td></tr></table></figure>
+<p><code>extend(seq)</code>: adds elements in seq one by one to the end of the list</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>lst = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>lst.extend([<span class="number">4</span>, <span class="number">5</span>])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>lst</span><br><span class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]</span><br></pre></td></tr></table></figure>
+<p><code>remove(el)</code>: removes the first occurrence of el from the list</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>lst = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">2</span>, <span class="number">5</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>lst.remove(<span class="number">2</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>lst</span><br><span class="line">[<span class="number">1</span>, <span class="number">3</span>, <span class="number">2</span>, <span class="number">5</span>]</span><br></pre></td></tr></table></figure>
+<p><code>pop(i)</code>: removes <em>and returns</em> the element at index i</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>lst = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>lst.pop(<span class="number">3</span>)</span><br><span class="line"><span class="number">4</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>lst</span><br><span class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">5</span>]</span><br></pre></td></tr></table></figure>
+<h4 id="dictionaries-mutation">Dictionaries Mutation</h4>
+<p>The keys of dictionary must be immutable</p>
+<h2 id="immutable-values">Immutable Values</h2>
+<ul>
+<li>Strings</li>
+<li>Tuples</li>
+</ul>
+<h2 id="mutating-in-functions">Mutating in Functions</h2>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="function"><span class="keyword">def</span> <span class="title">mystery</span>(<span class="params">lst</span>):</span> <span class="comment"># mutative function</span></span><br><span class="line"><span class="meta">... </span>    lst.pop()</span><br><span class="line"><span class="meta">... </span>    lst.pop()</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>four = [<span class="number">4</span>, <span class="number">4</span>, <span class="number">4</span>, <span class="number">4</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>mystery(four)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>four</span><br><span class="line">[<span class="number">4</span>, <span class="number">4</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="function"><span class="keyword">def</span> <span class="title">mystery2</span>(<span class="params">x</span>):</span> <span class="comment"># mutative function</span></span><br><span class="line"><span class="meta">... </span>    lst.append(x)</span><br><span class="line"><span class="meta">... </span>    lst.append(x)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>lst = [<span class="number">4</span>, <span class="number">4</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>mystery2(<span class="number">5</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>lst</span><br><span class="line">[<span class="number">4</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">5</span>]</span><br></pre></td></tr></table></figure>
+<p>When you use mutation within functions, it will operate the variables itself. Outside the functions, the variables change as well.</p>
+<h2 id="identity-versus-equality">Identity Versus Equality</h2>
+<h4 id="identity">Identity</h4>
+<p><code>&lt;expr0&gt; is&lt;expr1&gt;</code></p>
+<p>evaluates to True if both<code>&lt;expr0&gt;</code>and<code>&lt;expr1&gt;</code>evaluate to <strong>the</strong> <strong>same object</strong> (same memory address)</p>
+<h4 id="equality">Equality</h4>
+<p><code>&lt;expr0&gt; == &lt;expr1&gt;</code> evaluates to True if both <code>&lt;expr0&gt;</code>and <code>&lt;expr1&gt;</code>evaluates to <strong>equal values</strong></p>
+]]></content>
+      <categories>
+        <category>SICP</category>
+        <category>CS61-A</category>
+      </categories>
+      <tags>
+        <tag>笔记</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>HW 03 Church Numerals</title>
+    <url>/2021/08/11/HW-03-Church-Numerals/</url>
+    <content><![CDATA[<h2 id="背景">背景</h2>
+<blockquote>
+<p>The logician Alonzo Church invented a system of representing non-negative integers entirely using functions. The purpose was to show that functions are sufficient to describe all of number theory: if we have functions, we do not need to assume that numbers exist, but instead we can invent them.</p>
+</blockquote>
+<p>逻辑学家阿隆索·邱奇发明了一个利用函数表示自然数的系统。</p>
+<blockquote>
+<p>Your goal in this problem is to rediscover this representation known as Church numerals. Here are the definitions of zero, as well as a function that returns one more than its argument:</p>
+</blockquote>
+<p>我们的目标就是实现Church numerals，零和一的定义如下</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">zero</span>(<span class="params">f</span>):</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">lambda</span> x: x</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">successor</span>(<span class="params">n</span>):</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">lambda</span> f: <span class="keyword">lambda</span> x: f(n(f)(x))</span><br></pre></td></tr></table></figure>
+<span id="more"></span>
+<h2 id="定义一和二">定义一和二</h2>
+<blockquote>
+<p>First, define functions one and two such that they have the same behavior as successor(zero) and successsor(successor(zero)) respectively, but do not call successor in your implementation.</p>
+</blockquote>
+<p>首先我们要实现一和二的定义，在此之前我们可以分析一下零和一是怎么用函数表示的。</p>
+<p>零的定义是<span class="math inline">\(F_{zero}(x)=x\)</span>，我们将零带入successor可以得到<span class="math inline">\(F_{one}(x)=f(x)\)</span>，那么显而易见二就是<span class="math inline">\(F_{two}(x)=f(f(x))\)</span>，以此类推。那么一和二很容易就可以定义出来。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">one</span>(<span class="params">f</span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;Church numeral 1: same as successor(zero)&quot;&quot;&quot;</span></span><br><span class="line">    <span class="string">&quot;*** YOUR CODE HERE ***&quot;</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">lambda</span> x: f(x)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">two</span>(<span class="params">f</span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;Church numeral 2: same as successor(successor(zero))&quot;&quot;&quot;</span></span><br><span class="line">    <span class="string">&quot;*** YOUR CODE HERE ***&quot;</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">lambda</span> x: f(f(x))</span><br></pre></td></tr></table></figure>
+<h2 id="将-church-numeral-转化为整数">将 church numeral 转化为整数</h2>
+<blockquote>
+<p>Next, implement a function church_to_int that converts a church numeral argument to a regular Python integer.</p>
+</blockquote>
+<p>接下来是实现 church numeral 到整数的转化。</p>
+<p>从这一题开始就渐渐开始难度了。由定义可知，church numeral 是一个 high-order function，返回的是函数本身，这个返回的函数的参数是一个函数，同时返回函数也是一个函数，参数是x。</p>
+<p><span class="math display">\[\text{设}g(x)=-x\]</span> <span class="math display">\[one(g)(1)=g(1)=-1\]</span> <span class="math display">\[two(g)(1)=g(g(1))=1\]</span></p>
+<p>由上面那个例子可能能帮助大家更直观的理解church numeral的构成，转化到整数最关键的是传入函数<span class="math inline">\(f\)</span>如何构造。可以看到数字与函数调用的次数是一样的，如果每次调用的时候加1，就可以实现转化。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">church_to_int</span>(<span class="params">n</span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;Convert the Church numeral n to a Python integer.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    &gt;&gt;&gt; church_to_int(zero)</span></span><br><span class="line"><span class="string">    0</span></span><br><span class="line"><span class="string">    &gt;&gt;&gt; church_to_int(one)</span></span><br><span class="line"><span class="string">    1</span></span><br><span class="line"><span class="string">    &gt;&gt;&gt; church_to_int(two)</span></span><br><span class="line"><span class="string">    2</span></span><br><span class="line"><span class="string">    &gt;&gt;&gt; church_to_int(three)</span></span><br><span class="line"><span class="string">    3</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    <span class="string">&quot;*** YOUR CODE HERE ***&quot;</span></span><br><span class="line">    <span class="keyword">return</span> n(<span class="keyword">lambda</span> x: x + <span class="number">1</span>)(<span class="number">0</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="定义运算">定义运算</h2>
+<blockquote>
+<p>Finally, implement functions add_church, mul_church, and pow_church that perform addition, multiplication, and exponentiation on church numerals.</p>
+</blockquote>
+<p>最后来构造加法、乘法和乘方运算。</p>
+<h3 id="加法">加法</h3>
+<p>我们还是先从公式的角度分析一下 <span class="math display">\[n+m=\underbrace{f(f(\cdots(f}_{n+m}(x))))\]</span> 得到 n+m 只需有 n+m 个<span class="math inline">\(f\)</span>复合就可以，即 <span class="math display">\[\begin{aligned}
+n+m&amp;=F_n(f)(F_m(f)(x))\\
+&amp;=\underbrace{f(f(\cdots(f}_{n}(F_m(f)(x)))))\\
+&amp;=\underbrace{f(f(\cdots(f}_{n}(\underbrace{f(f(\cdots(f}_{m}(x)))))
+\end{aligned}\]</span></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">add_church</span>(<span class="params">m, n</span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;Return the Church numeral for m + n, for Church numerals m and n.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    &gt;&gt;&gt; church_to_int(add_church(two, three))</span></span><br><span class="line"><span class="string">    5</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    <span class="string">&quot;*** YOUR CODE HERE ***&quot;</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">lambda</span> f: <span class="keyword">lambda</span> x: n(f)(m(f)(x))</span><br></pre></td></tr></table></figure>
+<h3 id="乘法">乘法</h3>
+<p><span class="math display">\[n\times m=\underbrace{f(f(\cdots(f}_{n\times m}(x))))\]</span> n是n个<span class="math inline">\(f(x)\)</span>复合，m是m个<span class="math inline">\(f(x)\)</span>复合，<span class="math inline">\(n\times m\)</span>是n个m个<span class="math inline">\(f(x)\)</span>复合</p>
+<p>我们先将n个m写出来，每个<span class="math inline">\(F_m\)</span>是m个<span class="math inline">\(f(x)\)</span>，得到</p>
+<p><span class="math display">\[\begin{aligned}
+n\times m&amp;=F_n(F_m(f))(x)\\
+&amp;=\underbrace{F_m(f)(F_m(f)(\cdots(F_m}_{n}(f)(x))))\\
+&amp;=\underbrace{\underbrace{f(f(\cdots(f}_{m}(\underbrace{f(f(\cdots(f}_{m}(\cdots(\underbrace{f(f(\cdots(f}_{m}}_{n}(x))))
+\end{aligned}\]</span></p>
+<p>即<span class="math inline">\(n\times m\)</span> <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">mul_church</span>(<span class="params">m, n</span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;Return the Church numeral for m * n, for Church numerals m and n.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    &gt;&gt;&gt; four = successor(three)</span></span><br><span class="line"><span class="string">    &gt;&gt;&gt; church_to_int(mul_church(two, three))</span></span><br><span class="line"><span class="string">    6</span></span><br><span class="line"><span class="string">    &gt;&gt;&gt; church_to_int(mul_church(three, four))</span></span><br><span class="line"><span class="string">    12</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    <span class="string">&quot;*** YOUR CODE HERE ***&quot;</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">lambda</span> f: n(m(f))</span><br></pre></td></tr></table></figure></p>
+<h3 id="乘方">乘方</h3>
+<p><span class="math display">\[m^n=\underbrace{f(f(\cdots(f}_{m^n}(x))))\]</span></p>
+<p>和乘法类似，这次我们需要n个m个m，也就是n个<span class="math inline">\(m\times m\)</span>，先上推导再解释</p>
+<p><span class="math display">\[\begin{aligned}
+m^n&amp;=F_n(F_m)(f)(x)\\
+&amp;=\underbrace{F_m(F_m(\cdots(F_m}_{n})))(f)(x)\\
+&amp;=\underbrace{F_m(F_m(\cdots(F_m(}_{n-1}\underbrace{f(f(\cdots(f}_{m})))(x)\\
+&amp;=\underbrace{F_m(F_m(\cdots(F_m(}_{n-2}\underbrace{f(f(\cdots(f}_{m\times m})))(x)\\
+&amp;\qquad \vdots\\
+&amp;=F_m(\underbrace{f(f(\cdots(f}_{m^{n-1}})))(x)\\
+&amp;=\underbrace{f(f(\cdots(f}_{m^n}(x))))
+\end{aligned}\]</span> 这里 evaluate 的顺序很关键，第一步<span class="math inline">\(F_n\)</span>将n个<span class="math inline">\(F_m\)</span>复合，之后<span class="math inline">\(f\)</span>作为<span class="math inline">\(F_n\)</span>第二个参数被传入，最里层变为<span class="math inline">\(F_m(f)\)</span>开始复合，一层层向外，最外层<span class="math inline">\(x\)</span>作为<span class="math inline">\(F_m\)</span>的第二个参数被传入。实际程序运行的顺序肯定和这里不完全一样，但是基本思路是这样的。一开始可能想不明白这个和乘法有什么区别，乘法复合的是<span class="math inline">\(F_m\)</span>第二个参数，乘方复合的是<span class="math inline">\(F_m\)</span>第一个参数，无论是 debug 还是 environment diagram 都没有办法形象的展现这个程序的运行方式，只能靠意会了。 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">pow_church</span>(<span class="params">m, n</span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;Return the Church numeral m ** n, for Church numerals m and n.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    &gt;&gt;&gt; church_to_int(pow_church(two, three))</span></span><br><span class="line"><span class="string">    8</span></span><br><span class="line"><span class="string">    &gt;&gt;&gt; church_to_int(pow_church(three, two))</span></span><br><span class="line"><span class="string">    9</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    <span class="string">&quot;*** YOUR CODE HERE ***&quot;</span></span><br><span class="line">    <span class="keyword">return</span> n(m)</span><br></pre></td></tr></table></figure></p>
+]]></content>
+      <categories>
+        <category>SICP</category>
+        <category>CS61-A</category>
+      </categories>
+      <tags>
+        <tag>笔记</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hexo 问题处理备份</title>
+    <url>/2021/08/12/Hexo-%E9%97%AE%E9%A2%98%E5%A4%84%E7%90%86%E5%A4%87%E4%BB%BD/</url>
+    <content><![CDATA[<p>Hexo使用起来小毛病很多，防止以后浪费时间再去搜索，在这里备份一下各个问题成功的解决方法。</p>
+<h2 id="next-相关问题">Next 相关问题</h2>
+<h3 id="next-主题无法显示">Next 主题无法显示</h3>
+<p>报错<code>&#123;% extends ‘_layout.swig‘ %&#125; &#123;% import ‘_macro/post.swig‘ as post_template %&#125;</code></p>
+<p>原因是Hexo在5.0之后把swig给删除了需要自己手动安装</p>
+<figure class="highlight coffeescript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">npm</span> i hexo-renderer-swig</span><br></pre></td></tr></table></figure>
+<span id="more"></span>
+<h3 id="菜单栏修改问题">菜单栏修改问题</h3>
+<p>Next在主题的<code>_config.yml</code>文件中提供菜单栏的修改，只要搜索menu就可以找到，通过去除注释即可以在网页上进行渲染。然而在修改next中的menu时会发现存在这样的报错 “cannot get %20” -- 无法找到相应的菜单。出现的原因是官方给的代码中多加了一个空格，导致网页无法渲染，个人除了删除注释外，要将“||”前的空格删除不然会导致菜单没法跳转。</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">menu:</span></span><br><span class="line">  <span class="attr">home:</span> <span class="string">/||</span> <span class="string">home</span></span><br><span class="line">  <span class="comment">#about: /about/ || user</span></span><br><span class="line">  <span class="attr">tags:</span> <span class="string">/tags/||</span> <span class="string">tags</span></span><br><span class="line">  <span class="attr">categories:</span> <span class="string">/categories/||</span> <span class="string">th</span></span><br><span class="line">  <span class="attr">archives:</span> <span class="string">/archives/||</span> <span class="string">archive</span></span><br><span class="line">  <span class="comment">#schedule: /schedule/ || calendar</span></span><br><span class="line">  <span class="comment">#sitemap: /sitemap.xml || sitemap</span></span><br><span class="line">  <span class="comment">#commonweal: /404/ || heartbeat</span></span><br></pre></td></tr></table></figure>
+<h3 id="侧边栏大纲中文无法跳转">侧边栏大纲中文无法跳转</h3>
+<p>英文可以正常跳转，中文不行</p>
+<p>根据报错发现是<code>Blog\themes\next\source\js\src\post-details.js</code>的问题</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// TOC item animation navigate &amp; prevent #item selector in adress bar.</span></span><br><span class="line">$(<span class="string">&#x27;.post-toc a&#x27;</span>).on(<span class="string">&#x27;click&#x27;</span>, <span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</span><br><span class="line">  e.preventDefault();</span><br><span class="line">  &lt;!-- targetSelector 解析UTF8的问题 -&gt;</span><br><span class="line">  <span class="keyword">var</span> targetSelector = NexT.utils.escapeSelector(<span class="built_in">this</span>.getAttribute(<span class="string">&#x27;href&#x27;</span>));</span><br><span class="line">  &lt;!-- 添加下面这行代码, 重新解析 URL -&gt;</span><br><span class="line">  targetSelector = <span class="built_in">decodeURI</span>(<span class="built_in">this</span>.getAttribute(<span class="string">&#x27;href&#x27;</span>))</span><br><span class="line">  <span class="keyword">var</span> offset = $(targetSelector).offset().top;</span><br><span class="line"></span><br><span class="line">  hasVelocity ?</span><br><span class="line">    html.velocity(<span class="string">&#x27;stop&#x27;</span>).velocity(<span class="string">&#x27;scroll&#x27;</span>, &#123;</span><br><span class="line">      <span class="attr">offset</span>: offset  + <span class="string">&#x27;px&#x27;</span>,</span><br><span class="line">      <span class="attr">mobileHA</span>: <span class="literal">false</span></span><br><span class="line">    &#125;) :</span><br><span class="line">    $(<span class="string">&#x27;html, body&#x27;</span>).stop().animate(&#123;</span><br><span class="line">      <span class="attr">scrollTop</span>: offset</span><br><span class="line">    &#125;, <span class="number">500</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="翻页显示i-classfa-fa-angle-righti">翻页显示<code>&lt;i class="fa fa-angle-right"&gt;&lt;/i&gt;</code></h3>
+<p><img src="https://gitee.com/ZHDreamer/markdown-images/raw/master/images/20191201150136673.png" /></p>
+<p><a href="https://github.com/hexojs/hexo/issues/3794">参考</a></p>
+<p>修改<code>Blog/themes/next/layout/_partials/pagination.swig</code></p>
+<figure class="highlight handlebars"><table><tr><td class="code"><pre><span class="line"><span class="xml">&#123;%- if page.prev or page.next %&#125;</span></span><br><span class="line"><span class="xml"> <span class="tag">&lt;<span class="name">nav</span> <span class="attr">class</span>=<span class="string">&quot;pagination&quot;</span>&gt;</span></span></span><br><span class="line"><span class="xml">   </span><span class="template-variable">&#123;&#123;</span></span><br><span class="line"><span class="template-variable">     <span class="name">paginator</span>(&#123;</span></span><br><span class="line"><span class="template-variable">       <span class="name">prev_text:</span> <span class="string">&#x27;&lt;i class=&quot;fa fa-angle-left&quot; aria-label=&quot;&#x27;</span>+__(<span class="name">&#x27;accessibility.prev_page&#x27;</span>)+<span class="string">&#x27;&quot;&gt;&lt;/i&gt;&#x27;</span>,</span></span><br><span class="line"><span class="template-variable">       next_text: <span class="string">&#x27;&lt;i class=&quot;fa fa-angle-right&quot; aria-label=&quot;&#x27;</span>+__(<span class="name">&#x27;accessibility.next_page&#x27;</span>)+<span class="string">&#x27;&quot;&gt;&lt;/i&gt;&#x27;</span>,</span></span><br><span class="line"><span class="template-variable">       mid_size: <span class="number">1</span>,</span></span><br><span class="line"><span class="template-variable">       escape: <span class="literal">false</span></span></span><br><span class="line"><span class="template-variable">     &#125;)</span></span><br><span class="line"><span class="template-variable">   &#125;&#125;</span><span class="xml"></span></span><br><span class="line"><span class="xml"> <span class="tag">&lt;/<span class="name">nav</span>&gt;</span></span></span><br><span class="line"><span class="xml">&#123;%- endif %&#125;</span></span><br></pre></td></tr></table></figure>
+<h3 id="公式渲染出现问题旧版本">公式渲染出现问题（旧版本）</h3>
+<p>多行公式<code>\\</code>和下标<code>_</code>无法正常显示</p>
+<h4 id="原因分析">原因分析</h4>
+<p>Hexo默认使用<code>hexo-renderer-marked</code>引擎渲染网页，该引擎会把一些特殊的markdown符号转换为相应的html标签，比如在markdown语法中，下划线<code>_</code>代表斜体，会被渲染引擎处理为<code>&lt;em&gt;</code>标签。</p>
+<p>因为类Latex格式书写的数学公式下划线<code>_</code>表示下标，有特殊的含义，如果被强制转换为<code>&lt;em&gt;</code>标签，那么MathJax引擎在渲染数学公式的时候就会出错。例如，<span class="math inline">\(x_i\)</span>​在开始被渲染的时候，处理为$x<code>&lt;em&gt;</code>i<code>&lt;/em&gt;</code>$​，这样MathJax引擎就认为该公式有语法错误，因为不会渲染。</p>
+<p>类似的语义冲突的符号还包括'*', '{', '}', ''等。</p>
+<h4 id="解决方法">解决方法</h4>
+<p>更换Hexo的markdown渲染引擎，<a href="https://link.jianshu.com/?t=https%3A%2F%2Fgithub.com%2Fsun11%2Fhexo-renderer-kramed">hexo-renderer-kramed</a>引擎是在默认的渲染引擎<a href="https://link.jianshu.com/?t=https%3A%2F%2Fgithub.com%2Fhexojs%2Fhexo-renderer-marked">hexo-renderer-marked</a>的基础上修改了一些bug，两者比较接近，也比较轻量级。</p>
+<figure class="highlight coffeescript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">npm</span> uninstall hexo-renderer-marked</span><br><span class="line"><span class="built_in">npm</span> install hexo-renderer-kramed</span><br></pre></td></tr></table></figure>
+<p>卸载掉旧的渲染引擎，安装新引擎</p>
+<p>然后，跟换引擎后行间公式可以正确渲染了，但是这样还没有完全解决问题，行内公式的渲染还是有问题，因为<code>hexo-renderer-kramed</code>引擎也有语义冲突的问题。接下来到博客根目录下，找到<code>node_modules\kramed\lib\rules\inline.js</code>，把第11行的<code>escape</code>变量的值做相应的修改：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">//  escape: /^\\([\\`*&#123;&#125;\[\]()#$+\-.!_&gt;])/,</span></span><br><span class="line">  <span class="attr">escape</span>: <span class="regexp">/^\\([`*\[\]()#$+\-.!_&gt;])/</span></span><br></pre></td></tr></table></figure>
+<p>这一步是在原基础上取消了对,{,}的转义(escape)。</p>
+<p>同时把第20行的<code>em</code>变量也要做相应的修改。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">//  em: /^\b_((?:__|[\s\S])+?)_\b|^\*((?:\*\*|[\s\S])+?)\*(?!\*)/,</span></span><br><span class="line">  <span class="attr">em</span>: <span class="regexp">/^\*((?:\*\*|[\s\S])+?)\*(?!\*)/</span></span><br></pre></td></tr></table></figure>
+<p>重新启动 Hexo 即可解决</p>
+<h3 id="公式渲染出现问题新版本">公式渲染出现问题（新版本）</h3>
+<figure class="highlight coffeescript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">npm</span> un hexo-renderer-marked</span><br><span class="line"><span class="built_in">npm</span> i hexo-renderer-pandoc</span><br></pre></td></tr></table></figure>
+<p>这样以后仍然会有一些问题，<code>\\</code>在一般多行公式无法生效，要加入<code>gather</code>环境才能使其生效，或者直接用多个多行公式</p>
+]]></content>
+      <categories>
+        <category>issues fix</category>
+      </categories>
+      <tags>
+        <tag>问题</tag>
+      </tags>
+  </entry>
+</search>
