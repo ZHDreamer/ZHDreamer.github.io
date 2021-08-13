@@ -240,6 +240,40 @@
       </tags>
   </entry>
   <entry>
+    <title>06 Recursion</title>
+    <url>/2021/07/13/06-Recursion/</url>
+    <content><![CDATA[<h3 id="functional-abstraction">Functional Abstraction</h3>
+<h4 id="mechanics">Mechanics</h4>
+<p>How does Python execute this program line-by-line</p>
+<h4 id="use">Use</h4>
+<p>What can a function do</p>
+<h2 id="recursion">Recursion</h2>
+<h3 id="iterative-algorithm">Iterative Algorithm</h3>
+<p>eg.</p>
+<p><span class="math display">\[n!=\prod\limits_{k=1}^{n} k\]</span></p>
+<h3 id="recursive-algorithm">Recursive Algorithm</h3>
+<p>Recursive is useful for solving problems with a naturally repeating structure - they are defined in terms of themselves.</p>
+<p>eg.</p>
+<p><span class="math display">\[n!=\begin{cases}1 &amp;\text{if n=0}\\n  (n-1)!  &amp;\text{otherwise}\end{cases}\]</span></p>
+<span id="more"></span>
+<h3 id="recursive-functions">Recursive Functions</h3>
+<p>A function is called recursive if the body of that function calls itself, either directly or indirectly.</p>
+<h4 id="structure">Structure</h4>
+<ol type="1">
+<li>One or more <strong>base cases</strong>, usually the smallest input.</li>
+<li>One or more ways of <strong>reducing the problem</strong>, and then solving the smaller problem using recursion.</li>
+<li>One or more ways of <strong>using the solution to each smaller problem</strong> to solve our larger problem.</li>
+</ol>
+]]></content>
+      <categories>
+        <category>SICP</category>
+        <category>CS61-A</category>
+      </categories>
+      <tags>
+        <tag>笔记</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>08 Sequences &amp; Data Abstraction</title>
     <url>/2021/07/19/08-Sequences-Data-Abstraction/</url>
     <content><![CDATA[<h2 id="sequences">Sequences</h2>
@@ -357,40 +391,6 @@
       </tags>
   </entry>
   <entry>
-    <title>06 Recursion</title>
-    <url>/2021/07/13/06-Recursion/</url>
-    <content><![CDATA[<h3 id="functional-abstraction">Functional Abstraction</h3>
-<h4 id="mechanics">Mechanics</h4>
-<p>How does Python execute this program line-by-line</p>
-<h4 id="use">Use</h4>
-<p>What can a function do</p>
-<h2 id="recursion">Recursion</h2>
-<h3 id="iterative-algorithm">Iterative Algorithm</h3>
-<p>eg.</p>
-<p><span class="math display">\[n!=\prod\limits_{k=1}^{n} k\]</span></p>
-<h3 id="recursive-algorithm">Recursive Algorithm</h3>
-<p>Recursive is useful for solving problems with a naturally repeating structure - they are defined in terms of themselves.</p>
-<p>eg.</p>
-<p><span class="math display">\[n!=\begin{cases}1 &amp;\text{if n=0}\\n  (n-1)!  &amp;\text{otherwise}\end{cases}\]</span></p>
-<span id="more"></span>
-<h3 id="recursive-functions">Recursive Functions</h3>
-<p>A function is called recursive if the body of that function calls itself, either directly or indirectly.</p>
-<h4 id="structure">Structure</h4>
-<ol type="1">
-<li>One or more <strong>base cases</strong>, usually the smallest input.</li>
-<li>One or more ways of <strong>reducing the problem</strong>, and then solving the smaller problem using recursion.</li>
-<li>One or more ways of <strong>using the solution to each smaller problem</strong> to solve our larger problem.</li>
-</ol>
-]]></content>
-      <categories>
-        <category>SICP</category>
-        <category>CS61-A</category>
-      </categories>
-      <tags>
-        <tag>笔记</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>10 Trees</title>
     <url>/2021/08/01/10-Trees/</url>
     <content><![CDATA[<h2 id="sequence-aggregation">Sequence Aggregation</h2>
@@ -477,55 +477,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Hexo 问题处理备份</title>
-    <url>/2021/08/12/Hexo-%E9%97%AE%E9%A2%98%E5%A4%84%E7%90%86%E5%A4%87%E4%BB%BD/</url>
-    <content><![CDATA[<p>Hexo使用起来小毛病很多，防止以后浪费时间再去搜索，在这里备份一下各个问题成功的解决方法。</p>
-<h2 id="next-相关问题">Next 相关问题</h2>
-<h3 id="next-主题无法显示">Next 主题无法显示</h3>
-<p>报错<code>&#123;% extends ‘_layout.swig‘ %&#125; &#123;% import ‘_macro/post.swig‘ as post_template %&#125;</code></p>
-<p>原因是Hexo在5.0之后把swig给删除了需要自己手动安装</p>
-<figure class="highlight coffeescript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">npm</span> i hexo-renderer-swig</span><br></pre></td></tr></table></figure>
-<span id="more"></span>
-<h3 id="菜单栏修改问题">菜单栏修改问题</h3>
-<p>Next在主题的<code>_config.yml</code>文件中提供菜单栏的修改，只要搜索menu就可以找到，通过去除注释即可以在网页上进行渲染。然而在修改next中的menu时会发现存在这样的报错 “cannot get %20” -- 无法找到相应的菜单。出现的原因是官方给的代码中多加了一个空格，导致网页无法渲染，个人除了删除注释外，要将“||”前的空格删除不然会导致菜单没法跳转。</p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">menu:</span></span><br><span class="line">  <span class="attr">home:</span> <span class="string">/||</span> <span class="string">home</span></span><br><span class="line">  <span class="comment">#about: /about/ || user</span></span><br><span class="line">  <span class="attr">tags:</span> <span class="string">/tags/||</span> <span class="string">tags</span></span><br><span class="line">  <span class="attr">categories:</span> <span class="string">/categories/||</span> <span class="string">th</span></span><br><span class="line">  <span class="attr">archives:</span> <span class="string">/archives/||</span> <span class="string">archive</span></span><br><span class="line">  <span class="comment">#schedule: /schedule/ || calendar</span></span><br><span class="line">  <span class="comment">#sitemap: /sitemap.xml || sitemap</span></span><br><span class="line">  <span class="comment">#commonweal: /404/ || heartbeat</span></span><br></pre></td></tr></table></figure>
-<h3 id="侧边栏大纲中文无法跳转">侧边栏大纲中文无法跳转</h3>
-<p>英文可以正常跳转，中文不行</p>
-<p>根据报错发现是<code>Blog\themes\next\source\js\src\post-details.js</code>的问题</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// TOC item animation navigate &amp; prevent #item selector in adress bar.</span></span><br><span class="line">$(<span class="string">&#x27;.post-toc a&#x27;</span>).on(<span class="string">&#x27;click&#x27;</span>, <span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</span><br><span class="line">  e.preventDefault();</span><br><span class="line">  &lt;!-- targetSelector 解析UTF8的问题 -&gt;</span><br><span class="line">  <span class="keyword">var</span> targetSelector = NexT.utils.escapeSelector(<span class="built_in">this</span>.getAttribute(<span class="string">&#x27;href&#x27;</span>));</span><br><span class="line">  &lt;!-- 添加下面这行代码, 重新解析 URL -&gt;</span><br><span class="line">  targetSelector = <span class="built_in">decodeURI</span>(<span class="built_in">this</span>.getAttribute(<span class="string">&#x27;href&#x27;</span>))</span><br><span class="line">  <span class="keyword">var</span> offset = $(targetSelector).offset().top;</span><br><span class="line"></span><br><span class="line">  hasVelocity ?</span><br><span class="line">    html.velocity(<span class="string">&#x27;stop&#x27;</span>).velocity(<span class="string">&#x27;scroll&#x27;</span>, &#123;</span><br><span class="line">      <span class="attr">offset</span>: offset  + <span class="string">&#x27;px&#x27;</span>,</span><br><span class="line">      <span class="attr">mobileHA</span>: <span class="literal">false</span></span><br><span class="line">    &#125;) :</span><br><span class="line">    $(<span class="string">&#x27;html, body&#x27;</span>).stop().animate(&#123;</span><br><span class="line">      <span class="attr">scrollTop</span>: offset</span><br><span class="line">    &#125;, <span class="number">500</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<h3 id="翻页显示i-classfa-fa-angle-righti">翻页显示<code>&lt;i class="fa fa-angle-right"&gt;&lt;/i&gt;</code></h3>
-<p><img src="https://gitee.com/ZHDreamer/markdown-images/raw/master/images/20191201150136673.png" /></p>
-<p><a href="https://github.com/hexojs/hexo/issues/3794">参考</a></p>
-<p>修改<code>Blog/themes/next/layout/_partials/pagination.swig</code></p>
-<figure class="highlight handlebars"><table><tr><td class="code"><pre><span class="line"><span class="xml">&#123;%- if page.prev or page.next %&#125;</span></span><br><span class="line"><span class="xml"> <span class="tag">&lt;<span class="name">nav</span> <span class="attr">class</span>=<span class="string">&quot;pagination&quot;</span>&gt;</span></span></span><br><span class="line"><span class="xml">   </span><span class="template-variable">&#123;&#123;</span></span><br><span class="line"><span class="template-variable">     <span class="name">paginator</span>(&#123;</span></span><br><span class="line"><span class="template-variable">       <span class="name">prev_text:</span> <span class="string">&#x27;&lt;i class=&quot;fa fa-angle-left&quot; aria-label=&quot;&#x27;</span>+__(<span class="name">&#x27;accessibility.prev_page&#x27;</span>)+<span class="string">&#x27;&quot;&gt;&lt;/i&gt;&#x27;</span>,</span></span><br><span class="line"><span class="template-variable">       next_text: <span class="string">&#x27;&lt;i class=&quot;fa fa-angle-right&quot; aria-label=&quot;&#x27;</span>+__(<span class="name">&#x27;accessibility.next_page&#x27;</span>)+<span class="string">&#x27;&quot;&gt;&lt;/i&gt;&#x27;</span>,</span></span><br><span class="line"><span class="template-variable">       mid_size: <span class="number">1</span>,</span></span><br><span class="line"><span class="template-variable">       escape: <span class="literal">false</span></span></span><br><span class="line"><span class="template-variable">     &#125;)</span></span><br><span class="line"><span class="template-variable">   &#125;&#125;</span><span class="xml"></span></span><br><span class="line"><span class="xml"> <span class="tag">&lt;/<span class="name">nav</span>&gt;</span></span></span><br><span class="line"><span class="xml">&#123;%- endif %&#125;</span></span><br></pre></td></tr></table></figure>
-<h3 id="公式渲染出现问题旧版本">公式渲染出现问题（旧版本）</h3>
-<p>多行公式<code>\\</code>和下标<code>_</code>无法正常显示</p>
-<h4 id="原因分析">原因分析</h4>
-<p>Hexo默认使用<code>hexo-renderer-marked</code>引擎渲染网页，该引擎会把一些特殊的markdown符号转换为相应的html标签，比如在markdown语法中，下划线<code>_</code>代表斜体，会被渲染引擎处理为<code>&lt;em&gt;</code>标签。</p>
-<p>因为类Latex格式书写的数学公式下划线<code>_</code>表示下标，有特殊的含义，如果被强制转换为<code>&lt;em&gt;</code>标签，那么MathJax引擎在渲染数学公式的时候就会出错。例如，<span class="math inline">\(x_i\)</span>​在开始被渲染的时候，处理为$x<code>&lt;em&gt;</code>i<code>&lt;/em&gt;</code>$​，这样MathJax引擎就认为该公式有语法错误，因为不会渲染。</p>
-<p>类似的语义冲突的符号还包括'*', '{', '}', ''等。</p>
-<h4 id="解决方法">解决方法</h4>
-<p>更换Hexo的markdown渲染引擎，<a href="https://link.jianshu.com/?t=https%3A%2F%2Fgithub.com%2Fsun11%2Fhexo-renderer-kramed">hexo-renderer-kramed</a>引擎是在默认的渲染引擎<a href="https://link.jianshu.com/?t=https%3A%2F%2Fgithub.com%2Fhexojs%2Fhexo-renderer-marked">hexo-renderer-marked</a>的基础上修改了一些bug，两者比较接近，也比较轻量级。</p>
-<figure class="highlight coffeescript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">npm</span> uninstall hexo-renderer-marked</span><br><span class="line"><span class="built_in">npm</span> install hexo-renderer-kramed</span><br></pre></td></tr></table></figure>
-<p>卸载掉旧的渲染引擎，安装新引擎</p>
-<p>然后，跟换引擎后行间公式可以正确渲染了，但是这样还没有完全解决问题，行内公式的渲染还是有问题，因为<code>hexo-renderer-kramed</code>引擎也有语义冲突的问题。接下来到博客根目录下，找到<code>node_modules\kramed\lib\rules\inline.js</code>，把第11行的<code>escape</code>变量的值做相应的修改：</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">//  escape: /^\\([\\`*&#123;&#125;\[\]()#$+\-.!_&gt;])/,</span></span><br><span class="line">  <span class="attr">escape</span>: <span class="regexp">/^\\([`*\[\]()#$+\-.!_&gt;])/</span></span><br></pre></td></tr></table></figure>
-<p>这一步是在原基础上取消了对,{,}的转义(escape)。</p>
-<p>同时把第20行的<code>em</code>变量也要做相应的修改。</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">//  em: /^\b_((?:__|[\s\S])+?)_\b|^\*((?:\*\*|[\s\S])+?)\*(?!\*)/,</span></span><br><span class="line">  <span class="attr">em</span>: <span class="regexp">/^\*((?:\*\*|[\s\S])+?)\*(?!\*)/</span></span><br></pre></td></tr></table></figure>
-<p>重新启动 Hexo 即可解决</p>
-<h3 id="公式渲染出现问题新版本">公式渲染出现问题（新版本）</h3>
-<figure class="highlight coffeescript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">npm</span> un hexo-renderer-marked</span><br><span class="line"><span class="built_in">npm</span> i hexo-renderer-pandoc</span><br></pre></td></tr></table></figure>
-<p>这样以后仍然会有一些问题，<code>\\</code>在一般多行公式无法生效，要加入<code>gather</code>环境才能使其生效，或者直接用多个多行公式</p>
-]]></content>
-      <categories>
-        <category>issues fix</category>
-      </categories>
-      <tags>
-        <tag>问题</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>HW 03 Church Numerals</title>
     <url>/2021/08/11/HW-03-Church-Numerals/</url>
     <content><![CDATA[<h2 id="背景">背景</h2>
@@ -595,6 +546,138 @@ m^n&amp;=F_n(F_m)(f)(x)\\
       </categories>
       <tags>
         <tag>笔记</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hexo+Next+GitHub Page 建立博客</title>
+    <url>/2021/08/14/Hexo-Next-GitHub-Page-%E5%BB%BA%E7%AB%8B%E5%8D%9A%E5%AE%A2/</url>
+    <content><![CDATA[<p>虽然 Hexo 和 Next 都有完整的 doc 供你参考，但我觉得还是有必要写这样一篇文章帮助我以及可能会看这篇文章的你记录一下我搭建的过程，以及踩过的坑。</p>
+<h2 id="安装依赖">安装依赖</h2>
+<h3 id="安装git">安装Git</h3>
+<p><a href="https://git-scm.com/download/win">Git下载链接</a></p>
+<p>Git是开源的分布式版本控制系统，用于将网站上传到GitHub。</p>
+<p>下载安装后右键资源管理器会出现Git Bash Here，Git Bash是Git自带的命令行工具，可以在里面打命令（CMD和PowerShell也是可以的）</p>
+<h3 id="配置git环境">配置Git环境</h3>
+<h4 id="设置user.name和user.email配置信息">设置<code>user.name</code>和<code>user.email</code>配置信息</h4>
+<figure class="highlight verilog"><table><tr><td class="code"><pre><span class="line">git <span class="keyword">config</span> --<span class="keyword">global</span> user<span class="variable">.name</span> <span class="string">&quot;你的GitHub用户名&quot;</span></span><br><span class="line">git <span class="keyword">config</span> --<span class="keyword">global</span> user<span class="variable">.email</span> <span class="string">&quot;你的GitHub注册邮箱&quot;</span></span><br></pre></td></tr></table></figure>
+<h4 id="配置ssh">配置SSH</h4>
+<figure class="highlight excel"><table><tr><td class="code"><pre><span class="line">ssh-keygen -<span class="built_in">t</span> rsa -C <span class="string">&quot;你的GitHub注册邮箱&quot;</span></span><br></pre></td></tr></table></figure>
+<p>之后一路回车就好，生成后可以到<code>c:\users\yourname\.ssh</code>中找到<code>id_rsa.pub</code></p>
+<p><img src="https://gitee.com/ZHDreamer/markdown-images/raw/master/images/v2-d1e47103ec1aa8675f68688c5d63bd27_720w.jpg" /></p>
+<p>复制里面的内容（不要用微软Publisher打开，用Editor打开），打开 <a href="https://github.com/settings/keys">GitHub Setting Keys</a> 页面，新建new SSH Key</p>
+<p><img src="https://gitee.com/ZHDreamer/markdown-images/raw/master/images/v2-72a3f22c080e99343c3cc4aabce10e3c_720w.jpg" /></p>
+<p>Title是标题，填入任何你想填的内容即可，Key中复制刚才id_rsa.pub的内容，点击Add SSH Key即可生成SSH key。</p>
+<p>在命令行输入</p>
+<figure class="highlight angelscript"><table><tr><td class="code"><pre><span class="line">ssh <span class="symbol">git@</span>github.com</span><br></pre></td></tr></table></figure>
+<p>提示</p>
+<figure class="highlight applescript"><table><tr><td class="code"><pre><span class="line">PTY allocation request failed <span class="keyword">on</span> channel <span class="number">0</span></span><br><span class="line">Hi ZHDreamer! You&#x27;ve successfully authenticated, <span class="keyword">but</span> GitHub <span class="keyword">does</span> <span class="keyword">not</span> provide shell access.</span><br><span class="line">Connection <span class="keyword">to</span> github.com closed.</span><br></pre></td></tr></table></figure>
+<p>证明配置成功</p>
+<p>GitHub要求每次推送代码都是合法用户，所以每次推送都需要输入账号密码验证推送用户是否是合法用户，为了省去每次输入密码的步骤，采用了SSH，当你推送的时候，Git就会匹配你的私钥跟GitHub上面的公钥是否是配对的，若是匹配就认为你是合法用户，则允许推送。这样可以保证每次的推送都是正确合法的。</p>
+<h3 id="安装node.js">安装Node.js</h3>
+<p><a href="https://nodejs.org/en/download/">Node.js下载地址</a></p>
+<p>Hexo基于Node.js，安装后输入</p>
+<figure class="highlight crmsh"><table><tr><td class="code"><pre><span class="line"><span class="keyword">node</span> <span class="title">-v</span></span><br><span class="line">npm -v</span><br></pre></td></tr></table></figure>
+<p>验证是否成功安装Node.js和npm</p>
+<h2 id="hexo-的安装与使用">Hexo 的安装与使用</h2>
+<h3 id="安装hexo">安装Hexo</h3>
+<p>使用npm命令安装Hexo</p>
+<figure class="highlight avrasm"><table><tr><td class="code"><pre><span class="line">npm install -g hexo-<span class="keyword">cli</span></span><br></pre></td></tr></table></figure>
+<p>安装完成后就可以用<a href="https://hexo.io/docs/commands">Hexo命令</a>建立博客了</p>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line">hexo <span class="function"><span class="keyword">init</span> &lt;folder&gt;</span></span><br><span class="line"><span class="function"></span>cd <span class="operator">&lt;</span>folder<span class="operator">&gt;</span></span><br><span class="line">npm install</span><br></pre></td></tr></table></figure>
+<p>此时输入</p>
+<figure class="highlight ebnf"><table><tr><td class="code"><pre><span class="line"><span class="attribute">hexo s</span></span><br></pre></td></tr></table></figure>
+<p>即可在<code>localhost:4000</code>看到建立的博客了</p>
+<h3 id="推送到github">推送到GitHub</h3>
+<p><a href="https://hexo.io/docs/one-command-deployment">官方文档</a></p>
+<p>安装 <a href="https://github.com/hexojs/hexo-deployer-git">hexo-deployer-git</a></p>
+<figure class="highlight ada"><table><tr><td class="code"><pre><span class="line">npm install hexo-deployer-git <span class="comment">--save</span></span><br></pre></td></tr></table></figure>
+<p>在根目录下有一个<code>_config.yml</code>文件，是Hexo的==站点配置文件==，更改deploy配置</p>
+<figure class="highlight dts"><table><tr><td class="code"><pre><span class="line"><span class="symbol">deploy:</span></span><br><span class="line"><span class="symbol">  type:</span> git</span><br><span class="line"><span class="symbol">  repo:</span> https:<span class="comment">//github.com/ZHDreamer/ZHDreamer.github.io.git</span></span><br><span class="line"><span class="symbol">  branch:</span> master</span><br></pre></td></tr></table></figure>
+<h3 id="hexo的设置">Hexo的设置</h3>
+<p><a href="https://hexo.io/docs/configuration">官方文档</a></p>
+<h2 id="next安装与使用">NexT安装与使用</h2>
+<p><a href="https://theme-next.js.org/">官方网站</a> ，其他网站的信息或多或少有些过时，包括<a href="http://theme-next.iissnan.com/">这个网站</a>和GitHub上面的教程</p>
+<h3 id="下载next">下载NexT</h3>
+<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">git clone https:<span class="regexp">//gi</span>thub.com<span class="regexp">/next-theme/</span>hexo-theme-<span class="keyword">next</span> themes/<span class="keyword">next</span></span><br></pre></td></tr></table></figure>
+<h3 id="启用next">启用NexT</h3>
+<p>在站点配置文件中修改</p>
+<figure class="highlight vbnet"><table><tr><td class="code"><pre><span class="line"><span class="symbol">theme:</span> <span class="keyword">next</span></span><br></pre></td></tr></table></figure>
+<p>此时输入<code>hexo clean</code>清理缓存后再次启动本地服务器，即可看到主题变为NexT</p>
+<h3 id="next的设置">NexT的设置</h3>
+<p>在<code>theme\next</code>下有一个<code>_config.yml</code>文件，是NexT的==主题配置文件==，在这个文件中修改NexT设置</p>
+<h3 id="更改next主题">更改NexT主题</h3>
+<p>NexT目前提供四种主题，在==主题配置文件==</p>
+<figure class="highlight vala"><table><tr><td class="code"><pre><span class="line"><span class="meta"># Schemes</span></span><br><span class="line">scheme: Muse</span><br><span class="line"><span class="meta">#scheme: Mist</span></span><br><span class="line"><span class="meta">#scheme: Pisces</span></span><br><span class="line"><span class="meta">#scheme: Gemini</span></span><br></pre></td></tr></table></figure>
+<p>去掉主题配置文件中的注释即可切换主题</p>
+<h3 id="添加tagscategories等页面">添加tags,categories等页面</h3>
+<p>在==主题配置文件==</p>
+<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># ---------------------------------------------------------------</span></span><br><span class="line"><span class="comment"># Menu Settings</span></span><br><span class="line"><span class="comment"># ---------------------------------------------------------------</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Usage: `Key: /link/ || icon`</span></span><br><span class="line"><span class="comment"># Key is the name of menu item. If the translation for this item is available, the translated text will be loaded, otherwise the Key name will be used. Key is case-senstive.</span></span><br><span class="line"><span class="comment"># Value before `||` delimiter is the target link, value after `||` delimiter is the name of Font Awesome icon.</span></span><br><span class="line"><span class="comment"># External url should start with http:// or https://</span></span><br><span class="line"><span class="attr">menu:</span></span><br><span class="line">  <span class="attr">home:</span> <span class="string">/</span> <span class="string">||</span> <span class="string">fa</span> <span class="string">fa-home</span></span><br><span class="line">  <span class="comment">#about: /about/ || fa fa-user</span></span><br><span class="line">  <span class="comment">#tags: /tags/ || fa fa-tags</span></span><br><span class="line">  <span class="comment">#categories: /categories/ || fa fa-th</span></span><br><span class="line">  <span class="comment">#archives: /archives/ || fa fa-archive</span></span><br><span class="line">  <span class="comment">#schedule: /schedule/ || fa fa-calendar</span></span><br><span class="line">  <span class="comment">#sitemap: /sitemap.xml || fa fa-sitemap</span></span><br><span class="line">  <span class="comment">#commonweal: /404/ || fa fa-heartbeat</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Enable / Disable menu icons / item badges.</span></span><br><span class="line"><span class="attr">menu_settings:</span></span><br><span class="line">  <span class="attr">icons:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">badges:</span> <span class="literal">false</span></span><br></pre></td></tr></table></figure>
+<p>去掉注释即可解锁相应页面</p>
+<figure class="highlight haxe"><table><tr><td class="code"><pre><span class="line">hexo <span class="keyword">new</span> <span class="type">page</span> <span class="string">&quot;tags&quot;</span></span><br></pre></td></tr></table></figure>
+<p>在<code>source\</code>下会生成一个tags文件夹，里面有一个index.md，添加<code>type: "tags"</code></p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="attr">title:</span> <span class="string">tags</span></span><br><span class="line"><span class="attr">date:</span> <span class="number">2021-08-13 16:53:54</span></span><br><span class="line"><span class="attr">type:</span> <span class="string">&quot;tags&quot;</span></span><br><span class="line"><span class="meta">---</span></span><br></pre></td></tr></table></figure>
+<p>其他类型的页面都可以这样操作</p>
+]]></content>
+      <categories>
+        <category>Softwear</category>
+        <category>Hexo</category>
+      </categories>
+      <tags>
+        <tag>bulid</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hexo 问题处理备份</title>
+    <url>/2021/08/12/Hexo-%E9%97%AE%E9%A2%98%E5%A4%84%E7%90%86%E5%A4%87%E4%BB%BD/</url>
+    <content><![CDATA[<p>Hexo使用起来小毛病很多，防止以后浪费时间再去搜索，在这里备份一下各个问题成功的解决方法。</p>
+<h2 id="next-相关问题">NexT 相关问题</h2>
+<h3 id="next-项目更新到了新的项目">NexT 项目更新到了新的项目</h3>
+<p>很多老教程安装的NexT是老版本，就会导致以下标注旧版本的种种问题，折腾了一天才发现问题的根源，所以还是多参考官方doc吧</p>
+<figure class="highlight vim"><table><tr><td class="code"><pre><span class="line">git clone http<span class="variable">s:</span>//github.<span class="keyword">com</span>/iissnan/hexo-theme-<span class="keyword">next</span> themes/<span class="keyword">next</span> //旧版本，已经过时</span><br><span class="line">git clone http<span class="variable">s:</span>//github.<span class="keyword">com</span>/<span class="keyword">next</span>-theme/hexo-theme-<span class="keyword">next</span> themes/<span class="keyword">next</span> //新版本</span><br></pre></td></tr></table></figure>
+<h3 id="next-主题无法显示旧版本">NexT 主题无法显示（旧版本）</h3>
+<p>报错<code>&#123;% extends ‘_layout.swig‘ %&#125; &#123;% import ‘_macro/post.swig‘ as post_template %&#125;</code></p>
+<p>原因是Hexo在5.0之后把swig给删除了需要自己手动安装</p>
+<figure class="highlight coffeescript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">npm</span> i hexo-renderer-swig</span><br></pre></td></tr></table></figure>
+<span id="more"></span>
+<h3 id="菜单栏修改问题旧版本">菜单栏修改问题（旧版本）</h3>
+<p>Next在主题的<code>_config.yml</code>文件中提供菜单栏的修改，只要搜索menu就可以找到，通过去除注释即可以在网页上进行渲染。然而在修改next中的menu时会发现存在这样的报错 “cannot get %20” -- 无法找到相应的菜单。出现的原因是官方给的代码中多加了一个空格，导致网页无法渲染，个人除了删除注释外，要将“||”前的空格删除不然会导致菜单没法跳转。</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">menu:</span></span><br><span class="line">  <span class="attr">home:</span> <span class="string">/||</span> <span class="string">home</span></span><br><span class="line">  <span class="comment">#about: /about/ || user</span></span><br><span class="line">  <span class="attr">tags:</span> <span class="string">/tags/||</span> <span class="string">tags</span></span><br><span class="line">  <span class="attr">categories:</span> <span class="string">/categories/||</span> <span class="string">th</span></span><br><span class="line">  <span class="attr">archives:</span> <span class="string">/archives/||</span> <span class="string">archive</span></span><br><span class="line">  <span class="comment">#schedule: /schedule/ || calendar</span></span><br><span class="line">  <span class="comment">#sitemap: /sitemap.xml || sitemap</span></span><br><span class="line">  <span class="comment">#commonweal: /404/ || heartbeat</span></span><br></pre></td></tr></table></figure>
+<h3 id="侧边栏大纲中文无法跳转旧版本">侧边栏大纲中文无法跳转（旧版本）</h3>
+<p>英文可以正常跳转，中文不行</p>
+<p>根据报错发现是<code>Blog\themes\next\source\js\src\post-details.js</code>的问题</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// TOC item animation navigate &amp; prevent #item selector in adress bar.</span></span><br><span class="line">$(<span class="string">&#x27;.post-toc a&#x27;</span>).on(<span class="string">&#x27;click&#x27;</span>, <span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</span><br><span class="line">  e.preventDefault();</span><br><span class="line">  &lt;!-- targetSelector 解析UTF8的问题 -&gt;</span><br><span class="line">  <span class="keyword">var</span> targetSelector = NexT.utils.escapeSelector(<span class="built_in">this</span>.getAttribute(<span class="string">&#x27;href&#x27;</span>));</span><br><span class="line">  &lt;!-- 添加下面这行代码, 重新解析 URL -&gt;</span><br><span class="line">  targetSelector = <span class="built_in">decodeURI</span>(<span class="built_in">this</span>.getAttribute(<span class="string">&#x27;href&#x27;</span>))</span><br><span class="line">  <span class="keyword">var</span> offset = $(targetSelector).offset().top;</span><br><span class="line"></span><br><span class="line">  hasVelocity ?</span><br><span class="line">    html.velocity(<span class="string">&#x27;stop&#x27;</span>).velocity(<span class="string">&#x27;scroll&#x27;</span>, &#123;</span><br><span class="line">      <span class="attr">offset</span>: offset  + <span class="string">&#x27;px&#x27;</span>,</span><br><span class="line">      <span class="attr">mobileHA</span>: <span class="literal">false</span></span><br><span class="line">    &#125;) :</span><br><span class="line">    $(<span class="string">&#x27;html, body&#x27;</span>).stop().animate(&#123;</span><br><span class="line">      <span class="attr">scrollTop</span>: offset</span><br><span class="line">    &#125;, <span class="number">500</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="翻页显示i-classfa-fa-angle-righti旧版本">翻页显示<code>&lt;i class="fa fa-angle-right"&gt;&lt;/i&gt;</code>（旧版本）</h3>
+<p><img src="https://gitee.com/ZHDreamer/markdown-images/raw/master/images/20191201150136673.png" /></p>
+<p><a href="https://github.com/hexojs/hexo/issues/3794">参考</a></p>
+<p>修改<code>Blog/themes/next/layout/_partials/pagination.swig</code></p>
+<figure class="highlight handlebars"><table><tr><td class="code"><pre><span class="line"><span class="xml">&#123;%- if page.prev or page.next %&#125;</span></span><br><span class="line"><span class="xml"> <span class="tag">&lt;<span class="name">nav</span> <span class="attr">class</span>=<span class="string">&quot;pagination&quot;</span>&gt;</span></span></span><br><span class="line"><span class="xml">   </span><span class="template-variable">&#123;&#123;</span></span><br><span class="line"><span class="template-variable">     <span class="name">paginator</span>(&#123;</span></span><br><span class="line"><span class="template-variable">       <span class="name">prev_text:</span> <span class="string">&#x27;&lt;i class=&quot;fa fa-angle-left&quot; aria-label=&quot;&#x27;</span>+__(<span class="name">&#x27;accessibility.prev_page&#x27;</span>)+<span class="string">&#x27;&quot;&gt;&lt;/i&gt;&#x27;</span>,</span></span><br><span class="line"><span class="template-variable">       next_text: <span class="string">&#x27;&lt;i class=&quot;fa fa-angle-right&quot; aria-label=&quot;&#x27;</span>+__(<span class="name">&#x27;accessibility.next_page&#x27;</span>)+<span class="string">&#x27;&quot;&gt;&lt;/i&gt;&#x27;</span>,</span></span><br><span class="line"><span class="template-variable">       mid_size: <span class="number">1</span>,</span></span><br><span class="line"><span class="template-variable">       escape: <span class="literal">false</span></span></span><br><span class="line"><span class="template-variable">     &#125;)</span></span><br><span class="line"><span class="template-variable">   &#125;&#125;</span><span class="xml"></span></span><br><span class="line"><span class="xml"> <span class="tag">&lt;/<span class="name">nav</span>&gt;</span></span></span><br><span class="line"><span class="xml">&#123;%- endif %&#125;</span></span><br></pre></td></tr></table></figure>
+<h3 id="公式渲染出现问题旧版本">公式渲染出现问题（旧版本）</h3>
+<p>多行公式<code>\\</code>和下标<code>_</code>无法正常显示</p>
+<h4 id="原因分析">原因分析</h4>
+<p>Hexo默认使用<code>hexo-renderer-marked</code>引擎渲染网页，该引擎会把一些特殊的markdown符号转换为相应的html标签，比如在markdown语法中，下划线<code>_</code>代表斜体，会被渲染引擎处理为<code>&lt;em&gt;</code>标签。</p>
+<p>因为类Latex格式书写的数学公式下划线<code>_</code>表示下标，有特殊的含义，如果被强制转换为<code>&lt;em&gt;</code>标签，那么MathJax引擎在渲染数学公式的时候就会出错。例如，<span class="math inline">\(x_i\)</span>​在开始被渲染的时候，处理为$x<code>&lt;em&gt;</code>i<code>&lt;/em&gt;</code>$​，这样MathJax引擎就认为该公式有语法错误，因为不会渲染。</p>
+<p>类似的语义冲突的符号还包括'*', '{', '}', ''等。</p>
+<h4 id="解决方法">解决方法</h4>
+<p>更换Hexo的markdown渲染引擎，<a href="https://link.jianshu.com/?t=https%3A%2F%2Fgithub.com%2Fsun11%2Fhexo-renderer-kramed">hexo-renderer-kramed</a>引擎是在默认的渲染引擎<a href="https://link.jianshu.com/?t=https%3A%2F%2Fgithub.com%2Fhexojs%2Fhexo-renderer-marked">hexo-renderer-marked</a>的基础上修改了一些bug，两者比较接近，也比较轻量级。</p>
+<figure class="highlight coffeescript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">npm</span> uninstall hexo-renderer-marked</span><br><span class="line"><span class="built_in">npm</span> install hexo-renderer-kramed</span><br></pre></td></tr></table></figure>
+<p>卸载掉旧的渲染引擎，安装新引擎</p>
+<p>然后，跟换引擎后行间公式可以正确渲染了，但是这样还没有完全解决问题，行内公式的渲染还是有问题，因为<code>hexo-renderer-kramed</code>引擎也有语义冲突的问题。接下来到博客根目录下，找到<code>node_modules\kramed\lib\rules\inline.js</code>，把第11行的<code>escape</code>变量的值做相应的修改：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">//  escape: /^\\([\\`*&#123;&#125;\[\]()#$+\-.!_&gt;])/,</span></span><br><span class="line">  <span class="attr">escape</span>: <span class="regexp">/^\\([`*\[\]()#$+\-.!_&gt;])/</span></span><br></pre></td></tr></table></figure>
+<p>这一步是在原基础上取消了对,{,}的转义(escape)。</p>
+<p>同时把第20行的<code>em</code>变量也要做相应的修改。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">//  em: /^\b_((?:__|[\s\S])+?)_\b|^\*((?:\*\*|[\s\S])+?)\*(?!\*)/,</span></span><br><span class="line">  <span class="attr">em</span>: <span class="regexp">/^\*((?:\*\*|[\s\S])+?)\*(?!\*)/</span></span><br></pre></td></tr></table></figure>
+<p>重新启动 Hexo 即可解决</p>
+<h3 id="公式渲染出现问题新版本">公式渲染出现问题（新版本）</h3>
+<figure class="highlight coffeescript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">npm</span> un hexo-renderer-marked</span><br><span class="line"><span class="built_in">npm</span> i hexo-renderer-pandoc</span><br></pre></td></tr></table></figure>
+<p>这样以后仍然会有一些问题，<code>\\</code>在一般多行公式无法生效，要加入<code>gather</code>环境才能使其生效，或者直接用多个多行公式</p>
+]]></content>
+      <categories>
+        <category>Softwear</category>
+        <category>Hexo</category>
+        <category>NexT</category>
+      </categories>
+      <tags>
+        <tag>issues</tag>
       </tags>
   </entry>
 </search>
