@@ -2,7 +2,7 @@
 <search>
   <entry>
     <title>01 Intro</title>
-    <url>/2021/07/07/01-Intro/</url>
+    <url>/project/2021/07/07/01-Intro/</url>
     <content><![CDATA[<h2 id="学习cs-61a个人体会">学习CS-61A个人体会</h2>
 <p>现在我刚好学到11节，期中考试之前的最后一节，算是学过一半了。</p>
 <p>当初想要学CS-61A是我一个朋友和我介绍的，放假后没什么事干，本这实在不行学个英语也行的态度开始了61A的学习。</p>
@@ -25,7 +25,7 @@
   </entry>
   <entry>
     <title>02 Function</title>
-    <url>/2021/07/08/02-Function/</url>
+    <url>/project/2021/07/08/02-Function/</url>
     <content><![CDATA[<h2 id="expressions">Expressions</h2>
 <h3 id="primitive-expressions">Primitive Expressions</h3>
 <p>numbers, strings and names</p>
@@ -86,7 +86,7 @@
   </entry>
   <entry>
     <title>03 Control</title>
-    <url>/2021/07/08/03-Control/</url>
+    <url>/project/2021/07/08/03-Control/</url>
     <content><![CDATA[<h2 id="print-and-none">Print and None</h2>
 <ul>
 <li><strong>None</strong> represents nothing in python</li>
@@ -157,49 +157,8 @@
       </tags>
   </entry>
   <entry>
-    <title>04 Environment Diagrams</title>
-    <url>/2021/07/09/04-Environment-Diagrams/</url>
-    <content><![CDATA[<p>A visual tool to keep track of bindings &amp; state of a computer program</p>
-<p>They are helpful for debugging.</p>
-<h2 id="frames">Frames</h2>
-<p>A <strong>frame</strong> keeps track of variable-to-value bindings. Every call expression has a corresponding frame.</p>
-<h3 id="global-frame">Global frame</h3>
-<p><strong>Global frame</strong> is the starting frame.</p>
-<ul>
-<li>It doesn't correspond to a specific call expression.</li>
-</ul>
-<h3 id="parent-frames">Parent frames</h3>
-<ul>
-<li>The parent of a function is the frame in which <strong>it was defined</strong></li>
-<li>If you can't find a variable in the current frame, you check it's parent frame, and so on. If you can't find the variable, <code>NameError</code>.</li>
-</ul>
-<span id="more"></span>
-<h2 id="local-names">Local Names</h2>
-<p>Variable Lookup:</p>
-<ol type="1">
-<li>Lookup name in the current frame</li>
-<li>Lookup name in parent frame, its parent frame, and so on</li>
-<li>Stop at the global frame</li>
-<li>If not found, an error is thrown</li>
-</ol>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">f</span>(<span class="params">x, y</span>):</span></span><br><span class="line">    <span class="keyword">return</span> g(x)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">g</span>(<span class="params">z</span>):</span></span><br><span class="line">    <span class="keyword">return</span> z + x</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">result = f(<span class="number">5</span>, <span class="number">10</span>)</span><br></pre></td></tr></table></figure>
-<p>When call g, g's parent frame is Global. So name x will not be found, and python will throw an error.</p>
-<h2 id="lambda-expression">Lambda Expression</h2>
-<p>Expression that evaluate to functions</p>
-<p><img src="https://gitee.com/ZHDreamer/markdown-images/raw/master/images/Snipaste_2021-08-13_22-01-53.png" /></p>
-<p> </p>
-]]></content>
-      <categories>
-        <category>SICP</category>
-        <category>CS61-A</category>
-      </categories>
-      <tags>
-        <tag>笔记</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>05 Higher-Order Functions</title>
-    <url>/2021/07/11/05-Higher-Order-Functions/</url>
+    <url>/project/2021/07/11/05-Higher-Order-Functions/</url>
     <content><![CDATA[<h2 id="higher-order-functions">Higher-Order Functions</h2>
 <p>Functions are <strong>first-class</strong>, meaning they can be manipulated as values</p>
 <p>A <strong>higher-order function</strong> is:</p>
@@ -241,7 +200,7 @@
   </entry>
   <entry>
     <title>06 Recursion</title>
-    <url>/2021/07/13/06-Recursion/</url>
+    <url>/project/2021/07/13/06-Recursion/</url>
     <content><![CDATA[<h3 id="functional-abstraction">Functional Abstraction</h3>
 <h4 id="mechanics">Mechanics</h4>
 <p>How does Python execute this program line-by-line</p>
@@ -274,33 +233,37 @@
       </tags>
   </entry>
   <entry>
-    <title>09 Functional Decomposition &amp; Debugging</title>
-    <url>/2021/07/22/09-Functional-Decomposition-Debugging/</url>
-    <content><![CDATA[<h2 id="program-decomposition">Program Decomposition</h2>
+    <title>04 Environment Diagrams</title>
+    <url>/project/2021/07/09/04-Environment-Diagrams/</url>
+    <content><![CDATA[<p>A visual tool to keep track of bindings &amp; state of a computer program</p>
+<p>They are helpful for debugging.</p>
+<h2 id="frames">Frames</h2>
+<p>A <strong>frame</strong> keeps track of variable-to-value bindings. Every call expression has a corresponding frame.</p>
+<h3 id="global-frame">Global frame</h3>
+<p><strong>Global frame</strong> is the starting frame.</p>
 <ul>
-<li>The process of breaking a large problem into more manageable sub-problems</li>
-<li>Goals of Program Decomposition
-<ul>
-<li>Complexity Management</li>
-<li>Reusability and abstraction</li>
-</ul></li>
+<li>It doesn't correspond to a specific call expression.</li>
 </ul>
-<h3 id="the-black-box">The "Black Box"</h3>
+<h3 id="parent-frames">Parent frames</h3>
 <ul>
-<li>A "black box" is opaque - its inner workings are <strong>not revealed</strong></li>
-<li>Decomposition is a divide and conquer strategy.</li>
+<li>The parent of a function is the frame in which <strong>it was defined</strong></li>
+<li>If you can't find a variable in the current frame, you check it's parent frame, and so on. If you can't find the variable, <code>NameError</code>.</li>
 </ul>
 <span id="more"></span>
-<h3 id="function-rules-in-practice">Function Rules in Practice</h3>
-<p>A function should solve <strong>one problem</strong></p>
-<p>A function should have the <strong>smallest number of parameters</strong> possible to solve its problem</p>
-<p>A <strong>repeated sequence</strong> should be put in its own function</p>
-<h2 id="debugging">Debugging</h2>
-<h3 id="doctests">Doctests</h3>
-<p>python -m doctest test.py</p>
-<h4 id="environment-diagrams">Environment Diagrams</h4>
-<h3 id="print-debugging">Print Debugging</h3>
-<h3 id="preventing-bugs-assert-statements">Preventing Bugs: Assert Statements</h3>
+<h2 id="local-names">Local Names</h2>
+<p>Variable Lookup:</p>
+<ol type="1">
+<li>Lookup name in the current frame</li>
+<li>Lookup name in parent frame, its parent frame, and so on</li>
+<li>Stop at the global frame</li>
+<li>If not found, an error is thrown</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">f</span>(<span class="params">x, y</span>):</span></span><br><span class="line">    <span class="keyword">return</span> g(x)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">g</span>(<span class="params">z</span>):</span></span><br><span class="line">    <span class="keyword">return</span> z + x</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">result = f(<span class="number">5</span>, <span class="number">10</span>)</span><br></pre></td></tr></table></figure>
+<p>When call g, g's parent frame is Global. So name x will not be found, and python will throw an error.</p>
+<h2 id="lambda-expression">Lambda Expression</h2>
+<p>Expression that evaluate to functions</p>
+<p><img src="https://gitee.com/ZHDreamer/markdown-images/raw/master/images/Snipaste_2021-08-13_22-01-53.png" /></p>
+<p> </p>
 ]]></content>
       <categories>
         <category>SICP</category>
@@ -312,7 +275,7 @@
   </entry>
   <entry>
     <title>08 Sequences &amp; Data Abstraction</title>
-    <url>/2021/07/19/08-Sequences-Data-Abstraction/</url>
+    <url>/project/2021/07/19/08-Sequences-Data-Abstraction/</url>
     <content><![CDATA[<h2 id="sequences">Sequences</h2>
 <p>A <strong>sequences</strong> is an ordered collection of values.</p>
 <ul>
@@ -391,38 +354,33 @@
       </tags>
   </entry>
   <entry>
-    <title>10 Trees</title>
-    <url>/2021/08/01/10-Trees/</url>
-    <content><![CDATA[<h2 id="sequence-aggregation">Sequence Aggregation</h2>
-<p><strong>Iterable</strong> - an object capable of returning its members one at a time.</p>
-<p>Some functions take iterable arguments and aggregate them into a value:</p>
+    <title>09 Functional Decomposition &amp; Debugging</title>
+    <url>/project/2021/07/22/09-Functional-Decomposition-Debugging/</url>
+    <content><![CDATA[<h2 id="program-decomposition">Program Decomposition</h2>
 <ul>
-<li><code>sum(iterable[, start]) -&gt; value</code></li>
-<li><code>max(iterable[, key=func]) -&gt; value</code></li>
+<li>The process of breaking a large problem into more manageable sub-problems</li>
+<li>Goals of Program Decomposition
+<ul>
+<li>Complexity Management</li>
+<li>Reusability and abstraction</li>
+</ul></li>
 </ul>
-<h2 id="tree">Tree</h2>
-<h3 id="tree-abstraction">Tree Abstraction</h3>
-<p><img src="https://gitee.com/ZHDreamer/markdown-images/raw/master/images/2021-07-22_17-09-57_compressed.jpg"  /></p>
+<h3 id="the-black-box">The "Black Box"</h3>
+<ul>
+<li>A "black box" is opaque - its inner workings are <strong>not revealed</strong></li>
+<li>Decomposition is a divide and conquer strategy.</li>
+</ul>
 <span id="more"></span>
-<h3 id="tree-abstraction-implementation">Tree Abstraction Implementation</h3>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Constructor</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">tree</span>(<span class="params">label, branches=[]</span>):</span></span><br><span class="line">    <span class="keyword">for</span> branch <span class="keyword">in</span> branches:</span><br><span class="line">        <span class="keyword">assert</span> is_tree(branch)</span><br><span class="line">    <span class="keyword">return</span> [label] + <span class="built_in">list</span>(branches)</span><br><span class="line">    </span><br><span class="line"><span class="comment"># Selectors</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">label</span>(<span class="params">tree</span>):</span></span><br><span class="line">    <span class="keyword">return</span> tree[<span class="number">0</span>]</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">branches</span>(<span class="params">tree</span>):</span></span><br><span class="line">    <span class="keyword">return</span> tree[<span class="number">1</span>:]</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">is_tree</span>(<span class="params">tree</span>):</span></span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">type</span>(tree) !=<span class="built_in">list</span> <span class="keyword">or</span> <span class="built_in">len</span>(tree) &lt; <span class="number">1</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">    <span class="keyword">for</span> branch <span class="keyword">in</span> branches(tree):</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> is_tree(branch):</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">     <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">is_leaf</span>(<span class="params">tree</span>):</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">not</span> branches(tree)</span><br></pre></td></tr></table></figure>
-<h2 id="tree-processing">Tree Processing</h2>
-<h3 id="recursion">Recursion</h3>
-<ol type="1">
-<li>The base case is the smallest version of the problem, many times if its a leaf</li>
-<li>The recursive call happens on smaller subproblems, which tend to be branches</li>
-<li>We use the recursive calls with some type of aggregation afterward to get our final solution</li>
-</ol>
-<h3 id="count-nodes-in-a-tree">Count Nodes in a Tree</h3>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">count_tree</span>(<span class="params">t</span>):</span></span><br><span class="line">    <span class="keyword">if</span> is_leaf(t):</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">    total = <span class="number">1</span></span><br><span class="line">    <span class="keyword">for</span> b <span class="keyword">in</span> branches(t):</span><br><span class="line">        total += count_nodes(b)</span><br><span class="line">    <span class="keyword">return</span> total</span><br></pre></td></tr></table></figure>
-<h3 id="collect-the-leaves">Collect the Leaves</h3>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">collect_leaves</span>():</span></span><br><span class="line">    <span class="keyword">if</span> is_leaf(t):</span><br><span class="line">        <span class="keyword">return</span> [label(t)]</span><br><span class="line">    lst = []</span><br><span class="line">    <span class="keyword">for</span> b <span class="keyword">in</span> branches(t):</span><br><span class="line">        lst += collect_leaves()</span><br><span class="line">    <span class="keyword">return</span> lst</span><br></pre></td></tr></table></figure>
-<h3 id="print-tree"> Print Tree</h3>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">print_tree</span>(<span class="params">t, indent=<span class="number">0</span></span>):</span></span><br><span class="line">    <span class="keyword">if</span> is_leaf(t):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27; &#x27;</span>*indent, label(t))</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27; &#x27;</span>*indent, label(t))</span><br><span class="line">        <span class="keyword">for</span> b <span class="keyword">in</span> branches(t):</span><br><span class="line">            print_tree(b, indent + <span class="number">1</span>)</span><br></pre></td></tr></table></figure>
-<h3 id="creating-tree">Creating Tree</h3>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">square_tree</span>(<span class="params">t</span>):</span></span><br><span class="line">    <span class="keyword">if</span> is_leaf(t):</span><br><span class="line">        <span class="keyword">return</span> tree(label(t)**<span class="number">2</span>)</span><br><span class="line">    lst = []</span><br><span class="line">    <span class="keyword">for</span> b <span class="keyword">in</span> branches(t):</span><br><span class="line">        lst += square_tree(b)</span><br><span class="line">     <span class="keyword">return</span> tree(label(t) ** <span class="number">2</span>, lst)</span><br></pre></td></tr></table></figure>
-<h3 id="fib-tree">Fib Tree</h3>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fib_tree</span>(<span class="params">n</span>):</span></span><br><span class="line">    <span class="keyword">if</span> n == <span class="number">0</span>:</span><br><span class="line">        <span class="keyword">return</span> tree(<span class="number">0</span>)</span><br><span class="line">    <span class="keyword">elif</span> n == <span class="number">1</span>:</span><br><span class="line">        <span class="keyword">return</span> tree(<span class="number">1</span>)</span><br><span class="line">    left = fib_tree(n-<span class="number">2</span>)</span><br><span class="line">    right = fib_tree(n-<span class="number">1</span>)</span><br><span class="line">    <span class="keyword">return</span> tree(label(left) + label(right), [left, ight])</span><br></pre></td></tr></table></figure>
+<h3 id="function-rules-in-practice">Function Rules in Practice</h3>
+<p>A function should solve <strong>one problem</strong></p>
+<p>A function should have the <strong>smallest number of parameters</strong> possible to solve its problem</p>
+<p>A <strong>repeated sequence</strong> should be put in its own function</p>
+<h2 id="debugging">Debugging</h2>
+<h3 id="doctests">Doctests</h3>
+<p>python -m doctest test.py</p>
+<h4 id="environment-diagrams">Environment Diagrams</h4>
+<h3 id="print-debugging">Print Debugging</h3>
+<h3 id="preventing-bugs-assert-statements">Preventing Bugs: Assert Statements</h3>
 ]]></content>
       <categories>
         <category>SICP</category>
@@ -434,7 +392,7 @@
   </entry>
   <entry>
     <title>11 Mutable Sequences</title>
-    <url>/2021/08/11/11-Mutable-Sequences/</url>
+    <url>/project/2021/08/11/11-Mutable-Sequences/</url>
     <content><![CDATA[<p>本质上用+、切片得到的列表都是浅复制的新列表，是将列表视为immutable的</p>
 <h2 id="mutation-operations">Mutation Operations</h2>
 <h5 id="use-index-to-change-value">Use index to change value</h5>
@@ -477,8 +435,50 @@
       </tags>
   </entry>
   <entry>
+    <title>10 Trees</title>
+    <url>/project/2021/08/01/10-Trees/</url>
+    <content><![CDATA[<h2 id="sequence-aggregation">Sequence Aggregation</h2>
+<p><strong>Iterable</strong> - an object capable of returning its members one at a time.</p>
+<p>Some functions take iterable arguments and aggregate them into a value:</p>
+<ul>
+<li><code>sum(iterable[, start]) -&gt; value</code></li>
+<li><code>max(iterable[, key=func]) -&gt; value</code></li>
+</ul>
+<h2 id="tree">Tree</h2>
+<h3 id="tree-abstraction">Tree Abstraction</h3>
+<p><img src="https://gitee.com/ZHDreamer/markdown-images/raw/master/images/2021-07-22_17-09-57_compressed.jpg"  /></p>
+<span id="more"></span>
+<h3 id="tree-abstraction-implementation">Tree Abstraction Implementation</h3>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Constructor</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">tree</span>(<span class="params">label, branches=[]</span>):</span></span><br><span class="line">    <span class="keyword">for</span> branch <span class="keyword">in</span> branches:</span><br><span class="line">        <span class="keyword">assert</span> is_tree(branch)</span><br><span class="line">    <span class="keyword">return</span> [label] + <span class="built_in">list</span>(branches)</span><br><span class="line">    </span><br><span class="line"><span class="comment"># Selectors</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">label</span>(<span class="params">tree</span>):</span></span><br><span class="line">    <span class="keyword">return</span> tree[<span class="number">0</span>]</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">branches</span>(<span class="params">tree</span>):</span></span><br><span class="line">    <span class="keyword">return</span> tree[<span class="number">1</span>:]</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">is_tree</span>(<span class="params">tree</span>):</span></span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">type</span>(tree) !=<span class="built_in">list</span> <span class="keyword">or</span> <span class="built_in">len</span>(tree) &lt; <span class="number">1</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">    <span class="keyword">for</span> branch <span class="keyword">in</span> branches(tree):</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> is_tree(branch):</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">     <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">is_leaf</span>(<span class="params">tree</span>):</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">not</span> branches(tree)</span><br></pre></td></tr></table></figure>
+<h2 id="tree-processing">Tree Processing</h2>
+<h3 id="recursion">Recursion</h3>
+<ol type="1">
+<li>The base case is the smallest version of the problem, many times if its a leaf</li>
+<li>The recursive call happens on smaller subproblems, which tend to be branches</li>
+<li>We use the recursive calls with some type of aggregation afterward to get our final solution</li>
+</ol>
+<h3 id="count-nodes-in-a-tree">Count Nodes in a Tree</h3>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">count_tree</span>(<span class="params">t</span>):</span></span><br><span class="line">    <span class="keyword">if</span> is_leaf(t):</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">    total = <span class="number">1</span></span><br><span class="line">    <span class="keyword">for</span> b <span class="keyword">in</span> branches(t):</span><br><span class="line">        total += count_nodes(b)</span><br><span class="line">    <span class="keyword">return</span> total</span><br></pre></td></tr></table></figure>
+<h3 id="collect-the-leaves">Collect the Leaves</h3>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">collect_leaves</span>():</span></span><br><span class="line">    <span class="keyword">if</span> is_leaf(t):</span><br><span class="line">        <span class="keyword">return</span> [label(t)]</span><br><span class="line">    lst = []</span><br><span class="line">    <span class="keyword">for</span> b <span class="keyword">in</span> branches(t):</span><br><span class="line">        lst += collect_leaves()</span><br><span class="line">    <span class="keyword">return</span> lst</span><br></pre></td></tr></table></figure>
+<h3 id="print-tree"> Print Tree</h3>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">print_tree</span>(<span class="params">t, indent=<span class="number">0</span></span>):</span></span><br><span class="line">    <span class="keyword">if</span> is_leaf(t):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27; &#x27;</span>*indent, label(t))</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27; &#x27;</span>*indent, label(t))</span><br><span class="line">        <span class="keyword">for</span> b <span class="keyword">in</span> branches(t):</span><br><span class="line">            print_tree(b, indent + <span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="creating-tree">Creating Tree</h3>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">square_tree</span>(<span class="params">t</span>):</span></span><br><span class="line">    <span class="keyword">if</span> is_leaf(t):</span><br><span class="line">        <span class="keyword">return</span> tree(label(t)**<span class="number">2</span>)</span><br><span class="line">    lst = []</span><br><span class="line">    <span class="keyword">for</span> b <span class="keyword">in</span> branches(t):</span><br><span class="line">        lst += square_tree(b)</span><br><span class="line">     <span class="keyword">return</span> tree(label(t) ** <span class="number">2</span>, lst)</span><br></pre></td></tr></table></figure>
+<h3 id="fib-tree">Fib Tree</h3>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fib_tree</span>(<span class="params">n</span>):</span></span><br><span class="line">    <span class="keyword">if</span> n == <span class="number">0</span>:</span><br><span class="line">        <span class="keyword">return</span> tree(<span class="number">0</span>)</span><br><span class="line">    <span class="keyword">elif</span> n == <span class="number">1</span>:</span><br><span class="line">        <span class="keyword">return</span> tree(<span class="number">1</span>)</span><br><span class="line">    left = fib_tree(n-<span class="number">2</span>)</span><br><span class="line">    right = fib_tree(n-<span class="number">1</span>)</span><br><span class="line">    <span class="keyword">return</span> tree(label(left) + label(right), [left, ight])</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>SICP</category>
+        <category>CS61-A</category>
+      </categories>
+      <tags>
+        <tag>笔记</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>HW 03 Church Numerals</title>
-    <url>/2021/08/11/HW-03-Church-Numerals/</url>
+    <url>/project/2021/08/11/HW-03-Church-Numerals/</url>
     <content><![CDATA[<h2 id="背景">背景</h2>
 <blockquote>
 <p>The logician Alonzo Church invented a system of representing non-negative integers entirely using functions. The purpose was to show that functions are sufficient to describe all of number theory: if we have functions, we do not need to assume that numbers exist, but instead we can invent them.</p>
@@ -550,7 +550,7 @@ m^n&amp;=F_n(F_m)(f)(x)\\
   </entry>
   <entry>
     <title>Hexo 问题处理备份</title>
-    <url>/2021/08/12/Hexo-%E9%97%AE%E9%A2%98%E5%A4%84%E7%90%86%E5%A4%87%E4%BB%BD/</url>
+    <url>/project/2021/08/12/Hexo-%E9%97%AE%E9%A2%98%E5%A4%84%E7%90%86%E5%A4%87%E4%BB%BD/</url>
     <content><![CDATA[<p>Hexo使用起来小毛病很多，防止以后浪费时间再去搜索，在这里备份一下各个问题成功的解决方法。</p>
 <h2 id="next-相关问题">Next 相关问题</h2>
 <h3 id="next-主题无法显示">Next 主题无法显示</h3>
