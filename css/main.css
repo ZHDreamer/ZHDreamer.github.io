@@ -10,7 +10,7 @@
   --brand-hover-color: #222;
   --table-row-odd-bg-color: #f9f9f9;
   --table-row-hover-bg-color: #f5f5f5;
-  --menu-item-bg-color: #ddd;
+  --menu-item-bg-color: #f5f5f5;
   --btn-default-bg: transparent;
   --btn-default-color: var(--link-color);
   --btn-default-border-color: var(--link-color);
@@ -221,7 +221,7 @@ p {
   margin: 0 0 20px;
 }
 a {
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid #0684bd;
   color: var(--link-color);
   cursor: pointer;
   outline: 0;
@@ -2598,7 +2598,7 @@ hr {
 .header-inner {
   align-items: center;
   display: flex;
-  padding: 20px 0;
+  padding: 25px 0 20px;
 }
 @media (max-width: 767px) {
   .header-inner {
@@ -2618,6 +2618,7 @@ hr {
   }
 }
 .site-meta .site-title {
+  font-size: 22px;
   font-weight: bolder;
 }
 .logo-line {
@@ -2653,6 +2654,7 @@ hr {
 }
 .menu {
   padding: 0;
+  text-align: right;
 }
 .menu .menu-item {
   margin: 0;
@@ -2813,7 +2815,7 @@ hr {
   vertical-align: middle;
 }
 .links-of-author a::before {
-  background: #cb9de8;
+  background: #1b4a77;
   display: inline-block;
   margin-right: 3px;
   transform: translateY(-2px);
