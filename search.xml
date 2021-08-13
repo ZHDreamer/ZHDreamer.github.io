@@ -85,6 +85,78 @@
       </tags>
   </entry>
   <entry>
+    <title>03 Control</title>
+    <url>/project/2021/07/08/03-Control/</url>
+    <content><![CDATA[<h2 id="print-and-none">Print and None</h2>
+<ul>
+<li><strong>None</strong> represents nothing in python</li>
+<li>A function that does not explicitly return a value will return None</li>
+<li>None is a value that will not displayed by the interpreter</li>
+</ul>
+<h3 id="pure-functions-non-pure-functions">Pure Functions &amp; Non-Pure Functions</h3>
+<h4 id="pure-functions">Pure Functions</h4>
+<p>just return values</p>
+<h4 id="non-pure-functions">Non-Pure Functions</h4>
+<p>have side effects</p>
+<p>like <code>print()</code> has no return value</p>
+<h3 id="nested-expressions-with-print">Nested Expressions with Print</h3>
+<p><code>print(print(1),print(2))</code> will display:</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="number">1</span></span><br><span class="line"><span class="number">2</span></span><br><span class="line"><span class="attribute">None</span> <span class="attribute">None</span></span><br></pre></td></tr></table></figure>
+<p>Because <code>print()</code> has no return value, and <code>print(None)</code> will display a None, so 1,2 will display first following by two None.</p>
+<p><strong>Unassigned variable's</strong> value is also None.</p>
+<span id="more"></span>
+<h2 id="control">Control</h2>
+<ul>
+<li><strong>Expressions</strong> in programs evaluate to values</li>
+<li><strong>Statements</strong> are executed to perform actions</li>
+</ul>
+<p>In some case we don't want to executed all the code, we just want some of them or make deferent out put from input. To do this we introduce the concept of <strong>control</strong>.</p>
+<h3 id="conditional-statements">Conditional Statements</h3>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> &lt;conditional expression&gt;:</span><br><span class="line">    &lt;suite of statements&gt;</span><br><span class="line"><span class="keyword">elif</span> &lt;conditional expression&gt;:</span><br><span class="line">    &lt;suite of statements&gt;</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    &lt;suite of statements&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="boolean-contexts">Boolean Contexts</h4>
+<p><strong>Boolean context</strong> is any place where an expression is evaluated to check if it's a True or a False value.</p>
+<h4 id="boolean-expressions">Boolean Expressions</h4>
+<p><strong>Boolean Expressions</strong> contain special operators and, or, not.</p>
+<p>They can be used in Boolean contexts to connect sub contexts. And will evaluate from left to right.</p>
+<p><code>1 and True</code> will display <code>True</code></p>
+<p><code>True and 1</code> will display <code>1</code></p>
+<p><code>0 and True</code> will display <code>0</code></p>
+<p><code>1 or True</code> will display <code>1</code></p>
+<p><code>True or 1</code> will display <code>True</code></p>
+<p><code>0 or True</code> will display <code>True</code></p>
+<p><code>0 or False</code> will display <code>False</code></p>
+<p>These are examples that show the evaluation order.</p>
+<ul>
+<li><exp1> <strong>and</strong> <exp2> <strong>and</strong> <exp3> <strong>and</strong>
+<ul>
+<li>Evaluate to the first false value. If none are false, evaluates to the last expression</li>
+</ul></li>
+<li><exp1> <strong>or</strong> <exp2> <strong>or</strong> <exp3> <strong>or</strong>
+<ul>
+<li>Evaluate to first true value. If none are true, evaluates to the last expression</li>
+</ul></li>
+<li><strong>not</strong> <exp>
+<ul>
+<li>Evaluates to True if <exp> if a <em>false value</em> and False if <exp> is a <em>true value</em></li>
+</ul></li>
+</ul>
+<h3 id="iteration">Iteration</h3>
+<h4 id="while-statements">While Statements</h4>
+<p><strong>Execution Rule for While Statements:</strong></p>
+<ol type="1">
+<li>Evaluate the header’s expression</li>
+<li>If it is a true value, execute the (whole) suite, then return to step 1</li>
+</ol>
+]]></content>
+      <categories>
+        <category>SICP</category>
+        <category>CS61-A</category>
+      </categories>
+      <tags>
+        <tag>笔记</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>04 Environment Diagrams</title>
     <url>/project/2021/07/09/04-Environment-Diagrams/</url>
     <content><![CDATA[<p>A visual tool to keep track of bindings &amp; state of a computer program</p>
@@ -158,78 +230,6 @@
 <p> Functions defined within other function bodies are bound to names in a local frame.</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">make_adder</span>(<span class="params">n</span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;Return a function that takes one argument k and returns k + n.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    &gt;&gt;&gt; add_three = make_adder(3)</span></span><br><span class="line"><span class="string">    &gt;&gt;&gt; add_three(4)</span></span><br><span class="line"><span class="string">    7</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">adder</span>(<span class="params">k</span>):</span></span><br><span class="line">        <span class="keyword">return</span> k + n</span><br><span class="line">    <span class="keyword">return</span> adder</span><br></pre></td></tr></table></figure>
 <p><code>adder</code> is a locally defined functions. When you call <code>make_adder</code> with different <code>n</code>, the return values are <strong>function</strong> <code>adder</code> in the <code>make_adder</code> <strong>frame</strong> with different <code>n</code> value.</p>
-]]></content>
-      <categories>
-        <category>SICP</category>
-        <category>CS61-A</category>
-      </categories>
-      <tags>
-        <tag>笔记</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>03 Control</title>
-    <url>/project/2021/07/08/03-Control/</url>
-    <content><![CDATA[<h2 id="print-and-none">Print and None</h2>
-<ul>
-<li><strong>None</strong> represents nothing in python</li>
-<li>A function that does not explicitly return a value will return None</li>
-<li>None is a value that will not displayed by the interpreter</li>
-</ul>
-<h3 id="pure-functions-non-pure-functions">Pure Functions &amp; Non-Pure Functions</h3>
-<h4 id="pure-functions">Pure Functions</h4>
-<p>just return values</p>
-<h4 id="non-pure-functions">Non-Pure Functions</h4>
-<p>have side effects</p>
-<p>like <code>print()</code> has no return value</p>
-<h3 id="nested-expressions-with-print">Nested Expressions with Print</h3>
-<p><code>print(print(1),print(2))</code> will display:</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="number">1</span></span><br><span class="line"><span class="number">2</span></span><br><span class="line"><span class="attribute">None</span> <span class="attribute">None</span></span><br></pre></td></tr></table></figure>
-<p>Because <code>print()</code> has no return value, and <code>print(None)</code> will display a None, so 1,2 will display first following by two None.</p>
-<p><strong>Unassigned variable's</strong> value is also None.</p>
-<span id="more"></span>
-<h2 id="control">Control</h2>
-<ul>
-<li><strong>Expressions</strong> in programs evaluate to values</li>
-<li><strong>Statements</strong> are executed to perform actions</li>
-</ul>
-<p>In some case we don't want to executed all the code, we just want some of them or make deferent out put from input. To do this we introduce the concept of <strong>control</strong>.</p>
-<h3 id="conditional-statements">Conditional Statements</h3>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> &lt;conditional expression&gt;:</span><br><span class="line">    &lt;suite of statements&gt;</span><br><span class="line"><span class="keyword">elif</span> &lt;conditional expression&gt;:</span><br><span class="line">    &lt;suite of statements&gt;</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    &lt;suite of statements&gt;</span><br></pre></td></tr></table></figure>
-<h4 id="boolean-contexts">Boolean Contexts</h4>
-<p><strong>Boolean context</strong> is any place where an expression is evaluated to check if it's a True or a False value.</p>
-<h4 id="boolean-expressions">Boolean Expressions</h4>
-<p><strong>Boolean Expressions</strong> contain special operators and, or, not.</p>
-<p>They can be used in Boolean contexts to connect sub contexts. And will evaluate from left to right.</p>
-<p><code>1 and True</code> will display <code>True</code></p>
-<p><code>True and 1</code> will display <code>1</code></p>
-<p><code>0 and True</code> will display <code>0</code></p>
-<p><code>1 or True</code> will display <code>1</code></p>
-<p><code>True or 1</code> will display <code>True</code></p>
-<p><code>0 or True</code> will display <code>True</code></p>
-<p><code>0 or False</code> will display <code>False</code></p>
-<p>These are examples that show the evaluation order.</p>
-<ul>
-<li><exp1> <strong>and</strong> <exp2> <strong>and</strong> <exp3> <strong>and</strong>
-<ul>
-<li>Evaluate to the first false value. If none are false, evaluates to the last expression</li>
-</ul></li>
-<li><exp1> <strong>or</strong> <exp2> <strong>or</strong> <exp3> <strong>or</strong>
-<ul>
-<li>Evaluate to first true value. If none are true, evaluates to the last expression</li>
-</ul></li>
-<li><strong>not</strong> <exp>
-<ul>
-<li>Evaluates to True if <exp> if a <em>false value</em> and False if <exp> is a <em>true value</em></li>
-</ul></li>
-</ul>
-<h3 id="iteration">Iteration</h3>
-<h4 id="while-statements">While Statements</h4>
-<p><strong>Execution Rule for While Statements:</strong></p>
-<ol type="1">
-<li>Evaluate the header’s expression</li>
-<li>If it is a true value, execute the (whole) suite, then return to step 1</li>
-</ol>
 ]]></content>
       <categories>
         <category>SICP</category>
@@ -354,6 +354,43 @@
       </tags>
   </entry>
   <entry>
+    <title>09 Functional Decomposition &amp; Debugging</title>
+    <url>/project/2021/07/22/09-Functional-Decomposition-Debugging/</url>
+    <content><![CDATA[<h2 id="program-decomposition">Program Decomposition</h2>
+<ul>
+<li>The process of breaking a large problem into more manageable sub-problems</li>
+<li>Goals of Program Decomposition
+<ul>
+<li>Complexity Management</li>
+<li>Reusability and abstraction</li>
+</ul></li>
+</ul>
+<h3 id="the-black-box">The "Black Box"</h3>
+<ul>
+<li>A "black box" is opaque - its inner workings are <strong>not revealed</strong></li>
+<li>Decomposition is a divide and conquer strategy.</li>
+</ul>
+<span id="more"></span>
+<h3 id="function-rules-in-practice">Function Rules in Practice</h3>
+<p>A function should solve <strong>one problem</strong></p>
+<p>A function should have the <strong>smallest number of parameters</strong> possible to solve its problem</p>
+<p>A <strong>repeated sequence</strong> should be put in its own function</p>
+<h2 id="debugging">Debugging</h2>
+<h3 id="doctests">Doctests</h3>
+<p>python -m doctest test.py</p>
+<h4 id="environment-diagrams">Environment Diagrams</h4>
+<h3 id="print-debugging">Print Debugging</h3>
+<h3 id="preventing-bugs-assert-statements">Preventing Bugs: Assert Statements</h3>
+]]></content>
+      <categories>
+        <category>SICP</category>
+        <category>CS61-A</category>
+      </categories>
+      <tags>
+        <tag>笔记</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>10 Trees</title>
     <url>/project/2021/08/01/10-Trees/</url>
     <content><![CDATA[<h2 id="sequence-aggregation">Sequence Aggregation</h2>
@@ -386,43 +423,6 @@
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">square_tree</span>(<span class="params">t</span>):</span></span><br><span class="line">    <span class="keyword">if</span> is_leaf(t):</span><br><span class="line">        <span class="keyword">return</span> tree(label(t)**<span class="number">2</span>)</span><br><span class="line">    lst = []</span><br><span class="line">    <span class="keyword">for</span> b <span class="keyword">in</span> branches(t):</span><br><span class="line">        lst += square_tree(b)</span><br><span class="line">     <span class="keyword">return</span> tree(label(t) ** <span class="number">2</span>, lst)</span><br></pre></td></tr></table></figure>
 <h3 id="fib-tree">Fib Tree</h3>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fib_tree</span>(<span class="params">n</span>):</span></span><br><span class="line">    <span class="keyword">if</span> n == <span class="number">0</span>:</span><br><span class="line">        <span class="keyword">return</span> tree(<span class="number">0</span>)</span><br><span class="line">    <span class="keyword">elif</span> n == <span class="number">1</span>:</span><br><span class="line">        <span class="keyword">return</span> tree(<span class="number">1</span>)</span><br><span class="line">    left = fib_tree(n-<span class="number">2</span>)</span><br><span class="line">    right = fib_tree(n-<span class="number">1</span>)</span><br><span class="line">    <span class="keyword">return</span> tree(label(left) + label(right), [left, ight])</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>SICP</category>
-        <category>CS61-A</category>
-      </categories>
-      <tags>
-        <tag>笔记</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>09 Functional Decomposition &amp; Debugging</title>
-    <url>/project/2021/07/22/09-Functional-Decomposition-Debugging/</url>
-    <content><![CDATA[<h2 id="program-decomposition">Program Decomposition</h2>
-<ul>
-<li>The process of breaking a large problem into more manageable sub-problems</li>
-<li>Goals of Program Decomposition
-<ul>
-<li>Complexity Management</li>
-<li>Reusability and abstraction</li>
-</ul></li>
-</ul>
-<h3 id="the-black-box">The "Black Box"</h3>
-<ul>
-<li>A "black box" is opaque - its inner workings are <strong>not revealed</strong></li>
-<li>Decomposition is a divide and conquer strategy.</li>
-</ul>
-<span id="more"></span>
-<h3 id="function-rules-in-practice">Function Rules in Practice</h3>
-<p>A function should solve <strong>one problem</strong></p>
-<p>A function should have the <strong>smallest number of parameters</strong> possible to solve its problem</p>
-<p>A <strong>repeated sequence</strong> should be put in its own function</p>
-<h2 id="debugging">Debugging</h2>
-<h3 id="doctests">Doctests</h3>
-<p>python -m doctest test.py</p>
-<h4 id="environment-diagrams">Environment Diagrams</h4>
-<h3 id="print-debugging">Print Debugging</h3>
-<h3 id="preventing-bugs-assert-statements">Preventing Bugs: Assert Statements</h3>
 ]]></content>
       <categories>
         <category>SICP</category>
