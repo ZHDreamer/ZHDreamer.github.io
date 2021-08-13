@@ -1,6 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>01 Intro</title>
+    <url>/2021/07/07/01-Intro/</url>
+    <content><![CDATA[<h2 id="学习cs-61a个人体会">学习CS-61A个人体会</h2>
+<p>现在我刚好学到11节，期中考试之前的最后一节，算是学过一半了。</p>
+<p>当初想要学CS-61A是我一个朋友和我介绍的，放假后没什么事干，本这实在不行学个英语也行的态度开始了61A的学习。</p>
+<span id="more"></span>
+<h3 id="和国内课程的区别">和国内课程的区别</h3>
+<p>我就读于西安电子科技大学，目前大一上了2个有关程序的课，大一上的计算机导论与程序设计（C语言），下的Python程序设计，还有一个程序设计（C语言做几个题写报告）。</p>
+<p>整个大一上下来给我的感觉就是老师讲的东西没有什么用，基本就是照着教材说一遍。教材的编排更偏向于让你学会如何运用一个语音去编写程序，对于算法的教学大多是上机时做题自己参悟出来的。我不知道是不是国内的大学都是这样，反正就我的学习体验来说，这些课程对与提高我对于编程理解的作用是很有限的。</p>
+<p>CS-61A不同的是，它一开始就会教你程序是如何运行的，让你学会如何解释程序的运行，也会教你一些非常神奇的操作，比如各种high-order function。61a的作业量其实是比较大的，但是很多作业都很有趣，比如project系列会让你去完成一个可执行的游戏或者程序，他给你了一个大的框架，你只需要填一些东西，就可以感受到自己写的东西运行起来的快乐。有些题也很烧脑，比如hw03的Extra Questions让你写Church numerals，是一个利用函数定义自然数的程序，最后的程序不过几行，但是可能要花数小时思考。</p>
+<h3 id="资料丰富">资料丰富</h3>
+<p>61A的课程资料是对外公开的，所以即便不是伯克利的学生也可以运用课程资料自学，作业也可以用自带的python ok来检测，只需加上<code>--local</code>就可以不用填写邮箱，GitHub上也有人上传了作业代码，包括我也上传了我的版本，所以上课和写作业的过程是非常顺畅的。</p>
+<p>未完待续</p>
+]]></content>
+      <categories>
+        <category>SICP</category>
+        <category>CS61-A</category>
+      </categories>
+      <tags>
+        <tag>note</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>02 Function</title>
     <url>/2021/07/08/02-Function/</url>
     <content><![CDATA[<h2 id="expressions">Expressions</h2>
@@ -52,29 +75,6 @@
 <li>Execute the body of the function in the new environment</li>
 </ol>
 <p>Creating new frame only after evaluate the operator and operand subexpressions.</p>
-]]></content>
-      <categories>
-        <category>SICP</category>
-        <category>CS61-A</category>
-      </categories>
-      <tags>
-        <tag>note</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>01 Intro</title>
-    <url>/2021/07/07/01-Intro/</url>
-    <content><![CDATA[<h2 id="学习cs-61a个人体会">学习CS-61A个人体会</h2>
-<p>现在我刚好学到11节，期中考试之前的最后一节，算是学过一半了。</p>
-<p>当初想要学CS-61A是我一个朋友和我介绍的，放假后没什么事干，本这实在不行学个英语也行的态度开始了61A的学习。</p>
-<span id="more"></span>
-<h3 id="和国内课程的区别">和国内课程的区别</h3>
-<p>我就读于西安电子科技大学，目前大一上了2个有关程序的课，大一上的计算机导论与程序设计（C语言），下的Python程序设计，还有一个程序设计（C语言做几个题写报告）。</p>
-<p>整个大一上下来给我的感觉就是老师讲的东西没有什么用，基本就是照着教材说一遍。教材的编排更偏向于让你学会如何运用一个语音去编写程序，对于算法的教学大多是上机时做题自己参悟出来的。我不知道是不是国内的大学都是这样，反正就我的学习体验来说，这些课程对与提高我对于编程理解的作用是很有限的。</p>
-<p>CS-61A不同的是，它一开始就会教你程序是如何运行的，让你学会如何解释程序的运行，也会教你一些非常神奇的操作，比如各种high-order function。61a的作业量其实是比较大的，但是很多作业都很有趣，比如project系列会让你去完成一个可执行的游戏或者程序，他给你了一个大的框架，你只需要填一些东西，就可以感受到自己写的东西运行起来的快乐。有些题也很烧脑，比如hw03的Extra Questions让你写Church numerals，是一个利用函数定义自然数的程序，最后的程序不过几行，但是可能要花数小时思考。</p>
-<h3 id="资料丰富">资料丰富</h3>
-<p>61A的课程资料是对外公开的，所以即便不是伯克利的学生也可以运用课程资料自学，作业也可以用自带的python ok来检测，只需加上<code>--local</code>就可以不用填写邮箱，GitHub上也有人上传了作业代码，包括我也上传了我的版本，所以上课和写作业的过程是非常顺畅的。</p>
-<p>未完待续</p>
 ]]></content>
       <categories>
         <category>SICP</category>
@@ -274,43 +274,6 @@
       </tags>
   </entry>
   <entry>
-    <title>09 Functional Decomposition &amp; Debugging</title>
-    <url>/2021/07/22/09-Functional-Decomposition-Debugging/</url>
-    <content><![CDATA[<h2 id="program-decomposition">Program Decomposition</h2>
-<ul>
-<li>The process of breaking a large problem into more manageable sub-problems</li>
-<li>Goals of Program Decomposition
-<ul>
-<li>Complexity Management</li>
-<li>Reusability and abstraction</li>
-</ul></li>
-</ul>
-<h3 id="the-black-box">The "Black Box"</h3>
-<ul>
-<li>A "black box" is opaque - its inner workings are <strong>not revealed</strong></li>
-<li>Decomposition is a divide and conquer strategy.</li>
-</ul>
-<span id="more"></span>
-<h3 id="function-rules-in-practice">Function Rules in Practice</h3>
-<p>A function should solve <strong>one problem</strong></p>
-<p>A function should have the <strong>smallest number of parameters</strong> possible to solve its problem</p>
-<p>A <strong>repeated sequence</strong> should be put in its own function</p>
-<h2 id="debugging">Debugging</h2>
-<h3 id="doctests">Doctests</h3>
-<p>python -m doctest test.py</p>
-<h4 id="environment-diagrams">Environment Diagrams</h4>
-<h3 id="print-debugging">Print Debugging</h3>
-<h3 id="preventing-bugs-assert-statements">Preventing Bugs: Assert Statements</h3>
-]]></content>
-      <categories>
-        <category>SICP</category>
-        <category>CS61-A</category>
-      </categories>
-      <tags>
-        <tag>note</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>08 Sequences &amp; Data Abstraction</title>
     <url>/2021/07/19/08-Sequences-Data-Abstraction/</url>
     <content><![CDATA[<h2 id="sequences">Sequences</h2>
@@ -381,6 +344,43 @@
 <li><code>numer(x)</code> returns the numerator of x <strong>Selectors</strong></li>
 <li><code>denom(x)</code> returns the denominator of x <strong>Selectors</strong></li>
 </ul>
+]]></content>
+      <categories>
+        <category>SICP</category>
+        <category>CS61-A</category>
+      </categories>
+      <tags>
+        <tag>note</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>09 Functional Decomposition &amp; Debugging</title>
+    <url>/2021/07/22/09-Functional-Decomposition-Debugging/</url>
+    <content><![CDATA[<h2 id="program-decomposition">Program Decomposition</h2>
+<ul>
+<li>The process of breaking a large problem into more manageable sub-problems</li>
+<li>Goals of Program Decomposition
+<ul>
+<li>Complexity Management</li>
+<li>Reusability and abstraction</li>
+</ul></li>
+</ul>
+<h3 id="the-black-box">The "Black Box"</h3>
+<ul>
+<li>A "black box" is opaque - its inner workings are <strong>not revealed</strong></li>
+<li>Decomposition is a divide and conquer strategy.</li>
+</ul>
+<span id="more"></span>
+<h3 id="function-rules-in-practice">Function Rules in Practice</h3>
+<p>A function should solve <strong>one problem</strong></p>
+<p>A function should have the <strong>smallest number of parameters</strong> possible to solve its problem</p>
+<p>A <strong>repeated sequence</strong> should be put in its own function</p>
+<h2 id="debugging">Debugging</h2>
+<h3 id="doctests">Doctests</h3>
+<p>python -m doctest test.py</p>
+<h4 id="environment-diagrams">Environment Diagrams</h4>
+<h3 id="print-debugging">Print Debugging</h3>
+<h3 id="preventing-bugs-assert-statements">Preventing Bugs: Assert Statements</h3>
 ]]></content>
       <categories>
         <category>SICP</category>
