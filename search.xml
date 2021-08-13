@@ -1,29 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>01 Intro</title>
-    <url>/2021/07/07/01-Intro/</url>
-    <content><![CDATA[<h2 id="学习cs-61a个人体会">学习CS-61A个人体会</h2>
-<p>现在我刚好学到11节，期中考试之前的最后一节，算是学过一半了。</p>
-<p>当初想要学CS-61A是我一个朋友和我介绍的，放假后没什么事干，本这实在不行学个英语也行的态度开始了61A的学习。</p>
-<span id="more"></span>
-<h3 id="和国内课程的区别">和国内课程的区别</h3>
-<p>我就读于西安电子科技大学，目前大一上了2个有关程序的课，大一上的计算机导论与程序设计（C语言），下的Python程序设计，还有一个程序设计（C语言做几个题写报告）。</p>
-<p>整个大一上下来给我的感觉就是老师讲的东西没有什么用，基本就是照着教材说一遍。教材的编排更偏向于让你学会如何运用一个语音去编写程序，对于算法的教学大多是上机时做题自己参悟出来的。我不知道是不是国内的大学都是这样，反正就我的学习体验来说，这些课程对与提高我对于编程理解的作用是很有限的。</p>
-<p>CS-61A不同的是，它一开始就会教你程序是如何运行的，让你学会如何解释程序的运行，也会教你一些非常神奇的操作，比如各种high-order function。61a的作业量其实是比较大的，但是很多作业都很有趣，比如project系列会让你去完成一个可执行的游戏或者程序，他给你了一个大的框架，你只需要填一些东西，就可以感受到自己写的东西运行起来的快乐。有些题也很烧脑，比如hw03的Extra Questions让你写Church numerals，是一个利用函数定义自然数的程序，最后的程序不过几行，但是可能要花数小时思考。</p>
-<h3 id="资料丰富">资料丰富</h3>
-<p>61A的课程资料是对外公开的，所以即便不是伯克利的学生也可以运用课程资料自学，作业也可以用自带的python ok来检测，只需加上<code>--local</code>就可以不用填写邮箱，GitHub上也有人上传了作业代码，包括我也上传了我的版本，所以上课和写作业的过程是非常顺畅的。</p>
-<p>未完待续</p>
-]]></content>
-      <categories>
-        <category>SICP</category>
-        <category>CS61-A</category>
-      </categories>
-      <tags>
-        <tag>note</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>02 Function</title>
     <url>/2021/07/08/02-Function/</url>
     <content><![CDATA[<h2 id="expressions">Expressions</h2>
@@ -75,6 +52,29 @@
 <li>Execute the body of the function in the new environment</li>
 </ol>
 <p>Creating new frame only after evaluate the operator and operand subexpressions.</p>
+]]></content>
+      <categories>
+        <category>SICP</category>
+        <category>CS61-A</category>
+      </categories>
+      <tags>
+        <tag>note</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>01 Intro</title>
+    <url>/2021/07/07/01-Intro/</url>
+    <content><![CDATA[<h2 id="学习cs-61a个人体会">学习CS-61A个人体会</h2>
+<p>现在我刚好学到11节，期中考试之前的最后一节，算是学过一半了。</p>
+<p>当初想要学CS-61A是我一个朋友和我介绍的，放假后没什么事干，本这实在不行学个英语也行的态度开始了61A的学习。</p>
+<span id="more"></span>
+<h3 id="和国内课程的区别">和国内课程的区别</h3>
+<p>我就读于西安电子科技大学，目前大一上了2个有关程序的课，大一上的计算机导论与程序设计（C语言），下的Python程序设计，还有一个程序设计（C语言做几个题写报告）。</p>
+<p>整个大一上下来给我的感觉就是老师讲的东西没有什么用，基本就是照着教材说一遍。教材的编排更偏向于让你学会如何运用一个语音去编写程序，对于算法的教学大多是上机时做题自己参悟出来的。我不知道是不是国内的大学都是这样，反正就我的学习体验来说，这些课程对与提高我对于编程理解的作用是很有限的。</p>
+<p>CS-61A不同的是，它一开始就会教你程序是如何运行的，让你学会如何解释程序的运行，也会教你一些非常神奇的操作，比如各种high-order function。61a的作业量其实是比较大的，但是很多作业都很有趣，比如project系列会让你去完成一个可执行的游戏或者程序，他给你了一个大的框架，你只需要填一些东西，就可以感受到自己写的东西运行起来的快乐。有些题也很烧脑，比如hw03的Extra Questions让你写Church numerals，是一个利用函数定义自然数的程序，最后的程序不过几行，但是可能要花数小时思考。</p>
+<h3 id="资料丰富">资料丰富</h3>
+<p>61A的课程资料是对外公开的，所以即便不是伯克利的学生也可以运用课程资料自学，作业也可以用自带的python ok来检测，只需加上<code>--local</code>就可以不用填写邮箱，GitHub上也有人上传了作业代码，包括我也上传了我的版本，所以上课和写作业的过程是非常顺畅的。</p>
+<p>未完待续</p>
 ]]></content>
       <categories>
         <category>SICP</category>
@@ -157,47 +157,6 @@
       </tags>
   </entry>
   <entry>
-    <title>04 Environment Diagrams</title>
-    <url>/2021/07/09/04-Environment-Diagrams/</url>
-    <content><![CDATA[<p>A visual tool to keep track of bindings &amp; state of a computer program</p>
-<p>They are helpful for debugging.</p>
-<h2 id="frames">Frames</h2>
-<p>A <strong>frame</strong> keeps track of variable-to-value bindings. Every call expression has a corresponding frame.</p>
-<h3 id="global-frame">Global frame</h3>
-<p><strong>Global frame</strong> is the starting frame.</p>
-<ul>
-<li>It doesn't correspond to a specific call expression.</li>
-</ul>
-<h3 id="parent-frames">Parent frames</h3>
-<ul>
-<li>The parent of a function is the frame in which <strong>it was defined</strong></li>
-<li>If you can't find a variable in the current frame, you check it's parent frame, and so on. If you can't find the variable, <code>NameError</code>.</li>
-</ul>
-<span id="more"></span>
-<h2 id="local-names">Local Names</h2>
-<p>Variable Lookup:</p>
-<ol type="1">
-<li>Lookup name in the current frame</li>
-<li>Lookup name in parent frame, its parent frame, and so on</li>
-<li>Stop at the global frame</li>
-<li>If not found, an error is thrown</li>
-</ol>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">f</span>(<span class="params">x, y</span>):</span></span><br><span class="line">    <span class="keyword">return</span> g(x)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">g</span>(<span class="params">z</span>):</span></span><br><span class="line">    <span class="keyword">return</span> z + x</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">result = f(<span class="number">5</span>, <span class="number">10</span>)</span><br></pre></td></tr></table></figure>
-<p>When call g, g's parent frame is Global. So name x will not be found, and python will throw an error.</p>
-<h2 id="lambda-expression">Lambda Expression</h2>
-<p>Expression that evaluate to functions</p>
-<p><img src="https://gitee.com/ZHDreamer/markdown-images/raw/master/images/Snipaste_2021-08-13_22-01-53.png" /></p>
-<p> </p>
-]]></content>
-      <categories>
-        <category>SICP</category>
-        <category>CS61-A</category>
-      </categories>
-      <tags>
-        <tag>note</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>05 Higher-Order Functions</title>
     <url>/2021/07/11/05-Higher-Order-Functions/</url>
     <content><![CDATA[<h2 id="higher-order-functions">Higher-Order Functions</h2>
@@ -230,6 +189,47 @@
 <p> Functions defined within other function bodies are bound to names in a local frame.</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">make_adder</span>(<span class="params">n</span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;Return a function that takes one argument k and returns k + n.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    &gt;&gt;&gt; add_three = make_adder(3)</span></span><br><span class="line"><span class="string">    &gt;&gt;&gt; add_three(4)</span></span><br><span class="line"><span class="string">    7</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">adder</span>(<span class="params">k</span>):</span></span><br><span class="line">        <span class="keyword">return</span> k + n</span><br><span class="line">    <span class="keyword">return</span> adder</span><br></pre></td></tr></table></figure>
 <p><code>adder</code> is a locally defined functions. When you call <code>make_adder</code> with different <code>n</code>, the return values are <strong>function</strong> <code>adder</code> in the <code>make_adder</code> <strong>frame</strong> with different <code>n</code> value.</p>
+]]></content>
+      <categories>
+        <category>SICP</category>
+        <category>CS61-A</category>
+      </categories>
+      <tags>
+        <tag>note</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>04 Environment Diagrams</title>
+    <url>/2021/07/09/04-Environment-Diagrams/</url>
+    <content><![CDATA[<p>A visual tool to keep track of bindings &amp; state of a computer program</p>
+<p>They are helpful for debugging.</p>
+<h2 id="frames">Frames</h2>
+<p>A <strong>frame</strong> keeps track of variable-to-value bindings. Every call expression has a corresponding frame.</p>
+<h3 id="global-frame">Global frame</h3>
+<p><strong>Global frame</strong> is the starting frame.</p>
+<ul>
+<li>It doesn't correspond to a specific call expression.</li>
+</ul>
+<h3 id="parent-frames">Parent frames</h3>
+<ul>
+<li>The parent of a function is the frame in which <strong>it was defined</strong></li>
+<li>If you can't find a variable in the current frame, you check it's parent frame, and so on. If you can't find the variable, <code>NameError</code>.</li>
+</ul>
+<span id="more"></span>
+<h2 id="local-names">Local Names</h2>
+<p>Variable Lookup:</p>
+<ol type="1">
+<li>Lookup name in the current frame</li>
+<li>Lookup name in parent frame, its parent frame, and so on</li>
+<li>Stop at the global frame</li>
+<li>If not found, an error is thrown</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">f</span>(<span class="params">x, y</span>):</span></span><br><span class="line">    <span class="keyword">return</span> g(x)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">g</span>(<span class="params">z</span>):</span></span><br><span class="line">    <span class="keyword">return</span> z + x</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">result = f(<span class="number">5</span>, <span class="number">10</span>)</span><br></pre></td></tr></table></figure>
+<p>When call g, g's parent frame is Global. So name x will not be found, and python will throw an error.</p>
+<h2 id="lambda-expression">Lambda Expression</h2>
+<p>Expression that evaluate to functions</p>
+<p><img src="https://gitee.com/ZHDreamer/markdown-images/raw/master/images/Snipaste_2021-08-13_22-01-53.png" /></p>
+<p> </p>
 ]]></content>
       <categories>
         <category>SICP</category>
