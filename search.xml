@@ -24,67 +24,6 @@
       </tags>
   </entry>
   <entry>
-    <title>02 Function</title>
-    <url>/2021/07/08/02-Function/</url>
-    <content><![CDATA[<h2 id="expressions">Expressions</h2>
-<h3 id="primitive-expressions">Primitive Expressions</h3>
-<p>numbers, strings and names</p>
-<h3 id="arithmetic-expressions">Arithmetic Expressions</h3>
-<p>like 1 + 2 or 15 // 3</p>
-<h3 id="call-expressions">Call Expressions</h3>
-<p>like add(3, 4)</p>
-<h3 id="nested-call-expressions">Nested Call Expressions</h3>
-<p><img src="https://gitee.com/ZHDreamer/markdown-images/raw/master/images/Snipaste_2021-07-08_18-05-23.png" /></p>
-<span id="more"></span>
-<h2 id="values">Values</h2>
-<p>Expressions evaluate to values in one or more steps</p>
-<ul>
-<li>Primitive expression's value is itself</li>
-<li>Arithmetic expression's value is the result</li>
-<li>Call expression's value is the return value</li>
-</ul>
-<h2 id="names">Names</h2>
-<p>Values can be assigned to <strong>names</strong> to make referring to them easier.</p>
-<p>A name can only be bound to a single value.</p>
-<p>One way to introduce a new name in a program is with an <strong>assignment statement</strong>.</p>
-<p><code>x = 1 +2 *3 -4 // 5</code></p>
-<p>assignment statement like <code>x,y = 1,2</code> called <strong>parallel statement</strong> or <strong>multiple statement</strong></p>
-<h3 id="executing-an-assignment-statement">Executing an assignment statement</h3>
-<ol type="1">
-<li><strong>Evaluate</strong> the expression to the right of =</li>
-<li><strong>Bind</strong> the value of the expression to the name to the left of = in the current environment.</li>
-</ol>
-<p>When bind is done, the value of a name is invariable until rebind. Changing the other variable won't automatically sync the other variable.</p>
-<h2 id="functions">Functions</h2>
-<p><strong>Functions</strong> allow us to abstract away entire expressions and sequences of computation just in one call expression.</p>
-<p>It take in some input (<strong>arguments</strong>) and transform it into an output (<strong>return values</strong>).</p>
-<p>To create a functions use def statements.</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> &lt;<span class="title">name</span>&gt; (<span class="params">[parameters]</span>):</span></span><br><span class="line">	<span class="keyword">return</span> &lt;<span class="keyword">return</span> expression&gt;</span><br></pre></td></tr></table></figure>
-<h3 id="execution-rule-for-def-statements">Execution Rule For Def Statements</h3>
-<ol type="1">
-<li>Create a function with signature <code>&lt;name&gt; ([parameters])</code></li>
-<li>Set the body of that function to be everything indented after the first line</li>
-<li>Bind <code>&lt;name&gt;</code> to that function in the current frame</li>
-</ol>
-<p>def statements are a type of assignment that bind names to function values.</p>
-<p>When you evaluate the name of function, you will get a function value back.</p>
-<h3 id="calling-user-defined-functions">Calling User-Defined Functions</h3>
-<ol type="1">
-<li>Create a new <strong>environment frame</strong></li>
-<li>Bind the function's parameters to its arguments in that frame</li>
-<li>Execute the body of the function in the new environment</li>
-</ol>
-<p>Creating new frame only after evaluate the operator and operand subexpressions.</p>
-]]></content>
-      <categories>
-        <category>SICP</category>
-        <category>CS61-A</category>
-      </categories>
-      <tags>
-        <tag>note</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>03 Control</title>
     <url>/2021/07/08/03-Control/</url>
     <content><![CDATA[<h2 id="print-and-none">Print and None</h2>
@@ -157,6 +96,67 @@
       </tags>
   </entry>
   <entry>
+    <title>02 Function</title>
+    <url>/2021/07/08/02-Function/</url>
+    <content><![CDATA[<h2 id="expressions">Expressions</h2>
+<h3 id="primitive-expressions">Primitive Expressions</h3>
+<p>numbers, strings and names</p>
+<h3 id="arithmetic-expressions">Arithmetic Expressions</h3>
+<p>like 1 + 2 or 15 // 3</p>
+<h3 id="call-expressions">Call Expressions</h3>
+<p>like add(3, 4)</p>
+<h3 id="nested-call-expressions">Nested Call Expressions</h3>
+<p><img src="https://gitee.com/ZHDreamer/markdown-images/raw/master/images/Snipaste_2021-07-08_18-05-23.png" /></p>
+<span id="more"></span>
+<h2 id="values">Values</h2>
+<p>Expressions evaluate to values in one or more steps</p>
+<ul>
+<li>Primitive expression's value is itself</li>
+<li>Arithmetic expression's value is the result</li>
+<li>Call expression's value is the return value</li>
+</ul>
+<h2 id="names">Names</h2>
+<p>Values can be assigned to <strong>names</strong> to make referring to them easier.</p>
+<p>A name can only be bound to a single value.</p>
+<p>One way to introduce a new name in a program is with an <strong>assignment statement</strong>.</p>
+<p><code>x = 1 +2 *3 -4 // 5</code></p>
+<p>assignment statement like <code>x,y = 1,2</code> called <strong>parallel statement</strong> or <strong>multiple statement</strong></p>
+<h3 id="executing-an-assignment-statement">Executing an assignment statement</h3>
+<ol type="1">
+<li><strong>Evaluate</strong> the expression to the right of =</li>
+<li><strong>Bind</strong> the value of the expression to the name to the left of = in the current environment.</li>
+</ol>
+<p>When bind is done, the value of a name is invariable until rebind. Changing the other variable won't automatically sync the other variable.</p>
+<h2 id="functions">Functions</h2>
+<p><strong>Functions</strong> allow us to abstract away entire expressions and sequences of computation just in one call expression.</p>
+<p>It take in some input (<strong>arguments</strong>) and transform it into an output (<strong>return values</strong>).</p>
+<p>To create a functions use def statements.</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> &lt;<span class="title">name</span>&gt; (<span class="params">[parameters]</span>):</span></span><br><span class="line">	<span class="keyword">return</span> &lt;<span class="keyword">return</span> expression&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="execution-rule-for-def-statements">Execution Rule For Def Statements</h3>
+<ol type="1">
+<li>Create a function with signature <code>&lt;name&gt; ([parameters])</code></li>
+<li>Set the body of that function to be everything indented after the first line</li>
+<li>Bind <code>&lt;name&gt;</code> to that function in the current frame</li>
+</ol>
+<p>def statements are a type of assignment that bind names to function values.</p>
+<p>When you evaluate the name of function, you will get a function value back.</p>
+<h3 id="calling-user-defined-functions">Calling User-Defined Functions</h3>
+<ol type="1">
+<li>Create a new <strong>environment frame</strong></li>
+<li>Bind the function's parameters to its arguments in that frame</li>
+<li>Execute the body of the function in the new environment</li>
+</ol>
+<p>Creating new frame only after evaluate the operator and operand subexpressions.</p>
+]]></content>
+      <categories>
+        <category>SICP</category>
+        <category>CS61-A</category>
+      </categories>
+      <tags>
+        <tag>note</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>04 Environment Diagrams</title>
     <url>/2021/07/09/04-Environment-Diagrams/</url>
     <content><![CDATA[<p>A visual tool to keep track of bindings &amp; state of a computer program</p>
@@ -188,40 +188,6 @@
 <p>Expression that evaluate to functions</p>
 <p><img src="https://gitee.com/ZHDreamer/markdown-images/raw/master/images/Snipaste_2021-08-13_22-01-53.png" /></p>
 <p> </p>
-]]></content>
-      <categories>
-        <category>SICP</category>
-        <category>CS61-A</category>
-      </categories>
-      <tags>
-        <tag>note</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>06 Recursion</title>
-    <url>/2021/07/13/06-Recursion/</url>
-    <content><![CDATA[<h3 id="functional-abstraction">Functional Abstraction</h3>
-<h4 id="mechanics">Mechanics</h4>
-<p>How does Python execute this program line-by-line</p>
-<h4 id="use">Use</h4>
-<p>What can a function do</p>
-<h2 id="recursion">Recursion</h2>
-<h3 id="iterative-algorithm">Iterative Algorithm</h3>
-<p>eg.</p>
-<p><span class="math display">\[n!=\prod\limits_{k=1}^{n} k\]</span></p>
-<h3 id="recursive-algorithm">Recursive Algorithm</h3>
-<p>Recursive is useful for solving problems with a naturally repeating structure - they are defined in terms of themselves.</p>
-<p>eg.</p>
-<p><span class="math display">\[n!=\begin{cases}1 &amp;\text{if n=0}\\n  (n-1)!  &amp;\text{otherwise}\end{cases}\]</span></p>
-<span id="more"></span>
-<h3 id="recursive-functions">Recursive Functions</h3>
-<p>A function is called recursive if the body of that function calls itself, either directly or indirectly.</p>
-<h4 id="structure">Structure</h4>
-<ol type="1">
-<li>One or more <strong>base cases</strong>, usually the smallest input.</li>
-<li>One or more ways of <strong>reducing the problem</strong>, and then solving the smaller problem using recursion.</li>
-<li>One or more ways of <strong>using the solution to each smaller problem</strong> to solve our larger problem.</li>
-</ol>
 ]]></content>
       <categories>
         <category>SICP</category>
@@ -264,6 +230,40 @@
 <p> Functions defined within other function bodies are bound to names in a local frame.</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">make_adder</span>(<span class="params">n</span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;Return a function that takes one argument k and returns k + n.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    &gt;&gt;&gt; add_three = make_adder(3)</span></span><br><span class="line"><span class="string">    &gt;&gt;&gt; add_three(4)</span></span><br><span class="line"><span class="string">    7</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">adder</span>(<span class="params">k</span>):</span></span><br><span class="line">        <span class="keyword">return</span> k + n</span><br><span class="line">    <span class="keyword">return</span> adder</span><br></pre></td></tr></table></figure>
 <p><code>adder</code> is a locally defined functions. When you call <code>make_adder</code> with different <code>n</code>, the return values are <strong>function</strong> <code>adder</code> in the <code>make_adder</code> <strong>frame</strong> with different <code>n</code> value.</p>
+]]></content>
+      <categories>
+        <category>SICP</category>
+        <category>CS61-A</category>
+      </categories>
+      <tags>
+        <tag>note</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>06 Recursion</title>
+    <url>/2021/07/13/06-Recursion/</url>
+    <content><![CDATA[<h3 id="functional-abstraction">Functional Abstraction</h3>
+<h4 id="mechanics">Mechanics</h4>
+<p>How does Python execute this program line-by-line</p>
+<h4 id="use">Use</h4>
+<p>What can a function do</p>
+<h2 id="recursion">Recursion</h2>
+<h3 id="iterative-algorithm">Iterative Algorithm</h3>
+<p>eg.</p>
+<p><span class="math display">\[n!=\prod\limits_{k=1}^{n} k\]</span></p>
+<h3 id="recursive-algorithm">Recursive Algorithm</h3>
+<p>Recursive is useful for solving problems with a naturally repeating structure - they are defined in terms of themselves.</p>
+<p>eg.</p>
+<p><span class="math display">\[n!=\begin{cases}1 &amp;\text{if n=0}\\n  (n-1)!  &amp;\text{otherwise}\end{cases}\]</span></p>
+<span id="more"></span>
+<h3 id="recursive-functions">Recursive Functions</h3>
+<p>A function is called recursive if the body of that function calls itself, either directly or indirectly.</p>
+<h4 id="structure">Structure</h4>
+<ol type="1">
+<li>One or more <strong>base cases</strong>, usually the smallest input.</li>
+<li>One or more ways of <strong>reducing the problem</strong>, and then solving the smaller problem using recursion.</li>
+<li>One or more ways of <strong>using the solution to each smaller problem</strong> to solve our larger problem.</li>
+</ol>
 ]]></content>
       <categories>
         <category>SICP</category>
@@ -354,6 +354,43 @@
       </tags>
   </entry>
   <entry>
+    <title>09 Functional Decomposition &amp; Debugging</title>
+    <url>/2021/07/22/09-Functional-Decomposition-Debugging/</url>
+    <content><![CDATA[<h2 id="program-decomposition">Program Decomposition</h2>
+<ul>
+<li>The process of breaking a large problem into more manageable sub-problems</li>
+<li>Goals of Program Decomposition
+<ul>
+<li>Complexity Management</li>
+<li>Reusability and abstraction</li>
+</ul></li>
+</ul>
+<h3 id="the-black-box">The "Black Box"</h3>
+<ul>
+<li>A "black box" is opaque - its inner workings are <strong>not revealed</strong></li>
+<li>Decomposition is a divide and conquer strategy.</li>
+</ul>
+<span id="more"></span>
+<h3 id="function-rules-in-practice">Function Rules in Practice</h3>
+<p>A function should solve <strong>one problem</strong></p>
+<p>A function should have the <strong>smallest number of parameters</strong> possible to solve its problem</p>
+<p>A <strong>repeated sequence</strong> should be put in its own function</p>
+<h2 id="debugging">Debugging</h2>
+<h3 id="doctests">Doctests</h3>
+<p>python -m doctest test.py</p>
+<h4 id="environment-diagrams">Environment Diagrams</h4>
+<h3 id="print-debugging">Print Debugging</h3>
+<h3 id="preventing-bugs-assert-statements">Preventing Bugs: Assert Statements</h3>
+]]></content>
+      <categories>
+        <category>SICP</category>
+        <category>CS61-A</category>
+      </categories>
+      <tags>
+        <tag>note</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>10 Trees</title>
     <url>/2021/08/01/10-Trees/</url>
     <content><![CDATA[<h2 id="sequence-aggregation">Sequence Aggregation</h2>
@@ -386,43 +423,6 @@
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">square_tree</span>(<span class="params">t</span>):</span></span><br><span class="line">    <span class="keyword">if</span> is_leaf(t):</span><br><span class="line">        <span class="keyword">return</span> tree(label(t)**<span class="number">2</span>)</span><br><span class="line">    lst = []</span><br><span class="line">    <span class="keyword">for</span> b <span class="keyword">in</span> branches(t):</span><br><span class="line">        lst += square_tree(b)</span><br><span class="line">     <span class="keyword">return</span> tree(label(t) ** <span class="number">2</span>, lst)</span><br></pre></td></tr></table></figure>
 <h3 id="fib-tree">Fib Tree</h3>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fib_tree</span>(<span class="params">n</span>):</span></span><br><span class="line">    <span class="keyword">if</span> n == <span class="number">0</span>:</span><br><span class="line">        <span class="keyword">return</span> tree(<span class="number">0</span>)</span><br><span class="line">    <span class="keyword">elif</span> n == <span class="number">1</span>:</span><br><span class="line">        <span class="keyword">return</span> tree(<span class="number">1</span>)</span><br><span class="line">    left = fib_tree(n-<span class="number">2</span>)</span><br><span class="line">    right = fib_tree(n-<span class="number">1</span>)</span><br><span class="line">    <span class="keyword">return</span> tree(label(left) + label(right), [left, ight])</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>SICP</category>
-        <category>CS61-A</category>
-      </categories>
-      <tags>
-        <tag>note</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>09 Functional Decomposition &amp; Debugging</title>
-    <url>/2021/07/22/09-Functional-Decomposition-Debugging/</url>
-    <content><![CDATA[<h2 id="program-decomposition">Program Decomposition</h2>
-<ul>
-<li>The process of breaking a large problem into more manageable sub-problems</li>
-<li>Goals of Program Decomposition
-<ul>
-<li>Complexity Management</li>
-<li>Reusability and abstraction</li>
-</ul></li>
-</ul>
-<h3 id="the-black-box">The "Black Box"</h3>
-<ul>
-<li>A "black box" is opaque - its inner workings are <strong>not revealed</strong></li>
-<li>Decomposition is a divide and conquer strategy.</li>
-</ul>
-<span id="more"></span>
-<h3 id="function-rules-in-practice">Function Rules in Practice</h3>
-<p>A function should solve <strong>one problem</strong></p>
-<p>A function should have the <strong>smallest number of parameters</strong> possible to solve its problem</p>
-<p>A <strong>repeated sequence</strong> should be put in its own function</p>
-<h2 id="debugging">Debugging</h2>
-<h3 id="doctests">Doctests</h3>
-<p>python -m doctest test.py</p>
-<h4 id="environment-diagrams">Environment Diagrams</h4>
-<h3 id="print-debugging">Print Debugging</h3>
-<h3 id="preventing-bugs-assert-statements">Preventing Bugs: Assert Statements</h3>
 ]]></content>
       <categories>
         <category>SICP</category>
