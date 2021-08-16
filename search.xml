@@ -157,38 +157,30 @@
       </tags>
   </entry>
   <entry>
-    <title>05 Higher-Order Functions</title>
-    <url>/2021/07/11/05-Higher-Order-Functions/</url>
-    <content><![CDATA[<h2 id="higher-order-functions">Higher-Order Functions</h2>
-<p>Functions are <strong>first-class</strong>, meaning they can be manipulated as values</p>
-<p>A <strong>higher-order function</strong> is:</p>
-<ol type="1">
-<li>A function that a function as an argument</li>
-<li>A function that returns a function as a return value</li>
-</ol>
-<h3 id="designing-functions">Designing Functions</h3>
-<h4 id="describing-functions">Describing Functions</h4>
-<p>A function's <strong>domain</strong> is the set of all inputs it might possibly take as arguments.</p>
-<p>A function's <strong>range</strong> is the set of output values it might possibly return.</p>
-<p>A pure function's <strong>behavior</strong> is the relationship it creates between input and output.</p>
+    <title>06 Recursion</title>
+    <url>/2021/07/13/06-Recursion/</url>
+    <content><![CDATA[<h3 id="functional-abstraction">Functional Abstraction</h3>
+<h4 id="mechanics">Mechanics</h4>
+<p>How does Python execute this program line-by-line</p>
+<h4 id="use">Use</h4>
+<p>What can a function do</p>
+<h2 id="recursion">Recursion</h2>
+<h3 id="iterative-algorithm">Iterative Algorithm</h3>
+<p>eg.</p>
+<p><span class="math display">\[n!=\prod\limits_{k=1}^{n} k\]</span></p>
+<h3 id="recursive-algorithm">Recursive Algorithm</h3>
+<p>Recursive is useful for solving problems with a naturally repeating structure - they are defined in terms of themselves.</p>
+<p>eg.</p>
+<p><span class="math display">\[n!=\begin{cases}1 &amp;\text{if n=0}\\n  (n-1)!  &amp;\text{otherwise}\end{cases}\]</span></p>
 <span id="more"></span>
-<h5 id="assert">assert</h5>
-<p><code>assert expression [, arguments]</code> equals to</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> <span class="keyword">not</span> expression:</span><br><span class="line">    <span class="keyword">raise</span> AssertionError(arguments)</span><br></pre></td></tr></table></figure>
-<p>It can limit the input to satisfy the domain</p>
-<h5 id="how-to-designing-functions">How to designing functions</h5>
-<p>Give each function exactly <strong>one job</strong>, but make it apply to <strong>many related situations</strong>.</p>
-<h4 id="generalizing-patterns-with-arguments">Generalizing Patterns with Arguments</h4>
-<p><img src="https://gitee.com/ZHDreamer/markdown-images/raw/master/images/Snipaste_2021-07-11_14-22-12_compressed.jpg" /></p>
-<h4 id="generalizing-over-computational-processes">Generalizing Over Computational Processes</h4>
-<p>The common structure among functions may be a computational process, rather than a number.</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">summation</span>(<span class="params">n, term</span>):</span></span><br><span class="line">    total, k = <span class="number">0</span>, <span class="number">1</span></span><br><span class="line">    <span class="keyword">while</span> k &lt;= n:</span><br><span class="line">        total, k = total + term(k), k + <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> total</span><br><span class="line"><span class="comment"># summation takes in a function term, so it is a high-order function.</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">identity</span>(<span class="params">x</span>):</span></span><br><span class="line">    <span class="keyword">return</span> x</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">cube</span>(<span class="params">x</span>):</span></span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">pow</span>(x, <span class="number">3</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">sum_naturals</span>(<span class="params">n</span>):</span></span><br><span class="line">    <span class="keyword">return</span> summation(n, identity)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">sum_cubes</span>(<span class="params">n</span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    Sum the first N cubes.</span></span><br><span class="line"><span class="string">    </span></span><br><span class="line"><span class="string">    &gt;&gt;&gt; sum_cubes(5)</span></span><br><span class="line"><span class="string">    225</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">return</span> summation(n, cube)</span><br></pre></td></tr></table></figure>
-<h5 id="doctest">Doctest</h5>
-<p>You can run test lines in comment by typing <code>python -m doctest -v .py</code> . It will be tested in the interactive interpreter. When you write the comment, just write like what it's like in interactive interpreter.</p>
-<h3 id="locally-defined-functions">Locally Defined Functions</h3>
-<p> Functions defined within other function bodies are bound to names in a local frame.</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">make_adder</span>(<span class="params">n</span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;Return a function that takes one argument k and returns k + n.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    &gt;&gt;&gt; add_three = make_adder(3)</span></span><br><span class="line"><span class="string">    &gt;&gt;&gt; add_three(4)</span></span><br><span class="line"><span class="string">    7</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">adder</span>(<span class="params">k</span>):</span></span><br><span class="line">        <span class="keyword">return</span> k + n</span><br><span class="line">    <span class="keyword">return</span> adder</span><br></pre></td></tr></table></figure>
-<p><code>adder</code> is a locally defined functions. When you call <code>make_adder</code> with different <code>n</code>, the return values are <strong>function</strong> <code>adder</code> in the <code>make_adder</code> <strong>frame</strong> with different <code>n</code> value.</p>
+<h3 id="recursive-functions">Recursive Functions</h3>
+<p>A function is called recursive if the body of that function calls itself, either directly or indirectly.</p>
+<h4 id="structure">Structure</h4>
+<ol type="1">
+<li>One or more <strong>base cases</strong>, usually the smallest input.</li>
+<li>One or more ways of <strong>reducing the problem</strong>, and then solving the smaller problem using recursion.</li>
+<li>One or more ways of <strong>using the solution to each smaller problem</strong> to solve our larger problem.</li>
+</ol>
 ]]></content>
       <categories>
         <category>SICP</category>
@@ -230,40 +222,6 @@
 <p>Expression that evaluate to functions</p>
 <p><img src="https://gitee.com/ZHDreamer/markdown-images/raw/master/images/Snipaste_2021-08-13_22-01-53.png" /></p>
 <p> </p>
-]]></content>
-      <categories>
-        <category>SICP</category>
-        <category>CS61-A</category>
-      </categories>
-      <tags>
-        <tag>note</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>06 Recursion</title>
-    <url>/2021/07/13/06-Recursion/</url>
-    <content><![CDATA[<h3 id="functional-abstraction">Functional Abstraction</h3>
-<h4 id="mechanics">Mechanics</h4>
-<p>How does Python execute this program line-by-line</p>
-<h4 id="use">Use</h4>
-<p>What can a function do</p>
-<h2 id="recursion">Recursion</h2>
-<h3 id="iterative-algorithm">Iterative Algorithm</h3>
-<p>eg.</p>
-<p><span class="math display">\[n!=\prod\limits_{k=1}^{n} k\]</span></p>
-<h3 id="recursive-algorithm">Recursive Algorithm</h3>
-<p>Recursive is useful for solving problems with a naturally repeating structure - they are defined in terms of themselves.</p>
-<p>eg.</p>
-<p><span class="math display">\[n!=\begin{cases}1 &amp;\text{if n=0}\\n  (n-1)!  &amp;\text{otherwise}\end{cases}\]</span></p>
-<span id="more"></span>
-<h3 id="recursive-functions">Recursive Functions</h3>
-<p>A function is called recursive if the body of that function calls itself, either directly or indirectly.</p>
-<h4 id="structure">Structure</h4>
-<ol type="1">
-<li>One or more <strong>base cases</strong>, usually the smallest input.</li>
-<li>One or more ways of <strong>reducing the problem</strong>, and then solving the smaller problem using recursion.</li>
-<li>One or more ways of <strong>using the solution to each smaller problem</strong> to solve our larger problem.</li>
-</ol>
 ]]></content>
       <categories>
         <category>SICP</category>
@@ -433,50 +391,6 @@
       </tags>
   </entry>
   <entry>
-    <title>11 Mutable Sequences</title>
-    <url>/2021/08/11/11-Mutable-Sequences/</url>
-    <content><![CDATA[<p>本质上用+、切片得到的列表都是浅复制的新列表，是将列表视为immutable的</p>
-<h2 id="mutation-operations">Mutation Operations</h2>
-<h5 id="use-index-to-change-value">Use index to change value</h5>
-<p><code>lst[0] = 0</code></p>
-<h4 id="list-mutation">List Mutation</h4>
-<p><code>append(el)</code>: adds el to the end of the list</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>lst = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>lst.append(<span class="number">6</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>lst</span><br><span class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>]</span><br></pre></td></tr></table></figure>
-<span id="more"></span>
-<p><code>insert(i, el)</code>: inserts el at index i</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>lst = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>lst.insert(<span class="number">2</span>, <span class="number">2.5</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>lst</span><br><span class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">2.5</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]</span><br></pre></td></tr></table></figure>
-<p><code>extend(seq)</code>: adds elements in seq one by one to the end of the list</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>lst = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>lst.extend([<span class="number">4</span>, <span class="number">5</span>])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>lst</span><br><span class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]</span><br></pre></td></tr></table></figure>
-<p><code>remove(el)</code>: removes the first occurrence of el from the list</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>lst = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">2</span>, <span class="number">5</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>lst.remove(<span class="number">2</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>lst</span><br><span class="line">[<span class="number">1</span>, <span class="number">3</span>, <span class="number">2</span>, <span class="number">5</span>]</span><br></pre></td></tr></table></figure>
-<p><code>pop(i)</code>: removes <em>and returns</em> the element at index i</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>lst = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>lst.pop(<span class="number">3</span>)</span><br><span class="line"><span class="number">4</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>lst</span><br><span class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">5</span>]</span><br></pre></td></tr></table></figure>
-<h4 id="dictionaries-mutation">Dictionaries Mutation</h4>
-<p>The keys of dictionary must be immutable</p>
-<h2 id="immutable-values">Immutable Values</h2>
-<ul>
-<li>Strings</li>
-<li>Tuples</li>
-</ul>
-<h2 id="mutating-in-functions">Mutating in Functions</h2>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="function"><span class="keyword">def</span> <span class="title">mystery</span>(<span class="params">lst</span>):</span> <span class="comment"># mutative function</span></span><br><span class="line"><span class="meta">... </span>    lst.pop()</span><br><span class="line"><span class="meta">... </span>    lst.pop()</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>four = [<span class="number">4</span>, <span class="number">4</span>, <span class="number">4</span>, <span class="number">4</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>mystery(four)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>four</span><br><span class="line">[<span class="number">4</span>, <span class="number">4</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="function"><span class="keyword">def</span> <span class="title">mystery2</span>(<span class="params">x</span>):</span> <span class="comment"># mutative function</span></span><br><span class="line"><span class="meta">... </span>    lst.append(x)</span><br><span class="line"><span class="meta">... </span>    lst.append(x)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>lst = [<span class="number">4</span>, <span class="number">4</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>mystery2(<span class="number">5</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>lst</span><br><span class="line">[<span class="number">4</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">5</span>]</span><br></pre></td></tr></table></figure>
-<p>When you use mutation within functions, it will operate the variables itself. Outside the functions, the variables change as well.</p>
-<h2 id="identity-versus-equality">Identity Versus Equality</h2>
-<h4 id="identity">Identity</h4>
-<p><code>&lt;expr0&gt; is&lt;expr1&gt;</code></p>
-<p>evaluates to True if both<code>&lt;expr0&gt;</code>and<code>&lt;expr1&gt;</code>evaluate to <strong>the</strong> <strong>same object</strong> (same memory address)</p>
-<h4 id="equality">Equality</h4>
-<p><code>&lt;expr0&gt; == &lt;expr1&gt;</code> evaluates to True if both <code>&lt;expr0&gt;</code>and <code>&lt;expr1&gt;</code>evaluates to <strong>equal values</strong></p>
-]]></content>
-      <categories>
-        <category>SICP</category>
-        <category>CS61-A</category>
-      </categories>
-      <tags>
-        <tag>note</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>HW 03 Church Numerals</title>
     <url>/2021/08/11/HW-03-Church-Numerals/</url>
     <content><![CDATA[<h2 id="背景">背景</h2>
@@ -546,6 +460,146 @@ m^n&amp;=F_n(F_m)(f)(x)\\
       </categories>
       <tags>
         <tag>note</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>05 Higher-Order Functions</title>
+    <url>/2021/07/11/05-Higher-Order-Functions/</url>
+    <content><![CDATA[<h2 id="higher-order-functions">Higher-Order Functions</h2>
+<p>Functions are <strong>first-class</strong>, meaning they can be manipulated as values</p>
+<p>A <strong>higher-order function</strong> is:</p>
+<ol type="1">
+<li>A function that a function as an argument</li>
+<li>A function that returns a function as a return value</li>
+</ol>
+<h3 id="designing-functions">Designing Functions</h3>
+<h4 id="describing-functions">Describing Functions</h4>
+<p>A function's <strong>domain</strong> is the set of all inputs it might possibly take as arguments.</p>
+<p>A function's <strong>range</strong> is the set of output values it might possibly return.</p>
+<p>A pure function's <strong>behavior</strong> is the relationship it creates between input and output.</p>
+<span id="more"></span>
+<h5 id="assert">assert</h5>
+<p><code>assert expression [, arguments]</code> equals to</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> <span class="keyword">not</span> expression:</span><br><span class="line">    <span class="keyword">raise</span> AssertionError(arguments)</span><br></pre></td></tr></table></figure>
+<p>It can limit the input to satisfy the domain</p>
+<h5 id="how-to-designing-functions">How to designing functions</h5>
+<p>Give each function exactly <strong>one job</strong>, but make it apply to <strong>many related situations</strong>.</p>
+<h4 id="generalizing-patterns-with-arguments">Generalizing Patterns with Arguments</h4>
+<p><img src="https://gitee.com/ZHDreamer/markdown-images/raw/master/images/Snipaste_2021-07-11_14-22-12_compressed.jpg" /></p>
+<h4 id="generalizing-over-computational-processes">Generalizing Over Computational Processes</h4>
+<p>The common structure among functions may be a computational process, rather than a number.</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">summation</span>(<span class="params">n, term</span>):</span></span><br><span class="line">    total, k = <span class="number">0</span>, <span class="number">1</span></span><br><span class="line">    <span class="keyword">while</span> k &lt;= n:</span><br><span class="line">        total, k = total + term(k), k + <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> total</span><br><span class="line"><span class="comment"># summation takes in a function term, so it is a high-order function.</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">identity</span>(<span class="params">x</span>):</span></span><br><span class="line">    <span class="keyword">return</span> x</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">cube</span>(<span class="params">x</span>):</span></span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">pow</span>(x, <span class="number">3</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">sum_naturals</span>(<span class="params">n</span>):</span></span><br><span class="line">    <span class="keyword">return</span> summation(n, identity)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">sum_cubes</span>(<span class="params">n</span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    Sum the first N cubes.</span></span><br><span class="line"><span class="string">    </span></span><br><span class="line"><span class="string">    &gt;&gt;&gt; sum_cubes(5)</span></span><br><span class="line"><span class="string">    225</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">return</span> summation(n, cube)</span><br></pre></td></tr></table></figure>
+<h5 id="doctest">Doctest</h5>
+<p>You can run test lines in comment by typing <code>python -m doctest -v .py</code> . It will be tested in the interactive interpreter. When you write the comment, just write like what it's like in interactive interpreter.</p>
+<h3 id="locally-defined-functions">Locally Defined Functions</h3>
+<p> Functions defined within other function bodies are bound to names in a local frame.</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">make_adder</span>(<span class="params">n</span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;Return a function that takes one argument k and returns k + n.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    &gt;&gt;&gt; add_three = make_adder(3)</span></span><br><span class="line"><span class="string">    &gt;&gt;&gt; add_three(4)</span></span><br><span class="line"><span class="string">    7</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">adder</span>(<span class="params">k</span>):</span></span><br><span class="line">        <span class="keyword">return</span> k + n</span><br><span class="line">    <span class="keyword">return</span> adder</span><br></pre></td></tr></table></figure>
+<p><code>adder</code> is a locally defined functions. When you call <code>make_adder</code> with different <code>n</code>, the return values are <strong>function</strong> <code>adder</code> in the <code>make_adder</code> <strong>frame</strong> with different <code>n</code> value.</p>
+]]></content>
+      <categories>
+        <category>SICP</category>
+        <category>CS61-A</category>
+      </categories>
+      <tags>
+        <tag>note</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>11 Mutable Sequences</title>
+    <url>/2021/08/11/11-Mutable-Sequences/</url>
+    <content><![CDATA[<p>本质上用+、切片得到的列表都是浅复制的新列表，是将列表视为immutable的</p>
+<h2 id="mutation-operations">Mutation Operations</h2>
+<h5 id="use-index-to-change-value">Use index to change value</h5>
+<p><code>lst[0] = 0</code></p>
+<h4 id="list-mutation">List Mutation</h4>
+<p><code>append(el)</code>: adds el to the end of the list</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>lst = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>lst.append(<span class="number">6</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>lst</span><br><span class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>]</span><br></pre></td></tr></table></figure>
+<span id="more"></span>
+<p><code>insert(i, el)</code>: inserts el at index i</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>lst = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>lst.insert(<span class="number">2</span>, <span class="number">2.5</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>lst</span><br><span class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">2.5</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]</span><br></pre></td></tr></table></figure>
+<p><code>extend(seq)</code>: adds elements in seq one by one to the end of the list</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>lst = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>lst.extend([<span class="number">4</span>, <span class="number">5</span>])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>lst</span><br><span class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]</span><br></pre></td></tr></table></figure>
+<p><code>remove(el)</code>: removes the first occurrence of el from the list</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>lst = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">2</span>, <span class="number">5</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>lst.remove(<span class="number">2</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>lst</span><br><span class="line">[<span class="number">1</span>, <span class="number">3</span>, <span class="number">2</span>, <span class="number">5</span>]</span><br></pre></td></tr></table></figure>
+<p><code>pop(i)</code>: removes <em>and returns</em> the element at index i</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>lst = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>lst.pop(<span class="number">3</span>)</span><br><span class="line"><span class="number">4</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>lst</span><br><span class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">5</span>]</span><br></pre></td></tr></table></figure>
+<h4 id="dictionaries-mutation">Dictionaries Mutation</h4>
+<p>The keys of dictionary must be immutable</p>
+<h2 id="immutable-values">Immutable Values</h2>
+<ul>
+<li>Strings</li>
+<li>Tuples</li>
+</ul>
+<h2 id="mutating-in-functions">Mutating in Functions</h2>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="function"><span class="keyword">def</span> <span class="title">mystery</span>(<span class="params">lst</span>):</span> <span class="comment"># mutative function</span></span><br><span class="line"><span class="meta">... </span>    lst.pop()</span><br><span class="line"><span class="meta">... </span>    lst.pop()</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>four = [<span class="number">4</span>, <span class="number">4</span>, <span class="number">4</span>, <span class="number">4</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>mystery(four)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>four</span><br><span class="line">[<span class="number">4</span>, <span class="number">4</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="function"><span class="keyword">def</span> <span class="title">mystery2</span>(<span class="params">x</span>):</span> <span class="comment"># mutative function</span></span><br><span class="line"><span class="meta">... </span>    lst.append(x)</span><br><span class="line"><span class="meta">... </span>    lst.append(x)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>lst = [<span class="number">4</span>, <span class="number">4</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>mystery2(<span class="number">5</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>lst</span><br><span class="line">[<span class="number">4</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">5</span>]</span><br></pre></td></tr></table></figure>
+<p>When you use mutation within functions, it will operate the variables itself. Outside the functions, the variables change as well.</p>
+<h2 id="identity-versus-equality">Identity Versus Equality</h2>
+<h4 id="identity">Identity</h4>
+<p><code>&lt;expr0&gt; is&lt;expr1&gt;</code></p>
+<p>evaluates to True if both<code>&lt;expr0&gt;</code>and<code>&lt;expr1&gt;</code>evaluate to <strong>the</strong> <strong>same object</strong> (same memory address)</p>
+<h4 id="equality">Equality</h4>
+<p><code>&lt;expr0&gt; == &lt;expr1&gt;</code> evaluates to True if both <code>&lt;expr0&gt;</code>and <code>&lt;expr1&gt;</code>evaluates to <strong>equal values</strong></p>
+]]></content>
+      <categories>
+        <category>SICP</category>
+        <category>CS61-A</category>
+      </categories>
+      <tags>
+        <tag>note</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hexo 问题处理备份</title>
+    <url>/2021/08/12/Hexo-%E9%97%AE%E9%A2%98%E5%A4%84%E7%90%86%E5%A4%87%E4%BB%BD/</url>
+    <content><![CDATA[<p>Hexo使用起来小毛病很多，防止以后浪费时间再去搜索，在这里备份一下各个问题成功的解决方法。</p>
+<h2 id="next-相关问题">NexT 相关问题</h2>
+<h3 id="next-项目更新到了新的项目">NexT 项目更新到了新的项目</h3>
+<p>很多老教程安装的NexT是老版本，就会导致以下标注旧版本的种种问题，折腾了一天才发现问题的根源，所以还是多参考官方doc吧</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git clone https://github.com/iissnan/hexo-theme-next themes/next //旧版本，已经过时</span><br><span class="line">git clone https://github.com/next-theme/hexo-theme-next themes/next //新版本</span><br></pre></td></tr></table></figure>
+<h3 id="next-主题无法显示旧版本">NexT 主题无法显示（旧版本）</h3>
+<p>报错<code>&#123;% extends ‘_layout.swig‘ %&#125; &#123;% import ‘_macro/post.swig‘ as post_template %&#125;</code></p>
+<p>原因是Hexo在5.0之后把swig给删除了需要自己手动安装</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm i hexo-renderer-swig</span><br></pre></td></tr></table></figure>
+<span id="more"></span>
+<h3 id="菜单栏修改问题旧版本">菜单栏修改问题（旧版本）</h3>
+<p>Next在主题的<code>_config.yml</code>文件中提供菜单栏的修改，只要搜索menu就可以找到，通过去除注释即可以在网页上进行渲染。然而在修改next中的menu时会发现存在这样的报错 “cannot get %20” -- 无法找到相应的菜单。出现的原因是官方给的代码中多加了一个空格，导致网页无法渲染，个人除了删除注释外，要将“||”前的空格删除不然会导致菜单没法跳转。</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">menu:</span></span><br><span class="line">  <span class="attr">home:</span> <span class="string">/||</span> <span class="string">home</span></span><br><span class="line">  <span class="comment">#about: /about/ || user</span></span><br><span class="line">  <span class="attr">tags:</span> <span class="string">/tags/||</span> <span class="string">tags</span></span><br><span class="line">  <span class="attr">categories:</span> <span class="string">/categories/||</span> <span class="string">th</span></span><br><span class="line">  <span class="attr">archives:</span> <span class="string">/archives/||</span> <span class="string">archive</span></span><br><span class="line">  <span class="comment">#schedule: /schedule/ || calendar</span></span><br><span class="line">  <span class="comment">#sitemap: /sitemap.xml || sitemap</span></span><br><span class="line">  <span class="comment">#commonweal: /404/ || heartbeat</span></span><br></pre></td></tr></table></figure>
+<h3 id="侧边栏大纲中文无法跳转旧版本">侧边栏大纲中文无法跳转（旧版本）</h3>
+<p>英文可以正常跳转，中文不行</p>
+<p>根据报错发现是<code>Blog\themes\next\source\js\src\post-details.js</code>的问题</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// TOC item animation navigate &amp; prevent #item selector in adress bar.</span></span><br><span class="line">$(<span class="string">&#x27;.post-toc a&#x27;</span>).on(<span class="string">&#x27;click&#x27;</span>, <span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</span><br><span class="line">  e.preventDefault();</span><br><span class="line">  &lt;!-- targetSelector 解析UTF8的问题 -&gt;</span><br><span class="line">  <span class="keyword">var</span> targetSelector = NexT.utils.escapeSelector(<span class="built_in">this</span>.getAttribute(<span class="string">&#x27;href&#x27;</span>));</span><br><span class="line">  &lt;!-- 添加下面这行代码, 重新解析 URL -&gt;</span><br><span class="line">  targetSelector = <span class="built_in">decodeURI</span>(<span class="built_in">this</span>.getAttribute(<span class="string">&#x27;href&#x27;</span>))</span><br><span class="line">  <span class="keyword">var</span> offset = $(targetSelector).offset().top;</span><br><span class="line"></span><br><span class="line">  hasVelocity ?</span><br><span class="line">    html.velocity(<span class="string">&#x27;stop&#x27;</span>).velocity(<span class="string">&#x27;scroll&#x27;</span>, &#123;</span><br><span class="line">      <span class="attr">offset</span>: offset  + <span class="string">&#x27;px&#x27;</span>,</span><br><span class="line">      <span class="attr">mobileHA</span>: <span class="literal">false</span></span><br><span class="line">    &#125;) :</span><br><span class="line">    $(<span class="string">&#x27;html, body&#x27;</span>).stop().animate(&#123;</span><br><span class="line">      <span class="attr">scrollTop</span>: offset</span><br><span class="line">    &#125;, <span class="number">500</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="翻页显示i-classfa-fa-angle-righti旧版本">翻页显示<code>&lt;i class="fa fa-angle-right"&gt;&lt;/i&gt;</code>（旧版本）</h3>
+<p><img src="https://gitee.com/ZHDreamer/markdown-images/raw/master/images/20191201150136673.png" /></p>
+<p><a href="https://github.com/hexojs/hexo/issues/3794">参考</a></p>
+<p>修改<code>Blog/themes/next/layout/_partials/pagination.swig</code></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;%- if page.prev or page.next %&#125;</span><br><span class="line"> &lt;nav class=&quot;pagination&quot;&gt;</span><br><span class="line">   &#123;&#123;</span><br><span class="line">     paginator(&#123;</span><br><span class="line">       prev_text: &#x27;&lt;i class=&quot;fa fa-angle-left&quot; aria-label=&quot;&#x27;+__(&#x27;accessibility.prev_page&#x27;)+&#x27;&quot;&gt;&lt;/i&gt;&#x27;,</span><br><span class="line">       next_text: &#x27;&lt;i class=&quot;fa fa-angle-right&quot; aria-label=&quot;&#x27;+__(&#x27;accessibility.next_page&#x27;)+&#x27;&quot;&gt;&lt;/i&gt;&#x27;,</span><br><span class="line">       mid_size: 1,</span><br><span class="line">       escape: false</span><br><span class="line">     &#125;)</span><br><span class="line">   &#125;&#125;</span><br><span class="line"> &lt;/nav&gt;</span><br><span class="line">&#123;%- endif %&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="公式渲染出现问题旧版本">公式渲染出现问题（旧版本）</h3>
+<p>多行公式<code>\\</code>和下标<code>_</code>无法正常显示</p>
+<h4 id="原因分析">原因分析</h4>
+<p>Hexo默认使用<code>hexo-renderer-marked</code>引擎渲染网页，该引擎会把一些特殊的markdown符号转换为相应的html标签，比如在markdown语法中，下划线<code>_</code>代表斜体，会被渲染引擎处理为<code>&lt;em&gt;</code>标签。</p>
+<p>因为类Latex格式书写的数学公式下划线<code>_</code>表示下标，有特殊的含义，如果被强制转换为<code>&lt;em&gt;</code>标签，那么MathJax引擎在渲染数学公式的时候就会出错。例如，<span class="math inline">\(x_i\)</span>​在开始被渲染的时候，处理为$x<code>&lt;em&gt;</code>i<code>&lt;/em&gt;</code>$​，这样MathJax引擎就认为该公式有语法错误，因为不会渲染。</p>
+<p>类似的语义冲突的符号还包括'*', '{', '}', ''等。</p>
+<h4 id="解决方法">解决方法</h4>
+<p>更换Hexo的markdown渲染引擎，<a href="https://link.jianshu.com/?t=https%3A%2F%2Fgithub.com%2Fsun11%2Fhexo-renderer-kramed">hexo-renderer-kramed</a>引擎是在默认的渲染引擎<a href="https://link.jianshu.com/?t=https%3A%2F%2Fgithub.com%2Fhexojs%2Fhexo-renderer-marked">hexo-renderer-marked</a>的基础上修改了一些bug，两者比较接近，也比较轻量级。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm uninstall hexo-renderer-marked</span><br><span class="line">npm install hexo-renderer-kramed</span><br></pre></td></tr></table></figure>
+<p>卸载掉旧的渲染引擎，安装新引擎</p>
+<p>然后，跟换引擎后行间公式可以正确渲染了，但是这样还没有完全解决问题，行内公式的渲染还是有问题，因为<code>hexo-renderer-kramed</code>引擎也有语义冲突的问题。接下来到博客根目录下，找到<code>node_modules\kramed\lib\rules\inline.js</code>，把第11行的<code>escape</code>变量的值做相应的修改：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">//  escape: /^\\([\\`*&#123;&#125;\[\]()#$+\-.!_&gt;])/,</span></span><br><span class="line">  <span class="attr">escape</span>: <span class="regexp">/^\\([`*\[\]()#$+\-.!_&gt;])/</span></span><br></pre></td></tr></table></figure>
+<p>这一步是在原基础上取消了对,{,}的转义(escape)。</p>
+<p>同时把第20行的<code>em</code>变量也要做相应的修改。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">//  em: /^\b_((?:__|[\s\S])+?)_\b|^\*((?:\*\*|[\s\S])+?)\*(?!\*)/,</span></span><br><span class="line">  <span class="attr">em</span>: <span class="regexp">/^\*((?:\*\*|[\s\S])+?)\*(?!\*)/</span></span><br></pre></td></tr></table></figure>
+<p>重新启动 Hexo 即可解决</p>
+<h3 id="公式渲染出现问题新版本">公式渲染出现问题（新版本）</h3>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm un hexo-renderer-marked</span><br><span class="line">npm i hexo-renderer-pandoc</span><br></pre></td></tr></table></figure>
+<p>这样以后仍然会有一些问题，<code>\\</code>在一般多行公式无法生效，要加入<code>gather</code>环境才能使其生效，或者直接用多个多行公式</p>
+]]></content>
+      <categories>
+        <category>Software</category>
+        <category>Hexo</category>
+        <category>NexT</category>
+      </categories>
+      <tags>
+        <tag>issues</tag>
       </tags>
   </entry>
   <entry>
@@ -619,65 +673,11 @@ m^n&amp;=F_n(F_m)(f)(x)\\
 <p>其他类型的页面都可以这样操作</p>
 ]]></content>
       <categories>
-        <category>Softwear</category>
+        <category>Software</category>
         <category>Hexo</category>
       </categories>
       <tags>
         <tag>bulid</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Hexo 问题处理备份</title>
-    <url>/2021/08/12/Hexo-%E9%97%AE%E9%A2%98%E5%A4%84%E7%90%86%E5%A4%87%E4%BB%BD/</url>
-    <content><![CDATA[<p>Hexo使用起来小毛病很多，防止以后浪费时间再去搜索，在这里备份一下各个问题成功的解决方法。</p>
-<h2 id="next-相关问题">NexT 相关问题</h2>
-<h3 id="next-项目更新到了新的项目">NexT 项目更新到了新的项目</h3>
-<p>很多老教程安装的NexT是老版本，就会导致以下标注旧版本的种种问题，折腾了一天才发现问题的根源，所以还是多参考官方doc吧</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git clone https://github.com/iissnan/hexo-theme-next themes/next //旧版本，已经过时</span><br><span class="line">git clone https://github.com/next-theme/hexo-theme-next themes/next //新版本</span><br></pre></td></tr></table></figure>
-<h3 id="next-主题无法显示旧版本">NexT 主题无法显示（旧版本）</h3>
-<p>报错<code>&#123;% extends ‘_layout.swig‘ %&#125; &#123;% import ‘_macro/post.swig‘ as post_template %&#125;</code></p>
-<p>原因是Hexo在5.0之后把swig给删除了需要自己手动安装</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm i hexo-renderer-swig</span><br></pre></td></tr></table></figure>
-<span id="more"></span>
-<h3 id="菜单栏修改问题旧版本">菜单栏修改问题（旧版本）</h3>
-<p>Next在主题的<code>_config.yml</code>文件中提供菜单栏的修改，只要搜索menu就可以找到，通过去除注释即可以在网页上进行渲染。然而在修改next中的menu时会发现存在这样的报错 “cannot get %20” -- 无法找到相应的菜单。出现的原因是官方给的代码中多加了一个空格，导致网页无法渲染，个人除了删除注释外，要将“||”前的空格删除不然会导致菜单没法跳转。</p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">menu:</span></span><br><span class="line">  <span class="attr">home:</span> <span class="string">/||</span> <span class="string">home</span></span><br><span class="line">  <span class="comment">#about: /about/ || user</span></span><br><span class="line">  <span class="attr">tags:</span> <span class="string">/tags/||</span> <span class="string">tags</span></span><br><span class="line">  <span class="attr">categories:</span> <span class="string">/categories/||</span> <span class="string">th</span></span><br><span class="line">  <span class="attr">archives:</span> <span class="string">/archives/||</span> <span class="string">archive</span></span><br><span class="line">  <span class="comment">#schedule: /schedule/ || calendar</span></span><br><span class="line">  <span class="comment">#sitemap: /sitemap.xml || sitemap</span></span><br><span class="line">  <span class="comment">#commonweal: /404/ || heartbeat</span></span><br></pre></td></tr></table></figure>
-<h3 id="侧边栏大纲中文无法跳转旧版本">侧边栏大纲中文无法跳转（旧版本）</h3>
-<p>英文可以正常跳转，中文不行</p>
-<p>根据报错发现是<code>Blog\themes\next\source\js\src\post-details.js</code>的问题</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// TOC item animation navigate &amp; prevent #item selector in adress bar.</span></span><br><span class="line">$(<span class="string">&#x27;.post-toc a&#x27;</span>).on(<span class="string">&#x27;click&#x27;</span>, <span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</span><br><span class="line">  e.preventDefault();</span><br><span class="line">  &lt;!-- targetSelector 解析UTF8的问题 -&gt;</span><br><span class="line">  <span class="keyword">var</span> targetSelector = NexT.utils.escapeSelector(<span class="built_in">this</span>.getAttribute(<span class="string">&#x27;href&#x27;</span>));</span><br><span class="line">  &lt;!-- 添加下面这行代码, 重新解析 URL -&gt;</span><br><span class="line">  targetSelector = <span class="built_in">decodeURI</span>(<span class="built_in">this</span>.getAttribute(<span class="string">&#x27;href&#x27;</span>))</span><br><span class="line">  <span class="keyword">var</span> offset = $(targetSelector).offset().top;</span><br><span class="line"></span><br><span class="line">  hasVelocity ?</span><br><span class="line">    html.velocity(<span class="string">&#x27;stop&#x27;</span>).velocity(<span class="string">&#x27;scroll&#x27;</span>, &#123;</span><br><span class="line">      <span class="attr">offset</span>: offset  + <span class="string">&#x27;px&#x27;</span>,</span><br><span class="line">      <span class="attr">mobileHA</span>: <span class="literal">false</span></span><br><span class="line">    &#125;) :</span><br><span class="line">    $(<span class="string">&#x27;html, body&#x27;</span>).stop().animate(&#123;</span><br><span class="line">      <span class="attr">scrollTop</span>: offset</span><br><span class="line">    &#125;, <span class="number">500</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<h3 id="翻页显示i-classfa-fa-angle-righti旧版本">翻页显示<code>&lt;i class="fa fa-angle-right"&gt;&lt;/i&gt;</code>（旧版本）</h3>
-<p><img src="https://gitee.com/ZHDreamer/markdown-images/raw/master/images/20191201150136673.png" /></p>
-<p><a href="https://github.com/hexojs/hexo/issues/3794">参考</a></p>
-<p>修改<code>Blog/themes/next/layout/_partials/pagination.swig</code></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;%- if page.prev or page.next %&#125;</span><br><span class="line"> &lt;nav class=&quot;pagination&quot;&gt;</span><br><span class="line">   &#123;&#123;</span><br><span class="line">     paginator(&#123;</span><br><span class="line">       prev_text: &#x27;&lt;i class=&quot;fa fa-angle-left&quot; aria-label=&quot;&#x27;+__(&#x27;accessibility.prev_page&#x27;)+&#x27;&quot;&gt;&lt;/i&gt;&#x27;,</span><br><span class="line">       next_text: &#x27;&lt;i class=&quot;fa fa-angle-right&quot; aria-label=&quot;&#x27;+__(&#x27;accessibility.next_page&#x27;)+&#x27;&quot;&gt;&lt;/i&gt;&#x27;,</span><br><span class="line">       mid_size: 1,</span><br><span class="line">       escape: false</span><br><span class="line">     &#125;)</span><br><span class="line">   &#125;&#125;</span><br><span class="line"> &lt;/nav&gt;</span><br><span class="line">&#123;%- endif %&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="公式渲染出现问题旧版本">公式渲染出现问题（旧版本）</h3>
-<p>多行公式<code>\\</code>和下标<code>_</code>无法正常显示</p>
-<h4 id="原因分析">原因分析</h4>
-<p>Hexo默认使用<code>hexo-renderer-marked</code>引擎渲染网页，该引擎会把一些特殊的markdown符号转换为相应的html标签，比如在markdown语法中，下划线<code>_</code>代表斜体，会被渲染引擎处理为<code>&lt;em&gt;</code>标签。</p>
-<p>因为类Latex格式书写的数学公式下划线<code>_</code>表示下标，有特殊的含义，如果被强制转换为<code>&lt;em&gt;</code>标签，那么MathJax引擎在渲染数学公式的时候就会出错。例如，<span class="math inline">\(x_i\)</span>​在开始被渲染的时候，处理为$x<code>&lt;em&gt;</code>i<code>&lt;/em&gt;</code>$​，这样MathJax引擎就认为该公式有语法错误，因为不会渲染。</p>
-<p>类似的语义冲突的符号还包括'*', '{', '}', ''等。</p>
-<h4 id="解决方法">解决方法</h4>
-<p>更换Hexo的markdown渲染引擎，<a href="https://link.jianshu.com/?t=https%3A%2F%2Fgithub.com%2Fsun11%2Fhexo-renderer-kramed">hexo-renderer-kramed</a>引擎是在默认的渲染引擎<a href="https://link.jianshu.com/?t=https%3A%2F%2Fgithub.com%2Fhexojs%2Fhexo-renderer-marked">hexo-renderer-marked</a>的基础上修改了一些bug，两者比较接近，也比较轻量级。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm uninstall hexo-renderer-marked</span><br><span class="line">npm install hexo-renderer-kramed</span><br></pre></td></tr></table></figure>
-<p>卸载掉旧的渲染引擎，安装新引擎</p>
-<p>然后，跟换引擎后行间公式可以正确渲染了，但是这样还没有完全解决问题，行内公式的渲染还是有问题，因为<code>hexo-renderer-kramed</code>引擎也有语义冲突的问题。接下来到博客根目录下，找到<code>node_modules\kramed\lib\rules\inline.js</code>，把第11行的<code>escape</code>变量的值做相应的修改：</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">//  escape: /^\\([\\`*&#123;&#125;\[\]()#$+\-.!_&gt;])/,</span></span><br><span class="line">  <span class="attr">escape</span>: <span class="regexp">/^\\([`*\[\]()#$+\-.!_&gt;])/</span></span><br></pre></td></tr></table></figure>
-<p>这一步是在原基础上取消了对,{,}的转义(escape)。</p>
-<p>同时把第20行的<code>em</code>变量也要做相应的修改。</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">//  em: /^\b_((?:__|[\s\S])+?)_\b|^\*((?:\*\*|[\s\S])+?)\*(?!\*)/,</span></span><br><span class="line">  <span class="attr">em</span>: <span class="regexp">/^\*((?:\*\*|[\s\S])+?)\*(?!\*)/</span></span><br></pre></td></tr></table></figure>
-<p>重新启动 Hexo 即可解决</p>
-<h3 id="公式渲染出现问题新版本">公式渲染出现问题（新版本）</h3>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm un hexo-renderer-marked</span><br><span class="line">npm i hexo-renderer-pandoc</span><br></pre></td></tr></table></figure>
-<p>这样以后仍然会有一些问题，<code>\\</code>在一般多行公式无法生效，要加入<code>gather</code>环境才能使其生效，或者直接用多个多行公式</p>
-]]></content>
-      <categories>
-        <category>Softwear</category>
-        <category>Hexo</category>
-        <category>NexT</category>
-      </categories>
-      <tags>
-        <tag>issues</tag>
       </tags>
   </entry>
 </search>
