@@ -198,6 +198,40 @@
       </tags>
   </entry>
   <entry>
+    <title>06 Recursion</title>
+    <url>/2021/07/13/06-Recursion/</url>
+    <content><![CDATA[<h3 id="functional-abstraction">Functional Abstraction</h3>
+<h4 id="mechanics">Mechanics</h4>
+<p>How does Python execute this program line-by-line</p>
+<h4 id="use">Use</h4>
+<p>What can a function do</p>
+<h2 id="recursion">Recursion</h2>
+<h3 id="iterative-algorithm">Iterative Algorithm</h3>
+<p>eg.</p>
+<p><span class="math display">\[n!=\prod\limits_{k=1}^{n} k\]</span></p>
+<h3 id="recursive-algorithm">Recursive Algorithm</h3>
+<p>Recursive is useful for solving problems with a naturally repeating structure - they are defined in terms of themselves.</p>
+<p>eg.</p>
+<p><span class="math display">\[n!=\begin{cases}1 &amp;\text{if n=0}\\n  (n-1)!  &amp;\text{otherwise}\end{cases}\]</span></p>
+<span id="more"></span>
+<h3 id="recursive-functions">Recursive Functions</h3>
+<p>A function is called recursive if the body of that function calls itself, either directly or indirectly.</p>
+<h4 id="structure">Structure</h4>
+<ol type="1">
+<li>One or more <strong>base cases</strong>, usually the smallest input.</li>
+<li>One or more ways of <strong>reducing the problem</strong>, and then solving the smaller problem using recursion.</li>
+<li>One or more ways of <strong>using the solution to each smaller problem</strong> to solve our larger problem.</li>
+</ol>
+]]></content>
+      <categories>
+        <category>SICP</category>
+        <category>CS61-A</category>
+      </categories>
+      <tags>
+        <tag>note</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>05 Higher-Order Functions</title>
     <url>/2021/07/11/05-Higher-Order-Functions/</url>
     <content><![CDATA[<h2 id="higher-order-functions">Higher-Order Functions</h2>
@@ -230,40 +264,6 @@
 <p> Functions defined within other function bodies are bound to names in a local frame.</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">make_adder</span>(<span class="params">n</span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;Return a function that takes one argument k and returns k + n.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    &gt;&gt;&gt; add_three = make_adder(3)</span></span><br><span class="line"><span class="string">    &gt;&gt;&gt; add_three(4)</span></span><br><span class="line"><span class="string">    7</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">adder</span>(<span class="params">k</span>):</span></span><br><span class="line">        <span class="keyword">return</span> k + n</span><br><span class="line">    <span class="keyword">return</span> adder</span><br></pre></td></tr></table></figure>
 <p><code>adder</code> is a locally defined functions. When you call <code>make_adder</code> with different <code>n</code>, the return values are <strong>function</strong> <code>adder</code> in the <code>make_adder</code> <strong>frame</strong> with different <code>n</code> value.</p>
-]]></content>
-      <categories>
-        <category>SICP</category>
-        <category>CS61-A</category>
-      </categories>
-      <tags>
-        <tag>note</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>06 Recursion</title>
-    <url>/2021/07/13/06-Recursion/</url>
-    <content><![CDATA[<h3 id="functional-abstraction">Functional Abstraction</h3>
-<h4 id="mechanics">Mechanics</h4>
-<p>How does Python execute this program line-by-line</p>
-<h4 id="use">Use</h4>
-<p>What can a function do</p>
-<h2 id="recursion">Recursion</h2>
-<h3 id="iterative-algorithm">Iterative Algorithm</h3>
-<p>eg.</p>
-<p><span class="math display">\[n!=\prod\limits_{k=1}^{n} k\]</span></p>
-<h3 id="recursive-algorithm">Recursive Algorithm</h3>
-<p>Recursive is useful for solving problems with a naturally repeating structure - they are defined in terms of themselves.</p>
-<p>eg.</p>
-<p><span class="math display">\[n!=\begin{cases}1 &amp;\text{if n=0}\\n  (n-1)!  &amp;\text{otherwise}\end{cases}\]</span></p>
-<span id="more"></span>
-<h3 id="recursive-functions">Recursive Functions</h3>
-<p>A function is called recursive if the body of that function calls itself, either directly or indirectly.</p>
-<h4 id="structure">Structure</h4>
-<ol type="1">
-<li>One or more <strong>base cases</strong>, usually the smallest input.</li>
-<li>One or more ways of <strong>reducing the problem</strong>, and then solving the smaller problem using recursion.</li>
-<li>One or more ways of <strong>using the solution to each smaller problem</strong> to solve our larger problem.</li>
-</ol>
 ]]></content>
       <categories>
         <category>SICP</category>
@@ -354,43 +354,6 @@
       </tags>
   </entry>
   <entry>
-    <title>09 Functional Decomposition &amp; Debugging</title>
-    <url>/2021/07/22/09-Functional-Decomposition-Debugging/</url>
-    <content><![CDATA[<h2 id="program-decomposition">Program Decomposition</h2>
-<ul>
-<li>The process of breaking a large problem into more manageable sub-problems</li>
-<li>Goals of Program Decomposition
-<ul>
-<li>Complexity Management</li>
-<li>Reusability and abstraction</li>
-</ul></li>
-</ul>
-<h3 id="the-black-box">The "Black Box"</h3>
-<ul>
-<li>A "black box" is opaque - its inner workings are <strong>not revealed</strong></li>
-<li>Decomposition is a divide and conquer strategy.</li>
-</ul>
-<span id="more"></span>
-<h3 id="function-rules-in-practice">Function Rules in Practice</h3>
-<p>A function should solve <strong>one problem</strong></p>
-<p>A function should have the <strong>smallest number of parameters</strong> possible to solve its problem</p>
-<p>A <strong>repeated sequence</strong> should be put in its own function</p>
-<h2 id="debugging">Debugging</h2>
-<h3 id="doctests">Doctests</h3>
-<p>python -m doctest test.py</p>
-<h4 id="environment-diagrams">Environment Diagrams</h4>
-<h3 id="print-debugging">Print Debugging</h3>
-<h3 id="preventing-bugs-assert-statements">Preventing Bugs: Assert Statements</h3>
-]]></content>
-      <categories>
-        <category>SICP</category>
-        <category>CS61-A</category>
-      </categories>
-      <tags>
-        <tag>note</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>10 Trees</title>
     <url>/2021/08/01/10-Trees/</url>
     <content><![CDATA[<h2 id="sequence-aggregation">Sequence Aggregation</h2>
@@ -423,6 +386,43 @@
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">square_tree</span>(<span class="params">t</span>):</span></span><br><span class="line">    <span class="keyword">if</span> is_leaf(t):</span><br><span class="line">        <span class="keyword">return</span> tree(label(t)**<span class="number">2</span>)</span><br><span class="line">    lst = []</span><br><span class="line">    <span class="keyword">for</span> b <span class="keyword">in</span> branches(t):</span><br><span class="line">        lst += square_tree(b)</span><br><span class="line">     <span class="keyword">return</span> tree(label(t) ** <span class="number">2</span>, lst)</span><br></pre></td></tr></table></figure>
 <h3 id="fib-tree">Fib Tree</h3>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fib_tree</span>(<span class="params">n</span>):</span></span><br><span class="line">    <span class="keyword">if</span> n == <span class="number">0</span>:</span><br><span class="line">        <span class="keyword">return</span> tree(<span class="number">0</span>)</span><br><span class="line">    <span class="keyword">elif</span> n == <span class="number">1</span>:</span><br><span class="line">        <span class="keyword">return</span> tree(<span class="number">1</span>)</span><br><span class="line">    left = fib_tree(n-<span class="number">2</span>)</span><br><span class="line">    right = fib_tree(n-<span class="number">1</span>)</span><br><span class="line">    <span class="keyword">return</span> tree(label(left) + label(right), [left, ight])</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>SICP</category>
+        <category>CS61-A</category>
+      </categories>
+      <tags>
+        <tag>note</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>09 Functional Decomposition &amp; Debugging</title>
+    <url>/2021/07/22/09-Functional-Decomposition-Debugging/</url>
+    <content><![CDATA[<h2 id="program-decomposition">Program Decomposition</h2>
+<ul>
+<li>The process of breaking a large problem into more manageable sub-problems</li>
+<li>Goals of Program Decomposition
+<ul>
+<li>Complexity Management</li>
+<li>Reusability and abstraction</li>
+</ul></li>
+</ul>
+<h3 id="the-black-box">The "Black Box"</h3>
+<ul>
+<li>A "black box" is opaque - its inner workings are <strong>not revealed</strong></li>
+<li>Decomposition is a divide and conquer strategy.</li>
+</ul>
+<span id="more"></span>
+<h3 id="function-rules-in-practice">Function Rules in Practice</h3>
+<p>A function should solve <strong>one problem</strong></p>
+<p>A function should have the <strong>smallest number of parameters</strong> possible to solve its problem</p>
+<p>A <strong>repeated sequence</strong> should be put in its own function</p>
+<h2 id="debugging">Debugging</h2>
+<h3 id="doctests">Doctests</h3>
+<p>python -m doctest test.py</p>
+<h4 id="environment-diagrams">Environment Diagrams</h4>
+<h3 id="print-debugging">Print Debugging</h3>
+<h3 id="preventing-bugs-assert-statements">Preventing Bugs: Assert Statements</h3>
 ]]></content>
       <categories>
         <category>SICP</category>
@@ -552,6 +552,7 @@ m^n&amp;=F_n(F_m)(f)(x)\\
     <title>Hexo+Next+GitHub Page 建立博客</title>
     <url>/2021/08/14/Hexo-Next-GitHub-Page-%E5%BB%BA%E7%AB%8B%E5%8D%9A%E5%AE%A2/</url>
     <content><![CDATA[<p>虽然 Hexo 和 Next 都有完整的 doc 供你参考，但我觉得还是有必要写这样一篇文章帮助我以及可能会看这篇文章的你记录一下我搭建的过程，以及踩过的坑。</p>
+<span id="more"></span>
 <h2 id="安装依赖">安装依赖</h2>
 <h3 id="安装git">安装Git</h3>
 <p><a href="https://git-scm.com/download/win">Git下载链接</a></p>
