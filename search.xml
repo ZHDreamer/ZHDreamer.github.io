@@ -16,11 +16,11 @@
 <p>未完待续</p>
 ]]></content>
       <categories>
-        <category>SICP</category>
         <category>CS61-A</category>
       </categories>
       <tags>
         <tag>note</tag>
+        <tag>SICP</tag>
       </tags>
   </entry>
   <entry>
@@ -88,11 +88,11 @@
 </ol>
 ]]></content>
       <categories>
-        <category>SICP</category>
         <category>CS61-A</category>
       </categories>
       <tags>
         <tag>note</tag>
+        <tag>SICP</tag>
       </tags>
   </entry>
   <entry>
@@ -149,52 +149,11 @@
 <p>Creating new frame only after evaluate the operator and operand subexpressions.</p>
 ]]></content>
       <categories>
-        <category>SICP</category>
         <category>CS61-A</category>
       </categories>
       <tags>
         <tag>note</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>04 Environment Diagrams</title>
-    <url>/2021/07/09/04-Environment-Diagrams/</url>
-    <content><![CDATA[<p>A visual tool to keep track of bindings &amp; state of a computer program</p>
-<p>They are helpful for debugging.</p>
-<h2 id="frames">Frames</h2>
-<p>A <strong>frame</strong> keeps track of variable-to-value bindings. Every call expression has a corresponding frame.</p>
-<h3 id="global-frame">Global frame</h3>
-<p><strong>Global frame</strong> is the starting frame.</p>
-<ul>
-<li>It doesn't correspond to a specific call expression.</li>
-</ul>
-<h3 id="parent-frames">Parent frames</h3>
-<ul>
-<li>The parent of a function is the frame in which <strong>it was defined</strong></li>
-<li>If you can't find a variable in the current frame, you check it's parent frame, and so on. If you can't find the variable, <code>NameError</code>.</li>
-</ul>
-<span id="more"></span>
-<h2 id="local-names">Local Names</h2>
-<p>Variable Lookup:</p>
-<ol type="1">
-<li>Lookup name in the current frame</li>
-<li>Lookup name in parent frame, its parent frame, and so on</li>
-<li>Stop at the global frame</li>
-<li>If not found, an error is thrown</li>
-</ol>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">f</span>(<span class="params">x, y</span>):</span></span><br><span class="line">    <span class="keyword">return</span> g(x)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">g</span>(<span class="params">z</span>):</span></span><br><span class="line">    <span class="keyword">return</span> z + x</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">result = f(<span class="number">5</span>, <span class="number">10</span>)</span><br></pre></td></tr></table></figure>
-<p>When call g, g's parent frame is Global. So name x will not be found, and python will throw an error.</p>
-<h2 id="lambda-expression">Lambda Expression</h2>
-<p>Expression that evaluate to functions</p>
-<p><img src="https://gitee.com/ZHDreamer/markdown-images/raw/master/images/Snipaste_2021-08-13_22-01-53.png" /></p>
-<p> </p>
-]]></content>
-      <categories>
-        <category>SICP</category>
-        <category>CS61-A</category>
-      </categories>
-      <tags>
-        <tag>note</tag>
+        <tag>SICP</tag>
       </tags>
   </entry>
   <entry>
@@ -232,48 +191,86 @@
 <p><code>adder</code> is a locally defined functions. When you call <code>make_adder</code> with different <code>n</code>, the return values are <strong>function</strong> <code>adder</code> in the <code>make_adder</code> <strong>frame</strong> with different <code>n</code> value.</p>
 ]]></content>
       <categories>
-        <category>SICP</category>
         <category>CS61-A</category>
       </categories>
       <tags>
         <tag>note</tag>
+        <tag>SICP</tag>
       </tags>
   </entry>
   <entry>
-    <title>09 Functional Decomposition &amp; Debugging</title>
-    <url>/2021/07/22/09-Functional-Decomposition-Debugging/</url>
-    <content><![CDATA[<h2 id="program-decomposition">Program Decomposition</h2>
-<ul>
-<li>The process of breaking a large problem into more manageable sub-problems</li>
-<li>Goals of Program Decomposition
-<ul>
-<li>Complexity Management</li>
-<li>Reusability and abstraction</li>
-</ul></li>
-</ul>
-<h3 id="the-black-box">The "Black Box"</h3>
-<ul>
-<li>A "black box" is opaque - its inner workings are <strong>not revealed</strong></li>
-<li>Decomposition is a divide and conquer strategy.</li>
-</ul>
+    <title>06 Recursion</title>
+    <url>/2021/07/13/06-Recursion/</url>
+    <content><![CDATA[<h3 id="functional-abstraction">Functional Abstraction</h3>
+<h4 id="mechanics">Mechanics</h4>
+<p>How does Python execute this program line-by-line</p>
+<h4 id="use">Use</h4>
+<p>What can a function do</p>
+<h2 id="recursion">Recursion</h2>
+<h3 id="iterative-algorithm">Iterative Algorithm</h3>
+<p>eg.</p>
+<p><span class="math display">\[n!=\prod\limits_{k=1}^{n} k\]</span></p>
+<h3 id="recursive-algorithm">Recursive Algorithm</h3>
+<p>Recursive is useful for solving problems with a naturally repeating structure - they are defined in terms of themselves.</p>
+<p>eg.</p>
+<p><span class="math display">\[n!=\begin{cases}1 &amp;\text{if n=0}\\n  (n-1)!  &amp;\text{otherwise}\end{cases}\]</span></p>
 <span id="more"></span>
-<h3 id="function-rules-in-practice">Function Rules in Practice</h3>
-<p>A function should solve <strong>one problem</strong></p>
-<p>A function should have the <strong>smallest number of parameters</strong> possible to solve its problem</p>
-<p>A <strong>repeated sequence</strong> should be put in its own function</p>
-<h2 id="debugging">Debugging</h2>
-<h3 id="doctests">Doctests</h3>
-<p>python -m doctest test.py</p>
-<h4 id="environment-diagrams">Environment Diagrams</h4>
-<h3 id="print-debugging">Print Debugging</h3>
-<h3 id="preventing-bugs-assert-statements">Preventing Bugs: Assert Statements</h3>
+<h3 id="recursive-functions">Recursive Functions</h3>
+<p>A function is called recursive if the body of that function calls itself, either directly or indirectly.</p>
+<h4 id="structure">Structure</h4>
+<ol type="1">
+<li>One or more <strong>base cases</strong>, usually the smallest input.</li>
+<li>One or more ways of <strong>reducing the problem</strong>, and then solving the smaller problem using recursion.</li>
+<li>One or more ways of <strong>using the solution to each smaller problem</strong> to solve our larger problem.</li>
+</ol>
 ]]></content>
       <categories>
-        <category>SICP</category>
         <category>CS61-A</category>
       </categories>
       <tags>
         <tag>note</tag>
+        <tag>SICP</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>04 Environment Diagrams</title>
+    <url>/2021/07/09/04-Environment-Diagrams/</url>
+    <content><![CDATA[<p>A visual tool to keep track of bindings &amp; state of a computer program</p>
+<p>They are helpful for debugging.</p>
+<h2 id="frames">Frames</h2>
+<p>A <strong>frame</strong> keeps track of variable-to-value bindings. Every call expression has a corresponding frame.</p>
+<h3 id="global-frame">Global frame</h3>
+<p><strong>Global frame</strong> is the starting frame.</p>
+<ul>
+<li>It doesn't correspond to a specific call expression.</li>
+</ul>
+<h3 id="parent-frames">Parent frames</h3>
+<ul>
+<li>The parent of a function is the frame in which <strong>it was defined</strong></li>
+<li>If you can't find a variable in the current frame, you check it's parent frame, and so on. If you can't find the variable, <code>NameError</code>.</li>
+</ul>
+<span id="more"></span>
+<h2 id="local-names">Local Names</h2>
+<p>Variable Lookup:</p>
+<ol type="1">
+<li>Lookup name in the current frame</li>
+<li>Lookup name in parent frame, its parent frame, and so on</li>
+<li>Stop at the global frame</li>
+<li>If not found, an error is thrown</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">f</span>(<span class="params">x, y</span>):</span></span><br><span class="line">    <span class="keyword">return</span> g(x)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">g</span>(<span class="params">z</span>):</span></span><br><span class="line">    <span class="keyword">return</span> z + x</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">result = f(<span class="number">5</span>, <span class="number">10</span>)</span><br></pre></td></tr></table></figure>
+<p>When call g, g's parent frame is Global. So name x will not be found, and python will throw an error.</p>
+<h2 id="lambda-expression">Lambda Expression</h2>
+<p>Expression that evaluate to functions</p>
+<p><img src="https://gitee.com/ZHDreamer/markdown-images/raw/master/images/Snipaste_2021-08-13_22-01-53.png" /></p>
+<p> </p>
+]]></content>
+      <categories>
+        <category>CS61-A</category>
+      </categories>
+      <tags>
+        <tag>note</tag>
+        <tag>SICP</tag>
       </tags>
   </entry>
   <entry>
@@ -349,45 +346,48 @@
 </ul>
 ]]></content>
       <categories>
-        <category>SICP</category>
         <category>CS61-A</category>
       </categories>
       <tags>
         <tag>note</tag>
+        <tag>SICP</tag>
       </tags>
   </entry>
   <entry>
-    <title>06 Recursion</title>
-    <url>/2021/07/13/06-Recursion/</url>
-    <content><![CDATA[<h3 id="functional-abstraction">Functional Abstraction</h3>
-<h4 id="mechanics">Mechanics</h4>
-<p>How does Python execute this program line-by-line</p>
-<h4 id="use">Use</h4>
-<p>What can a function do</p>
-<h2 id="recursion">Recursion</h2>
-<h3 id="iterative-algorithm">Iterative Algorithm</h3>
-<p>eg.</p>
-<p><span class="math display">\[n!=\prod\limits_{k=1}^{n} k\]</span></p>
-<h3 id="recursive-algorithm">Recursive Algorithm</h3>
-<p>Recursive is useful for solving problems with a naturally repeating structure - they are defined in terms of themselves.</p>
-<p>eg.</p>
-<p><span class="math display">\[n!=\begin{cases}1 &amp;\text{if n=0}\\n  (n-1)!  &amp;\text{otherwise}\end{cases}\]</span></p>
+    <title>09 Functional Decomposition &amp; Debugging</title>
+    <url>/2021/07/22/09-Functional-Decomposition-Debugging/</url>
+    <content><![CDATA[<h2 id="program-decomposition">Program Decomposition</h2>
+<ul>
+<li>The process of breaking a large problem into more manageable sub-problems</li>
+<li>Goals of Program Decomposition
+<ul>
+<li>Complexity Management</li>
+<li>Reusability and abstraction</li>
+</ul></li>
+</ul>
+<h3 id="the-black-box">The "Black Box"</h3>
+<ul>
+<li>A "black box" is opaque - its inner workings are <strong>not revealed</strong></li>
+<li>Decomposition is a divide and conquer strategy.</li>
+</ul>
 <span id="more"></span>
-<h3 id="recursive-functions">Recursive Functions</h3>
-<p>A function is called recursive if the body of that function calls itself, either directly or indirectly.</p>
-<h4 id="structure">Structure</h4>
-<ol type="1">
-<li>One or more <strong>base cases</strong>, usually the smallest input.</li>
-<li>One or more ways of <strong>reducing the problem</strong>, and then solving the smaller problem using recursion.</li>
-<li>One or more ways of <strong>using the solution to each smaller problem</strong> to solve our larger problem.</li>
-</ol>
+<h3 id="function-rules-in-practice">Function Rules in Practice</h3>
+<p>A function should solve <strong>one problem</strong></p>
+<p>A function should have the <strong>smallest number of parameters</strong> possible to solve its problem</p>
+<p>A <strong>repeated sequence</strong> should be put in its own function</p>
+<h2 id="debugging">Debugging</h2>
+<h3 id="doctests">Doctests</h3>
+<p>python -m doctest test.py</p>
+<h4 id="environment-diagrams">Environment Diagrams</h4>
+<h3 id="print-debugging">Print Debugging</h3>
+<h3 id="preventing-bugs-assert-statements">Preventing Bugs: Assert Statements</h3>
 ]]></content>
       <categories>
-        <category>SICP</category>
         <category>CS61-A</category>
       </categories>
       <tags>
         <tag>note</tag>
+        <tag>SICP</tag>
       </tags>
   </entry>
   <entry>
@@ -425,11 +425,11 @@
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fib_tree</span>(<span class="params">n</span>):</span></span><br><span class="line">    <span class="keyword">if</span> n == <span class="number">0</span>:</span><br><span class="line">        <span class="keyword">return</span> tree(<span class="number">0</span>)</span><br><span class="line">    <span class="keyword">elif</span> n == <span class="number">1</span>:</span><br><span class="line">        <span class="keyword">return</span> tree(<span class="number">1</span>)</span><br><span class="line">    left = fib_tree(n-<span class="number">2</span>)</span><br><span class="line">    right = fib_tree(n-<span class="number">1</span>)</span><br><span class="line">    <span class="keyword">return</span> tree(label(left) + label(right), [left, ight])</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
-        <category>SICP</category>
         <category>CS61-A</category>
       </categories>
       <tags>
         <tag>note</tag>
+        <tag>SICP</tag>
       </tags>
   </entry>
   <entry>
@@ -469,90 +469,76 @@
 <p><code>&lt;expr0&gt; == &lt;expr1&gt;</code> evaluates to True if both <code>&lt;expr0&gt;</code>and <code>&lt;expr1&gt;</code>evaluates to <strong>equal values</strong></p>
 ]]></content>
       <categories>
-        <category>SICP</category>
         <category>CS61-A</category>
       </categories>
       <tags>
         <tag>note</tag>
+        <tag>SICP</tag>
       </tags>
   </entry>
   <entry>
-    <title>Hexo+Next+GitHub Page 建立博客</title>
-    <url>/2021/08/14/Hexo-Next-GitHub-Page-%E5%BB%BA%E7%AB%8B%E5%8D%9A%E5%AE%A2/</url>
-    <content><![CDATA[<p>虽然 Hexo 和 Next 都有完整的 doc 供你参考，但我觉得还是有必要写这样一篇文章帮助我以及可能会看这篇文章的你记录一下我搭建的过程，以及踩过的坑。</p>
+    <title>12 Mutable Functions &amp; Growth</title>
+    <url>/2021/08/17/12-Mutable-Functions-Growth/</url>
+    <content><![CDATA[<h2 id="mutable-functions">Mutable Functions</h2>
+<p>Functions with behavior that changes over time</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">square</span>(<span class="params">x</span>):</span> <span class="comment">#pure function</span></span><br><span class="line">    <span class="keyword">return</span> x * x</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">f</span>(<span class="params">x</span>):</span> <span class="comment"># mutable function</span></span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>square(<span class="number">5</span>)</span><br><span class="line"><span class="number">25</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>square(<span class="number">5</span>)</span><br><span class="line"><span class="number">25</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>f(<span class="number">5</span>)</span><br><span class="line"><span class="number">25</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>f(<span class="number">5</span>)</span><br><span class="line"><span class="number">26</span></span><br></pre></td></tr></table></figure>
+<p><strong>High-order function can be used in implementing mutable functions, variables can be stored in parent frame.</strong></p>
 <span id="more"></span>
-<h2 id="安装依赖">安装依赖</h2>
-<h3 id="安装git">安装Git</h3>
-<p><a href="https://git-scm.com/download/win">Git下载链接</a></p>
-<p>Git是开源的分布式版本控制系统，用于将网站上传到GitHub。</p>
-<p>下载安装后右键资源管理器会出现Git Bash Here，Git Bash是Git自带的命令行工具，可以在里面打命令（CMD和PowerShell也是可以的）</p>
-<h3 id="配置git环境">配置Git环境</h3>
-<h4 id="设置user.name和user.email配置信息">设置<code>user.name</code>和<code>user.email</code>配置信息</h4>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git config --global user.name &quot;你的GitHub用户名&quot;</span><br><span class="line">git config --global user.email &quot;你的GitHub注册邮箱&quot;</span><br></pre></td></tr></table></figure>
-<h4 id="配置ssh">配置SSH</h4>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ssh-keygen -t rsa -C &quot;你的GitHub注册邮箱&quot;</span><br></pre></td></tr></table></figure>
-<p>之后一路回车就好，生成后可以到<code>c:\users\yourname\.ssh</code>中找到<code>id_rsa.pub</code></p>
-<p><img src="https://gitee.com/ZHDreamer/markdown-images/raw/master/images/v2-d1e47103ec1aa8675f68688c5d63bd27_720w.jpg" /></p>
-<p>复制里面的内容（不要用微软Publisher打开，用Editor打开），打开 <a href="https://github.com/settings/keys">GitHub Setting Keys</a> 页面，新建new SSH Key</p>
-<p><img src="https://gitee.com/ZHDreamer/markdown-images/raw/master/images/v2-72a3f22c080e99343c3cc4aabce10e3c_720w.jpg" /></p>
-<p>Title是标题，填入任何你想填的内容即可，Key中复制刚才id_rsa.pub的内容，点击Add SSH Key即可生成SSH key。</p>
-<p>在命令行输入</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ssh git@github.com</span><br></pre></td></tr></table></figure>
-<p>提示</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">PTY allocation request failed on channel 0</span><br><span class="line">Hi ZHDreamer! You&#x27;ve successfully authenticated, but GitHub does not provide shell access.</span><br><span class="line">Connection to github.com closed.</span><br></pre></td></tr></table></figure>
-<p>证明配置成功</p>
-<p>GitHub要求每次推送代码都是合法用户，所以每次推送都需要输入账号密码验证推送用户是否是合法用户，为了省去每次输入密码的步骤，采用了SSH，当你推送的时候，Git就会匹配你的私钥跟GitHub上面的公钥是否是配对的，若是匹配就认为你是合法用户，则允许推送。这样可以保证每次的推送都是正确合法的。</p>
-<h3 id="安装node.js">安装Node.js</h3>
-<p><a href="https://nodejs.org/en/download/">Node.js下载地址</a></p>
-<p>Hexo基于Node.js，安装后输入</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">node -v</span><br><span class="line">npm -v</span><br></pre></td></tr></table></figure>
-<p>验证是否成功安装Node.js和npm</p>
-<h2 id="hexo-的安装与使用">Hexo 的安装与使用</h2>
-<h3 id="安装hexo">安装Hexo</h3>
-<p>使用npm命令安装Hexo</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
-<p>安装完成后就可以用<a href="https://hexo.io/docs/commands">Hexo命令</a>建立博客了</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo init &lt;folder&gt;</span><br><span class="line">cd &lt;folder&gt;</span><br><span class="line">npm install</span><br></pre></td></tr></table></figure>
-<p>此时输入</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo s</span><br></pre></td></tr></table></figure>
-<p>即可在<code>localhost:4000</code>看到建立的博客了</p>
-<h3 id="推送到github">推送到GitHub</h3>
-<p><a href="https://hexo.io/docs/one-command-deployment">官方文档</a></p>
-<p>安装 <a href="https://github.com/hexojs/hexo-deployer-git">hexo-deployer-git</a></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
-<p>在根目录下有一个<code>_config.yml</code>文件，是Hexo的==站点配置文件==，更改deploy配置</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo: https://github.com/ZHDreamer/ZHDreamer.github.io.git</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure>
-<h3 id="hexo的设置">Hexo的设置</h3>
-<p><a href="https://hexo.io/docs/configuration">官方文档</a></p>
-<h2 id="next安装与使用">NexT安装与使用</h2>
-<p><a href="https://theme-next.js.org/">官方网站</a> ，其他网站的信息或多或少有些过时，包括<a href="http://theme-next.iissnan.com/">这个网站</a>和GitHub上面的教程</p>
-<h3 id="下载next">下载NexT</h3>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git clone https://github.com/next-theme/hexo-theme-next themes/next</span><br></pre></td></tr></table></figure>
-<h3 id="启用next">启用NexT</h3>
-<p>在站点配置文件中修改</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">theme: next</span><br></pre></td></tr></table></figure>
-<p>此时输入<code>hexo clean</code>清理缓存后再次启动本地服务器，即可看到主题变为NexT</p>
-<h3 id="next的设置">NexT的设置</h3>
-<p>在<code>theme\next</code>下有一个<code>_config.yml</code>文件，是NexT的==主题配置文件==，在这个文件中修改NexT设置</p>
-<h3 id="更改next主题">更改NexT主题</h3>
-<p>NexT目前提供四种主题，在==主题配置文件==</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># Schemes</span><br><span class="line">scheme: Muse</span><br><span class="line">#scheme: Mist</span><br><span class="line">#scheme: Pisces</span><br><span class="line">#scheme: Gemini</span><br></pre></td></tr></table></figure>
-<p>去掉主题配置文件中的注释即可切换主题</p>
-<h3 id="添加tagscategories等页面">添加tags,categories等页面</h3>
-<p>在==主题配置文件==</p>
-<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># ---------------------------------------------------------------</span></span><br><span class="line"><span class="comment"># Menu Settings</span></span><br><span class="line"><span class="comment"># ---------------------------------------------------------------</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Usage: `Key: /link/ || icon`</span></span><br><span class="line"><span class="comment"># Key is the name of menu item. If the translation for this item is available, the translated text will be loaded, otherwise the Key name will be used. Key is case-senstive.</span></span><br><span class="line"><span class="comment"># Value before `||` delimiter is the target link, value after `||` delimiter is the name of Font Awesome icon.</span></span><br><span class="line"><span class="comment"># External url should start with http:// or https://</span></span><br><span class="line"><span class="attr">menu:</span></span><br><span class="line">  <span class="attr">home:</span> <span class="string">/</span> <span class="string">||</span> <span class="string">fa</span> <span class="string">fa-home</span></span><br><span class="line">  <span class="comment">#about: /about/ || fa fa-user</span></span><br><span class="line">  <span class="comment">#tags: /tags/ || fa fa-tags</span></span><br><span class="line">  <span class="comment">#categories: /categories/ || fa fa-th</span></span><br><span class="line">  <span class="comment">#archives: /archives/ || fa fa-archive</span></span><br><span class="line">  <span class="comment">#schedule: /schedule/ || fa fa-calendar</span></span><br><span class="line">  <span class="comment">#sitemap: /sitemap.xml || fa fa-sitemap</span></span><br><span class="line">  <span class="comment">#commonweal: /404/ || fa fa-heartbeat</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Enable / Disable menu icons / item badges.</span></span><br><span class="line"><span class="attr">menu_settings:</span></span><br><span class="line">  <span class="attr">icons:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">badges:</span> <span class="literal">false</span></span><br></pre></td></tr></table></figure>
-<p>去掉注释即可解锁相应页面</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo new page &quot;tags&quot;</span><br></pre></td></tr></table></figure>
-<p>在<code>source\</code>下会生成一个tags文件夹，里面有一个index.md，添加<code>type: "tags"</code></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">title: tags</span><br><span class="line">date: 2021-08-13 16:53:54</span><br><span class="line">type: &quot;tags&quot;</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
-<p>其他类型的页面都可以这样操作</p>
+<h3 id="non-local-assignment-persistent-local-state">Non-Local Assignment &amp; Persistent Local State</h3>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">make_withdraw</span>(<span class="params">balance</span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;Return a withdraw function with a starting balance.&quot;&quot;&quot;</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">withdraw</span>(<span class="params">amount</span>):</span></span><br><span class="line">        <span class="keyword">nonlocal</span> balance </span><br><span class="line">        <span class="comment"># eclare the name &quot;balance&quot; nonlocal at the top of the</span></span><br><span class="line">        <span class="comment"># body of the function in which it is re-assigned</span></span><br><span class="line">        <span class="keyword">if</span> amount &gt; balance:</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&#x27;Insufficient funds&#x27;</span></span><br><span class="line">        balance = balance - amount</span><br><span class="line">        <span class="comment"># Re-bind balance in the first non-local frame</span></span><br><span class="line">        <span class="comment"># in which it was bound previously</span></span><br><span class="line">        <span class="keyword">return</span> balance</span><br><span class="line">    <span class="keyword">return</span> withdraw</span><br></pre></td></tr></table></figure>
+<h4 id="the-effect-of-nonlocal-statements">The Effect of Nonlocal Statements</h4>
+<p><code>nonlocal &lt;name&gt;</code></p>
+<p><strong>Effect</strong>: Future assignments to that name changes its pre-existing binding in the <strong>first non-local frame</strong> of the current environment in which that name is bound.</p>
+<p>Rules:</p>
+<ul>
+<li>First non-local frame must not be <strong>global frame</strong></li>
+<li>Names listed in nonlocal statement must not collide with pre-existing bindings in the local scope.</li>
+</ul>
+<h4 id="python-particulars">Python Particulars</h4>
+<p>Python <strong>pre-computes</strong> which frame contains each name before executing the body of a function. Within the body of a function, all instances of a name must <strong>refer to the same frame</strong>.</p>
+<p><img src="https://gitee.com/ZHDreamer/markdown-images/raw/master/images/Snipaste_2021-08-14_18-27-42.png" /></p>
+<h4 id="mutable-values-persistent-local-state">Mutable Values &amp; Persistent Local State</h4>
+<p>Mutable values can be changed mutably without a nonlocal statement.</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">make_withdraw</span>(<span class="params">balance</span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;Return a withdraw function with a starting balance.&quot;&quot;&quot;</span></span><br><span class="line">    b = [balance]</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">withdraw</span>(<span class="params">amount</span>):</span></span><br><span class="line">        <span class="keyword">if</span> amount &gt; b[<span class="number">0</span>]:</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&#x27;Insufficient funds&#x27;</span></span><br><span class="line">        b[<span class="number">0</span>] = b[<span class="number">0</span>] - amount</span><br><span class="line">        <span class="keyword">return</span> b[<span class="number">0</span>]</span><br><span class="line">    <span class="keyword">return</span> withdraw</span><br></pre></td></tr></table></figure>
+<h2 id="program-performance">Program Performance</h2>
+<h3 id="measuring-growth">Measuring Growth</h3>
+<p>Different functions run in different amounts of time</p>
+<ul>
+<li>Different implementations of the same program can also run in different amounts of time</li>
+</ul>
+<p>How do we measure this ?</p>
+<ul>
+<li>Amount of time taken to run once ?</li>
+<li>Average time taken to run ?</li>
+<li>Average across a bunch of different computers ?</li>
+<li><strong>Number of operations</strong></li>
+</ul>
+<h3 id="improving-number-of-operations">Improving Number of Operations</h3>
+<ul>
+<li>Some tools can be used to speed up programs (Ex: memorization, up next)</li>
+<li>Other times, need to have a different approach or incorporate some insight</li>
+</ul>
+<h3 id="how-to-count-calls">How to count calls</h3>
+<ul>
+<li>For an iterative function: step through the program, and identify how many times you need to go through the loop before exiting</li>
+<li>For a recursive function: draw out an environment diagram/call tree</li>
+</ul>
+<h3 id="common-patterns">Common Patterns</h3>
+<h4 id="constant-growth">Constant Growth</h4>
+<p>Operations the same regardless of input size</p>
+<h4 id="liner-growth">Liner Growth</h4>
+<p>Increasing input by 1 adds a constant amount of operations</p>
+<h4 id="logarithmic-growth">Logarithmic Growth</h4>
+<p>Operations grow only when input is multiplied</p>
+<h4 id="exponential-growth">Exponential Growth</h4>
+<p>Increasing input by 1 doubles(or triples, etc.) operati</p>
 ]]></content>
       <categories>
-        <category>Software</category>
-        <category>Hexo</category>
+        <category>CS61-A</category>
       </categories>
       <tags>
-        <tag>bulid</tag>
+        <tag>note</tag>
+        <tag>SICP</tag>
       </tags>
   </entry>
   <entry>
@@ -679,6 +665,85 @@ m^n&amp;=F_n(F_m)(f)(x)\\
       </categories>
       <tags>
         <tag>issues</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hexo+Next+GitHub Page 建立博客</title>
+    <url>/2021/08/14/Hexo-Next-GitHub-Page-%E5%BB%BA%E7%AB%8B%E5%8D%9A%E5%AE%A2/</url>
+    <content><![CDATA[<p>虽然 Hexo 和 Next 都有完整的 doc 供你参考，但我觉得还是有必要写这样一篇文章帮助我以及可能会看这篇文章的你记录一下我搭建的过程，以及踩过的坑。</p>
+<span id="more"></span>
+<h2 id="安装依赖">安装依赖</h2>
+<h3 id="安装git">安装Git</h3>
+<p><a href="https://git-scm.com/download/win">Git下载链接</a></p>
+<p>Git是开源的分布式版本控制系统，用于将网站上传到GitHub。</p>
+<p>下载安装后右键资源管理器会出现Git Bash Here，Git Bash是Git自带的命令行工具，可以在里面打命令（CMD和PowerShell也是可以的）</p>
+<h3 id="配置git环境">配置Git环境</h3>
+<h4 id="设置user.name和user.email配置信息">设置<code>user.name</code>和<code>user.email</code>配置信息</h4>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git config --global user.name &quot;你的GitHub用户名&quot;</span><br><span class="line">git config --global user.email &quot;你的GitHub注册邮箱&quot;</span><br></pre></td></tr></table></figure>
+<h4 id="配置ssh">配置SSH</h4>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ssh-keygen -t rsa -C &quot;你的GitHub注册邮箱&quot;</span><br></pre></td></tr></table></figure>
+<p>之后一路回车就好，生成后可以到<code>c:\users\yourname\.ssh</code>中找到<code>id_rsa.pub</code></p>
+<p><img src="https://gitee.com/ZHDreamer/markdown-images/raw/master/images/v2-d1e47103ec1aa8675f68688c5d63bd27_720w.jpg" /></p>
+<p>复制里面的内容（不要用微软Publisher打开，用Editor打开），打开 <a href="https://github.com/settings/keys">GitHub Setting Keys</a> 页面，新建new SSH Key</p>
+<p><img src="https://gitee.com/ZHDreamer/markdown-images/raw/master/images/v2-72a3f22c080e99343c3cc4aabce10e3c_720w.jpg" /></p>
+<p>Title是标题，填入任何你想填的内容即可，Key中复制刚才id_rsa.pub的内容，点击Add SSH Key即可生成SSH key。</p>
+<p>在命令行输入</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ssh git@github.com</span><br></pre></td></tr></table></figure>
+<p>提示</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">PTY allocation request failed on channel 0</span><br><span class="line">Hi ZHDreamer! You&#x27;ve successfully authenticated, but GitHub does not provide shell access.</span><br><span class="line">Connection to github.com closed.</span><br></pre></td></tr></table></figure>
+<p>证明配置成功</p>
+<p>GitHub要求每次推送代码都是合法用户，所以每次推送都需要输入账号密码验证推送用户是否是合法用户，为了省去每次输入密码的步骤，采用了SSH，当你推送的时候，Git就会匹配你的私钥跟GitHub上面的公钥是否是配对的，若是匹配就认为你是合法用户，则允许推送。这样可以保证每次的推送都是正确合法的。</p>
+<h3 id="安装node.js">安装Node.js</h3>
+<p><a href="https://nodejs.org/en/download/">Node.js下载地址</a></p>
+<p>Hexo基于Node.js，安装后输入</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">node -v</span><br><span class="line">npm -v</span><br></pre></td></tr></table></figure>
+<p>验证是否成功安装Node.js和npm</p>
+<h2 id="hexo-的安装与使用">Hexo 的安装与使用</h2>
+<h3 id="安装hexo">安装Hexo</h3>
+<p>使用npm命令安装Hexo</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
+<p>安装完成后就可以用<a href="https://hexo.io/docs/commands">Hexo命令</a>建立博客了</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo init &lt;folder&gt;</span><br><span class="line">cd &lt;folder&gt;</span><br><span class="line">npm install</span><br></pre></td></tr></table></figure>
+<p>此时输入</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo s</span><br></pre></td></tr></table></figure>
+<p>即可在<code>localhost:4000</code>看到建立的博客了</p>
+<h3 id="推送到github">推送到GitHub</h3>
+<p><a href="https://hexo.io/docs/one-command-deployment">官方文档</a></p>
+<p>安装 <a href="https://github.com/hexojs/hexo-deployer-git">hexo-deployer-git</a></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
+<p>在根目录下有一个<code>_config.yml</code>文件，是Hexo的==站点配置文件==，更改deploy配置</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo: https://github.com/ZHDreamer/ZHDreamer.github.io.git</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure>
+<h3 id="hexo的设置">Hexo的设置</h3>
+<p><a href="https://hexo.io/docs/configuration">官方文档</a></p>
+<h2 id="next安装与使用">NexT安装与使用</h2>
+<p><a href="https://theme-next.js.org/">官方网站</a> ，其他网站的信息或多或少有些过时，包括<a href="http://theme-next.iissnan.com/">这个网站</a>和GitHub上面的教程</p>
+<h3 id="下载next">下载NexT</h3>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git clone https://github.com/next-theme/hexo-theme-next themes/next</span><br></pre></td></tr></table></figure>
+<h3 id="启用next">启用NexT</h3>
+<p>在站点配置文件中修改</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">theme: next</span><br></pre></td></tr></table></figure>
+<p>此时输入<code>hexo clean</code>清理缓存后再次启动本地服务器，即可看到主题变为NexT</p>
+<h3 id="next的设置">NexT的设置</h3>
+<p>在<code>theme\next</code>下有一个<code>_config.yml</code>文件，是NexT的==主题配置文件==，在这个文件中修改NexT设置</p>
+<h3 id="更改next主题">更改NexT主题</h3>
+<p>NexT目前提供四种主题，在==主题配置文件==</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># Schemes</span><br><span class="line">scheme: Muse</span><br><span class="line">#scheme: Mist</span><br><span class="line">#scheme: Pisces</span><br><span class="line">#scheme: Gemini</span><br></pre></td></tr></table></figure>
+<p>去掉主题配置文件中的注释即可切换主题</p>
+<h3 id="添加tagscategories等页面">添加tags,categories等页面</h3>
+<p>在==主题配置文件==</p>
+<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># ---------------------------------------------------------------</span></span><br><span class="line"><span class="comment"># Menu Settings</span></span><br><span class="line"><span class="comment"># ---------------------------------------------------------------</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Usage: `Key: /link/ || icon`</span></span><br><span class="line"><span class="comment"># Key is the name of menu item. If the translation for this item is available, the translated text will be loaded, otherwise the Key name will be used. Key is case-senstive.</span></span><br><span class="line"><span class="comment"># Value before `||` delimiter is the target link, value after `||` delimiter is the name of Font Awesome icon.</span></span><br><span class="line"><span class="comment"># External url should start with http:// or https://</span></span><br><span class="line"><span class="attr">menu:</span></span><br><span class="line">  <span class="attr">home:</span> <span class="string">/</span> <span class="string">||</span> <span class="string">fa</span> <span class="string">fa-home</span></span><br><span class="line">  <span class="comment">#about: /about/ || fa fa-user</span></span><br><span class="line">  <span class="comment">#tags: /tags/ || fa fa-tags</span></span><br><span class="line">  <span class="comment">#categories: /categories/ || fa fa-th</span></span><br><span class="line">  <span class="comment">#archives: /archives/ || fa fa-archive</span></span><br><span class="line">  <span class="comment">#schedule: /schedule/ || fa fa-calendar</span></span><br><span class="line">  <span class="comment">#sitemap: /sitemap.xml || fa fa-sitemap</span></span><br><span class="line">  <span class="comment">#commonweal: /404/ || fa fa-heartbeat</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Enable / Disable menu icons / item badges.</span></span><br><span class="line"><span class="attr">menu_settings:</span></span><br><span class="line">  <span class="attr">icons:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">badges:</span> <span class="literal">false</span></span><br></pre></td></tr></table></figure>
+<p>去掉注释即可解锁相应页面</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo new page &quot;tags&quot;</span><br></pre></td></tr></table></figure>
+<p>在<code>source\</code>下会生成一个tags文件夹，里面有一个index.md，添加<code>type: "tags"</code></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">title: tags</span><br><span class="line">date: 2021-08-13 16:53:54</span><br><span class="line">type: &quot;tags&quot;</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
+<p>其他类型的页面都可以这样操作</p>
+]]></content>
+      <categories>
+        <category>Software</category>
+        <category>Hexo</category>
+      </categories>
+      <tags>
+        <tag>bulid</tag>
       </tags>
   </entry>
 </search>

@@ -2,6 +2,83 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://zhdreamer.github.io/project/2021/07/22/09-Functional-Decomposition-Debugging/</loc>
+    
+    <lastmod>2021-08-16</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zhdreamer.github.io/project/2021/07/19/08-Sequences-Data-Abstraction/</loc>
+    
+    <lastmod>2021-08-16</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zhdreamer.github.io/project/2021/07/13/06-Recursion/</loc>
+    
+    <lastmod>2021-08-16</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zhdreamer.github.io/project/2021/07/11/05-Higher-Order-Functions/</loc>
+    
+    <lastmod>2021-08-16</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zhdreamer.github.io/project/2021/07/09/04-Environment-Diagrams/</loc>
+    
+    <lastmod>2021-08-16</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zhdreamer.github.io/project/2021/07/07/01-Intro/</loc>
+    
+    <lastmod>2021-08-16</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zhdreamer.github.io/project/2021/07/08/03-Control/</loc>
+    
+    <lastmod>2021-08-16</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zhdreamer.github.io/project/2021/07/08/02-Function/</loc>
+    
+    <lastmod>2021-08-16</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zhdreamer.github.io/project/2021/08/01/10-Trees/</loc>
+    
+    <lastmod>2021-08-16</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zhdreamer.github.io/project/2021/08/11/11-Mutable-Sequences/</loc>
+    
+    <lastmod>2021-08-16</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zhdreamer.github.io/project/2021/08/17/12-Mutable-Functions-Growth/</loc>
+    
+    <lastmod>2021-08-16</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://zhdreamer.github.io/project/2021/08/14/Hexo-Next-GitHub-Page-%E5%BB%BA%E7%AB%8B%E5%8D%9A%E5%AE%A2/</loc>
     
     <lastmod>2021-08-16</lastmod>
@@ -16,77 +93,7 @@
   </url>
   
   <url>
-    <loc>https://zhdreamer.github.io/project/2021/07/22/09-Functional-Decomposition-Debugging/</loc>
-    
-    <lastmod>2021-08-13</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://zhdreamer.github.io/project/2021/07/11/05-Higher-Order-Functions/</loc>
-    
-    <lastmod>2021-08-13</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://zhdreamer.github.io/project/2021/08/11/HW-03-Church-Numerals/</loc>
-    
-    <lastmod>2021-08-13</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://zhdreamer.github.io/project/2021/07/07/01-Intro/</loc>
-    
-    <lastmod>2021-08-13</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://zhdreamer.github.io/project/2021/07/08/03-Control/</loc>
-    
-    <lastmod>2021-08-13</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://zhdreamer.github.io/project/2021/07/08/02-Function/</loc>
-    
-    <lastmod>2021-08-13</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://zhdreamer.github.io/project/2021/07/09/04-Environment-Diagrams/</loc>
-    
-    <lastmod>2021-08-13</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://zhdreamer.github.io/project/2021/07/19/08-Sequences-Data-Abstraction/</loc>
-    
-    <lastmod>2021-08-13</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://zhdreamer.github.io/project/2021/07/13/06-Recursion/</loc>
-    
-    <lastmod>2021-08-13</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://zhdreamer.github.io/project/2021/08/01/10-Trees/</loc>
-    
-    <lastmod>2021-08-13</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://zhdreamer.github.io/project/2021/08/11/11-Mutable-Sequences/</loc>
     
     <lastmod>2021-08-13</lastmod>
     
@@ -123,7 +130,7 @@
   </url>
   
   <url>
-    <loc>https://zhdreamer.github.io/project/tags/bulid/</loc>
+    <loc>https://zhdreamer.github.io/project/tags/SICP/</loc>
     <lastmod>2021-08-16</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -136,7 +143,21 @@
     <priority>0.6</priority>
   </url>
   
+  <url>
+    <loc>https://zhdreamer.github.io/project/tags/bulid/</loc>
+    <lastmod>2021-08-16</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
 
+  
+  <url>
+    <loc>https://zhdreamer.github.io/project/categories/CS61-A/</loc>
+    <lastmod>2021-08-16</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
   
   <url>
     <loc>https://zhdreamer.github.io/project/categories/SICP/</loc>
@@ -146,14 +167,14 @@
   </url>
   
   <url>
-    <loc>https://zhdreamer.github.io/project/categories/SICP/CS61-A/</loc>
+    <loc>https://zhdreamer.github.io/project/categories/Software/</loc>
     <lastmod>2021-08-16</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://zhdreamer.github.io/project/categories/Software/</loc>
+    <loc>https://zhdreamer.github.io/project/categories/SICP/CS61-A/</loc>
     <lastmod>2021-08-16</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
