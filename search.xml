@@ -240,30 +240,33 @@
       </tags>
   </entry>
   <entry>
-    <title>06 Recursion</title>
-    <url>/2021/07/13/06-Recursion/</url>
-    <content><![CDATA[<h3 id="functional-abstraction">Functional Abstraction</h3>
-<h4 id="mechanics">Mechanics</h4>
-<p>How does Python execute this program line-by-line</p>
-<h4 id="use">Use</h4>
-<p>What can a function do</p>
-<h2 id="recursion">Recursion</h2>
-<h3 id="iterative-algorithm">Iterative Algorithm</h3>
-<p>eg.</p>
-<p><span class="math display">\[n!=\prod\limits_{k=1}^{n} k\]</span></p>
-<h3 id="recursive-algorithm">Recursive Algorithm</h3>
-<p>Recursive is useful for solving problems with a naturally repeating structure - they are defined in terms of themselves.</p>
-<p>eg.</p>
-<p><span class="math display">\[n!=\begin{cases}1 &amp;\text{if n=0}\\n  (n-1)!  &amp;\text{otherwise}\end{cases}\]</span></p>
+    <title>09 Functional Decomposition &amp; Debugging</title>
+    <url>/2021/07/22/09-Functional-Decomposition-Debugging/</url>
+    <content><![CDATA[<h2 id="program-decomposition">Program Decomposition</h2>
+<ul>
+<li>The process of breaking a large problem into more manageable sub-problems</li>
+<li>Goals of Program Decomposition
+<ul>
+<li>Complexity Management</li>
+<li>Reusability and abstraction</li>
+</ul></li>
+</ul>
+<h3 id="the-black-box">The "Black Box"</h3>
+<ul>
+<li>A "black box" is opaque - its inner workings are <strong>not revealed</strong></li>
+<li>Decomposition is a divide and conquer strategy.</li>
+</ul>
 <span id="more"></span>
-<h3 id="recursive-functions">Recursive Functions</h3>
-<p>A function is called recursive if the body of that function calls itself, either directly or indirectly.</p>
-<h4 id="structure">Structure</h4>
-<ol type="1">
-<li>One or more <strong>base cases</strong>, usually the smallest input.</li>
-<li>One or more ways of <strong>reducing the problem</strong>, and then solving the smaller problem using recursion.</li>
-<li>One or more ways of <strong>using the solution to each smaller problem</strong> to solve our larger problem.</li>
-</ol>
+<h3 id="function-rules-in-practice">Function Rules in Practice</h3>
+<p>A function should solve <strong>one problem</strong></p>
+<p>A function should have the <strong>smallest number of parameters</strong> possible to solve its problem</p>
+<p>A <strong>repeated sequence</strong> should be put in its own function</p>
+<h2 id="debugging">Debugging</h2>
+<h3 id="doctests">Doctests</h3>
+<p>python -m doctest test.py</p>
+<h4 id="environment-diagrams">Environment Diagrams</h4>
+<h3 id="print-debugging">Print Debugging</h3>
+<h3 id="preventing-bugs-assert-statements">Preventing Bugs: Assert Statements</h3>
 ]]></content>
       <categories>
         <category>SICP</category>
@@ -354,33 +357,30 @@
       </tags>
   </entry>
   <entry>
-    <title>09 Functional Decomposition &amp; Debugging</title>
-    <url>/2021/07/22/09-Functional-Decomposition-Debugging/</url>
-    <content><![CDATA[<h2 id="program-decomposition">Program Decomposition</h2>
-<ul>
-<li>The process of breaking a large problem into more manageable sub-problems</li>
-<li>Goals of Program Decomposition
-<ul>
-<li>Complexity Management</li>
-<li>Reusability and abstraction</li>
-</ul></li>
-</ul>
-<h3 id="the-black-box">The "Black Box"</h3>
-<ul>
-<li>A "black box" is opaque - its inner workings are <strong>not revealed</strong></li>
-<li>Decomposition is a divide and conquer strategy.</li>
-</ul>
+    <title>06 Recursion</title>
+    <url>/2021/07/13/06-Recursion/</url>
+    <content><![CDATA[<h3 id="functional-abstraction">Functional Abstraction</h3>
+<h4 id="mechanics">Mechanics</h4>
+<p>How does Python execute this program line-by-line</p>
+<h4 id="use">Use</h4>
+<p>What can a function do</p>
+<h2 id="recursion">Recursion</h2>
+<h3 id="iterative-algorithm">Iterative Algorithm</h3>
+<p>eg.</p>
+<p><span class="math display">\[n!=\prod\limits_{k=1}^{n} k\]</span></p>
+<h3 id="recursive-algorithm">Recursive Algorithm</h3>
+<p>Recursive is useful for solving problems with a naturally repeating structure - they are defined in terms of themselves.</p>
+<p>eg.</p>
+<p><span class="math display">\[n!=\begin{cases}1 &amp;\text{if n=0}\\n  (n-1)!  &amp;\text{otherwise}\end{cases}\]</span></p>
 <span id="more"></span>
-<h3 id="function-rules-in-practice">Function Rules in Practice</h3>
-<p>A function should solve <strong>one problem</strong></p>
-<p>A function should have the <strong>smallest number of parameters</strong> possible to solve its problem</p>
-<p>A <strong>repeated sequence</strong> should be put in its own function</p>
-<h2 id="debugging">Debugging</h2>
-<h3 id="doctests">Doctests</h3>
-<p>python -m doctest test.py</p>
-<h4 id="environment-diagrams">Environment Diagrams</h4>
-<h3 id="print-debugging">Print Debugging</h3>
-<h3 id="preventing-bugs-assert-statements">Preventing Bugs: Assert Statements</h3>
+<h3 id="recursive-functions">Recursive Functions</h3>
+<p>A function is called recursive if the body of that function calls itself, either directly or indirectly.</p>
+<h4 id="structure">Structure</h4>
+<ol type="1">
+<li>One or more <strong>base cases</strong>, usually the smallest input.</li>
+<li>One or more ways of <strong>reducing the problem</strong>, and then solving the smaller problem using recursion.</li>
+<li>One or more ways of <strong>using the solution to each smaller problem</strong> to solve our larger problem.</li>
+</ol>
 ]]></content>
       <categories>
         <category>SICP</category>
@@ -477,78 +477,6 @@
       </tags>
   </entry>
   <entry>
-    <title>HW 03 Church Numerals</title>
-    <url>/2021/08/11/HW-03-Church-Numerals/</url>
-    <content><![CDATA[<h2 id="背景">背景</h2>
-<blockquote>
-<p>The logician Alonzo Church invented a system of representing non-negative integers entirely using functions. The purpose was to show that functions are sufficient to describe all of number theory: if we have functions, we do not need to assume that numbers exist, but instead we can invent them.</p>
-</blockquote>
-<p>逻辑学家阿隆索·邱奇发明了一个利用函数表示自然数的系统。</p>
-<blockquote>
-<p>Your goal in this problem is to rediscover this representation known as Church numerals. Here are the definitions of zero, as well as a function that returns one more than its argument:</p>
-</blockquote>
-<p>我们的目标就是实现Church numerals，零和一的定义如下</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">zero</span>(<span class="params">f</span>):</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">lambda</span> x: x</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">successor</span>(<span class="params">n</span>):</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">lambda</span> f: <span class="keyword">lambda</span> x: f(n(f)(x))</span><br></pre></td></tr></table></figure>
-<span id="more"></span>
-<h2 id="定义一和二">定义一和二</h2>
-<blockquote>
-<p>First, define functions one and two such that they have the same behavior as successor(zero) and successsor(successor(zero)) respectively, but do not call successor in your implementation.</p>
-</blockquote>
-<p>首先我们要实现一和二的定义，在此之前我们可以分析一下零和一是怎么用函数表示的。</p>
-<p>零的定义是<span class="math inline">\(F_{zero}(x)=x\)</span>，我们将零带入successor可以得到<span class="math inline">\(F_{one}(x)=f(x)\)</span>，那么显而易见二就是<span class="math inline">\(F_{two}(x)=f(f(x))\)</span>，以此类推。那么一和二很容易就可以定义出来。</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">one</span>(<span class="params">f</span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;Church numeral 1: same as successor(zero)&quot;&quot;&quot;</span></span><br><span class="line">    <span class="string">&quot;*** YOUR CODE HERE ***&quot;</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">lambda</span> x: f(x)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">two</span>(<span class="params">f</span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;Church numeral 2: same as successor(successor(zero))&quot;&quot;&quot;</span></span><br><span class="line">    <span class="string">&quot;*** YOUR CODE HERE ***&quot;</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">lambda</span> x: f(f(x))</span><br></pre></td></tr></table></figure>
-<h2 id="将-church-numeral-转化为整数">将 church numeral 转化为整数</h2>
-<blockquote>
-<p>Next, implement a function church_to_int that converts a church numeral argument to a regular Python integer.</p>
-</blockquote>
-<p>接下来是实现 church numeral 到整数的转化。</p>
-<p>从这一题开始就渐渐开始难度了。由定义可知，church numeral 是一个 high-order function，返回的是函数本身，这个返回的函数的参数是一个函数，同时返回函数也是一个函数，参数是x。</p>
-<p><span class="math display">\[\text{设}g(x)=-x\]</span> <span class="math display">\[one(g)(1)=g(1)=-1\]</span> <span class="math display">\[two(g)(1)=g(g(1))=1\]</span></p>
-<p>由上面那个例子可能能帮助大家更直观的理解church numeral的构成，转化到整数最关键的是传入函数<span class="math inline">\(f\)</span>如何构造。可以看到数字与函数调用的次数是一样的，如果每次调用的时候加1，就可以实现转化。</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">church_to_int</span>(<span class="params">n</span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;Convert the Church numeral n to a Python integer.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    &gt;&gt;&gt; church_to_int(zero)</span></span><br><span class="line"><span class="string">    0</span></span><br><span class="line"><span class="string">    &gt;&gt;&gt; church_to_int(one)</span></span><br><span class="line"><span class="string">    1</span></span><br><span class="line"><span class="string">    &gt;&gt;&gt; church_to_int(two)</span></span><br><span class="line"><span class="string">    2</span></span><br><span class="line"><span class="string">    &gt;&gt;&gt; church_to_int(three)</span></span><br><span class="line"><span class="string">    3</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    <span class="string">&quot;*** YOUR CODE HERE ***&quot;</span></span><br><span class="line">    <span class="keyword">return</span> n(<span class="keyword">lambda</span> x: x + <span class="number">1</span>)(<span class="number">0</span>)</span><br></pre></td></tr></table></figure>
-<h2 id="定义运算">定义运算</h2>
-<blockquote>
-<p>Finally, implement functions add_church, mul_church, and pow_church that perform addition, multiplication, and exponentiation on church numerals.</p>
-</blockquote>
-<p>最后来构造加法、乘法和乘方运算。</p>
-<h3 id="加法">加法</h3>
-<p>我们还是先从公式的角度分析一下 <span class="math display">\[n+m=\underbrace{f(f(\cdots(f}_{n+m}(x))))\]</span> 得到 n+m 只需有 n+m 个<span class="math inline">\(f\)</span>复合就可以，即 <span class="math display">\[\begin{aligned}
-n+m&amp;=F_n(f)(F_m(f)(x))\\
-&amp;=\underbrace{f(f(\cdots(f}_{n}(F_m(f)(x)))))\\
-&amp;=\underbrace{f(f(\cdots(f}_{n}(\underbrace{f(f(\cdots(f}_{m}(x)))))
-\end{aligned}\]</span></p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">add_church</span>(<span class="params">m, n</span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;Return the Church numeral for m + n, for Church numerals m and n.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    &gt;&gt;&gt; church_to_int(add_church(two, three))</span></span><br><span class="line"><span class="string">    5</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    <span class="string">&quot;*** YOUR CODE HERE ***&quot;</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">lambda</span> f: <span class="keyword">lambda</span> x: n(f)(m(f)(x))</span><br></pre></td></tr></table></figure>
-<h3 id="乘法">乘法</h3>
-<p><span class="math display">\[n\times m=\underbrace{f(f(\cdots(f}_{n\times m}(x))))\]</span> n是n个<span class="math inline">\(f(x)\)</span>复合，m是m个<span class="math inline">\(f(x)\)</span>复合，<span class="math inline">\(n\times m\)</span>是n个m个<span class="math inline">\(f(x)\)</span>复合</p>
-<p>我们先将n个m写出来，每个<span class="math inline">\(F_m\)</span>是m个<span class="math inline">\(f(x)\)</span>，得到</p>
-<p><span class="math display">\[\begin{aligned}
-n\times m&amp;=F_n(F_m(f))(x)\\
-&amp;=\underbrace{F_m(f)(F_m(f)(\cdots(F_m}_{n}(f)(x))))\\
-&amp;=\underbrace{\underbrace{f(f(\cdots(f}_{m}(\underbrace{f(f(\cdots(f}_{m}(\cdots(\underbrace{f(f(\cdots(f}_{m}}_{n}(x))))
-\end{aligned}\]</span></p>
-<p>即<span class="math inline">\(n\times m\)</span> <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">mul_church</span>(<span class="params">m, n</span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;Return the Church numeral for m * n, for Church numerals m and n.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    &gt;&gt;&gt; four = successor(three)</span></span><br><span class="line"><span class="string">    &gt;&gt;&gt; church_to_int(mul_church(two, three))</span></span><br><span class="line"><span class="string">    6</span></span><br><span class="line"><span class="string">    &gt;&gt;&gt; church_to_int(mul_church(three, four))</span></span><br><span class="line"><span class="string">    12</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    <span class="string">&quot;*** YOUR CODE HERE ***&quot;</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">lambda</span> f: n(m(f))</span><br></pre></td></tr></table></figure></p>
-<h3 id="乘方">乘方</h3>
-<p><span class="math display">\[m^n=\underbrace{f(f(\cdots(f}_{m^n}(x))))\]</span></p>
-<p>和乘法类似，这次我们需要n个m个m，也就是n个<span class="math inline">\(m\times m\)</span>，先上推导再解释</p>
-<p><span class="math display">\[\begin{aligned}
-m^n&amp;=F_n(F_m)(f)(x)\\
-&amp;=\underbrace{F_m(F_m(\cdots(F_m}_{n})))(f)(x)\\
-&amp;=\underbrace{F_m(F_m(\cdots(F_m(}_{n-1}\underbrace{f(f(\cdots(f}_{m})))(x)\\
-&amp;=\underbrace{F_m(F_m(\cdots(F_m(}_{n-2}\underbrace{f(f(\cdots(f}_{m\times m})))(x)\\
-&amp;\qquad \vdots\\
-&amp;=F_m(\underbrace{f(f(\cdots(f}_{m^{n-1}})))(x)\\
-&amp;=\underbrace{f(f(\cdots(f}_{m^n}(x))))
-\end{aligned}\]</span> 这里 evaluate 的顺序很关键，第一步<span class="math inline">\(F_n\)</span>将n个<span class="math inline">\(F_m\)</span>复合，之后<span class="math inline">\(f\)</span>作为<span class="math inline">\(F_n\)</span>第二个参数被传入，最里层变为<span class="math inline">\(F_m(f)\)</span>开始复合，一层层向外，最外层<span class="math inline">\(x\)</span>作为<span class="math inline">\(F_m\)</span>的第二个参数被传入。实际程序运行的顺序肯定和这里不完全一样，但是基本思路是这样的。一开始可能想不明白这个和乘法有什么区别，乘法复合的是<span class="math inline">\(F_m\)</span>第二个参数，乘方复合的是<span class="math inline">\(F_m\)</span>第一个参数，无论是 debug 还是 environment diagram 都没有办法形象的展现这个程序的运行方式，只能靠意会了。 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">pow_church</span>(<span class="params">m, n</span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;Return the Church numeral m ** n, for Church numerals m and n.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    &gt;&gt;&gt; church_to_int(pow_church(two, three))</span></span><br><span class="line"><span class="string">    8</span></span><br><span class="line"><span class="string">    &gt;&gt;&gt; church_to_int(pow_church(three, two))</span></span><br><span class="line"><span class="string">    9</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    <span class="string">&quot;*** YOUR CODE HERE ***&quot;</span></span><br><span class="line">    <span class="keyword">return</span> n(m)</span><br></pre></td></tr></table></figure></p>
-]]></content>
-      <categories>
-        <category>SICP</category>
-        <category>CS61-A</category>
-      </categories>
-      <tags>
-        <tag>note</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Hexo+Next+GitHub Page 建立博客</title>
     <url>/2021/08/14/Hexo-Next-GitHub-Page-%E5%BB%BA%E7%AB%8B%E5%8D%9A%E5%AE%A2/</url>
     <content><![CDATA[<p>虽然 Hexo 和 Next 都有完整的 doc 供你参考，但我觉得还是有必要写这样一篇文章帮助我以及可能会看这篇文章的你记录一下我搭建的过程，以及踩过的坑。</p>
@@ -625,6 +553,78 @@ m^n&amp;=F_n(F_m)(f)(x)\\
       </categories>
       <tags>
         <tag>bulid</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>HW 03 Church Numerals</title>
+    <url>/2021/08/11/HW-03-Church-Numerals/</url>
+    <content><![CDATA[<h2 id="背景">背景</h2>
+<blockquote>
+<p>The logician Alonzo Church invented a system of representing non-negative integers entirely using functions. The purpose was to show that functions are sufficient to describe all of number theory: if we have functions, we do not need to assume that numbers exist, but instead we can invent them.</p>
+</blockquote>
+<p>逻辑学家阿隆索·邱奇发明了一个利用函数表示自然数的系统。</p>
+<blockquote>
+<p>Your goal in this problem is to rediscover this representation known as Church numerals. Here are the definitions of zero, as well as a function that returns one more than its argument:</p>
+</blockquote>
+<p>我们的目标就是实现Church numerals，零和一的定义如下</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">zero</span>(<span class="params">f</span>):</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">lambda</span> x: x</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">successor</span>(<span class="params">n</span>):</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">lambda</span> f: <span class="keyword">lambda</span> x: f(n(f)(x))</span><br></pre></td></tr></table></figure>
+<span id="more"></span>
+<h2 id="定义一和二">定义一和二</h2>
+<blockquote>
+<p>First, define functions one and two such that they have the same behavior as successor(zero) and successsor(successor(zero)) respectively, but do not call successor in your implementation.</p>
+</blockquote>
+<p>首先我们要实现一和二的定义，在此之前我们可以分析一下零和一是怎么用函数表示的。</p>
+<p>零的定义是<span class="math inline">\(F_{zero}(x)=x\)</span>，我们将零带入successor可以得到<span class="math inline">\(F_{one}(x)=f(x)\)</span>，那么显而易见二就是<span class="math inline">\(F_{two}(x)=f(f(x))\)</span>，以此类推。那么一和二很容易就可以定义出来。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">one</span>(<span class="params">f</span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;Church numeral 1: same as successor(zero)&quot;&quot;&quot;</span></span><br><span class="line">    <span class="string">&quot;*** YOUR CODE HERE ***&quot;</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">lambda</span> x: f(x)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">two</span>(<span class="params">f</span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;Church numeral 2: same as successor(successor(zero))&quot;&quot;&quot;</span></span><br><span class="line">    <span class="string">&quot;*** YOUR CODE HERE ***&quot;</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">lambda</span> x: f(f(x))</span><br></pre></td></tr></table></figure>
+<h2 id="将-church-numeral-转化为整数">将 church numeral 转化为整数</h2>
+<blockquote>
+<p>Next, implement a function church_to_int that converts a church numeral argument to a regular Python integer.</p>
+</blockquote>
+<p>接下来是实现 church numeral 到整数的转化。</p>
+<p>从这一题开始就渐渐开始难度了。由定义可知，church numeral 是一个 high-order function，返回的是函数本身，这个返回的函数的参数是一个函数，同时返回函数也是一个函数，参数是x。</p>
+<p><span class="math display">\[\text{设}g(x)=-x\]</span> <span class="math display">\[one(g)(1)=g(1)=-1\]</span> <span class="math display">\[two(g)(1)=g(g(1))=1\]</span></p>
+<p>由上面那个例子可能能帮助大家更直观的理解church numeral的构成，转化到整数最关键的是传入函数<span class="math inline">\(f\)</span>如何构造。可以看到数字与函数调用的次数是一样的，如果每次调用的时候加1，就可以实现转化。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">church_to_int</span>(<span class="params">n</span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;Convert the Church numeral n to a Python integer.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    &gt;&gt;&gt; church_to_int(zero)</span></span><br><span class="line"><span class="string">    0</span></span><br><span class="line"><span class="string">    &gt;&gt;&gt; church_to_int(one)</span></span><br><span class="line"><span class="string">    1</span></span><br><span class="line"><span class="string">    &gt;&gt;&gt; church_to_int(two)</span></span><br><span class="line"><span class="string">    2</span></span><br><span class="line"><span class="string">    &gt;&gt;&gt; church_to_int(three)</span></span><br><span class="line"><span class="string">    3</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    <span class="string">&quot;*** YOUR CODE HERE ***&quot;</span></span><br><span class="line">    <span class="keyword">return</span> n(<span class="keyword">lambda</span> x: x + <span class="number">1</span>)(<span class="number">0</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="定义运算">定义运算</h2>
+<blockquote>
+<p>Finally, implement functions add_church, mul_church, and pow_church that perform addition, multiplication, and exponentiation on church numerals.</p>
+</blockquote>
+<p>最后来构造加法、乘法和乘方运算。</p>
+<h3 id="加法">加法</h3>
+<p>我们还是先从公式的角度分析一下 <span class="math display">\[n+m=\underbrace{f(f(\cdots(f}_{n+m}(x))))\]</span> 得到 n+m 只需有 n+m 个<span class="math inline">\(f\)</span>复合就可以，即 <span class="math display">\[\begin{aligned}
+n+m&amp;=F_n(f)(F_m(f)(x))\\
+&amp;=\underbrace{f(f(\cdots(f}_{n}(F_m(f)(x)))))\\
+&amp;=\underbrace{f(f(\cdots(f}_{n}(\underbrace{f(f(\cdots(f}_{m}(x)))))
+\end{aligned}\]</span></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">add_church</span>(<span class="params">m, n</span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;Return the Church numeral for m + n, for Church numerals m and n.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    &gt;&gt;&gt; church_to_int(add_church(two, three))</span></span><br><span class="line"><span class="string">    5</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    <span class="string">&quot;*** YOUR CODE HERE ***&quot;</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">lambda</span> f: <span class="keyword">lambda</span> x: n(f)(m(f)(x))</span><br></pre></td></tr></table></figure>
+<h3 id="乘法">乘法</h3>
+<p><span class="math display">\[n\times m=\underbrace{f(f(\cdots(f}_{n\times m}(x))))\]</span> n是n个<span class="math inline">\(f(x)\)</span>复合，m是m个<span class="math inline">\(f(x)\)</span>复合，<span class="math inline">\(n\times m\)</span>是n个m个<span class="math inline">\(f(x)\)</span>复合</p>
+<p>我们先将n个m写出来，每个<span class="math inline">\(F_m\)</span>是m个<span class="math inline">\(f(x)\)</span>，得到</p>
+<p><span class="math display">\[\begin{aligned}
+n\times m&amp;=F_n(F_m(f))(x)\\
+&amp;=\underbrace{F_m(f)(F_m(f)(\cdots(F_m}_{n}(f)(x))))\\
+&amp;=\underbrace{\underbrace{f(f(\cdots(f}_{m}(\underbrace{f(f(\cdots(f}_{m}(\cdots(\underbrace{f(f(\cdots(f}_{m}}_{n}(x))))
+\end{aligned}\]</span></p>
+<p>即<span class="math inline">\(n\times m\)</span> <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">mul_church</span>(<span class="params">m, n</span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;Return the Church numeral for m * n, for Church numerals m and n.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    &gt;&gt;&gt; four = successor(three)</span></span><br><span class="line"><span class="string">    &gt;&gt;&gt; church_to_int(mul_church(two, three))</span></span><br><span class="line"><span class="string">    6</span></span><br><span class="line"><span class="string">    &gt;&gt;&gt; church_to_int(mul_church(three, four))</span></span><br><span class="line"><span class="string">    12</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    <span class="string">&quot;*** YOUR CODE HERE ***&quot;</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">lambda</span> f: n(m(f))</span><br></pre></td></tr></table></figure></p>
+<h3 id="乘方">乘方</h3>
+<p><span class="math display">\[m^n=\underbrace{f(f(\cdots(f}_{m^n}(x))))\]</span></p>
+<p>和乘法类似，这次我们需要n个m个m，也就是n个<span class="math inline">\(m\times m\)</span>，先上推导再解释</p>
+<p><span class="math display">\[\begin{aligned}
+m^n&amp;=F_n(F_m)(f)(x)\\
+&amp;=\underbrace{F_m(F_m(\cdots(F_m}_{n})))(f)(x)\\
+&amp;=\underbrace{F_m(F_m(\cdots(F_m(}_{n-1}\underbrace{f(f(\cdots(f}_{m})))(x)\\
+&amp;=\underbrace{F_m(F_m(\cdots(F_m(}_{n-2}\underbrace{f(f(\cdots(f}_{m\times m})))(x)\\
+&amp;\qquad \vdots\\
+&amp;=F_m(\underbrace{f(f(\cdots(f}_{m^{n-1}})))(x)\\
+&amp;=\underbrace{f(f(\cdots(f}_{m^n}(x))))
+\end{aligned}\]</span> 这里 evaluate 的顺序很关键，第一步<span class="math inline">\(F_n\)</span>将n个<span class="math inline">\(F_m\)</span>复合，之后<span class="math inline">\(f\)</span>作为<span class="math inline">\(F_n\)</span>第二个参数被传入，最里层变为<span class="math inline">\(F_m(f)\)</span>开始复合，一层层向外，最外层<span class="math inline">\(x\)</span>作为<span class="math inline">\(F_m\)</span>的第二个参数被传入。实际程序运行的顺序肯定和这里不完全一样，但是基本思路是这样的。一开始可能想不明白这个和乘法有什么区别，乘法复合的是<span class="math inline">\(F_m\)</span>第二个参数，乘方复合的是<span class="math inline">\(F_m\)</span>第一个参数，无论是 debug 还是 environment diagram 都没有办法形象的展现这个程序的运行方式，只能靠意会了。 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">pow_church</span>(<span class="params">m, n</span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;Return the Church numeral m ** n, for Church numerals m and n.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    &gt;&gt;&gt; church_to_int(pow_church(two, three))</span></span><br><span class="line"><span class="string">    8</span></span><br><span class="line"><span class="string">    &gt;&gt;&gt; church_to_int(pow_church(three, two))</span></span><br><span class="line"><span class="string">    9</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    <span class="string">&quot;*** YOUR CODE HERE ***&quot;</span></span><br><span class="line">    <span class="keyword">return</span> n(m)</span><br></pre></td></tr></table></figure></p>
+]]></content>
+      <categories>
+        <category>SICP</category>
+        <category>CS61-A</category>
+      </categories>
+      <tags>
+        <tag>note</tag>
       </tags>
   </entry>
   <entry>
