@@ -198,40 +198,6 @@
       </tags>
   </entry>
   <entry>
-    <title>06 Recursion</title>
-    <url>/2021/07/13/06-Recursion/</url>
-    <content><![CDATA[<h3 id="functional-abstraction">Functional Abstraction</h3>
-<h4 id="mechanics">Mechanics</h4>
-<p>How does Python execute this program line-by-line</p>
-<h4 id="use">Use</h4>
-<p>What can a function do</p>
-<h2 id="recursion">Recursion</h2>
-<h3 id="iterative-algorithm">Iterative Algorithm</h3>
-<p>eg.</p>
-<p><span class="math display">\[n!=\prod\limits_{k=1}^{n} k\]</span></p>
-<h3 id="recursive-algorithm">Recursive Algorithm</h3>
-<p>Recursive is useful for solving problems with a naturally repeating structure - they are defined in terms of themselves.</p>
-<p>eg.</p>
-<p><span class="math display">\[n!=\begin{cases}1 &amp;\text{if n=0}\\n  (n-1)!  &amp;\text{otherwise}\end{cases}\]</span></p>
-<span id="more"></span>
-<h3 id="recursive-functions">Recursive Functions</h3>
-<p>A function is called recursive if the body of that function calls itself, either directly or indirectly.</p>
-<h4 id="structure">Structure</h4>
-<ol type="1">
-<li>One or more <strong>base cases</strong>, usually the smallest input.</li>
-<li>One or more ways of <strong>reducing the problem</strong>, and then solving the smaller problem using recursion.</li>
-<li>One or more ways of <strong>using the solution to each smaller problem</strong> to solve our larger problem.</li>
-</ol>
-]]></content>
-      <categories>
-        <category>SICP</category>
-        <category>CS61-A</category>
-      </categories>
-      <tags>
-        <tag>note</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>05 Higher-Order Functions</title>
     <url>/2021/07/11/05-Higher-Order-Functions/</url>
     <content><![CDATA[<h2 id="higher-order-functions">Higher-Order Functions</h2>
@@ -274,33 +240,30 @@
       </tags>
   </entry>
   <entry>
-    <title>09 Functional Decomposition &amp; Debugging</title>
-    <url>/2021/07/22/09-Functional-Decomposition-Debugging/</url>
-    <content><![CDATA[<h2 id="program-decomposition">Program Decomposition</h2>
-<ul>
-<li>The process of breaking a large problem into more manageable sub-problems</li>
-<li>Goals of Program Decomposition
-<ul>
-<li>Complexity Management</li>
-<li>Reusability and abstraction</li>
-</ul></li>
-</ul>
-<h3 id="the-black-box">The "Black Box"</h3>
-<ul>
-<li>A "black box" is opaque - its inner workings are <strong>not revealed</strong></li>
-<li>Decomposition is a divide and conquer strategy.</li>
-</ul>
+    <title>06 Recursion</title>
+    <url>/2021/07/13/06-Recursion/</url>
+    <content><![CDATA[<h3 id="functional-abstraction">Functional Abstraction</h3>
+<h4 id="mechanics">Mechanics</h4>
+<p>How does Python execute this program line-by-line</p>
+<h4 id="use">Use</h4>
+<p>What can a function do</p>
+<h2 id="recursion">Recursion</h2>
+<h3 id="iterative-algorithm">Iterative Algorithm</h3>
+<p>eg.</p>
+<p><span class="math display">\[n!=\prod\limits_{k=1}^{n} k\]</span></p>
+<h3 id="recursive-algorithm">Recursive Algorithm</h3>
+<p>Recursive is useful for solving problems with a naturally repeating structure - they are defined in terms of themselves.</p>
+<p>eg.</p>
+<p><span class="math display">\[n!=\begin{cases}1 &amp;\text{if n=0}\\n  (n-1)!  &amp;\text{otherwise}\end{cases}\]</span></p>
 <span id="more"></span>
-<h3 id="function-rules-in-practice">Function Rules in Practice</h3>
-<p>A function should solve <strong>one problem</strong></p>
-<p>A function should have the <strong>smallest number of parameters</strong> possible to solve its problem</p>
-<p>A <strong>repeated sequence</strong> should be put in its own function</p>
-<h2 id="debugging">Debugging</h2>
-<h3 id="doctests">Doctests</h3>
-<p>python -m doctest test.py</p>
-<h4 id="environment-diagrams">Environment Diagrams</h4>
-<h3 id="print-debugging">Print Debugging</h3>
-<h3 id="preventing-bugs-assert-statements">Preventing Bugs: Assert Statements</h3>
+<h3 id="recursive-functions">Recursive Functions</h3>
+<p>A function is called recursive if the body of that function calls itself, either directly or indirectly.</p>
+<h4 id="structure">Structure</h4>
+<ol type="1">
+<li>One or more <strong>base cases</strong>, usually the smallest input.</li>
+<li>One or more ways of <strong>reducing the problem</strong>, and then solving the smaller problem using recursion.</li>
+<li>One or more ways of <strong>using the solution to each smaller problem</strong> to solve our larger problem.</li>
+</ol>
 ]]></content>
       <categories>
         <category>SICP</category>
@@ -381,6 +344,43 @@
 <li><code>numer(x)</code> returns the numerator of x <strong>Selectors</strong></li>
 <li><code>denom(x)</code> returns the denominator of x <strong>Selectors</strong></li>
 </ul>
+]]></content>
+      <categories>
+        <category>SICP</category>
+        <category>CS61-A</category>
+      </categories>
+      <tags>
+        <tag>note</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>09 Functional Decomposition &amp; Debugging</title>
+    <url>/2021/07/22/09-Functional-Decomposition-Debugging/</url>
+    <content><![CDATA[<h2 id="program-decomposition">Program Decomposition</h2>
+<ul>
+<li>The process of breaking a large problem into more manageable sub-problems</li>
+<li>Goals of Program Decomposition
+<ul>
+<li>Complexity Management</li>
+<li>Reusability and abstraction</li>
+</ul></li>
+</ul>
+<h3 id="the-black-box">The "Black Box"</h3>
+<ul>
+<li>A "black box" is opaque - its inner workings are <strong>not revealed</strong></li>
+<li>Decomposition is a divide and conquer strategy.</li>
+</ul>
+<span id="more"></span>
+<h3 id="function-rules-in-practice">Function Rules in Practice</h3>
+<p>A function should solve <strong>one problem</strong></p>
+<p>A function should have the <strong>smallest number of parameters</strong> possible to solve its problem</p>
+<p>A <strong>repeated sequence</strong> should be put in its own function</p>
+<h2 id="debugging">Debugging</h2>
+<h3 id="doctests">Doctests</h3>
+<p>python -m doctest test.py</p>
+<h4 id="environment-diagrams">Environment Diagrams</h4>
+<h3 id="print-debugging">Print Debugging</h3>
+<h3 id="preventing-bugs-assert-statements">Preventing Bugs: Assert Statements</h3>
 ]]></content>
       <categories>
         <category>SICP</category>
