@@ -746,4 +746,21 @@ m^n&amp;=F_n(F_m)(f)(x)\\
         <tag>issues</tag>
       </tags>
   </entry>
+  <entry>
+    <title>Windows 10 alt+tab 出现多个edge标签</title>
+    <url>/2021/08/20/Windows-10-alt-tab-%E5%87%BA%E7%8E%B0%E5%A4%9A%E4%B8%AAedge%E6%A0%87%E7%AD%BE/</url>
+    <content><![CDATA[<p>在edge打开了多个标签页会发现alt+tab出现了edge标签页</p>
+<p><img src="https://gitee.com/ZHDreamer/markdown-images/raw/master/images/20200830093038337.jpg" /></p>
+<p>可以在windows设置里面找到<strong>多任务处理</strong>，修改alt+tab将显示仅打开的窗口</p>
+<p><img src="https://gitee.com/ZHDreamer/markdown-images/raw/master/images/Snipaste_2021-08-20_17-00-23.png" /></p>
+]]></content>
+      <categories>
+        <category>Software</category>
+        <category>Issues</category>
+      </categories>
+      <tags>
+        <tag>windows</tag>
+        <tag>edge</tag>
+      </tags>
+  </entry>
 </search>
