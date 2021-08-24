@@ -2,9 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://zhdreamer.github.io/project/2021/08/23/Windows-10-%E5%8E%BB%E9%99%A4%E8%B5%84%E6%BA%90%E7%AE%A1%E7%90%86%E5%99%A8-%E6%96%87%E4%BB%B6%E5%A4%B9-%E5%A4%9A%E4%BD%99%E6%96%87%E4%BB%B6%E5%A4%B9/</loc>
+    
+    <lastmod>2021-08-24</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://zhdreamer.github.io/project/2021/08/20/Windows-10-alt-tab-%E5%87%BA%E7%8E%B0%E5%A4%9A%E4%B8%AAedge%E6%A0%87%E7%AD%BE/</loc>
     
-    <lastmod>2021-08-20</lastmod>
+    <lastmod>2021-08-23</lastmod>
     
   </url>
   
@@ -123,7 +130,7 @@
 
   <url>
     <loc>https://zhdreamer.github.io/project</loc>
-    <lastmod>2021-08-20</lastmod>
+    <lastmod>2021-08-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -131,42 +138,42 @@
   
   <url>
     <loc>https://zhdreamer.github.io/project/tags/note/</loc>
-    <lastmod>2021-08-20</lastmod>
+    <lastmod>2021-08-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://zhdreamer.github.io/project/tags/SICP/</loc>
-    <lastmod>2021-08-20</lastmod>
+    <lastmod>2021-08-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://zhdreamer.github.io/project/tags/bulid/</loc>
-    <lastmod>2021-08-20</lastmod>
+    <lastmod>2021-08-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://zhdreamer.github.io/project/tags/issues/</loc>
-    <lastmod>2021-08-20</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://zhdreamer.github.io/project/tags/windows/</loc>
-    <lastmod>2021-08-20</lastmod>
+    <lastmod>2021-08-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://zhdreamer.github.io/project/tags/edge/</loc>
-    <lastmod>2021-08-20</lastmod>
+    <lastmod>2021-08-24</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://zhdreamer.github.io/project/tags/Windows10/</loc>
+    <lastmod>2021-08-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
@@ -175,35 +182,35 @@
   
   <url>
     <loc>https://zhdreamer.github.io/project/categories/CS61-A/</loc>
-    <lastmod>2021-08-20</lastmod>
+    <lastmod>2021-08-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://zhdreamer.github.io/project/categories/Software/</loc>
-    <lastmod>2021-08-20</lastmod>
+    <lastmod>2021-08-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://zhdreamer.github.io/project/categories/Software/Hexo/</loc>
-    <lastmod>2021-08-20</lastmod>
+    <lastmod>2021-08-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://zhdreamer.github.io/project/categories/Software/Hexo/NexT/</loc>
-    <lastmod>2021-08-20</lastmod>
+    <lastmod>2021-08-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://zhdreamer.github.io/project/categories/Software/Issues/</loc>
-    <lastmod>2021-08-20</lastmod>
+    <lastmod>2021-08-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
