@@ -772,6 +772,7 @@ m^n&amp;=F_n(F_m)(f)(x)\\
 <p>可以看到左边有很多乱七八糟的文件，因为win10的逻辑是显示所有桌面的文件</p>
 <p><img src="https://gitee.com/ZHDreamer/markdown-images/raw/master/images/Snipaste_2021-08-23_14-20-46.png" /></p>
 <p>在空白处右键关闭库和显示所有文件夹，此时显示逻辑就会回到win7的模式，以我的电脑方式呈现</p>
+<span id="more"></span>
 <h3 id="去除此电脑中多余的文件夹">去除此电脑中多余的文件夹</h3>
 <p><img src="https://gitee.com/ZHDreamer/markdown-images/raw/master/images/Snipaste_2021-08-23_14-09-48.png" /></p>
 <p>通过修改注册表值可以关闭这些文件夹，删掉注释复制下面代码写入<code>.reg</code>文件即可，也可以自行修改保留需要的文件夹</p>

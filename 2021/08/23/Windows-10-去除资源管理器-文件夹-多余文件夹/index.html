@@ -22,12 +22,12 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"zhdreamer.github.io","root":"/","images":"/images","scheme":"Mist","version":"8.7.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
-<meta name="description" content="关闭导航栏多余文件夹 正常状态下你的Windows10资源管理器可能是这样的  可以看到左边有很多乱七八糟的文件，因为win10的逻辑是显示所有桌面的文件  在空白处右键关闭库和显示所有文件夹，此时显示逻辑就会回到win7的模式，以我的电脑方式呈现 去除此电脑中多余的文件夹  通过修改注册表值可以关闭这些文件夹，删掉注释复制下面代码写入.reg文件即可，也可以自行修改保留需要的文件">
+<meta name="description" content="关闭导航栏多余文件夹 正常状态下你的Windows10资源管理器可能是这样的  可以看到左边有很多乱七八糟的文件，因为win10的逻辑是显示所有桌面的文件  在空白处右键关闭库和显示所有文件夹，此时显示逻辑就会回到win7的模式，以我的电脑方式呈现">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Windows10 去除资源管理器(文件夹)多余文件夹">
 <meta property="og:url" content="https://zhdreamer.github.io/project/2021/08/23/Windows-10-%E5%8E%BB%E9%99%A4%E8%B5%84%E6%BA%90%E7%AE%A1%E7%90%86%E5%99%A8-%E6%96%87%E4%BB%B6%E5%A4%B9-%E5%A4%9A%E4%BD%99%E6%96%87%E4%BB%B6%E5%A4%B9/index.html">
 <meta property="og:site_name" content="数字云烟">
-<meta property="og:description" content="关闭导航栏多余文件夹 正常状态下你的Windows10资源管理器可能是这样的  可以看到左边有很多乱七八糟的文件，因为win10的逻辑是显示所有桌面的文件  在空白处右键关闭库和显示所有文件夹，此时显示逻辑就会回到win7的模式，以我的电脑方式呈现 去除此电脑中多余的文件夹  通过修改注册表值可以关闭这些文件夹，删掉注释复制下面代码写入.reg文件即可，也可以自行修改保留需要的文件">
+<meta property="og:description" content="关闭导航栏多余文件夹 正常状态下你的Windows10资源管理器可能是这样的  可以看到左边有很多乱七八糟的文件，因为win10的逻辑是显示所有桌面的文件  在空白处右键关闭库和显示所有文件夹，此时显示逻辑就会回到win7的模式，以我的电脑方式呈现">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://gitee.com/ZHDreamer/markdown-images/raw/master/images/Snipaste_2021-08-23_14-19-54.png">
 <meta property="og:image" content="https://gitee.com/ZHDreamer/markdown-images/raw/master/images/Snipaste_2021-08-23_14-20-46.png">
@@ -35,7 +35,7 @@
 <meta property="og:image" content="https://gitee.com/ZHDreamer/markdown-images/raw/master/images/Snipaste_2021-08-25_00-19-06.png">
 <meta property="og:image" content="https://gitee.com/ZHDreamer/markdown-images/raw/master/images/Snipaste_2021-08-25_00-28-12.png">
 <meta property="article:published_time" content="2021-08-23T06:15:41.000Z">
-<meta property="article:modified_time" content="2021-08-24T16:29:43.565Z">
+<meta property="article:modified_time" content="2021-08-24T16:33:20.287Z">
 <meta property="article:author" content="ZHDreamer">
 <meta property="article:tag" content="Windows10">
 <meta name="twitter:card" content="summary">
@@ -274,6 +274,7 @@
 <p>可以看到左边有很多乱七八糟的文件，因为win10的逻辑是显示所有桌面的文件</p>
 <p><img src="https://gitee.com/ZHDreamer/markdown-images/raw/master/images/Snipaste_2021-08-23_14-20-46.png" /></p>
 <p>在空白处右键关闭库和显示所有文件夹，此时显示逻辑就会回到win7的模式，以我的电脑方式呈现</p>
+<span id="more"></span>
 <h3 id="去除此电脑中多余的文件夹">去除此电脑中多余的文件夹</h3>
 <p><img src="https://gitee.com/ZHDreamer/markdown-images/raw/master/images/Snipaste_2021-08-23_14-09-48.png" /></p>
 <p>通过修改注册表值可以关闭这些文件夹，删掉注释复制下面代码写入<code>.reg</code>文件即可，也可以自行修改保留需要的文件夹</p>
