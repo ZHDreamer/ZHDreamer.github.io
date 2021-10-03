@@ -1017,4 +1017,37 @@ m^n&amp;=F_n(F_m)(f)(x)\\
         <tag>note</tag>
       </tags>
   </entry>
+  <entry>
+    <title>18 Interface</title>
+    <url>/2021/10/03/18-Interface/</url>
+    <content><![CDATA[<p>Describe how you can interact with an object without necessarily implementing it.</p>
+<h2 id="magic-methods">Magic Methods</h2>
+<p>These are specially named methods that are callable outside the ordinary dot notation.</p>
+<p>example:<code>__init__()</code></p>
+<h3 id="str-repr">str &amp; repr</h3>
+<p><img src="https://gitee.com/ZHDreamer/markdown-images/raw/master/images/Snipaste_2021-10-03_14-56-07.png" /></p>
+<p><code>__str__</code> return what would display when <code>print()</code> was called</p>
+<p><img src="https://gitee.com/ZHDreamer/markdown-images/raw/master/images/Snipaste_2021-10-03_14-59-14.png" /></p>
+<p><code>__repr__</code> return what would display in the interpreter</p>
+<h3 id="link-repr">Link repr</h3>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">__repr__</span>(<span class="params">self</span>):</span></span><br><span class="line">    <span class="keyword">if</span> self.rest == Link.empty:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27;Link(&#x27;</span> + <span class="built_in">repr</span>(self.first) + <span class="string">&#x27;)&#x27;</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27;Link(&#x27;</span> + <span class="built_in">repr</span>(self.first) + <span class="string">&#x27;, &#x27;</span> + <span class="built_in">repr</span>(self.rest) + <span class="string">&#x27;)&#x27;</span></span><br></pre></td></tr></table></figure>
+<h3 id="link-str">Link str</h3>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">__str__</span>(<span class="params">self</span>):</span></span><br><span class="line">    s = <span class="string">&#x27;&lt;&#x27;</span></span><br><span class="line">    <span class="keyword">while</span> self.rest <span class="keyword">is</span> <span class="keyword">not</span> Link.empty:</span><br><span class="line">        s = s+ <span class="built_in">str</span>(self.first) + <span class="string">&#x27;, &#x27;</span></span><br><span class="line">        self = self.rest</span><br><span class="line">    <span class="keyword">return</span> s + <span class="built_in">str</span>(self.first) + <span class="string">&#x27;&gt;&#x27;</span></span><br></pre></td></tr></table></figure>
+<h3 id="link-eq">Link eq</h3>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># for == statement</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">__eq__</span>(<span class="params">self, other</span>):</span></span><br><span class="line">    <span class="keyword">if</span> self.first == other.first:</span><br><span class="line">        <span class="keyword">return</span> self.rest == other.rest</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">False</span></span><br></pre></td></tr></table></figure>
+<h3 id="link-contains">Link contains</h3>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># for in and not in statement</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">__contains__</span>(<span class="params">self, x</span>):</span></span><br><span class="line">    <span class="keyword">if</span> self.first ==x:</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">    <span class="keyword">return</span> x <span class="keyword">in</span> self.rest</span><br></pre></td></tr></table></figure>
+<h3 id="link-add">Link add</h3>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">__add__</span>(<span class="params">self, other</span>):</span></span><br><span class="line">    <span class="keyword">if</span> self.rest <span class="keyword">is</span> Link.empty:</span><br><span class="line">        <span class="keyword">if</span> other.rest <span class="keyword">is</span> Link.empty:</span><br><span class="line">            <span class="keyword">return</span> Link(self.first, Link(other.first))</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> Link(self.first, Link(other.first) + other.rest)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> Link(self.first, self.rest + other)</span><br></pre></td></tr></table></figure>
+<h3 id="link-mul">Link mul</h3>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">__mul__</span>(<span class="params">self, num</span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    &gt;&gt;&gt; Link(1, Link(2)) * 2</span></span><br><span class="line"><span class="string">    Link(1, Link(2, Link(1, Link(2))))</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    temp = self</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(num):</span><br><span class="line">        temp = tmep + self</span><br><span class="line">    <span class="keyword">return</span> temp</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">__rmul__</span>(<span class="params">self, num</span>):</span></span><br><span class="line">    <span class="comment"># 2 * Link</span></span><br><span class="line">    <span class="keyword">return</span> self * mul</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>SICP</category>
+        <category>CS61-A</category>
+      </categories>
+      <tags>
+        <tag>note</tag>
+      </tags>
+  </entry>
 </search>
