@@ -941,4 +941,80 @@ m^n&amp;=F_n(F_m)(f)(x)\\
         <tag>note</tag>
       </tags>
   </entry>
+  <entry>
+    <title>16 Inheritance</title>
+    <url>/2021/10/03/16-Inheritance/</url>
+    <content><![CDATA[<h2 id="inheritance">Inheritance</h2>
+<h3 id="relationship-of-classes">Relationship of Classes</h3>
+<p>Some classes is subclass of others, they have some attributes and methods of their parent, but also have some different or new attributes and methods.</p>
+<h3 id="using-inheritance">Using Inheritance</h3>
+<p>We can implement specialized classes using inheritance!</p>
+<p>The class definition allows us to specify that a new class inherits from a superclass:</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> &lt;<span class="title">Class</span> <span class="title">Name</span>&gt;(<span class="params">&lt;Superclass Name&gt;</span>):</span></span><br><span class="line">    &lt;suite&gt;</span><br></pre></td></tr></table></figure>
+<span id="more"></span>
+<p>We call the more specialized class a <strong>subclass</strong> of the general class and the general class a <strong>superclass</strong> of the specialized class.</p>
+<p>The subclass <strong>inherits</strong> <em>all</em> class attributes of the superclass.</p>
+<p>The subclass can <strong>override</strong> attributes to specify how it is different from the superclass.</p>
+<h3 id="new-dot-expression-rules">New Dot Expression Rules</h3>
+<ol type="1">
+<li>Evaluate <code>&lt;expression&gt;</code>, which yields an object.</li>
+<li><code>&lt;name&gt;</code> is matched against the instance attributes of that object; if an attribute with that name exists, its value is returned.</li>
+<li>If not, the name is looked up in the class, which yields a class attribute value. <strong>If it is not found in the class, look in any superclasses</strong>.</li>
+<li>That value is returned unless it is a function, in which case a bound method is returned instead.</li>
+</ol>
+<h3 id="designing-for-inheritance">Designing for Inheritance</h3>
+<p>Don't repeat yourself</p>
+<p>use existing implementations</p>
+<p>Attributes that have been overridden are still accessible via class objects</p>
+]]></content>
+      <categories>
+        <category>SICP</category>
+        <category>CS61-A</category>
+      </categories>
+      <tags>
+        <tag>note</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>17 Linked Lists &amp; Trees</title>
+    <url>/2021/10/03/17-Linked-Lists-Trees/</url>
+    <content><![CDATA[<h2 id="linked-list">Linked List</h2>
+<h3 id="definition">Definition</h3>
+<p>A linked list is either:</p>
+<ul>
+<li>empty</li>
+<li>Composed of a first element and the rest of the linked list</li>
+</ul>
+<p><img src="https://gitee.com/ZHDreamer/markdown-images/raw/master/images/Snipaste_2021-09-20_14-52-22.png" /></p>
+<span id="more"></span>
+<h3 id="creating-linked-list">Creating Linked List</h3>
+<p>We’ll define a linked list recursively by making a constructor that takes in a first and rest value</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">Link(<span class="number">1</span> , rest)</span><br><span class="line">Link(<span class="number">1</span> , Link(<span class="number">2</span>, rest))</span><br><span class="line">Link(<span class="number">1</span> , Link(<span class="number">2</span>, Link(<span class="number">3</span>, empty)))</span><br></pre></td></tr></table></figure>
+<h3 id="link-class">Link Class</h3>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Link</span>:</span></span><br><span class="line">    empty = ()</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, first, rest=empty</span>):</span></span><br><span class="line">        <span class="keyword">assert</span> rest <span class="keyword">is</span> Link.empty <span class="keyword">or</span> <span class="built_in">isinstance</span>(rest, Link)</span><br><span class="line">        self.first = first</span><br><span class="line">        self.rest = rest</span><br></pre></td></tr></table></figure>
+<h2 id="processing-linked-lists">Processing Linked Lists</h2>
+<h3 id="sum">Sum</h3>
+<p>Goal: Given a linked list , return the sum of all elements in the linked list</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">sum_link</span>(<span class="params">lnk</span>):</span></span><br><span class="line">    <span class="comment"># if lnk.rest is Link.empty:</span></span><br><span class="line">    <span class="comment">#    return lnk.first</span></span><br><span class="line">    <span class="comment"># if lnk is Link.empty, it will rasie an error</span></span><br><span class="line">    <span class="keyword">if</span> lnk <span class="keyword">is</span> Link.empty:</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">    <span class="keyword">return</span> lnk.first + sum_link(lnk.rest)</span><br></pre></td></tr></table></figure>
+<h3 id="display">Display</h3>
+<p>Goal: Given a linked list, return a string representing the elements in the linked list</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">display_link</span>(<span class="params">lnk</span>):</span></span><br><span class="line">    string = <span class="string">&quot;&lt; &quot;</span></span><br><span class="line">    <span class="keyword">while</span> lnk <span class="keyword">is</span> <span class="keyword">not</span> Link.empty:</span><br><span class="line">        string += <span class="built_in">str</span>(lnk.first) + <span class="string">&quot; &quot;</span></span><br><span class="line">        lnk = lnk.rest</span><br><span class="line">    <span class="keyword">return</span> sting + <span class="string">&quot;&gt;&quot;</span></span><br></pre></td></tr></table></figure>
+<h3 id="map">Map</h3>
+<p>Goal: Given a linked list, and a one argument function, f, return a new linked list obtained from applying f to each element of list</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">map_link</span>(<span class="params">lnk, func</span>):</span></span><br><span class="line">    <span class="keyword">if</span> lnk <span class="keyword">is</span> Link.empty:</span><br><span class="line">        <span class="keyword">return</span> Link.empty</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> Link(func(lnk.first), map_lnk(lnk.rest, func))</span><br></pre></td></tr></table></figure>
+<h2 id="mutating-linked-lists">Mutating Linked Lists</h2>
+<h3 id="map-v2">Map v2</h3>
+<p>Goal: Given a linked list,and a one argument function, f, mutate the linked list by applying f to each element.</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">map_link</span>(<span class="params">lnk, func</span>):</span></span><br><span class="line">    <span class="keyword">while</span> lnk <span class="keyword">is</span> <span class="keyword">not</span> Link.empty:</span><br><span class="line">        lnk.first = func(lnk.first)</span><br><span class="line">        lnk = lnk.rest</span><br></pre></td></tr></table></figure>
+<h2 id="tree-class">Tree Class</h2>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Tree</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, label, branches=[]</span>):</span></span><br><span class="line">        <span class="keyword">for</span> b <span class="keyword">in</span> branches:</span><br><span class="line">            <span class="keyword">assert</span> <span class="built_in">isinstance</span>(b, Tree)</span><br><span class="line">            self.label = label</span><br><span class="line">            self.branches = branches</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">is_leaf</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">not</span> self.branches</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>SICP</category>
+        <category>CS61-A</category>
+      </categories>
+      <tags>
+        <tag>note</tag>
+      </tags>
+  </entry>
 </search>

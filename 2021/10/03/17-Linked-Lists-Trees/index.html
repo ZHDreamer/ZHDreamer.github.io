@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="msvalidate.01" content="F6AEE664C45CEBD9B20F0FF05746437D">
+  <meta name="baidu-site-verification" content="code-F3T999W6or">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.loli.net/css?family=Lato:300,300italic,400,400italic,700,700italic%7CSource+Code+Pro:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"zhdreamer.github.io","root":"/","images":"/images","scheme":"Mist","version":"8.7.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<meta name="description" content="Linked List Definition A linked list is either:  empty Composed of a first element and the rest of the linked list">
+<meta property="og:type" content="article">
+<meta property="og:title" content="17 Linked Lists &amp; Trees">
+<meta property="og:url" content="https://zhdreamer.github.io/project/2021/10/03/17-Linked-Lists-Trees/index.html">
+<meta property="og:site_name" content="数字云烟">
+<meta property="og:description" content="Linked List Definition A linked list is either:  empty Composed of a first element and the rest of the linked list">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gitee.com/ZHDreamer/markdown-images/raw/master/images/Snipaste_2021-09-20_14-52-22.png">
+<meta property="article:published_time" content="2021-10-03T05:13:16.000Z">
+<meta property="article:modified_time" content="2021-10-03T05:13:50.926Z">
+<meta property="article:author" content="ZHDreamer">
+<meta property="article:tag" content="note">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gitee.com/ZHDreamer/markdown-images/raw/master/images/Snipaste_2021-09-20_14-52-22.png">
+
+
+<link rel="canonical" href="https://zhdreamer.github.io/project/2021/10/03/17-Linked-Lists-Trees/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://zhdreamer.github.io/project/2021/10/03/17-Linked-Lists-Trees/","path":"2021/10/03/17-Linked-Lists-Trees/","title":"17 Linked Lists & Trees"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>17 Linked Lists & Trees | 数字云烟</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">数字云烟</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#linked-list"><span class="nav-number">1.</span> <span class="nav-text">Linked List</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#definition"><span class="nav-number">1.1.</span> <span class="nav-text">Definition</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#creating-linked-list"><span class="nav-number">1.2.</span> <span class="nav-text">Creating Linked List</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#link-class"><span class="nav-number">1.3.</span> <span class="nav-text">Link Class</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#processing-linked-lists"><span class="nav-number">2.</span> <span class="nav-text">Processing Linked Lists</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#sum"><span class="nav-number">2.1.</span> <span class="nav-text">Sum</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#display"><span class="nav-number">2.2.</span> <span class="nav-text">Display</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#map"><span class="nav-number">2.3.</span> <span class="nav-text">Map</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mutating-linked-lists"><span class="nav-number">3.</span> <span class="nav-text">Mutating Linked Lists</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#map-v2"><span class="nav-number">3.1.</span> <span class="nav-text">Map v2</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#tree-class"><span class="nav-number">4.</span> <span class="nav-text">Tree Class</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-overview">
+            <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">ZHDreamer</p>
+  <div class="site-description" itemprop="description">一位完美主义偏执狂的博客</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">20</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://zhdreamer.github.io/project/2021/10/03/17-Linked-Lists-Trees/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ZHDreamer">
+      <meta itemprop="description" content="一位完美主义偏执狂的博客">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="数字云烟">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          17 Linked Lists & Trees
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-10-03 13:13:16" itemprop="dateCreated datePublished" datetime="2021-10-03T13:13:16+08:00">2021-10-03</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/SICP/" itemprop="url" rel="index"><span itemprop="name">SICP</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/SICP/CS61-A/" itemprop="url" rel="index"><span itemprop="name">CS61-A</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="linked-list">Linked List</h2>
+<h3 id="definition">Definition</h3>
+<p>A linked list is either:</p>
+<ul>
+<li>empty</li>
+<li>Composed of a first element and the rest of the linked list</li>
+</ul>
+<p><img src="https://gitee.com/ZHDreamer/markdown-images/raw/master/images/Snipaste_2021-09-20_14-52-22.png" /></p>
+<span id="more"></span>
+<h3 id="creating-linked-list">Creating Linked List</h3>
+<p>We’ll define a linked list recursively by making a constructor that takes in a first and rest value</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Link(<span class="number">1</span> , rest)</span><br><span class="line">Link(<span class="number">1</span> , Link(<span class="number">2</span>, rest))</span><br><span class="line">Link(<span class="number">1</span> , Link(<span class="number">2</span>, Link(<span class="number">3</span>, empty)))</span><br></pre></td></tr></table></figure>
+<h3 id="link-class">Link Class</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Link</span>:</span></span><br><span class="line">    empty = ()</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, first, rest=empty</span>):</span></span><br><span class="line">        <span class="keyword">assert</span> rest <span class="keyword">is</span> Link.empty <span class="keyword">or</span> <span class="built_in">isinstance</span>(rest, Link)</span><br><span class="line">        self.first = first</span><br><span class="line">        self.rest = rest</span><br></pre></td></tr></table></figure>
+<h2 id="processing-linked-lists">Processing Linked Lists</h2>
+<h3 id="sum">Sum</h3>
+<p>Goal: Given a linked list , return the sum of all elements in the linked list</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">sum_link</span>(<span class="params">lnk</span>):</span></span><br><span class="line">    <span class="comment"># if lnk.rest is Link.empty:</span></span><br><span class="line">    <span class="comment">#    return lnk.first</span></span><br><span class="line">    <span class="comment"># if lnk is Link.empty, it will rasie an error</span></span><br><span class="line">    <span class="keyword">if</span> lnk <span class="keyword">is</span> Link.empty:</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">    <span class="keyword">return</span> lnk.first + sum_link(lnk.rest)</span><br></pre></td></tr></table></figure>
+<h3 id="display">Display</h3>
+<p>Goal: Given a linked list, return a string representing the elements in the linked list</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">display_link</span>(<span class="params">lnk</span>):</span></span><br><span class="line">    string = <span class="string">&quot;&lt; &quot;</span></span><br><span class="line">    <span class="keyword">while</span> lnk <span class="keyword">is</span> <span class="keyword">not</span> Link.empty:</span><br><span class="line">        string += <span class="built_in">str</span>(lnk.first) + <span class="string">&quot; &quot;</span></span><br><span class="line">        lnk = lnk.rest</span><br><span class="line">    <span class="keyword">return</span> sting + <span class="string">&quot;&gt;&quot;</span></span><br></pre></td></tr></table></figure>
+<h3 id="map">Map</h3>
+<p>Goal: Given a linked list, and a one argument function, f, return a new linked list obtained from applying f to each element of list</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">map_link</span>(<span class="params">lnk, func</span>):</span></span><br><span class="line">    <span class="keyword">if</span> lnk <span class="keyword">is</span> Link.empty:</span><br><span class="line">        <span class="keyword">return</span> Link.empty</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> Link(func(lnk.first), map_lnk(lnk.rest, func))</span><br></pre></td></tr></table></figure>
+<h2 id="mutating-linked-lists">Mutating Linked Lists</h2>
+<h3 id="map-v2">Map v2</h3>
+<p>Goal: Given a linked list,and a one argument function, f, mutate the linked list by applying f to each element.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">map_link</span>(<span class="params">lnk, func</span>):</span></span><br><span class="line">    <span class="keyword">while</span> lnk <span class="keyword">is</span> <span class="keyword">not</span> Link.empty:</span><br><span class="line">        lnk.first = func(lnk.first)</span><br><span class="line">        lnk = lnk.rest</span><br></pre></td></tr></table></figure>
+<h2 id="tree-class">Tree Class</h2>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Tree</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, label, branches=[]</span>):</span></span><br><span class="line">        <span class="keyword">for</span> b <span class="keyword">in</span> branches:</span><br><span class="line">            <span class="keyword">assert</span> <span class="built_in">isinstance</span>(b, Tree)</span><br><span class="line">            self.label = label</span><br><span class="line">            self.branches = branches</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">is_leaf</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">not</span> self.branches</span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/note/" rel="tag"><i class="fa fa-tag"></i> note</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/10/03/16-Inheritance/" rel="prev" title="16 Inheritance">
+                  <i class="fa fa-chevron-left"></i> 16 Inheritance
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ZHDreamer</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">41k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">37 分钟</span>
+  </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-mml-chtml.js","integrity":"sha256-r+3itOMtGGjap0x+10hu6jW/gZCzxHsoKrOd7gyRSGY="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>
