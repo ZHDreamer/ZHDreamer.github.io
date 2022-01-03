@@ -1,6 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>02 Function</title>
+    <url>/2021/07/08/02-Function/</url>
+    <content><![CDATA[<h2 id="expressions">Expressions</h2>
+<h3 id="primitive-expressions">Primitive Expressions</h3>
+<p>numbers, strings and names</p>
+<h3 id="arithmetic-expressions">Arithmetic Expressions</h3>
+<p>like 1 + 2 or 15 // 3</p>
+<h3 id="call-expressions">Call Expressions</h3>
+<p>like add(3, 4)</p>
+<h3 id="nested-call-expressions">Nested Call Expressions</h3>
+<p><img src="https://gitee.com/ZHDreamer/markdown-images/raw/master/images/Snipaste_2021-07-08_18-05-23.png" /></p>
+<span id="more"></span>
+<h2 id="values">Values</h2>
+<p>Expressions evaluate to values in one or more steps</p>
+<ul>
+<li>Primitive expression's value is itself</li>
+<li>Arithmetic expression's value is the result</li>
+<li>Call expression's value is the return value</li>
+</ul>
+<h2 id="names">Names</h2>
+<p>Values can be assigned to <strong>names</strong> to make referring to them easier.</p>
+<p>A name can only be bound to a single value.</p>
+<p>One way to introduce a new name in a program is with an <strong>assignment statement</strong>.</p>
+<p><code>x = 1 +2 *3 -4 // 5</code></p>
+<p>assignment statement like <code>x,y = 1,2</code> called <strong>parallel statement</strong> or <strong>multiple statement</strong></p>
+<h3 id="executing-an-assignment-statement">Executing an assignment statement</h3>
+<ol type="1">
+<li><strong>Evaluate</strong> the expression to the right of =</li>
+<li><strong>Bind</strong> the value of the expression to the name to the left of = in the current environment.</li>
+</ol>
+<p>When bind is done, the value of a name is invariable until rebind. Changing the other variable won't automatically sync the other variable.</p>
+<h2 id="functions">Functions</h2>
+<p><strong>Functions</strong> allow us to abstract away entire expressions and sequences of computation just in one call expression.</p>
+<p>It take in some input (<strong>arguments</strong>) and transform it into an output (<strong>return values</strong>).</p>
+<p>To create a functions use def statements.</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> &lt;<span class="title">name</span>&gt; (<span class="params">[parameters]</span>):</span></span><br><span class="line">	<span class="keyword">return</span> &lt;<span class="keyword">return</span> expression&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="execution-rule-for-def-statements">Execution Rule For Def Statements</h3>
+<ol type="1">
+<li>Create a function with signature <code>&lt;name&gt; ([parameters])</code></li>
+<li>Set the body of that function to be everything indented after the first line</li>
+<li>Bind <code>&lt;name&gt;</code> to that function in the current frame</li>
+</ol>
+<p>def statements are a type of assignment that bind names to function values.</p>
+<p>When you evaluate the name of function, you will get a function value back.</p>
+<h3 id="calling-user-defined-functions">Calling User-Defined Functions</h3>
+<ol type="1">
+<li>Create a new <strong>environment frame</strong></li>
+<li>Bind the function's parameters to its arguments in that frame</li>
+<li>Execute the body of the function in the new environment</li>
+</ol>
+<p>Creating new frame only after evaluate the operator and operand subexpressions.</p>
+]]></content>
+      <categories>
+        <category>SICP</category>
+        <category>CS61-A</category>
+      </categories>
+      <tags>
+        <tag>note</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>01 Intro</title>
     <url>/2021/07/07/01-Intro/</url>
     <content><![CDATA[<h2 id="学习cs-61a个人体会">学习CS-61A个人体会</h2>
@@ -14,6 +75,47 @@
 <h3 id="资料丰富">资料丰富</h3>
 <p>61A的课程资料是对外公开的，所以即便不是伯克利的学生也可以运用课程资料自学，作业也可以用自带的python ok来检测，只需加上<code>--local</code>就可以不用填写邮箱，GitHub上也有人上传了作业代码，包括我也上传了我的版本，所以上课和写作业的过程是非常顺畅的。</p>
 <p>未完待续</p>
+]]></content>
+      <categories>
+        <category>SICP</category>
+        <category>CS61-A</category>
+      </categories>
+      <tags>
+        <tag>note</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>04 Environment Diagrams</title>
+    <url>/2021/07/09/04-Environment-Diagrams/</url>
+    <content><![CDATA[<p>A visual tool to keep track of bindings &amp; state of a computer program</p>
+<p>They are helpful for debugging.</p>
+<h2 id="frames">Frames</h2>
+<p>A <strong>frame</strong> keeps track of variable-to-value bindings. Every call expression has a corresponding frame.</p>
+<h3 id="global-frame">Global frame</h3>
+<p><strong>Global frame</strong> is the starting frame.</p>
+<ul>
+<li>It doesn't correspond to a specific call expression.</li>
+</ul>
+<h3 id="parent-frames">Parent frames</h3>
+<ul>
+<li>The parent of a function is the frame in which <strong>it was defined</strong></li>
+<li>If you can't find a variable in the current frame, you check it's parent frame, and so on. If you can't find the variable, <code>NameError</code>.</li>
+</ul>
+<span id="more"></span>
+<h2 id="local-names">Local Names</h2>
+<p>Variable Lookup:</p>
+<ol type="1">
+<li>Lookup name in the current frame</li>
+<li>Lookup name in parent frame, its parent frame, and so on</li>
+<li>Stop at the global frame</li>
+<li>If not found, an error is thrown</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">f</span>(<span class="params">x, y</span>):</span></span><br><span class="line">    <span class="keyword">return</span> g(x)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">g</span>(<span class="params">z</span>):</span></span><br><span class="line">    <span class="keyword">return</span> z + x</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">result = f(<span class="number">5</span>, <span class="number">10</span>)</span><br></pre></td></tr></table></figure>
+<p>When call g, g's parent frame is Global. So name x will not be found, and python will throw an error.</p>
+<h2 id="lambda-expression">Lambda Expression</h2>
+<p>Expression that evaluate to functions</p>
+<p><img src="https://gitee.com/ZHDreamer/markdown-images/raw/master/images/Snipaste_2021-08-13_22-01-53.png" /></p>
+<p> </p>
 ]]></content>
       <categories>
         <category>SICP</category>
@@ -86,108 +188,6 @@
 <li>Evaluate the header’s expression</li>
 <li>If it is a true value, execute the (whole) suite, then return to step 1</li>
 </ol>
-]]></content>
-      <categories>
-        <category>SICP</category>
-        <category>CS61-A</category>
-      </categories>
-      <tags>
-        <tag>note</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>02 Function</title>
-    <url>/2021/07/08/02-Function/</url>
-    <content><![CDATA[<h2 id="expressions">Expressions</h2>
-<h3 id="primitive-expressions">Primitive Expressions</h3>
-<p>numbers, strings and names</p>
-<h3 id="arithmetic-expressions">Arithmetic Expressions</h3>
-<p>like 1 + 2 or 15 // 3</p>
-<h3 id="call-expressions">Call Expressions</h3>
-<p>like add(3, 4)</p>
-<h3 id="nested-call-expressions">Nested Call Expressions</h3>
-<p><img src="https://gitee.com/ZHDreamer/markdown-images/raw/master/images/Snipaste_2021-07-08_18-05-23.png" /></p>
-<span id="more"></span>
-<h2 id="values">Values</h2>
-<p>Expressions evaluate to values in one or more steps</p>
-<ul>
-<li>Primitive expression's value is itself</li>
-<li>Arithmetic expression's value is the result</li>
-<li>Call expression's value is the return value</li>
-</ul>
-<h2 id="names">Names</h2>
-<p>Values can be assigned to <strong>names</strong> to make referring to them easier.</p>
-<p>A name can only be bound to a single value.</p>
-<p>One way to introduce a new name in a program is with an <strong>assignment statement</strong>.</p>
-<p><code>x = 1 +2 *3 -4 // 5</code></p>
-<p>assignment statement like <code>x,y = 1,2</code> called <strong>parallel statement</strong> or <strong>multiple statement</strong></p>
-<h3 id="executing-an-assignment-statement">Executing an assignment statement</h3>
-<ol type="1">
-<li><strong>Evaluate</strong> the expression to the right of =</li>
-<li><strong>Bind</strong> the value of the expression to the name to the left of = in the current environment.</li>
-</ol>
-<p>When bind is done, the value of a name is invariable until rebind. Changing the other variable won't automatically sync the other variable.</p>
-<h2 id="functions">Functions</h2>
-<p><strong>Functions</strong> allow us to abstract away entire expressions and sequences of computation just in one call expression.</p>
-<p>It take in some input (<strong>arguments</strong>) and transform it into an output (<strong>return values</strong>).</p>
-<p>To create a functions use def statements.</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> &lt;<span class="title">name</span>&gt; (<span class="params">[parameters]</span>):</span></span><br><span class="line">	<span class="keyword">return</span> &lt;<span class="keyword">return</span> expression&gt;</span><br></pre></td></tr></table></figure>
-<h3 id="execution-rule-for-def-statements">Execution Rule For Def Statements</h3>
-<ol type="1">
-<li>Create a function with signature <code>&lt;name&gt; ([parameters])</code></li>
-<li>Set the body of that function to be everything indented after the first line</li>
-<li>Bind <code>&lt;name&gt;</code> to that function in the current frame</li>
-</ol>
-<p>def statements are a type of assignment that bind names to function values.</p>
-<p>When you evaluate the name of function, you will get a function value back.</p>
-<h3 id="calling-user-defined-functions">Calling User-Defined Functions</h3>
-<ol type="1">
-<li>Create a new <strong>environment frame</strong></li>
-<li>Bind the function's parameters to its arguments in that frame</li>
-<li>Execute the body of the function in the new environment</li>
-</ol>
-<p>Creating new frame only after evaluate the operator and operand subexpressions.</p>
-]]></content>
-      <categories>
-        <category>SICP</category>
-        <category>CS61-A</category>
-      </categories>
-      <tags>
-        <tag>note</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>04 Environment Diagrams</title>
-    <url>/2021/07/09/04-Environment-Diagrams/</url>
-    <content><![CDATA[<p>A visual tool to keep track of bindings &amp; state of a computer program</p>
-<p>They are helpful for debugging.</p>
-<h2 id="frames">Frames</h2>
-<p>A <strong>frame</strong> keeps track of variable-to-value bindings. Every call expression has a corresponding frame.</p>
-<h3 id="global-frame">Global frame</h3>
-<p><strong>Global frame</strong> is the starting frame.</p>
-<ul>
-<li>It doesn't correspond to a specific call expression.</li>
-</ul>
-<h3 id="parent-frames">Parent frames</h3>
-<ul>
-<li>The parent of a function is the frame in which <strong>it was defined</strong></li>
-<li>If you can't find a variable in the current frame, you check it's parent frame, and so on. If you can't find the variable, <code>NameError</code>.</li>
-</ul>
-<span id="more"></span>
-<h2 id="local-names">Local Names</h2>
-<p>Variable Lookup:</p>
-<ol type="1">
-<li>Lookup name in the current frame</li>
-<li>Lookup name in parent frame, its parent frame, and so on</li>
-<li>Stop at the global frame</li>
-<li>If not found, an error is thrown</li>
-</ol>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">f</span>(<span class="params">x, y</span>):</span></span><br><span class="line">    <span class="keyword">return</span> g(x)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">g</span>(<span class="params">z</span>):</span></span><br><span class="line">    <span class="keyword">return</span> z + x</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">result = f(<span class="number">5</span>, <span class="number">10</span>)</span><br></pre></td></tr></table></figure>
-<p>When call g, g's parent frame is Global. So name x will not be found, and python will throw an error.</p>
-<h2 id="lambda-expression">Lambda Expression</h2>
-<p>Expression that evaluate to functions</p>
-<p><img src="https://gitee.com/ZHDreamer/markdown-images/raw/master/images/Snipaste_2021-08-13_22-01-53.png" /></p>
-<p> </p>
 ]]></content>
       <categories>
         <category>SICP</category>
@@ -433,6 +433,50 @@
       </tags>
   </entry>
   <entry>
+    <title>11 Mutable Sequences</title>
+    <url>/2021/08/11/11-Mutable-Sequences/</url>
+    <content><![CDATA[<p>本质上用+、切片得到的列表都是浅复制的新列表，是将列表视为immutable的</p>
+<h2 id="mutation-operations">Mutation Operations</h2>
+<h5 id="use-index-to-change-value">Use index to change value</h5>
+<p><code>lst[0] = 0</code></p>
+<h4 id="list-mutation">List Mutation</h4>
+<p><code>append(el)</code>: adds el to the end of the list</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>lst = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>lst.append(<span class="number">6</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>lst</span><br><span class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>]</span><br></pre></td></tr></table></figure>
+<span id="more"></span>
+<p><code>insert(i, el)</code>: inserts el at index i</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>lst = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>lst.insert(<span class="number">2</span>, <span class="number">2.5</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>lst</span><br><span class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">2.5</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]</span><br></pre></td></tr></table></figure>
+<p><code>extend(seq)</code>: adds elements in seq one by one to the end of the list</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>lst = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>lst.extend([<span class="number">4</span>, <span class="number">5</span>])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>lst</span><br><span class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]</span><br></pre></td></tr></table></figure>
+<p><code>remove(el)</code>: removes the first occurrence of el from the list</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>lst = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">2</span>, <span class="number">5</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>lst.remove(<span class="number">2</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>lst</span><br><span class="line">[<span class="number">1</span>, <span class="number">3</span>, <span class="number">2</span>, <span class="number">5</span>]</span><br></pre></td></tr></table></figure>
+<p><code>pop(i)</code>: removes <em>and returns</em> the element at index i</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>lst = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>lst.pop(<span class="number">3</span>)</span><br><span class="line"><span class="number">4</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>lst</span><br><span class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">5</span>]</span><br></pre></td></tr></table></figure>
+<h4 id="dictionaries-mutation">Dictionaries Mutation</h4>
+<p>The keys of dictionary must be immutable</p>
+<h2 id="immutable-values">Immutable Values</h2>
+<ul>
+<li>Strings</li>
+<li>Tuples</li>
+</ul>
+<h2 id="mutating-in-functions">Mutating in Functions</h2>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="function"><span class="keyword">def</span> <span class="title">mystery</span>(<span class="params">lst</span>):</span> <span class="comment"># mutative function</span></span><br><span class="line"><span class="meta">... </span>    lst.pop()</span><br><span class="line"><span class="meta">... </span>    lst.pop()</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>four = [<span class="number">4</span>, <span class="number">4</span>, <span class="number">4</span>, <span class="number">4</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>mystery(four)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>four</span><br><span class="line">[<span class="number">4</span>, <span class="number">4</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="function"><span class="keyword">def</span> <span class="title">mystery2</span>(<span class="params">x</span>):</span> <span class="comment"># mutative function</span></span><br><span class="line"><span class="meta">... </span>    lst.append(x)</span><br><span class="line"><span class="meta">... </span>    lst.append(x)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>lst = [<span class="number">4</span>, <span class="number">4</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>mystery2(<span class="number">5</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>lst</span><br><span class="line">[<span class="number">4</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">5</span>]</span><br></pre></td></tr></table></figure>
+<p>When you use mutation within functions, it will operate the variables itself. Outside the functions, the variables change as well.</p>
+<h2 id="identity-versus-equality">Identity Versus Equality</h2>
+<h4 id="identity">Identity</h4>
+<p><code>&lt;expr0&gt; is&lt;expr1&gt;</code></p>
+<p>evaluates to True if both<code>&lt;expr0&gt;</code>and<code>&lt;expr1&gt;</code>evaluate to <strong>the</strong> <strong>same object</strong> (same memory address)</p>
+<h4 id="equality">Equality</h4>
+<p><code>&lt;expr0&gt; == &lt;expr1&gt;</code> evaluates to True if both <code>&lt;expr0&gt;</code>and <code>&lt;expr1&gt;</code>evaluates to <strong>equal values</strong></p>
+]]></content>
+      <categories>
+        <category>SICP</category>
+        <category>CS61-A</category>
+      </categories>
+      <tags>
+        <tag>note</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>12 Mutable Functions &amp; Growth</title>
     <url>/2021/08/17/12-Mutable-Functions-Growth/</url>
     <content><![CDATA[<h2 id="mutable-functions">Mutable Functions</h2>
@@ -498,40 +542,449 @@
       </tags>
   </entry>
   <entry>
-    <title>11 Mutable Sequences</title>
-    <url>/2021/08/11/11-Mutable-Sequences/</url>
-    <content><![CDATA[<p>本质上用+、切片得到的列表都是浅复制的新列表，是将列表视为immutable的</p>
-<h2 id="mutation-operations">Mutation Operations</h2>
-<h5 id="use-index-to-change-value">Use index to change value</h5>
-<p><code>lst[0] = 0</code></p>
-<h4 id="list-mutation">List Mutation</h4>
-<p><code>append(el)</code>: adds el to the end of the list</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>lst = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>lst.append(<span class="number">6</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>lst</span><br><span class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>]</span><br></pre></td></tr></table></figure>
-<span id="more"></span>
-<p><code>insert(i, el)</code>: inserts el at index i</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>lst = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>lst.insert(<span class="number">2</span>, <span class="number">2.5</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>lst</span><br><span class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">2.5</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]</span><br></pre></td></tr></table></figure>
-<p><code>extend(seq)</code>: adds elements in seq one by one to the end of the list</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>lst = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>lst.extend([<span class="number">4</span>, <span class="number">5</span>])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>lst</span><br><span class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]</span><br></pre></td></tr></table></figure>
-<p><code>remove(el)</code>: removes the first occurrence of el from the list</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>lst = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">2</span>, <span class="number">5</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>lst.remove(<span class="number">2</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>lst</span><br><span class="line">[<span class="number">1</span>, <span class="number">3</span>, <span class="number">2</span>, <span class="number">5</span>]</span><br></pre></td></tr></table></figure>
-<p><code>pop(i)</code>: removes <em>and returns</em> the element at index i</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>lst = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>lst.pop(<span class="number">3</span>)</span><br><span class="line"><span class="number">4</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>lst</span><br><span class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">5</span>]</span><br></pre></td></tr></table></figure>
-<h4 id="dictionaries-mutation">Dictionaries Mutation</h4>
-<p>The keys of dictionary must be immutable</p>
-<h2 id="immutable-values">Immutable Values</h2>
+    <title>15 Objects</title>
+    <url>/2021/09/07/15-Objects/</url>
+    <content><![CDATA[<h2 id="classes">Classes</h2>
 <ul>
-<li>Strings</li>
-<li>Tuples</li>
+<li><p>Every object is an <strong>instance</strong> of a <strong>class</strong></p></li>
+<li><p>A class is a <strong>type</strong> or category of objects</p></li>
+<li><p>A class serves as a blueprint for its instances</p></li>
 </ul>
-<h2 id="mutating-in-functions">Mutating in Functions</h2>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="function"><span class="keyword">def</span> <span class="title">mystery</span>(<span class="params">lst</span>):</span> <span class="comment"># mutative function</span></span><br><span class="line"><span class="meta">... </span>    lst.pop()</span><br><span class="line"><span class="meta">... </span>    lst.pop()</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>four = [<span class="number">4</span>, <span class="number">4</span>, <span class="number">4</span>, <span class="number">4</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>mystery(four)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>four</span><br><span class="line">[<span class="number">4</span>, <span class="number">4</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="function"><span class="keyword">def</span> <span class="title">mystery2</span>(<span class="params">x</span>):</span> <span class="comment"># mutative function</span></span><br><span class="line"><span class="meta">... </span>    lst.append(x)</span><br><span class="line"><span class="meta">... </span>    lst.append(x)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>lst = [<span class="number">4</span>, <span class="number">4</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>mystery2(<span class="number">5</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>lst</span><br><span class="line">[<span class="number">4</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">5</span>]</span><br></pre></td></tr></table></figure>
-<p>When you use mutation within functions, it will operate the variables itself. Outside the functions, the variables change as well.</p>
-<h2 id="identity-versus-equality">Identity Versus Equality</h2>
-<h4 id="identity">Identity</h4>
-<p><code>&lt;expr0&gt; is&lt;expr1&gt;</code></p>
-<p>evaluates to True if both<code>&lt;expr0&gt;</code>and<code>&lt;expr1&gt;</code>evaluate to <strong>the</strong> <strong>same object</strong> (same memory address)</p>
-<h4 id="equality">Equality</h4>
-<p><code>&lt;expr0&gt; == &lt;expr1&gt;</code> evaluates to True if both <code>&lt;expr0&gt;</code>and <code>&lt;expr1&gt;</code>evaluates to <strong>equal values</strong></p>
+<p><img src="https://gitee.com/ZHDreamer/markdown-images/raw/master/images/Snipaste_2021-09-03_23-40-56.png" /></p>
+<span id="more"></span>
+<h3 id="the-class-statement">The Class Statement</h3>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> &lt;<span class="title">name</span>&gt;:</span></span><br><span class="line">    &lt;suite&gt;</span><br></pre></td></tr></table></figure>
+<p>Assignment &amp; def statements in the Class Statement create class attributes.</p>
+<p>When a class is called:</p>
+<ol type="1">
+<li>A new instance of that class is created.</li>
+<li>The <code>init</code> method of a class is called with the new object as its first argument (named self), along with additional arguments provided in the call expression.</li>
+</ol>
+<h3 id="dot-expressions">Dot Expressions</h3>
+<p>You can access class or instance attributes with dot notation.</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">&lt;expression&gt;.&lt;name&gt;</span><br></pre></td></tr></table></figure>
+<p>The<code>&lt;expression&gt;</code>can be any valid Python expression that evaluates to a <strong>class</strong> or <strong>instance</strong>. The <code>&lt;name&gt;</code>must be an <strong>attribute</strong> or a <strong>method</strong>.</p>
+<h4 id="evaluation-of-dot-expressions">Evaluation of Dot Expressions</h4>
+<ol type="1">
+<li>Evaluate the <code>&lt;expression&gt;</code> to the left of the dot, which yields the object of the dot expression.</li>
+<li><code>&lt;method_name&gt;</code> is matched against the instance attributes of that object; if an attribute with that name exists, its value is returned.</li>
+<li>If not, <code>&lt;method_name&gt;</code> is looked up in the class, which yields a class attribute value.</li>
+<li>That value is returned unless it is a function, in which case a bound method is returned instead.</li>
+</ol>
+<h4 id="assigning-attributes">Assigning Attributes</h4>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">&lt;expression&gt;.&lt;name&gt; = &lt;value&gt;</span><br></pre></td></tr></table></figure>
+<p><strong>If the expression evaluates to an instance</strong>: then assignment sets an instance attribute, <strong>even if it exists in the class</strong>.</p>
+<p><strong>If the expression evaluates to a class</strong>: then assignment sets a class attribute.</p>
+<h3 id="object-identity">Object Identity</h3>
+<p>Every object that is an instance of a user-defined class has a unique identity</p>
+<p>Binding an object to a new name using assignment <strong>does not create a new object</strong></p>
+<h3 id="methods-and-functions">Methods and Functions</h3>
+<p><strong>Methods</strong> are functions defined in the suite of a class statement.</p>
+<p>However methods that are accessed through an instance will be bound methods. <strong>Bound methods</strong> couple together a function and the object on which that method will be invoked. This means that when we invoke bound methods, the instance is automatically passed in as the first argument.</p>
+<h3 id="invoking-methods">Invoking Methods</h3>
+<p>We can call class methods in two ways: as a bound method and as a function.</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Invoking class methods as a bound method:</span></span><br><span class="line"><span class="comment"># Bound methods are accessed through the instance </span></span><br><span class="line"><span class="comment"># and implicitly pass the instance object in as the first argument of the method.</span></span><br><span class="line">&lt;instance&gt;.&lt;method_name&gt;(&lt;arguments&gt;)</span><br><span class="line"><span class="comment"># Invoking class methods as functions:</span></span><br><span class="line"><span class="comment"># We can use the class name to directly call a method. </span></span><br><span class="line"><span class="comment"># These follow our typical function call rules and nothing is implicitly passed in.</span></span><br><span class="line">&lt;class_name&gt;.&lt;method_name&gt;(&lt;instance&gt;, &lt;arguments&gt;)</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>SICP</category>
+        <category>CS61-A</category>
+      </categories>
+      <tags>
+        <tag>note</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>13 Iterators &amp; Generators</title>
+    <url>/2021/08/31/13-Iterators-Generators/</url>
+    <content><![CDATA[<h2 id="iterators">Iterators</h2>
+<h3 id="definitions">Definitions</h3>
+<h4 id="lazy-evaluation">Lazy evaluation</h4>
+<p>Delays evaluation of an expression until its value is needed.</p>
+<h4 id="iterable">Iterable</h4>
+<p>An object capable of returning its members one at a time. Examples include all sequences (lists, strings, tuples) and some non-sequence types (dictionaries).</p>
+<h4 id="iterator">Iterator</h4>
+<p>An object that provides sequential access to values, one by one.</p>
+<ul>
+<li>All iterators are iterable. Not all iterable are iterators</li>
+</ul>
+<span id="more"></span>
+<h3 id="how-to-create-iterators">How to create iterators?</h3>
+<p><code>iter(iterable)</code>: Return an iterator over the elements of an iterable value.</p>
+<ul>
+<li>This method creates a bookmark from a book starting at the front.</li>
+</ul>
+<p><code>next(iterator)</code>: Return the next element in an iterator.</p>
+<ul>
+<li>Returns the current page and moves the bookmark to the next page.</li>
+<li>The iterator remembers where you left off. If the current page is the end of the book, error.</li>
+</ul>
+<p>When you change the iterable mutably, the corresponding <code>next(iterator)</code> will return changed value.</p>
+<h2 id="exceptions-errors">Exceptions / Errors</h2>
+<p>Sometimes, computer programs behave in non-standard ways</p>
+<ul>
+<li>A function receives a argument value of an improper type</li>
+<li>Some resources (such as a file) is not available</li>
+<li>A network connection is lost in the middle of data transmission</li>
+</ul>
+<h3 id="raise-exceptions">Raise Exceptions</h3>
+<p><code>raise &lt;expression&gt;</code></p>
+<p><code>&lt;expression&gt;</code> must be an Exception, which is created like so:</p>
+<ul>
+<li><p><code>TypeError</code> -- A function was passed the wrong number/type of argument</p></li>
+<li><p><code>NameError</code> -- A name wasn’t found</p></li>
+<li><p><code>KeyError</code> -- A key wasn’t found in a dictionary</p></li>
+<li><p><code>RuntimeError</code> -- Catch-all for troubles during interpretation</p></li>
+</ul>
+<h3 id="try-statements">Try Statements</h3>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Try:</span><br><span class="line">    &lt;try suite&gt;</span><br><span class="line">except &lt;exception class&gt; as &lt;name&gt;:</span><br><span class="line">    &lt;except suite&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="execution-rule">Execution Rule</h4>
+<ol type="1">
+<li>The<code>&lt;try suite&gt;</code>is executed first</li>
+<li>If, during the course of executing the <code>&lt;try suite&gt;</code>, an exception is raised that is not handled otherwise</li>
+<li>then the <code>&lt;except suite&gt;</code> is executed with <code>&lt;name&gt;</code> bound to the exception</li>
+</ol>
+<h3 id="the-for-statement">The For Statement</h3>
+<ol type="1">
+<li>Evaluate the header <expression>, which must evaluate to an iterable object.</li>
+<li>For each element in that sequence, in order:</li>
+<li>Bind <name> to that element in the first frame of the current environment</li>
+<li>Execute the <suite></li>
+</ol>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">counts = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line"><span class="keyword">for</span> item <span class="keyword">in</span> counts:</span><br><span class="line">    <span class="built_in">print</span>(item)</span><br><span class="line"><span class="comment"># the for statement is equal to</span></span><br><span class="line">items = <span class="built_in">iter</span>(counts)</span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        item = <span class="built_in">next</span>(items)</span><br><span class="line">        <span class="built_in">print</span>(item)</span><br><span class="line"><span class="keyword">except</span> StopIteration:</span><br><span class="line">    <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
+<h2 id="generators">Generators</h2>
+<h3 id="definitions-and-rules">Definitions and Rules</h3>
+<p>Some definitions:</p>
+<ul>
+<li>Generator: An iterator created automatically by calling a generator function.</li>
+<li>Generator function: A function that contains the keyword yield anywhere in the body.</li>
+</ul>
+<p>When a generator function is called, it returns a generator <strong>instead of</strong> going into the body of the function. The only way to go into the body of a generator function is by calling <strong>next</strong> on the returned generator.</p>
+<p>Yielding values are the same as returning values except yield remembers where it left off.</p>
+<h3 id="generators-and-generator-functions">Generators and Generator Functions</h3>
+<p>We are allowed to call next on generators because <strong>generators are a type of iterator.</strong></p>
+<p>Calling next on a generator goes into the function and evaluates to the <strong>first yield statement</strong>. The next time we call next on that generator, it <strong>resumes</strong> where it left off (just like calling next on any iterator!)</p>
+<p>Once the generator hits a return statement, it raises a <code>StopIteration</code></p>
+<h3 id="generators-to-represent-infinity-sequences">Generators to Represent Infinity Sequences</h3>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">naturals</span>():</span></span><br><span class="line">    x = <span class="number">0</span></span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        <span class="keyword">yield</span> x</span><br><span class="line">        x += <span class="number">1</span></span><br></pre></td></tr></table></figure>
+<h3 id="generators-can-yield-from-iterators">Generators can Yield From Iterators</h3>
+<p>A <code>yield from</code> statement yields all values from an iterable.</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">countdown</span>(<span class="params">k</span>):</span></span><br><span class="line">	<span class="keyword">if</span> k == <span class="number">0</span>:</span><br><span class="line">		<span class="keyword">yield</span> <span class="string">&#x27;Blast off&#x27;</span></span><br><span class="line">	<span class="keyword">else</span>:</span><br><span class="line">		<span class="keyword">yield</span> k</span><br><span class="line">		<span class="keyword">yield</span> <span class="keyword">from</span> countdown(k-<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>SICP</category>
+        <category>CS61-A</category>
+      </categories>
+      <tags>
+        <tag>note</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>16 Inheritance</title>
+    <url>/2021/10/03/16-Inheritance/</url>
+    <content><![CDATA[<h2 id="inheritance">Inheritance</h2>
+<h3 id="relationship-of-classes">Relationship of Classes</h3>
+<p>Some classes is subclass of others, they have some attributes and methods of their parent, but also have some different or new attributes and methods.</p>
+<h3 id="using-inheritance">Using Inheritance</h3>
+<p>We can implement specialized classes using inheritance!</p>
+<p>The class definition allows us to specify that a new class inherits from a superclass:</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> &lt;<span class="title">Class</span> <span class="title">Name</span>&gt;(<span class="params">&lt;Superclass Name&gt;</span>):</span></span><br><span class="line">    &lt;suite&gt;</span><br></pre></td></tr></table></figure>
+<span id="more"></span>
+<p>We call the more specialized class a <strong>subclass</strong> of the general class and the general class a <strong>superclass</strong> of the specialized class.</p>
+<p>The subclass <strong>inherits</strong> <em>all</em> class attributes of the superclass.</p>
+<p>The subclass can <strong>override</strong> attributes to specify how it is different from the superclass.</p>
+<h3 id="new-dot-expression-rules">New Dot Expression Rules</h3>
+<ol type="1">
+<li>Evaluate <code>&lt;expression&gt;</code>, which yields an object.</li>
+<li><code>&lt;name&gt;</code> is matched against the instance attributes of that object; if an attribute with that name exists, its value is returned.</li>
+<li>If not, the name is looked up in the class, which yields a class attribute value. <strong>If it is not found in the class, look in any superclasses</strong>.</li>
+<li>That value is returned unless it is a function, in which case a bound method is returned instead.</li>
+</ol>
+<h3 id="designing-for-inheritance">Designing for Inheritance</h3>
+<p>Don't repeat yourself</p>
+<p>use existing implementations</p>
+<p>Attributes that have been overridden are still accessible via class objects</p>
+]]></content>
+      <categories>
+        <category>SICP</category>
+        <category>CS61-A</category>
+      </categories>
+      <tags>
+        <tag>note</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>17 Linked Lists &amp; Trees</title>
+    <url>/2021/10/03/17-Linked-Lists-Trees/</url>
+    <content><![CDATA[<h2 id="linked-list">Linked List</h2>
+<h3 id="definition">Definition</h3>
+<p>A linked list is either:</p>
+<ul>
+<li>empty</li>
+<li>Composed of a first element and the rest of the linked list</li>
+</ul>
+<p><img src="https://gitee.com/ZHDreamer/markdown-images/raw/master/images/Snipaste_2021-09-20_14-52-22.png" /></p>
+<span id="more"></span>
+<h3 id="creating-linked-list">Creating Linked List</h3>
+<p>We’ll define a linked list recursively by making a constructor that takes in a first and rest value</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">Link(<span class="number">1</span> , rest)</span><br><span class="line">Link(<span class="number">1</span> , Link(<span class="number">2</span>, rest))</span><br><span class="line">Link(<span class="number">1</span> , Link(<span class="number">2</span>, Link(<span class="number">3</span>, empty)))</span><br></pre></td></tr></table></figure>
+<h3 id="link-class">Link Class</h3>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Link</span>:</span></span><br><span class="line">    empty = ()</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, first, rest=empty</span>):</span></span><br><span class="line">        <span class="keyword">assert</span> rest <span class="keyword">is</span> Link.empty <span class="keyword">or</span> <span class="built_in">isinstance</span>(rest, Link)</span><br><span class="line">        self.first = first</span><br><span class="line">        self.rest = rest</span><br></pre></td></tr></table></figure>
+<h2 id="processing-linked-lists">Processing Linked Lists</h2>
+<h3 id="sum">Sum</h3>
+<p>Goal: Given a linked list , return the sum of all elements in the linked list</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">sum_link</span>(<span class="params">lnk</span>):</span></span><br><span class="line">    <span class="comment"># if lnk.rest is Link.empty:</span></span><br><span class="line">    <span class="comment">#    return lnk.first</span></span><br><span class="line">    <span class="comment"># if lnk is Link.empty, it will rasie an error</span></span><br><span class="line">    <span class="keyword">if</span> lnk <span class="keyword">is</span> Link.empty:</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">    <span class="keyword">return</span> lnk.first + sum_link(lnk.rest)</span><br></pre></td></tr></table></figure>
+<h3 id="display">Display</h3>
+<p>Goal: Given a linked list, return a string representing the elements in the linked list</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">display_link</span>(<span class="params">lnk</span>):</span></span><br><span class="line">    string = <span class="string">&quot;&lt; &quot;</span></span><br><span class="line">    <span class="keyword">while</span> lnk <span class="keyword">is</span> <span class="keyword">not</span> Link.empty:</span><br><span class="line">        string += <span class="built_in">str</span>(lnk.first) + <span class="string">&quot; &quot;</span></span><br><span class="line">        lnk = lnk.rest</span><br><span class="line">    <span class="keyword">return</span> sting + <span class="string">&quot;&gt;&quot;</span></span><br></pre></td></tr></table></figure>
+<h3 id="map">Map</h3>
+<p>Goal: Given a linked list, and a one argument function, f, return a new linked list obtained from applying f to each element of list</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">map_link</span>(<span class="params">lnk, func</span>):</span></span><br><span class="line">    <span class="keyword">if</span> lnk <span class="keyword">is</span> Link.empty:</span><br><span class="line">        <span class="keyword">return</span> Link.empty</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> Link(func(lnk.first), map_lnk(lnk.rest, func))</span><br></pre></td></tr></table></figure>
+<h2 id="mutating-linked-lists">Mutating Linked Lists</h2>
+<h3 id="map-v2">Map v2</h3>
+<p>Goal: Given a linked list,and a one argument function, f, mutate the linked list by applying f to each element.</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">map_link</span>(<span class="params">lnk, func</span>):</span></span><br><span class="line">    <span class="keyword">while</span> lnk <span class="keyword">is</span> <span class="keyword">not</span> Link.empty:</span><br><span class="line">        lnk.first = func(lnk.first)</span><br><span class="line">        lnk = lnk.rest</span><br></pre></td></tr></table></figure>
+<h2 id="tree-class">Tree Class</h2>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Tree</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, label, branches=[]</span>):</span></span><br><span class="line">        <span class="keyword">for</span> b <span class="keyword">in</span> branches:</span><br><span class="line">            <span class="keyword">assert</span> <span class="built_in">isinstance</span>(b, Tree)</span><br><span class="line">            self.label = label</span><br><span class="line">            self.branches = branches</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">is_leaf</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">not</span> self.branches</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>SICP</category>
+        <category>CS61-A</category>
+      </categories>
+      <tags>
+        <tag>note</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>18 Interface</title>
+    <url>/2021/10/03/18-Interface/</url>
+    <content><![CDATA[<p>Describe how you can interact with an object without necessarily implementing it.</p>
+<h2 id="magic-methods">Magic Methods</h2>
+<p>These are specially named methods that are callable outside the ordinary dot notation.</p>
+<p>example:<code>__init__()</code></p>
+<h3 id="str-repr">str &amp; repr</h3>
+<p><img src="https://gitee.com/ZHDreamer/markdown-images/raw/master/images/Snipaste_2021-10-03_14-56-07.png" /></p>
+<p><code>__str__</code> return what would display when <code>print()</code> was called</p>
+<p><img src="https://gitee.com/ZHDreamer/markdown-images/raw/master/images/Snipaste_2021-10-03_14-59-14.png" /></p>
+<p><code>__repr__</code> return what would display in the interpreter</p>
+<span id="more"></span>
+<h3 id="link-repr">Link repr</h3>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">__repr__</span>(<span class="params">self</span>):</span></span><br><span class="line">    <span class="keyword">if</span> self.rest == Link.empty:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27;Link(&#x27;</span> + <span class="built_in">repr</span>(self.first) + <span class="string">&#x27;)&#x27;</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27;Link(&#x27;</span> + <span class="built_in">repr</span>(self.first) + <span class="string">&#x27;, &#x27;</span> + <span class="built_in">repr</span>(self.rest) + <span class="string">&#x27;)&#x27;</span></span><br></pre></td></tr></table></figure>
+<h3 id="link-str">Link str</h3>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">__str__</span>(<span class="params">self</span>):</span></span><br><span class="line">    s = <span class="string">&#x27;&lt;&#x27;</span></span><br><span class="line">    <span class="keyword">while</span> self.rest <span class="keyword">is</span> <span class="keyword">not</span> Link.empty:</span><br><span class="line">        s = s+ <span class="built_in">str</span>(self.first) + <span class="string">&#x27;, &#x27;</span></span><br><span class="line">        self = self.rest</span><br><span class="line">    <span class="keyword">return</span> s + <span class="built_in">str</span>(self.first) + <span class="string">&#x27;&gt;&#x27;</span></span><br></pre></td></tr></table></figure>
+<h3 id="link-eq">Link eq</h3>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># for == statement</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">__eq__</span>(<span class="params">self, other</span>):</span></span><br><span class="line">    <span class="keyword">if</span> self.first == other.first:</span><br><span class="line">        <span class="keyword">return</span> self.rest == other.rest</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">False</span></span><br></pre></td></tr></table></figure>
+<h3 id="link-contains">Link contains</h3>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># for in and not in statement</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">__contains__</span>(<span class="params">self, x</span>):</span></span><br><span class="line">    <span class="keyword">if</span> self.first ==x:</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">    <span class="keyword">return</span> x <span class="keyword">in</span> self.rest</span><br></pre></td></tr></table></figure>
+<h3 id="link-add">Link add</h3>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">__add__</span>(<span class="params">self, other</span>):</span></span><br><span class="line">    <span class="keyword">if</span> self.rest <span class="keyword">is</span> Link.empty:</span><br><span class="line">        <span class="keyword">if</span> other.rest <span class="keyword">is</span> Link.empty:</span><br><span class="line">            <span class="keyword">return</span> Link(self.first, Link(other.first))</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> Link(self.first, Link(other.first) + other.rest)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> Link(self.first, self.rest + other)</span><br></pre></td></tr></table></figure>
+<h3 id="link-mul">Link mul</h3>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">__mul__</span>(<span class="params">self, num</span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    &gt;&gt;&gt; Link(1, Link(2)) * 2</span></span><br><span class="line"><span class="string">    Link(1, Link(2, Link(1, Link(2))))</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    temp = self</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(num):</span><br><span class="line">        temp = tmep + self</span><br><span class="line">    <span class="keyword">return</span> temp</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">__rmul__</span>(<span class="params">self, num</span>):</span></span><br><span class="line">    <span class="comment"># 2 * Link</span></span><br><span class="line">    <span class="keyword">return</span> self * mul</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>SICP</category>
+        <category>CS61-A</category>
+      </categories>
+      <tags>
+        <tag>note</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>19 Scheme</title>
+    <url>/2021/11/14/19-Scheme/</url>
+    <content><![CDATA[<p>Scheme is a older language that was influential in the creation of python. By learning Scheme, we'll see that many of the ideas learned about one programming language easily transfer to another.</p>
+<h3 id="scheme-is-a-dialect-of-lisp">Scheme is a Dialect of Lisp</h3>
+<h3 id="scheme-fundamentals">Scheme Fundamentals</h3>
+<p>scheme programs consist of expression, which can be:</p>
+<ul>
+<li>Primitive expression: 2, 3.3, true, +, quotient, ...</li>
+<li>Combinations: (quotient 10 2), (not true), ...</li>
+</ul>
+<p>Numbers are self-evaluating; symbols are bound to values.</p>
+<p>Call expressions include an operator and 0 or more operands in parentheses.</p>
+<p><strong>In python we put the operator outside the parentheses, and call it function. But in scheme we put it inside the parentheses, and call it procedure.</strong></p>
+<figure class="highlight scheme"><table><tr><td class="code"><pre><span class="line">&gt; (<span class="name"><span class="builtin-name">quotient</span></span> <span class="number">10</span> <span class="number">2</span>)</span><br><span class="line"><span class="number">5</span></span><br><span class="line">&gt; (<span class="name"><span class="builtin-name">quotient</span></span> (<span class="name"><span class="builtin-name">+</span></span> <span class="number">8</span> <span class="number">7</span>) <span class="number">5</span>)</span><br><span class="line"><span class="number">3</span></span><br></pre></td></tr></table></figure>
+<span id="more"></span>
+<h3 id="special-forms">Special Forms</h3>
+<p>A combination that is not a call expression is a special form:</p>
+<ul>
+<li><strong>if</strong> expression: <code>(if &lt;predicate&gt; &lt;consequent&gt; &lt;alternative&gt;)</code></li>
+<li><strong>and</strong> and <strong>or</strong>: <code>(and &lt;e1&gt; ... &lt;en&gt;))</code>, <code>(or &lt;e1&gt; ... &lt;en&gt;)</code></li>
+<li>Specify many conditions: <code>(cond (&lt;pred1&gt; &lt;expr1&gt;) (&lt;pred2&gt; &lt;expr2&gt;) … (else &lt;else-expr&gt;))</code></li>
+<li>Binding symbols: <code>(define &lt;symbol&gt; &lt;expression&gt;)</code></li>
+<li>New procedures: <code>(define (&lt;symbol&gt; &lt;formal parameters&gt;) &lt;body&gt;)</code></li>
+</ul>
+<h3 id="lambda-expression">Lambda Expression</h3>
+<p><code>(lambda (&lt;formal-parameters) &lt;body&gt;)</code></p>
+<p>Two equivalent expression:</p>
+<figure class="highlight scheme"><table><tr><td class="code"><pre><span class="line">(<span class="name"><span class="builtin-name">define</span></span> (<span class="name">plus4</span> x) (<span class="name"><span class="builtin-name">+</span></span> x <span class="number">4</span>))</span><br><span class="line">(<span class="name"><span class="builtin-name">define</span></span> plus4 (<span class="name"><span class="builtin-name">lambda</span></span> (x) (<span class="name"><span class="builtin-name">+</span></span> x <span class="number">4</span>)))</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>SICP</category>
+        <category>CS61-A</category>
+      </categories>
+      <tags>
+        <tag>note</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>20 More Scheme</title>
+    <url>/2022/01/02/20-More-Scheme/</url>
+    <content><![CDATA[<h2 id="scheme-list">Scheme List</h2>
+<h3 id="scheme-list-definition">Scheme List Definition</h3>
+<p>A scheme list is either:</p>
+<ul>
+<li>nil</li>
+<li>composed of a first element (car) and the rest (cdr) of the scheme list</li>
+</ul>
+<p><img src="https://gitee.com/ZHDreamer/markdown-images/raw/master/images/Snipaste_2021-11-14_12-41-56.png" /></p>
+<span id="more"></span>
+<h3 id="creating-scheme-lists">Creating Scheme Lists</h3>
+<p><code>(cons 1 (cons 2 (cons 3 nil)))</code></p>
+<h3 id="checking-equivalence">Checking Equivalence</h3>
+<p><code>(eqial? e1 e2)</code> is like <code>==</code> in Python</p>
+<p><code>(eq? e1 e2)</code> is like <code>is</code> in Python (only matters for lists in scheme)</p>
+<p><code>(= e1 e2)</code> only works for numbers</p>
+<h3 id="list-constructor">List Constructor</h3>
+<p>The list constructor takes in any number of elements and puts each elements a single element in a list.</p>
+<figure class="highlight scheme"><table><tr><td class="code"><pre><span class="line">scm&gt; (<span class="name"><span class="builtin-name">list</span></span> <span class="number">1</span> <span class="number">2</span> <span class="number">3</span>)</span><br><span class="line">(<span class="name">1</span> <span class="number">2</span> <span class="number">3</span>)</span><br><span class="line">scm&gt; (<span class="name"><span class="builtin-name">cons</span></span> <span class="number">1</span> (<span class="name"><span class="builtin-name">cons</span></span> <span class="number">2</span> (<span class="name"><span class="builtin-name">cons</span></span> <span class="number">3</span> nil)))</span><br><span class="line">(<span class="name">1</span> <span class="number">2</span> <span class="number">3</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="quoting">Quoting</h3>
+<p>The quote special form takes in a single argument and returns an <strong>unevaluated</strong> version of the argument.</p>
+<figure class="highlight scheme"><table><tr><td class="code"><pre><span class="line">scm&gt; <span class="symbol">&#x27;a</span></span><br><span class="line">a</span><br><span class="line">scm&gt; (<span class="name"><span class="builtin-name">define</span></span> a &#x27;(<span class="number">1</span> <span class="number">2</span> <span class="number">3</span>))</span><br><span class="line">a</span><br><span class="line">scm&gt; a</span><br><span class="line">(<span class="name">1</span> <span class="number">2</span> <span class="number">3</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="add-to-end">Add To End</h3>
+<p>Given a scheme list <code>lst</code> and an element <code>x</code> add <code>x</code> to the end of <code>lst</code></p>
+<figure class="highlight scheme"><table><tr><td class="code"><pre><span class="line">(<span class="name">defin</span> (<span class="name">add-to-end</span> lst x)</span><br><span class="line">    (<span class="name"><span class="builtin-name">if</span></span> (<span class="name"><span class="builtin-name">null?</span></span> lst)</span><br><span class="line">        (<span class="name"><span class="builtin-name">list</span></span> x)</span><br><span class="line">        (<span class="name"><span class="builtin-name">if</span></span> (<span class="name"><span class="builtin-name">null?</span></span> (<span class="name"><span class="builtin-name">cdr</span></span> lst))</span><br><span class="line">            (<span class="name"><span class="builtin-name">cons</span></span> (<span class="name"><span class="builtin-name">car</span></span> lst) (<span class="name">add-to-end</span> (<span class="name"><span class="builtin-name">cdr</span></span> lst) x))</span><br><span class="line">        )</span><br><span class="line">    )</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<h2 id="tail-recursion">Tail Recursion</h2>
+<ul>
+<li>An expression in a <strong>tail context</strong> is evaluated as the last step the function call
+<ul>
+<li>That means nothing is evaluated/applied after it is evaluated</li>
+</ul></li>
+<li>Function calls in a tail context are called <strong>tail calls</strong></li>
+<li>If all recursive calls are in tail contexts, we say that function is <strong>tail recursive</strong>
+<ul>
+<li>If a language supports tail call optimization, a tail recursive function will only ever open a constant number of frames</li>
+</ul></li>
+</ul>
+<p>Python has no tail call optimization, but scheme support.</p>
+<h3 id="identifying-tail-contexts">Identifying Tail Contexts</h3>
+<p>An expression is in a tail context only if it is the last thing evaluated in <strong>every possible scenario</strong>.</p>
+<h3 id="recursive-frames">Recursive frames</h3>
+<p>non-tail recersive Every frame need to be opened to wait for the return value. Because recursive call isn't the last thing to be evaluated, their is still * to be applied.</p>
+<figure class="highlight scheme"><table><tr><td class="code"><pre><span class="line">(<span class="name"><span class="builtin-name">define</span></span> (<span class="name">fact</span> n)</span><br><span class="line">    (<span class="name"><span class="builtin-name">if</span></span> (<span class="name"><span class="builtin-name">=</span></span> n <span class="number">0</span>)</span><br><span class="line">        <span class="number">1</span></span><br><span class="line">        (<span class="name"><span class="builtin-name">*</span></span> n (<span class="name">fact</span> (<span class="name"><span class="builtin-name">-</span></span> n <span class="number">1</span>)))</span><br><span class="line">    )</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<h4 id="tail-calls">Tail calls</h4>
+<p>In this recursive call, the helper function is the last thing to be evaluated. So every frame don't need to open to calculate the return value. It just return what helper function return to it. <figure class="highlight scheme"><table><tr><td class="code"><pre><span class="line">(<span class="name"><span class="builtin-name">define</span></span> (<span class="name">fact</span> n)</span><br><span class="line">    (<span class="name"><span class="builtin-name">define</span></span> (<span class="name">fact-tail</span> n result)</span><br><span class="line">        (<span class="name"><span class="builtin-name">if</span></span> (<span class="name"><span class="builtin-name">&lt;=</span></span> n <span class="number">1</span>)</span><br><span class="line">            result</span><br><span class="line">            (<span class="name">fact-tail</span> (<span class="name">-n</span> <span class="number">1</span>) (<span class="name"><span class="builtin-name">*</span></span> n result))</span><br><span class="line">        )</span><br><span class="line">    )</span><br><span class="line">    (<span class="name">fact-tail</span> n <span class="number">1</span>)</span><br><span class="line">)</span><br></pre></td></tr></table></figure> ### Writing Tail Recursive Functions 1. Identify recursive calls that are not in a tail context. - The last body subexpression in a <code>lambda</code> - the consequent and alternative in a tail context <code>if</code> - All non-predicate sub-expressions in a tail context <code>cond</code> - The last sub-expression in a taill context <code>and</code>, <code>or</code>, <code>begin</code> or <code>let</code> 2. Create a helper function with arguments to accumulate the computation that prevents it from being tail recursive.</p>
+]]></content>
+      <categories>
+        <category>SICP</category>
+        <category>CS61-A</category>
+      </categories>
+      <tags>
+        <tag>note</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>21 Interpreters</title>
+    <url>/2022/01/03/21-Interpreters/</url>
+    <content><![CDATA[<h2 id="interpretation">Interpretation</h2>
+<h3 id="translation">Translation</h3>
+<p>Problem:</p>
+<ul>
+<li>Computer can only understand one language, binary</li>
+<li>Humans can't really write a program using only 0s and 1s</li>
+</ul>
+<p>Solution:</p>
+<ul>
+<li>Programming languages like Python, Java, C, etc. are translated to 0s and 1s</li>
+</ul>
+<p>This translation step comes in a couple forms:</p>
+<ul>
+<li>Compiled (pre-translated) - translate all at once and run later</li>
+<li>Interpreted (translated on-the-fly) - translate while the program is running</li>
+</ul>
+<h3 id="interpreters">Interpreters</h3>
+<p>An <strong>interpreter</strong> does 3 things:</p>
+<ol type="1">
+<li><strong>Reads</strong> input from user in a specific programming language</li>
+<li>Translates input to be computer readable and <strong>evaluates</strong> the result</li>
+<li><strong>Prints</strong> the result for the user</li>
+</ol>
+<p>There are two languages involved:</p>
+<ul>
+<li><strong>Implemented language:</strong> this is the language the user types in</li>
+<li><strong>Implementation language:</strong> this is the language interpreter is implemented in</li>
+</ul>
+<p>So the <strong>Implemented Language</strong> is translated into the <strong>Implementation Language</strong></p>
+<span id="more"></span>
+<h2 id="read-eval-print-loop-repl">Read-Eval-Print Loop (REPL)</h2>
+<p><img src="https://gitee.com/ZHDreamer/markdown-images/raw/master/images/Snipaste_2022-01-02_12-59-36.png" /></p>
+<h3 id="read">Read</h3>
+<h4 id="reading-input">Reading Input</h4>
+<p><strong>Lexical Analysis (Lexer):</strong> Turning the input into a collection of <em>tokens</em></p>
+<ul>
+<li>A token: single input of the input string, e.g. literals, names, keywords, delimiters</li>
+</ul>
+<p><strong>Syntactic Analysis (Parser):</strong> Turning tokens into a representation of the expression in the implementing language</p>
+<ul>
+<li>The exact "representation" depends on the type of expression</li>
+<li>Types of Scheme Expressions: self-evaluating expressions, symbols, call expressions, special form expressions.</li>
+</ul>
+<p><img src="https://gitee.com/ZHDreamer/markdown-images/raw/master/images/Snipaste_2022-01-02_13-21-59.png" /></p>
+<h4 id="representing-scheme-primitive-expressions">Representing Scheme Primitive Expressions</h4>
+<h5 id="self-evaluating-expressions-booleans-and-numbers">Self-Evaluating expressions (booleans and numbers)</h5>
+<p>Use Python booleans and Python numbers</p>
+<h5 id="symbols-variable-names">Symbols (variable names)</h5>
+<p>Use Python strings</p>
+<h4 id="representing-combinations">Representing Combinations</h4>
+<p><strong>Combinations</strong> are just Scheme lists containing an operator and operands</p>
+<figure class="highlight scheme"><table><tr><td class="code"><pre><span class="line">scm&gt; (<span class="name"><span class="builtin-name">define</span></span> expr &#x27;(+ <span class="number">2</span> <span class="number">3</span>))  <span class="comment">; Create the expression (+ 2 3)</span></span><br><span class="line">expr</span><br><span class="line">scm&gt;(<span class="name"><span class="builtin-name">eval</span></span> expr)              <span class="comment">; Evaluate the expression</span></span><br><span class="line"><span class="number">5</span></span><br><span class="line">scm&gt;(<span class="name"><span class="builtin-name">car</span></span> expr)               <span class="comment">; Get the operator</span></span><br><span class="line">+</span><br><span class="line">scm&gt;(<span class="name"><span class="builtin-name">cdr</span></span> expr)               <span class="comment">; Get the operands</span></span><br><span class="line">(<span class="name">2</span> <span class="number">3</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>expr = [<span class="string">&#x27;+&#x27;</span>, <span class="number">2</span>, <span class="number">3</span>]  <span class="comment"># Representation of (+ 2 3)</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>expr[<span class="number">0</span>]             <span class="comment"># Get the operator</span></span><br><span class="line"><span class="string">&#x27;+&#x27;</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>expr[<span class="number">1</span>:]            <span class="comment"># Get the operands</span></span><br><span class="line">[<span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line"><span class="comment"># It works, but isn&#x27;t an exact representation of Scheme lists.</span></span><br></pre></td></tr></table></figure>
+<h5 id="python-pairs">Python Pairs</h5>
+<p>To accurately represent Scheme combinations as linked lists, let's write a <code>Pair</code> class in Python.</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Pair</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, first, second</span>):</span></span><br><span class="line">        self.first = first</span><br><span class="line">        self.second = second</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__repr__</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27;Pair(&#123;0&#125;, &#123;1&#125;)&#x27;</span>.<span class="built_in">format</span>(self.first, self.second)</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">nil</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__repr__</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27;nil&#x27;</span></span><br><span class="line">nil = nil()  <span class="comment"># There is only one instance of nil. No other instances can be created</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>expr = Pair(<span class="string">&#x27;+&#x27;</span>, Pair(<span class="number">2</span>, Pair(<span class="number">3</span>, nil)))  <span class="comment"># Represent (+ 2 3)</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>expr.first                               <span class="comment"># Get the operator</span></span><br><span class="line"><span class="string">&#x27;+&#x27;</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>expr.second                              <span class="comment"># Get the operands</span></span><br><span class="line">Pair(<span class="number">2</span>, Pair(<span class="number">3</span>, nil))</span><br></pre></td></tr></table></figure>
+<h4 id="reading-combinations">Reading Combinations</h4>
+<p><img src="https://gitee.com/ZHDreamer/markdown-images/raw/master/images/Snipaste_2022-01-02_13-52-12.png" /></p>
+<h4 id="special-case-quote">Special Case: quote</h4>
+<p>Recall that the quote special form can be invoked in two ways: <code>(quote &lt;expr&gt;)</code> and <code>'&lt;expr&gt;</code></p>
+<p>the special <code>'</code> syntax gets converted by the reader into a <code>quote</code> expression, which is a list with 2 elements: <code>Pair('quote', Pair(&lt;expr&gt;, nil))</code></p>
+<h3 id="eval">Eval</h3>
+<h4 id="evaluating-expression">Evaluating Expression</h4>
+<p>Rules for evaluating an expression depends on the expression's type.</p>
+<p>Eval takes in one argument besides the expression itself: <strong>the current environment</strong>.</p>
+<h4 id="frames-and-environments">Frames and Environments</h4>
+<p>When evaluating expressions, the current <strong>environment</strong> consists of the current frame, its parent frame, and all its ancestor frames until the Global Frame.</p>
+<h4 id="frames-in-our-interpreter">Frames in our interpreter</h4>
+<p>Frames are represented in our interpreter as instance of the <code>Frame</code> class</p>
+<p>Each <code>Frame</code> instance has two instance attributes:</p>
+<ul>
+<li><strong>Bindings:</strong> a dictionary that binds Scheme symbols (Python strings) to Scheme values</li>
+<li><strong>Parents:</strong> the parent frame, another <code>Frame</code> instance</li>
+</ul>
+<p>The evaluator needs to know the current environment, given as a single <code>Frame</code> instance, in order to look up names in expressions.</p>
+<h4 id="evaluating-primitive-expressions">Evaluating primitive expressions</h4>
+<p>Self-evaluating expression: These expression evaluate to themselves.</p>
+<p>Symbols: Just like what Python do for a symbol</p>
+<h4 id="evaluating-combinations">Evaluating Combinations</h4>
+<p>If the operator is a symbol and is found in the <code>dict</code> of special forms, the combination is a special form. Each special form has special rule for evaluation</p>
+<p>Otherwise, the combination is a call expression.</p>
+<h4 id="types-of-procedures">Types of Procedures</h4>
+<p>A <strong>built-in procedure</strong> is a procedure that predefined in our Scheme interpreter, e.g. <code>+</code>, <code>list</code>, <code>module</code>, etc.</p>
+<ul>
+<li>Each <strong>built-in procedure</strong> has a corresponding Python function that performs the appropriate operation.</li>
+<li>In our interpreter – instance of the <code>BuiltinProcedure</code> class</li>
+</ul>
+<p>A user-defined procedure is a procedure defined by the user, either with a lambda expression or a define expression.</p>
+<ul>
+<li>Each user-defined procedure has
+<ol type="1">
+<li>a list of formal parameters</li>
+<li>a body (which is a Scheme list)</li>
+<li>a parent frame.</li>
+</ol></li>
+<li>In our interpreter – instance of the <code>LanbdaProcedure</code> class</li>
+</ul>
+<h4 id="the-evaluator">The evaluator</h4>
+<p>The evaluator consists of two <em>mutually -recursive</em> components:</p>
+<p><img src="https://gitee.com/ZHDreamer/markdown-images/raw/master/images/Snipaste_2022-01-02_14-48-23.png" /></p>
 ]]></content>
       <categories>
         <category>SICP</category>
@@ -759,8 +1212,8 @@ m^n&amp;=F_n(F_m)(f)(x)\\
         <category>Issues</category>
       </categories>
       <tags>
-        <tag>edge</tag>
         <tag>Windows10</tag>
+        <tag>edge</tag>
       </tags>
   </entry>
   <entry>
@@ -802,459 +1255,6 @@ m^n&amp;=F_n(F_m)(f)(x)\\
       </categories>
       <tags>
         <tag>Windows10</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>13 Iterators &amp; Generators</title>
-    <url>/2021/08/31/13-Iterators-Generators/</url>
-    <content><![CDATA[<h2 id="iterators">Iterators</h2>
-<h3 id="definitions">Definitions</h3>
-<h4 id="lazy-evaluation">Lazy evaluation</h4>
-<p>Delays evaluation of an expression until its value is needed.</p>
-<h4 id="iterable">Iterable</h4>
-<p>An object capable of returning its members one at a time. Examples include all sequences (lists, strings, tuples) and some non-sequence types (dictionaries).</p>
-<h4 id="iterator">Iterator</h4>
-<p>An object that provides sequential access to values, one by one.</p>
-<ul>
-<li>All iterators are iterable. Not all iterable are iterators</li>
-</ul>
-<span id="more"></span>
-<h3 id="how-to-create-iterators">How to create iterators?</h3>
-<p><code>iter(iterable)</code>: Return an iterator over the elements of an iterable value.</p>
-<ul>
-<li>This method creates a bookmark from a book starting at the front.</li>
-</ul>
-<p><code>next(iterator)</code>: Return the next element in an iterator.</p>
-<ul>
-<li>Returns the current page and moves the bookmark to the next page.</li>
-<li>The iterator remembers where you left off. If the current page is the end of the book, error.</li>
-</ul>
-<p>When you change the iterable mutably, the corresponding <code>next(iterator)</code> will return changed value.</p>
-<h2 id="exceptions-errors">Exceptions / Errors</h2>
-<p>Sometimes, computer programs behave in non-standard ways</p>
-<ul>
-<li>A function receives a argument value of an improper type</li>
-<li>Some resources (such as a file) is not available</li>
-<li>A network connection is lost in the middle of data transmission</li>
-</ul>
-<h3 id="raise-exceptions">Raise Exceptions</h3>
-<p><code>raise &lt;expression&gt;</code></p>
-<p><code>&lt;expression&gt;</code> must be an Exception, which is created like so:</p>
-<ul>
-<li><p><code>TypeError</code> -- A function was passed the wrong number/type of argument</p></li>
-<li><p><code>NameError</code> -- A name wasn’t found</p></li>
-<li><p><code>KeyError</code> -- A key wasn’t found in a dictionary</p></li>
-<li><p><code>RuntimeError</code> -- Catch-all for troubles during interpretation</p></li>
-</ul>
-<h3 id="try-statements">Try Statements</h3>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Try:</span><br><span class="line">    &lt;try suite&gt;</span><br><span class="line">except &lt;exception class&gt; as &lt;name&gt;:</span><br><span class="line">    &lt;except suite&gt;</span><br></pre></td></tr></table></figure>
-<h4 id="execution-rule">Execution Rule</h4>
-<ol type="1">
-<li>The<code>&lt;try suite&gt;</code>is executed first</li>
-<li>If, during the course of executing the <code>&lt;try suite&gt;</code>, an exception is raised that is not handled otherwise</li>
-<li>then the <code>&lt;except suite&gt;</code> is executed with <code>&lt;name&gt;</code> bound to the exception</li>
-</ol>
-<h3 id="the-for-statement">The For Statement</h3>
-<ol type="1">
-<li>Evaluate the header <expression>, which must evaluate to an iterable object.</li>
-<li>For each element in that sequence, in order:</li>
-<li>Bind <name> to that element in the first frame of the current environment</li>
-<li>Execute the <suite></li>
-</ol>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">counts = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line"><span class="keyword">for</span> item <span class="keyword">in</span> counts:</span><br><span class="line">    <span class="built_in">print</span>(item)</span><br><span class="line"><span class="comment"># the for statement is equal to</span></span><br><span class="line">items = <span class="built_in">iter</span>(counts)</span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        item = <span class="built_in">next</span>(items)</span><br><span class="line">        <span class="built_in">print</span>(item)</span><br><span class="line"><span class="keyword">except</span> StopIteration:</span><br><span class="line">    <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
-<h2 id="generators">Generators</h2>
-<h3 id="definitions-and-rules">Definitions and Rules</h3>
-<p>Some definitions:</p>
-<ul>
-<li>Generator: An iterator created automatically by calling a generator function.</li>
-<li>Generator function: A function that contains the keyword yield anywhere in the body.</li>
-</ul>
-<p>When a generator function is called, it returns a generator <strong>instead of</strong> going into the body of the function. The only way to go into the body of a generator function is by calling <strong>next</strong> on the returned generator.</p>
-<p>Yielding values are the same as returning values except yield remembers where it left off.</p>
-<h3 id="generators-and-generator-functions">Generators and Generator Functions</h3>
-<p>We are allowed to call next on generators because <strong>generators are a type of iterator.</strong></p>
-<p>Calling next on a generator goes into the function and evaluates to the <strong>first yield statement</strong>. The next time we call next on that generator, it <strong>resumes</strong> where it left off (just like calling next on any iterator!)</p>
-<p>Once the generator hits a return statement, it raises a <code>StopIteration</code></p>
-<h3 id="generators-to-represent-infinity-sequences">Generators to Represent Infinity Sequences</h3>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">naturals</span>():</span></span><br><span class="line">    x = <span class="number">0</span></span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        <span class="keyword">yield</span> x</span><br><span class="line">        x += <span class="number">1</span></span><br></pre></td></tr></table></figure>
-<h3 id="generators-can-yield-from-iterators">Generators can Yield From Iterators</h3>
-<p>A <code>yield from</code> statement yields all values from an iterable.</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">countdown</span>(<span class="params">k</span>):</span></span><br><span class="line">	<span class="keyword">if</span> k == <span class="number">0</span>:</span><br><span class="line">		<span class="keyword">yield</span> <span class="string">&#x27;Blast off&#x27;</span></span><br><span class="line">	<span class="keyword">else</span>:</span><br><span class="line">		<span class="keyword">yield</span> k</span><br><span class="line">		<span class="keyword">yield</span> <span class="keyword">from</span> countdown(k-<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>SICP</category>
-        <category>CS61-A</category>
-      </categories>
-      <tags>
-        <tag>note</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>15 Objects</title>
-    <url>/2021/09/07/15-Objects/</url>
-    <content><![CDATA[<h2 id="classes">Classes</h2>
-<ul>
-<li><p>Every object is an <strong>instance</strong> of a <strong>class</strong></p></li>
-<li><p>A class is a <strong>type</strong> or category of objects</p></li>
-<li><p>A class serves as a blueprint for its instances</p></li>
-</ul>
-<p><img src="https://gitee.com/ZHDreamer/markdown-images/raw/master/images/Snipaste_2021-09-03_23-40-56.png" /></p>
-<span id="more"></span>
-<h3 id="the-class-statement">The Class Statement</h3>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> &lt;<span class="title">name</span>&gt;:</span></span><br><span class="line">    &lt;suite&gt;</span><br></pre></td></tr></table></figure>
-<p>Assignment &amp; def statements in the Class Statement create class attributes.</p>
-<p>When a class is called:</p>
-<ol type="1">
-<li>A new instance of that class is created.</li>
-<li>The <code>init</code> method of a class is called with the new object as its first argument (named self), along with additional arguments provided in the call expression.</li>
-</ol>
-<h3 id="dot-expressions">Dot Expressions</h3>
-<p>You can access class or instance attributes with dot notation.</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">&lt;expression&gt;.&lt;name&gt;</span><br></pre></td></tr></table></figure>
-<p>The<code>&lt;expression&gt;</code>can be any valid Python expression that evaluates to a <strong>class</strong> or <strong>instance</strong>. The <code>&lt;name&gt;</code>must be an <strong>attribute</strong> or a <strong>method</strong>.</p>
-<h4 id="evaluation-of-dot-expressions">Evaluation of Dot Expressions</h4>
-<ol type="1">
-<li>Evaluate the <code>&lt;expression&gt;</code> to the left of the dot, which yields the object of the dot expression.</li>
-<li><code>&lt;method_name&gt;</code> is matched against the instance attributes of that object; if an attribute with that name exists, its value is returned.</li>
-<li>If not, <code>&lt;method_name&gt;</code> is looked up in the class, which yields a class attribute value.</li>
-<li>That value is returned unless it is a function, in which case a bound method is returned instead.</li>
-</ol>
-<h4 id="assigning-attributes">Assigning Attributes</h4>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">&lt;expression&gt;.&lt;name&gt; = &lt;value&gt;</span><br></pre></td></tr></table></figure>
-<p><strong>If the expression evaluates to an instance</strong>: then assignment sets an instance attribute, <strong>even if it exists in the class</strong>.</p>
-<p><strong>If the expression evaluates to a class</strong>: then assignment sets a class attribute.</p>
-<h3 id="object-identity">Object Identity</h3>
-<p>Every object that is an instance of a user-defined class has a unique identity</p>
-<p>Binding an object to a new name using assignment <strong>does not create a new object</strong></p>
-<h3 id="methods-and-functions">Methods and Functions</h3>
-<p><strong>Methods</strong> are functions defined in the suite of a class statement.</p>
-<p>However methods that are accessed through an instance will be bound methods. <strong>Bound methods</strong> couple together a function and the object on which that method will be invoked. This means that when we invoke bound methods, the instance is automatically passed in as the first argument.</p>
-<h3 id="invoking-methods">Invoking Methods</h3>
-<p>We can call class methods in two ways: as a bound method and as a function.</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Invoking class methods as a bound method:</span></span><br><span class="line"><span class="comment"># Bound methods are accessed through the instance </span></span><br><span class="line"><span class="comment"># and implicitly pass the instance object in as the first argument of the method.</span></span><br><span class="line">&lt;instance&gt;.&lt;method_name&gt;(&lt;arguments&gt;)</span><br><span class="line"><span class="comment"># Invoking class methods as functions:</span></span><br><span class="line"><span class="comment"># We can use the class name to directly call a method. </span></span><br><span class="line"><span class="comment"># These follow our typical function call rules and nothing is implicitly passed in.</span></span><br><span class="line">&lt;class_name&gt;.&lt;method_name&gt;(&lt;instance&gt;, &lt;arguments&gt;)</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>SICP</category>
-        <category>CS61-A</category>
-      </categories>
-      <tags>
-        <tag>note</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>16 Inheritance</title>
-    <url>/2021/10/03/16-Inheritance/</url>
-    <content><![CDATA[<h2 id="inheritance">Inheritance</h2>
-<h3 id="relationship-of-classes">Relationship of Classes</h3>
-<p>Some classes is subclass of others, they have some attributes and methods of their parent, but also have some different or new attributes and methods.</p>
-<h3 id="using-inheritance">Using Inheritance</h3>
-<p>We can implement specialized classes using inheritance!</p>
-<p>The class definition allows us to specify that a new class inherits from a superclass:</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> &lt;<span class="title">Class</span> <span class="title">Name</span>&gt;(<span class="params">&lt;Superclass Name&gt;</span>):</span></span><br><span class="line">    &lt;suite&gt;</span><br></pre></td></tr></table></figure>
-<span id="more"></span>
-<p>We call the more specialized class a <strong>subclass</strong> of the general class and the general class a <strong>superclass</strong> of the specialized class.</p>
-<p>The subclass <strong>inherits</strong> <em>all</em> class attributes of the superclass.</p>
-<p>The subclass can <strong>override</strong> attributes to specify how it is different from the superclass.</p>
-<h3 id="new-dot-expression-rules">New Dot Expression Rules</h3>
-<ol type="1">
-<li>Evaluate <code>&lt;expression&gt;</code>, which yields an object.</li>
-<li><code>&lt;name&gt;</code> is matched against the instance attributes of that object; if an attribute with that name exists, its value is returned.</li>
-<li>If not, the name is looked up in the class, which yields a class attribute value. <strong>If it is not found in the class, look in any superclasses</strong>.</li>
-<li>That value is returned unless it is a function, in which case a bound method is returned instead.</li>
-</ol>
-<h3 id="designing-for-inheritance">Designing for Inheritance</h3>
-<p>Don't repeat yourself</p>
-<p>use existing implementations</p>
-<p>Attributes that have been overridden are still accessible via class objects</p>
-]]></content>
-      <categories>
-        <category>SICP</category>
-        <category>CS61-A</category>
-      </categories>
-      <tags>
-        <tag>note</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>17 Linked Lists &amp; Trees</title>
-    <url>/2021/10/03/17-Linked-Lists-Trees/</url>
-    <content><![CDATA[<h2 id="linked-list">Linked List</h2>
-<h3 id="definition">Definition</h3>
-<p>A linked list is either:</p>
-<ul>
-<li>empty</li>
-<li>Composed of a first element and the rest of the linked list</li>
-</ul>
-<p><img src="https://gitee.com/ZHDreamer/markdown-images/raw/master/images/Snipaste_2021-09-20_14-52-22.png" /></p>
-<span id="more"></span>
-<h3 id="creating-linked-list">Creating Linked List</h3>
-<p>We’ll define a linked list recursively by making a constructor that takes in a first and rest value</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">Link(<span class="number">1</span> , rest)</span><br><span class="line">Link(<span class="number">1</span> , Link(<span class="number">2</span>, rest))</span><br><span class="line">Link(<span class="number">1</span> , Link(<span class="number">2</span>, Link(<span class="number">3</span>, empty)))</span><br></pre></td></tr></table></figure>
-<h3 id="link-class">Link Class</h3>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Link</span>:</span></span><br><span class="line">    empty = ()</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, first, rest=empty</span>):</span></span><br><span class="line">        <span class="keyword">assert</span> rest <span class="keyword">is</span> Link.empty <span class="keyword">or</span> <span class="built_in">isinstance</span>(rest, Link)</span><br><span class="line">        self.first = first</span><br><span class="line">        self.rest = rest</span><br></pre></td></tr></table></figure>
-<h2 id="processing-linked-lists">Processing Linked Lists</h2>
-<h3 id="sum">Sum</h3>
-<p>Goal: Given a linked list , return the sum of all elements in the linked list</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">sum_link</span>(<span class="params">lnk</span>):</span></span><br><span class="line">    <span class="comment"># if lnk.rest is Link.empty:</span></span><br><span class="line">    <span class="comment">#    return lnk.first</span></span><br><span class="line">    <span class="comment"># if lnk is Link.empty, it will rasie an error</span></span><br><span class="line">    <span class="keyword">if</span> lnk <span class="keyword">is</span> Link.empty:</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">    <span class="keyword">return</span> lnk.first + sum_link(lnk.rest)</span><br></pre></td></tr></table></figure>
-<h3 id="display">Display</h3>
-<p>Goal: Given a linked list, return a string representing the elements in the linked list</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">display_link</span>(<span class="params">lnk</span>):</span></span><br><span class="line">    string = <span class="string">&quot;&lt; &quot;</span></span><br><span class="line">    <span class="keyword">while</span> lnk <span class="keyword">is</span> <span class="keyword">not</span> Link.empty:</span><br><span class="line">        string += <span class="built_in">str</span>(lnk.first) + <span class="string">&quot; &quot;</span></span><br><span class="line">        lnk = lnk.rest</span><br><span class="line">    <span class="keyword">return</span> sting + <span class="string">&quot;&gt;&quot;</span></span><br></pre></td></tr></table></figure>
-<h3 id="map">Map</h3>
-<p>Goal: Given a linked list, and a one argument function, f, return a new linked list obtained from applying f to each element of list</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">map_link</span>(<span class="params">lnk, func</span>):</span></span><br><span class="line">    <span class="keyword">if</span> lnk <span class="keyword">is</span> Link.empty:</span><br><span class="line">        <span class="keyword">return</span> Link.empty</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> Link(func(lnk.first), map_lnk(lnk.rest, func))</span><br></pre></td></tr></table></figure>
-<h2 id="mutating-linked-lists">Mutating Linked Lists</h2>
-<h3 id="map-v2">Map v2</h3>
-<p>Goal: Given a linked list,and a one argument function, f, mutate the linked list by applying f to each element.</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">map_link</span>(<span class="params">lnk, func</span>):</span></span><br><span class="line">    <span class="keyword">while</span> lnk <span class="keyword">is</span> <span class="keyword">not</span> Link.empty:</span><br><span class="line">        lnk.first = func(lnk.first)</span><br><span class="line">        lnk = lnk.rest</span><br></pre></td></tr></table></figure>
-<h2 id="tree-class">Tree Class</h2>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Tree</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, label, branches=[]</span>):</span></span><br><span class="line">        <span class="keyword">for</span> b <span class="keyword">in</span> branches:</span><br><span class="line">            <span class="keyword">assert</span> <span class="built_in">isinstance</span>(b, Tree)</span><br><span class="line">            self.label = label</span><br><span class="line">            self.branches = branches</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">is_leaf</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">not</span> self.branches</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>SICP</category>
-        <category>CS61-A</category>
-      </categories>
-      <tags>
-        <tag>note</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>18 Interface</title>
-    <url>/2021/10/03/18-Interface/</url>
-    <content><![CDATA[<p>Describe how you can interact with an object without necessarily implementing it.</p>
-<h2 id="magic-methods">Magic Methods</h2>
-<p>These are specially named methods that are callable outside the ordinary dot notation.</p>
-<p>example:<code>__init__()</code></p>
-<h3 id="str-repr">str &amp; repr</h3>
-<p><img src="https://gitee.com/ZHDreamer/markdown-images/raw/master/images/Snipaste_2021-10-03_14-56-07.png" /></p>
-<p><code>__str__</code> return what would display when <code>print()</code> was called</p>
-<p><img src="https://gitee.com/ZHDreamer/markdown-images/raw/master/images/Snipaste_2021-10-03_14-59-14.png" /></p>
-<p><code>__repr__</code> return what would display in the interpreter</p>
-<span id="more"></span>
-<h3 id="link-repr">Link repr</h3>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">__repr__</span>(<span class="params">self</span>):</span></span><br><span class="line">    <span class="keyword">if</span> self.rest == Link.empty:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27;Link(&#x27;</span> + <span class="built_in">repr</span>(self.first) + <span class="string">&#x27;)&#x27;</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27;Link(&#x27;</span> + <span class="built_in">repr</span>(self.first) + <span class="string">&#x27;, &#x27;</span> + <span class="built_in">repr</span>(self.rest) + <span class="string">&#x27;)&#x27;</span></span><br></pre></td></tr></table></figure>
-<h3 id="link-str">Link str</h3>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">__str__</span>(<span class="params">self</span>):</span></span><br><span class="line">    s = <span class="string">&#x27;&lt;&#x27;</span></span><br><span class="line">    <span class="keyword">while</span> self.rest <span class="keyword">is</span> <span class="keyword">not</span> Link.empty:</span><br><span class="line">        s = s+ <span class="built_in">str</span>(self.first) + <span class="string">&#x27;, &#x27;</span></span><br><span class="line">        self = self.rest</span><br><span class="line">    <span class="keyword">return</span> s + <span class="built_in">str</span>(self.first) + <span class="string">&#x27;&gt;&#x27;</span></span><br></pre></td></tr></table></figure>
-<h3 id="link-eq">Link eq</h3>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># for == statement</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">__eq__</span>(<span class="params">self, other</span>):</span></span><br><span class="line">    <span class="keyword">if</span> self.first == other.first:</span><br><span class="line">        <span class="keyword">return</span> self.rest == other.rest</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">False</span></span><br></pre></td></tr></table></figure>
-<h3 id="link-contains">Link contains</h3>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># for in and not in statement</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">__contains__</span>(<span class="params">self, x</span>):</span></span><br><span class="line">    <span class="keyword">if</span> self.first ==x:</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">    <span class="keyword">return</span> x <span class="keyword">in</span> self.rest</span><br></pre></td></tr></table></figure>
-<h3 id="link-add">Link add</h3>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">__add__</span>(<span class="params">self, other</span>):</span></span><br><span class="line">    <span class="keyword">if</span> self.rest <span class="keyword">is</span> Link.empty:</span><br><span class="line">        <span class="keyword">if</span> other.rest <span class="keyword">is</span> Link.empty:</span><br><span class="line">            <span class="keyword">return</span> Link(self.first, Link(other.first))</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> Link(self.first, Link(other.first) + other.rest)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> Link(self.first, self.rest + other)</span><br></pre></td></tr></table></figure>
-<h3 id="link-mul">Link mul</h3>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">__mul__</span>(<span class="params">self, num</span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    &gt;&gt;&gt; Link(1, Link(2)) * 2</span></span><br><span class="line"><span class="string">    Link(1, Link(2, Link(1, Link(2))))</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    temp = self</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(num):</span><br><span class="line">        temp = tmep + self</span><br><span class="line">    <span class="keyword">return</span> temp</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">__rmul__</span>(<span class="params">self, num</span>):</span></span><br><span class="line">    <span class="comment"># 2 * Link</span></span><br><span class="line">    <span class="keyword">return</span> self * mul</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>SICP</category>
-        <category>CS61-A</category>
-      </categories>
-      <tags>
-        <tag>note</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>20 More Scheme</title>
-    <url>/2022/01/02/20-More-Scheme/</url>
-    <content><![CDATA[<h2 id="scheme-list">Scheme List</h2>
-<h3 id="scheme-list-definition">Scheme List Definition</h3>
-<p>A scheme list is either:</p>
-<ul>
-<li>nil</li>
-<li>composed of a first element (car) and the rest (cdr) of the scheme list</li>
-</ul>
-<p><img src="https://gitee.com/ZHDreamer/markdown-images/raw/master/images/Snipaste_2021-11-14_12-41-56.png" /></p>
-<span id="more"></span>
-<h3 id="creating-scheme-lists">Creating Scheme Lists</h3>
-<p><code>(cons 1 (cons 2 (cons 3 nil)))</code></p>
-<h3 id="checking-equivalence">Checking Equivalence</h3>
-<p><code>(eqial? e1 e2)</code> is like <code>==</code> in Python</p>
-<p><code>(eq? e1 e2)</code> is like <code>is</code> in Python (only matters for lists in scheme)</p>
-<p><code>(= e1 e2)</code> only works for numbers</p>
-<h3 id="list-constructor">List Constructor</h3>
-<p>The list constructor takes in any number of elements and puts each elements a single element in a list.</p>
-<figure class="highlight scheme"><table><tr><td class="code"><pre><span class="line">scm&gt; (<span class="name"><span class="builtin-name">list</span></span> <span class="number">1</span> <span class="number">2</span> <span class="number">3</span>)</span><br><span class="line">(<span class="name">1</span> <span class="number">2</span> <span class="number">3</span>)</span><br><span class="line">scm&gt; (<span class="name"><span class="builtin-name">cons</span></span> <span class="number">1</span> (<span class="name"><span class="builtin-name">cons</span></span> <span class="number">2</span> (<span class="name"><span class="builtin-name">cons</span></span> <span class="number">3</span> nil)))</span><br><span class="line">(<span class="name">1</span> <span class="number">2</span> <span class="number">3</span>)</span><br></pre></td></tr></table></figure>
-<h3 id="quoting">Quoting</h3>
-<p>The quote special form takes in a single argument and returns an <strong>unevaluated</strong> version of the argument.</p>
-<figure class="highlight scheme"><table><tr><td class="code"><pre><span class="line">scm&gt; <span class="symbol">&#x27;a</span></span><br><span class="line">a</span><br><span class="line">scm&gt; (<span class="name"><span class="builtin-name">define</span></span> a &#x27;(<span class="number">1</span> <span class="number">2</span> <span class="number">3</span>))</span><br><span class="line">a</span><br><span class="line">scm&gt; a</span><br><span class="line">(<span class="name">1</span> <span class="number">2</span> <span class="number">3</span>)</span><br></pre></td></tr></table></figure>
-<h3 id="add-to-end">Add To End</h3>
-<p>Given a scheme list <code>lst</code> and an element <code>x</code> add <code>x</code> to the end of <code>lst</code></p>
-<figure class="highlight scheme"><table><tr><td class="code"><pre><span class="line">(<span class="name">defin</span> (<span class="name">add-to-end</span> lst x)</span><br><span class="line">    (<span class="name"><span class="builtin-name">if</span></span> (<span class="name"><span class="builtin-name">null?</span></span> lst)</span><br><span class="line">        (<span class="name"><span class="builtin-name">list</span></span> x)</span><br><span class="line">        (<span class="name"><span class="builtin-name">if</span></span> (<span class="name"><span class="builtin-name">null?</span></span> (<span class="name"><span class="builtin-name">cdr</span></span> lst))</span><br><span class="line">            (<span class="name"><span class="builtin-name">cons</span></span> (<span class="name"><span class="builtin-name">car</span></span> lst) (<span class="name">add-to-end</span> (<span class="name"><span class="builtin-name">cdr</span></span> lst) x))</span><br><span class="line">        )</span><br><span class="line">    )</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-<h2 id="tail-recursion">Tail Recursion</h2>
-<ul>
-<li>An expression in a <strong>tail context</strong> is evaluated as the last step the function call
-<ul>
-<li>That means nothing is evaluated/applied after it is evaluated</li>
-</ul></li>
-<li>Function calls in a tail context are called <strong>tail calls</strong></li>
-<li>If all recursive calls are in tail contexts, we say that function is <strong>tail recursive</strong>
-<ul>
-<li>If a language supports tail call optimization, a tail recursive function will only ever open a constant number of frames</li>
-</ul></li>
-</ul>
-<p>Python has no tail call optimization, but scheme support.</p>
-<h3 id="identifying-tail-contexts">Identifying Tail Contexts</h3>
-<p>An expression is in a tail context only if it is the last thing evaluated in <strong>every possible scenario</strong>.</p>
-<h3 id="recursive-frames">Recursive frames</h3>
-<p>non-tail recersive Every frame need to be opened to wait for the return value. Because recursive call isn't the last thing to be evaluated, their is still * to be applied.</p>
-<figure class="highlight scheme"><table><tr><td class="code"><pre><span class="line">(<span class="name"><span class="builtin-name">define</span></span> (<span class="name">fact</span> n)</span><br><span class="line">    (<span class="name"><span class="builtin-name">if</span></span> (<span class="name"><span class="builtin-name">=</span></span> n <span class="number">0</span>)</span><br><span class="line">        <span class="number">1</span></span><br><span class="line">        (<span class="name"><span class="builtin-name">*</span></span> n (<span class="name">fact</span> (<span class="name"><span class="builtin-name">-</span></span> n <span class="number">1</span>)))</span><br><span class="line">    )</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-<h4 id="tail-calls">Tail calls</h4>
-<p>In this recursive call, the helper function is the last thing to be evaluated. So every frame don't need to open to calculate the return value. It just return what helper function return to it. <figure class="highlight scheme"><table><tr><td class="code"><pre><span class="line">(<span class="name"><span class="builtin-name">define</span></span> (<span class="name">fact</span> n)</span><br><span class="line">    (<span class="name"><span class="builtin-name">define</span></span> (<span class="name">fact-tail</span> n result)</span><br><span class="line">        (<span class="name"><span class="builtin-name">if</span></span> (<span class="name"><span class="builtin-name">&lt;=</span></span> n <span class="number">1</span>)</span><br><span class="line">            result</span><br><span class="line">            (<span class="name">fact-tail</span> (<span class="name">-n</span> <span class="number">1</span>) (<span class="name"><span class="builtin-name">*</span></span> n result))</span><br><span class="line">        )</span><br><span class="line">    )</span><br><span class="line">    (<span class="name">fact-tail</span> n <span class="number">1</span>)</span><br><span class="line">)</span><br></pre></td></tr></table></figure> ### Writing Tail Recursive Functions 1. Identify recursive calls that are not in a tail context. - The last body subexpression in a <code>lambda</code> - the consequent and alternative in a tail context <code>if</code> - All non-predicate sub-expressions in a tail context <code>cond</code> - The last sub-expression in a taill context <code>and</code>, <code>or</code>, <code>begin</code> or <code>let</code> 2. Create a helper function with arguments to accumulate the computation that prevents it from being tail recursive.</p>
-]]></content>
-      <categories>
-        <category>SICP</category>
-        <category>CS61-A</category>
-      </categories>
-      <tags>
-        <tag>note</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>19 Scheme</title>
-    <url>/2021/11/14/19-Scheme/</url>
-    <content><![CDATA[<p>Scheme is a older language that was influential in the creation of python. By learning Scheme, we'll see that many of the ideas learned about one programming language easily transfer to another.</p>
-<h3 id="scheme-is-a-dialect-of-lisp">Scheme is a Dialect of Lisp</h3>
-<h3 id="scheme-fundamentals">Scheme Fundamentals</h3>
-<p>scheme programs consist of expression, which can be:</p>
-<ul>
-<li>Primitive expression: 2, 3.3, true, +, quotient, ...</li>
-<li>Combinations: (quotient 10 2), (not true), ...</li>
-</ul>
-<p>Numbers are self-evaluating; symbols are bound to values.</p>
-<p>Call expressions include an operator and 0 or more operands in parentheses.</p>
-<p><strong>In python we put the operator outside the parentheses, and call it function. But in scheme we put it inside the parentheses, and call it procedure.</strong></p>
-<figure class="highlight scheme"><table><tr><td class="code"><pre><span class="line">&gt; (<span class="name"><span class="builtin-name">quotient</span></span> <span class="number">10</span> <span class="number">2</span>)</span><br><span class="line"><span class="number">5</span></span><br><span class="line">&gt; (<span class="name"><span class="builtin-name">quotient</span></span> (<span class="name"><span class="builtin-name">+</span></span> <span class="number">8</span> <span class="number">7</span>) <span class="number">5</span>)</span><br><span class="line"><span class="number">3</span></span><br></pre></td></tr></table></figure>
-<span id="more"></span>
-<h3 id="special-forms">Special Forms</h3>
-<p>A combination that is not a call expression is a special form:</p>
-<ul>
-<li><strong>if</strong> expression: <code>(if &lt;predicate&gt; &lt;consequent&gt; &lt;alternative&gt;)</code></li>
-<li><strong>and</strong> and <strong>or</strong>: <code>(and &lt;e1&gt; ... &lt;en&gt;))</code>, <code>(or &lt;e1&gt; ... &lt;en&gt;)</code></li>
-<li>Specify many conditions: <code>(cond (&lt;pred1&gt; &lt;expr1&gt;) (&lt;pred2&gt; &lt;expr2&gt;) … (else &lt;else-expr&gt;))</code></li>
-<li>Binding symbols: <code>(define &lt;symbol&gt; &lt;expression&gt;)</code></li>
-<li>New procedures: <code>(define (&lt;symbol&gt; &lt;formal parameters&gt;) &lt;body&gt;)</code></li>
-</ul>
-<h3 id="lambda-expression">Lambda Expression</h3>
-<p><code>(lambda (&lt;formal-parameters) &lt;body&gt;)</code></p>
-<p>Two equivalent expression:</p>
-<figure class="highlight scheme"><table><tr><td class="code"><pre><span class="line">(<span class="name"><span class="builtin-name">define</span></span> (<span class="name">plus4</span> x) (<span class="name"><span class="builtin-name">+</span></span> x <span class="number">4</span>))</span><br><span class="line">(<span class="name"><span class="builtin-name">define</span></span> plus4 (<span class="name"><span class="builtin-name">lambda</span></span> (x) (<span class="name"><span class="builtin-name">+</span></span> x <span class="number">4</span>)))</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>SICP</category>
-        <category>CS61-A</category>
-      </categories>
-      <tags>
-        <tag>note</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>21 Interpreters</title>
-    <url>/2022/01/03/21-Interpreters/</url>
-    <content><![CDATA[<h2 id="interpretation">Interpretation</h2>
-<h3 id="translation">Translation</h3>
-<p>Problem:</p>
-<ul>
-<li>Computer can only understand one language, binary</li>
-<li>Humans can't really write a program using only 0s and 1s</li>
-</ul>
-<p>Solution:</p>
-<ul>
-<li>Programming languages like Python, Java, C, etc. are translated to 0s and 1s</li>
-</ul>
-<p>This translation step comes in a couple forms:</p>
-<ul>
-<li>Compiled (pre-translated) - translate all at once and run later</li>
-<li>Interpreted (translated on-the-fly) - translate while the program is running</li>
-</ul>
-<h3 id="interpreters">Interpreters</h3>
-<p>An <strong>interpreter</strong> does 3 things:</p>
-<ol type="1">
-<li><strong>Reads</strong> input from user in a specific programming language</li>
-<li>Translates input to be computer readable and <strong>evaluates</strong> the result</li>
-<li><strong>Prints</strong> the result for the user</li>
-</ol>
-<p>There are two languages involved:</p>
-<ul>
-<li><strong>Implemented language:</strong> this is the language the user types in</li>
-<li><strong>Implementation language:</strong> this is the language interpreter is implemented in</li>
-</ul>
-<p>So the <strong>Implemented Language</strong> is translated into the <strong>Implementation Language</strong></p>
-<span id="more"></span>
-<h2 id="read-eval-print-loop-repl">Read-Eval-Print Loop (REPL)</h2>
-<p><img src="https://gitee.com/ZHDreamer/markdown-images/raw/master/images/Snipaste_2022-01-02_12-59-36.png" /></p>
-<h3 id="read">Read</h3>
-<h4 id="reading-input">Reading Input</h4>
-<p><strong>Lexical Analysis (Lexer):</strong> Turning the input into a collection of <em>tokens</em></p>
-<ul>
-<li>A token: single input of the input string, e.g. literals, names, keywords, delimiters</li>
-</ul>
-<p><strong>Syntactic Analysis (Parser):</strong> Turning tokens into a representation of the expression in the implementing language</p>
-<ul>
-<li>The exact "representation" depends on the type of expression</li>
-<li>Types of Scheme Expressions: self-evaluating expressions, symbols, call expressions, special form expressions.</li>
-</ul>
-<p><img src="https://gitee.com/ZHDreamer/markdown-images/raw/master/images/Snipaste_2022-01-02_13-21-59.png" /></p>
-<h4 id="representing-scheme-primitive-expressions">Representing Scheme Primitive Expressions</h4>
-<h5 id="self-evaluating-expressions-booleans-and-numbers">Self-Evaluating expressions (booleans and numbers)</h5>
-<p>Use Python booleans and Python numbers</p>
-<h5 id="symbols-variable-names">Symbols (variable names)</h5>
-<p>Use Python strings</p>
-<h4 id="representing-combinations">Representing Combinations</h4>
-<p><strong>Combinations</strong> are just Scheme lists containing an operator and operands</p>
-<figure class="highlight scheme"><table><tr><td class="code"><pre><span class="line">scm&gt; (<span class="name"><span class="builtin-name">define</span></span> expr &#x27;(+ <span class="number">2</span> <span class="number">3</span>))  <span class="comment">; Create the expression (+ 2 3)</span></span><br><span class="line">expr</span><br><span class="line">scm&gt;(<span class="name"><span class="builtin-name">eval</span></span> expr)              <span class="comment">; Evaluate the expression</span></span><br><span class="line"><span class="number">5</span></span><br><span class="line">scm&gt;(<span class="name"><span class="builtin-name">car</span></span> expr)               <span class="comment">; Get the operator</span></span><br><span class="line">+</span><br><span class="line">scm&gt;(<span class="name"><span class="builtin-name">cdr</span></span> expr)               <span class="comment">; Get the operands</span></span><br><span class="line">(<span class="name">2</span> <span class="number">3</span>)</span><br></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>expr = [<span class="string">&#x27;+&#x27;</span>, <span class="number">2</span>, <span class="number">3</span>]  <span class="comment"># Representation of (+ 2 3)</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>expr[<span class="number">0</span>]             <span class="comment"># Get the operator</span></span><br><span class="line"><span class="string">&#x27;+&#x27;</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>expr[<span class="number">1</span>:]            <span class="comment"># Get the operands</span></span><br><span class="line">[<span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line"><span class="comment"># It works, but isn&#x27;t an exact representation of Scheme lists.</span></span><br></pre></td></tr></table></figure>
-<h5 id="python-pairs">Python Pairs</h5>
-<p>To accurately represent Scheme combinations as linked lists, let's write a <code>Pair</code> class in Python.</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Pair</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, first, second</span>):</span></span><br><span class="line">        self.first = first</span><br><span class="line">        self.second = second</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__repr__</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27;Pair(&#123;0&#125;, &#123;1&#125;)&#x27;</span>.<span class="built_in">format</span>(self.first, self.second)</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">nil</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__repr__</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27;nil&#x27;</span></span><br><span class="line">nil = nil()  <span class="comment"># There is only one instance of nil. No other instances can be created</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>expr = Pair(<span class="string">&#x27;+&#x27;</span>, Pair(<span class="number">2</span>, Pair(<span class="number">3</span>, nil)))  <span class="comment"># Represent (+ 2 3)</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>expr.first                               <span class="comment"># Get the operator</span></span><br><span class="line"><span class="string">&#x27;+&#x27;</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>expr.second                              <span class="comment"># Get the operands</span></span><br><span class="line">Pair(<span class="number">2</span>, Pair(<span class="number">3</span>, nil))</span><br></pre></td></tr></table></figure>
-<h4 id="reading-combinations">Reading Combinations</h4>
-<p><img src="https://gitee.com/ZHDreamer/markdown-images/raw/master/images/Snipaste_2022-01-02_13-52-12.png" /></p>
-<h4 id="special-case-quote">Special Case: quote</h4>
-<p>Recall that the quote special form can be invoked in two ways: <code>(quote &lt;expr&gt;)</code> and <code>'&lt;expr&gt;</code></p>
-<p>the special <code>'</code> syntax gets converted by the reader into a <code>quote</code> expression, which is a list with 2 elements: <code>Pair('quote', Pair(&lt;expr&gt;, nil))</code></p>
-<h3 id="eval">Eval</h3>
-<h4 id="evaluating-expression">Evaluating Expression</h4>
-<p>Rules for evaluating an expression depends on the expression's type.</p>
-<p>Eval takes in one argument besides the expression itself: <strong>the current environment</strong>.</p>
-<h4 id="frames-and-environments">Frames and Environments</h4>
-<p>When evaluating expressions, the current <strong>environment</strong> consists of the current frame, its parent frame, and all its ancestor frames until the Global Frame.</p>
-<h4 id="frames-in-our-interpreter">Frames in our interpreter</h4>
-<p>Frames are represented in our interpreter as instance of the <code>Frame</code> class</p>
-<p>Each <code>Frame</code> instance has two instance attributes:</p>
-<ul>
-<li><strong>Bindings:</strong> a dictionary that binds Scheme symbols (Python strings) to Scheme values</li>
-<li><strong>Parents:</strong> the parent frame, another <code>Frame</code> instance</li>
-</ul>
-<p>The evaluator needs to know the current environment, given as a single <code>Frame</code> instance, in order to look up names in expressions.</p>
-<h4 id="evaluating-primitive-expressions">Evaluating primitive expressions</h4>
-<p>Self-evaluating expression: These expression evaluate to themselves.</p>
-<p>Symbols: Just like what Python do for a symbol</p>
-<h4 id="evaluating-combinations">Evaluating Combinations</h4>
-<p>If the operator is a symbol and is found in the <code>dict</code> of special forms, the combination is a special form. Each special form has special rule for evaluation</p>
-<p>Otherwise, the combination is a call expression.</p>
-<h4 id="types-of-procedures">Types of Procedures</h4>
-<p>A <strong>built-in procedure</strong> is a procedure that predefined in our Scheme interpreter, e.g. <code>+</code>, <code>list</code>, <code>module</code>, etc.</p>
-<ul>
-<li>Each <strong>built-in procedure</strong> has a corresponding Python function that performs the appropriate operation.</li>
-<li>In our interpreter – instance of the <code>BuiltinProcedure</code> class</li>
-</ul>
-<p>A user-defined procedure is a procedure defined by the user, either with a lambda expression or a define expression.</p>
-<ul>
-<li>Each user-defined procedure has
-<ol type="1">
-<li>a list of formal parameters</li>
-<li>a body (which is a Scheme list)</li>
-<li>a parent frame.</li>
-</ol></li>
-<li>In our interpreter – instance of the <code>LanbdaProcedure</code> class</li>
-</ul>
-<h4 id="the-evaluator">The evaluator</h4>
-<p>The evaluator consists of two <em>mutually -recursive</em> components:</p>
-<p><img src="https://gitee.com/ZHDreamer/markdown-images/raw/master/images/Snipaste_2022-01-02_14-48-23.png" /></p>
-]]></content>
-      <categories>
-        <category>SICP</category>
-        <category>CS61-A</category>
-      </categories>
-      <tags>
-        <tag>note</tag>
       </tags>
   </entry>
 </search>
