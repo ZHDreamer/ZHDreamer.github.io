@@ -1029,6 +1029,7 @@ m^n&amp;=F_n(F_m)(f)(x)\\
 <p><code>__str__</code> return what would display when <code>print()</code> was called</p>
 <p><img src="https://gitee.com/ZHDreamer/markdown-images/raw/master/images/Snipaste_2021-10-03_14-59-14.png" /></p>
 <p><code>__repr__</code> return what would display in the interpreter</p>
+<span id="more"></span>
 <h3 id="link-repr">Link repr</h3>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">__repr__</span>(<span class="params">self</span>):</span></span><br><span class="line">    <span class="keyword">if</span> self.rest == Link.empty:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27;Link(&#x27;</span> + <span class="built_in">repr</span>(self.first) + <span class="string">&#x27;)&#x27;</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27;Link(&#x27;</span> + <span class="built_in">repr</span>(self.first) + <span class="string">&#x27;, &#x27;</span> + <span class="built_in">repr</span>(self.rest) + <span class="string">&#x27;)&#x27;</span></span><br></pre></td></tr></table></figure>
 <h3 id="link-str">Link str</h3>
@@ -1041,6 +1042,212 @@ m^n&amp;=F_n(F_m)(f)(x)\\
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">__add__</span>(<span class="params">self, other</span>):</span></span><br><span class="line">    <span class="keyword">if</span> self.rest <span class="keyword">is</span> Link.empty:</span><br><span class="line">        <span class="keyword">if</span> other.rest <span class="keyword">is</span> Link.empty:</span><br><span class="line">            <span class="keyword">return</span> Link(self.first, Link(other.first))</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> Link(self.first, Link(other.first) + other.rest)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> Link(self.first, self.rest + other)</span><br></pre></td></tr></table></figure>
 <h3 id="link-mul">Link mul</h3>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">__mul__</span>(<span class="params">self, num</span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    &gt;&gt;&gt; Link(1, Link(2)) * 2</span></span><br><span class="line"><span class="string">    Link(1, Link(2, Link(1, Link(2))))</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    temp = self</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(num):</span><br><span class="line">        temp = tmep + self</span><br><span class="line">    <span class="keyword">return</span> temp</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">__rmul__</span>(<span class="params">self, num</span>):</span></span><br><span class="line">    <span class="comment"># 2 * Link</span></span><br><span class="line">    <span class="keyword">return</span> self * mul</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>SICP</category>
+        <category>CS61-A</category>
+      </categories>
+      <tags>
+        <tag>note</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>20 More Scheme</title>
+    <url>/2022/01/02/20-More-Scheme/</url>
+    <content><![CDATA[<h2 id="scheme-list">Scheme List</h2>
+<h3 id="scheme-list-definition">Scheme List Definition</h3>
+<p>A scheme list is either:</p>
+<ul>
+<li>nil</li>
+<li>composed of a first element (car) and the rest (cdr) of the scheme list</li>
+</ul>
+<p><img src="https://gitee.com/ZHDreamer/markdown-images/raw/master/images/Snipaste_2021-11-14_12-41-56.png" /></p>
+<span id="more"></span>
+<h3 id="creating-scheme-lists">Creating Scheme Lists</h3>
+<p><code>(cons 1 (cons 2 (cons 3 nil)))</code></p>
+<h3 id="checking-equivalence">Checking Equivalence</h3>
+<p><code>(eqial? e1 e2)</code> is like <code>==</code> in Python</p>
+<p><code>(eq? e1 e2)</code> is like <code>is</code> in Python (only matters for lists in scheme)</p>
+<p><code>(= e1 e2)</code> only works for numbers</p>
+<h3 id="list-constructor">List Constructor</h3>
+<p>The list constructor takes in any number of elements and puts each elements a single element in a list.</p>
+<figure class="highlight scheme"><table><tr><td class="code"><pre><span class="line">scm&gt; (<span class="name"><span class="builtin-name">list</span></span> <span class="number">1</span> <span class="number">2</span> <span class="number">3</span>)</span><br><span class="line">(<span class="name">1</span> <span class="number">2</span> <span class="number">3</span>)</span><br><span class="line">scm&gt; (<span class="name"><span class="builtin-name">cons</span></span> <span class="number">1</span> (<span class="name"><span class="builtin-name">cons</span></span> <span class="number">2</span> (<span class="name"><span class="builtin-name">cons</span></span> <span class="number">3</span> nil)))</span><br><span class="line">(<span class="name">1</span> <span class="number">2</span> <span class="number">3</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="quoting">Quoting</h3>
+<p>The quote special form takes in a single argument and returns an <strong>unevaluated</strong> version of the argument.</p>
+<figure class="highlight scheme"><table><tr><td class="code"><pre><span class="line">scm&gt; <span class="symbol">&#x27;a</span></span><br><span class="line">a</span><br><span class="line">scm&gt; (<span class="name"><span class="builtin-name">define</span></span> a &#x27;(<span class="number">1</span> <span class="number">2</span> <span class="number">3</span>))</span><br><span class="line">a</span><br><span class="line">scm&gt; a</span><br><span class="line">(<span class="name">1</span> <span class="number">2</span> <span class="number">3</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="add-to-end">Add To End</h3>
+<p>Given a scheme list <code>lst</code> and an element <code>x</code> add <code>x</code> to the end of <code>lst</code></p>
+<figure class="highlight scheme"><table><tr><td class="code"><pre><span class="line">(<span class="name">defin</span> (<span class="name">add-to-end</span> lst x)</span><br><span class="line">    (<span class="name"><span class="builtin-name">if</span></span> (<span class="name"><span class="builtin-name">null?</span></span> lst)</span><br><span class="line">        (<span class="name"><span class="builtin-name">list</span></span> x)</span><br><span class="line">        (<span class="name"><span class="builtin-name">if</span></span> (<span class="name"><span class="builtin-name">null?</span></span> (<span class="name"><span class="builtin-name">cdr</span></span> lst))</span><br><span class="line">            (<span class="name"><span class="builtin-name">cons</span></span> (<span class="name"><span class="builtin-name">car</span></span> lst) (<span class="name">add-to-end</span> (<span class="name"><span class="builtin-name">cdr</span></span> lst) x))</span><br><span class="line">        )</span><br><span class="line">    )</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<h2 id="tail-recursion">Tail Recursion</h2>
+<ul>
+<li>An expression in a <strong>tail context</strong> is evaluated as the last step the function call
+<ul>
+<li>That means nothing is evaluated/applied after it is evaluated</li>
+</ul></li>
+<li>Function calls in a tail context are called <strong>tail calls</strong></li>
+<li>If all recursive calls are in tail contexts, we say that function is <strong>tail recursive</strong>
+<ul>
+<li>If a language supports tail call optimization, a tail recursive function will only ever open a constant number of frames</li>
+</ul></li>
+</ul>
+<p>Python has no tail call optimization, but scheme support.</p>
+<h3 id="identifying-tail-contexts">Identifying Tail Contexts</h3>
+<p>An expression is in a tail context only if it is the last thing evaluated in <strong>every possible scenario</strong>.</p>
+<h3 id="recursive-frames">Recursive frames</h3>
+<p>non-tail recersive Every frame need to be opened to wait for the return value. Because recursive call isn't the last thing to be evaluated, their is still * to be applied.</p>
+<figure class="highlight scheme"><table><tr><td class="code"><pre><span class="line">(<span class="name"><span class="builtin-name">define</span></span> (<span class="name">fact</span> n)</span><br><span class="line">    (<span class="name"><span class="builtin-name">if</span></span> (<span class="name"><span class="builtin-name">=</span></span> n <span class="number">0</span>)</span><br><span class="line">        <span class="number">1</span></span><br><span class="line">        (<span class="name"><span class="builtin-name">*</span></span> n (<span class="name">fact</span> (<span class="name"><span class="builtin-name">-</span></span> n <span class="number">1</span>)))</span><br><span class="line">    )</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<h4 id="tail-calls">Tail calls</h4>
+<p>In this recursive call, the helper function is the last thing to be evaluated. So every frame don't need to open to calculate the return value. It just return what helper function return to it. <figure class="highlight scheme"><table><tr><td class="code"><pre><span class="line">(<span class="name"><span class="builtin-name">define</span></span> (<span class="name">fact</span> n)</span><br><span class="line">    (<span class="name"><span class="builtin-name">define</span></span> (<span class="name">fact-tail</span> n result)</span><br><span class="line">        (<span class="name"><span class="builtin-name">if</span></span> (<span class="name"><span class="builtin-name">&lt;=</span></span> n <span class="number">1</span>)</span><br><span class="line">            result</span><br><span class="line">            (<span class="name">fact-tail</span> (<span class="name">-n</span> <span class="number">1</span>) (<span class="name"><span class="builtin-name">*</span></span> n result))</span><br><span class="line">        )</span><br><span class="line">    )</span><br><span class="line">    (<span class="name">fact-tail</span> n <span class="number">1</span>)</span><br><span class="line">)</span><br></pre></td></tr></table></figure> ### Writing Tail Recursive Functions 1. Identify recursive calls that are not in a tail context. - The last body subexpression in a <code>lambda</code> - the consequent and alternative in a tail context <code>if</code> - All non-predicate sub-expressions in a tail context <code>cond</code> - The last sub-expression in a taill context <code>and</code>, <code>or</code>, <code>begin</code> or <code>let</code> 2. Create a helper function with arguments to accumulate the computation that prevents it from being tail recursive.</p>
+]]></content>
+      <categories>
+        <category>SICP</category>
+        <category>CS61-A</category>
+      </categories>
+      <tags>
+        <tag>note</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>19 Scheme</title>
+    <url>/2021/11/14/19-Scheme/</url>
+    <content><![CDATA[<p>Scheme is a older language that was influential in the creation of python. By learning Scheme, we'll see that many of the ideas learned about one programming language easily transfer to another.</p>
+<h3 id="scheme-is-a-dialect-of-lisp">Scheme is a Dialect of Lisp</h3>
+<h3 id="scheme-fundamentals">Scheme Fundamentals</h3>
+<p>scheme programs consist of expression, which can be:</p>
+<ul>
+<li>Primitive expression: 2, 3.3, true, +, quotient, ...</li>
+<li>Combinations: (quotient 10 2), (not true), ...</li>
+</ul>
+<p>Numbers are self-evaluating; symbols are bound to values.</p>
+<p>Call expressions include an operator and 0 or more operands in parentheses.</p>
+<p><strong>In python we put the operator outside the parentheses, and call it function. But in scheme we put it inside the parentheses, and call it procedure.</strong></p>
+<figure class="highlight scheme"><table><tr><td class="code"><pre><span class="line">&gt; (<span class="name"><span class="builtin-name">quotient</span></span> <span class="number">10</span> <span class="number">2</span>)</span><br><span class="line"><span class="number">5</span></span><br><span class="line">&gt; (<span class="name"><span class="builtin-name">quotient</span></span> (<span class="name"><span class="builtin-name">+</span></span> <span class="number">8</span> <span class="number">7</span>) <span class="number">5</span>)</span><br><span class="line"><span class="number">3</span></span><br></pre></td></tr></table></figure>
+<span id="more"></span>
+<h3 id="special-forms">Special Forms</h3>
+<p>A combination that is not a call expression is a special form:</p>
+<ul>
+<li><strong>if</strong> expression: <code>(if &lt;predicate&gt; &lt;consequent&gt; &lt;alternative&gt;)</code></li>
+<li><strong>and</strong> and <strong>or</strong>: <code>(and &lt;e1&gt; ... &lt;en&gt;))</code>, <code>(or &lt;e1&gt; ... &lt;en&gt;)</code></li>
+<li>Specify many conditions: <code>(cond (&lt;pred1&gt; &lt;expr1&gt;) (&lt;pred2&gt; &lt;expr2&gt;) … (else &lt;else-expr&gt;))</code></li>
+<li>Binding symbols: <code>(define &lt;symbol&gt; &lt;expression&gt;)</code></li>
+<li>New procedures: <code>(define (&lt;symbol&gt; &lt;formal parameters&gt;) &lt;body&gt;)</code></li>
+</ul>
+<h3 id="lambda-expression">Lambda Expression</h3>
+<p><code>(lambda (&lt;formal-parameters) &lt;body&gt;)</code></p>
+<p>Two equivalent expression:</p>
+<figure class="highlight scheme"><table><tr><td class="code"><pre><span class="line">(<span class="name"><span class="builtin-name">define</span></span> (<span class="name">plus4</span> x) (<span class="name"><span class="builtin-name">+</span></span> x <span class="number">4</span>))</span><br><span class="line">(<span class="name"><span class="builtin-name">define</span></span> plus4 (<span class="name"><span class="builtin-name">lambda</span></span> (x) (<span class="name"><span class="builtin-name">+</span></span> x <span class="number">4</span>)))</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>SICP</category>
+        <category>CS61-A</category>
+      </categories>
+      <tags>
+        <tag>note</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>21 Interpreters</title>
+    <url>/2022/01/03/21-Interpreters/</url>
+    <content><![CDATA[<h2 id="interpretation">Interpretation</h2>
+<h3 id="translation">Translation</h3>
+<p>Problem:</p>
+<ul>
+<li>Computer can only understand one language, binary</li>
+<li>Humans can't really write a program using only 0s and 1s</li>
+</ul>
+<p>Solution:</p>
+<ul>
+<li>Programming languages like Python, Java, C, etc. are translated to 0s and 1s</li>
+</ul>
+<p>This translation step comes in a couple forms:</p>
+<ul>
+<li>Compiled (pre-translated) - translate all at once and run later</li>
+<li>Interpreted (translated on-the-fly) - translate while the program is running</li>
+</ul>
+<h3 id="interpreters">Interpreters</h3>
+<p>An <strong>interpreter</strong> does 3 things:</p>
+<ol type="1">
+<li><strong>Reads</strong> input from user in a specific programming language</li>
+<li>Translates input to be computer readable and <strong>evaluates</strong> the result</li>
+<li><strong>Prints</strong> the result for the user</li>
+</ol>
+<p>There are two languages involved:</p>
+<ul>
+<li><strong>Implemented language:</strong> this is the language the user types in</li>
+<li><strong>Implementation language:</strong> this is the language interpreter is implemented in</li>
+</ul>
+<p>So the <strong>Implemented Language</strong> is translated into the <strong>Implementation Language</strong></p>
+<span id="more"></span>
+<h2 id="read-eval-print-loop-repl">Read-Eval-Print Loop (REPL)</h2>
+<p><img src="https://gitee.com/ZHDreamer/markdown-images/raw/master/images/Snipaste_2022-01-02_12-59-36.png" /></p>
+<h3 id="read">Read</h3>
+<h4 id="reading-input">Reading Input</h4>
+<p><strong>Lexical Analysis (Lexer):</strong> Turning the input into a collection of <em>tokens</em></p>
+<ul>
+<li>A token: single input of the input string, e.g. literals, names, keywords, delimiters</li>
+</ul>
+<p><strong>Syntactic Analysis (Parser):</strong> Turning tokens into a representation of the expression in the implementing language</p>
+<ul>
+<li>The exact "representation" depends on the type of expression</li>
+<li>Types of Scheme Expressions: self-evaluating expressions, symbols, call expressions, special form expressions.</li>
+</ul>
+<p><img src="https://gitee.com/ZHDreamer/markdown-images/raw/master/images/Snipaste_2022-01-02_13-21-59.png" /></p>
+<h4 id="representing-scheme-primitive-expressions">Representing Scheme Primitive Expressions</h4>
+<h5 id="self-evaluating-expressions-booleans-and-numbers">Self-Evaluating expressions (booleans and numbers)</h5>
+<p>Use Python booleans and Python numbers</p>
+<h5 id="symbols-variable-names">Symbols (variable names)</h5>
+<p>Use Python strings</p>
+<h4 id="representing-combinations">Representing Combinations</h4>
+<p><strong>Combinations</strong> are just Scheme lists containing an operator and operands</p>
+<figure class="highlight scheme"><table><tr><td class="code"><pre><span class="line">scm&gt; (<span class="name"><span class="builtin-name">define</span></span> expr &#x27;(+ <span class="number">2</span> <span class="number">3</span>))  <span class="comment">; Create the expression (+ 2 3)</span></span><br><span class="line">expr</span><br><span class="line">scm&gt;(<span class="name"><span class="builtin-name">eval</span></span> expr)              <span class="comment">; Evaluate the expression</span></span><br><span class="line"><span class="number">5</span></span><br><span class="line">scm&gt;(<span class="name"><span class="builtin-name">car</span></span> expr)               <span class="comment">; Get the operator</span></span><br><span class="line">+</span><br><span class="line">scm&gt;(<span class="name"><span class="builtin-name">cdr</span></span> expr)               <span class="comment">; Get the operands</span></span><br><span class="line">(<span class="name">2</span> <span class="number">3</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>expr = [<span class="string">&#x27;+&#x27;</span>, <span class="number">2</span>, <span class="number">3</span>]  <span class="comment"># Representation of (+ 2 3)</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>expr[<span class="number">0</span>]             <span class="comment"># Get the operator</span></span><br><span class="line"><span class="string">&#x27;+&#x27;</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>expr[<span class="number">1</span>:]            <span class="comment"># Get the operands</span></span><br><span class="line">[<span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line"><span class="comment"># It works, but isn&#x27;t an exact representation of Scheme lists.</span></span><br></pre></td></tr></table></figure>
+<h5 id="python-pairs">Python Pairs</h5>
+<p>To accurately represent Scheme combinations as linked lists, let's write a <code>Pair</code> class in Python.</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Pair</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, first, second</span>):</span></span><br><span class="line">        self.first = first</span><br><span class="line">        self.second = second</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__repr__</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27;Pair(&#123;0&#125;, &#123;1&#125;)&#x27;</span>.<span class="built_in">format</span>(self.first, self.second)</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">nil</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__repr__</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27;nil&#x27;</span></span><br><span class="line">nil = nil()  <span class="comment"># There is only one instance of nil. No other instances can be created</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>expr = Pair(<span class="string">&#x27;+&#x27;</span>, Pair(<span class="number">2</span>, Pair(<span class="number">3</span>, nil)))  <span class="comment"># Represent (+ 2 3)</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>expr.first                               <span class="comment"># Get the operator</span></span><br><span class="line"><span class="string">&#x27;+&#x27;</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>expr.second                              <span class="comment"># Get the operands</span></span><br><span class="line">Pair(<span class="number">2</span>, Pair(<span class="number">3</span>, nil))</span><br></pre></td></tr></table></figure>
+<h4 id="reading-combinations">Reading Combinations</h4>
+<p><img src="https://gitee.com/ZHDreamer/markdown-images/raw/master/images/Snipaste_2022-01-02_13-52-12.png" /></p>
+<h4 id="special-case-quote">Special Case: quote</h4>
+<p>Recall that the quote special form can be invoked in two ways: <code>(quote &lt;expr&gt;)</code> and <code>'&lt;expr&gt;</code></p>
+<p>the special <code>'</code> syntax gets converted by the reader into a <code>quote</code> expression, which is a list with 2 elements: <code>Pair('quote', Pair(&lt;expr&gt;, nil))</code></p>
+<h3 id="eval">Eval</h3>
+<h4 id="evaluating-expression">Evaluating Expression</h4>
+<p>Rules for evaluating an expression depends on the expression's type.</p>
+<p>Eval takes in one argument besides the expression itself: <strong>the current environment</strong>.</p>
+<h4 id="frames-and-environments">Frames and Environments</h4>
+<p>When evaluating expressions, the current <strong>environment</strong> consists of the current frame, its parent frame, and all its ancestor frames until the Global Frame.</p>
+<h4 id="frames-in-our-interpreter">Frames in our interpreter</h4>
+<p>Frames are represented in our interpreter as instance of the <code>Frame</code> class</p>
+<p>Each <code>Frame</code> instance has two instance attributes:</p>
+<ul>
+<li><strong>Bindings:</strong> a dictionary that binds Scheme symbols (Python strings) to Scheme values</li>
+<li><strong>Parents:</strong> the parent frame, another <code>Frame</code> instance</li>
+</ul>
+<p>The evaluator needs to know the current environment, given as a single <code>Frame</code> instance, in order to look up names in expressions.</p>
+<h4 id="evaluating-primitive-expressions">Evaluating primitive expressions</h4>
+<p>Self-evaluating expression: These expression evaluate to themselves.</p>
+<p>Symbols: Just like what Python do for a symbol</p>
+<h4 id="evaluating-combinations">Evaluating Combinations</h4>
+<p>If the operator is a symbol and is found in the <code>dict</code> of special forms, the combination is a special form. Each special form has special rule for evaluation</p>
+<p>Otherwise, the combination is a call expression.</p>
+<h4 id="types-of-procedures">Types of Procedures</h4>
+<p>A <strong>built-in procedure</strong> is a procedure that predefined in our Scheme interpreter, e.g. <code>+</code>, <code>list</code>, <code>module</code>, etc.</p>
+<ul>
+<li>Each <strong>built-in procedure</strong> has a corresponding Python function that performs the appropriate operation.</li>
+<li>In our interpreter – instance of the <code>BuiltinProcedure</code> class</li>
+</ul>
+<p>A user-defined procedure is a procedure defined by the user, either with a lambda expression or a define expression.</p>
+<ul>
+<li>Each user-defined procedure has
+<ol type="1">
+<li>a list of formal parameters</li>
+<li>a body (which is a Scheme list)</li>
+<li>a parent frame.</li>
+</ol></li>
+<li>In our interpreter – instance of the <code>LanbdaProcedure</code> class</li>
+</ul>
+<h4 id="the-evaluator">The evaluator</h4>
+<p>The evaluator consists of two <em>mutually -recursive</em> components:</p>
+<p><img src="https://gitee.com/ZHDreamer/markdown-images/raw/master/images/Snipaste_2022-01-02_14-48-23.png" /></p>
 ]]></content>
       <categories>
         <category>SICP</category>

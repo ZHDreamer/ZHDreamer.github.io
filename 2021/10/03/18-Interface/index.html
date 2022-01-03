@@ -32,7 +32,7 @@
 <meta property="og:image" content="https://gitee.com/ZHDreamer/markdown-images/raw/master/images/Snipaste_2021-10-03_14-56-07.png">
 <meta property="og:image" content="https://gitee.com/ZHDreamer/markdown-images/raw/master/images/Snipaste_2021-10-03_14-59-14.png">
 <meta property="article:published_time" content="2021-10-03T08:07:15.000Z">
-<meta property="article:modified_time" content="2021-10-03T08:07:26.925Z">
+<meta property="article:modified_time" content="2022-01-03T05:23:22.265Z">
 <meta property="article:author" content="ZHDreamer">
 <meta property="article:tag" content="note">
 <meta name="twitter:card" content="summary">
@@ -164,7 +164,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">21</span>
+          <span class="site-state-item-count">24</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -274,6 +274,7 @@
 <p><code>__str__</code> return what would display when <code>print()</code> was called</p>
 <p><img src="https://gitee.com/ZHDreamer/markdown-images/raw/master/images/Snipaste_2021-10-03_14-59-14.png" /></p>
 <p><code>__repr__</code> return what would display in the interpreter</p>
+<span id="more"></span>
 <h3 id="link-repr">Link repr</h3>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">__repr__</span>(<span class="params">self</span>):</span></span><br><span class="line">    <span class="keyword">if</span> self.rest == Link.empty:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27;Link(&#x27;</span> + <span class="built_in">repr</span>(self.first) + <span class="string">&#x27;)&#x27;</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27;Link(&#x27;</span> + <span class="built_in">repr</span>(self.first) + <span class="string">&#x27;, &#x27;</span> + <span class="built_in">repr</span>(self.rest) + <span class="string">&#x27;)&#x27;</span></span><br></pre></td></tr></table></figure>
 <h3 id="link-str">Link str</h3>
@@ -307,6 +308,9 @@
                 </a>
             </div>
             <div class="post-nav-item">
+                <a href="/2021/11/14/19-Scheme/" rel="next" title="19 Scheme">
+                  19 Scheme <i class="fa fa-chevron-right"></i>
+                </a>
             </div>
           </div>
     </footer>
@@ -327,7 +331,7 @@
 
 <div class="copyright">
   &copy; 
-  <span itemprop="copyrightYear">2021</span>
+  <span itemprop="copyrightYear">2022</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
@@ -338,13 +342,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">42k</span>
+    <span title="站点总字数">49k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">38 分钟</span>
+    <span title="站点阅读时长">45 分钟</span>
   </span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
