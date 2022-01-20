@@ -334,7 +334,7 @@
 <li>Data abstraction: A methodology by which functions enforce an abstraction barrier between <strong>representation</strong> and <strong>use</strong></li>
 </ul>
 <h3 id="rational-numbers">Rational Numbers</h3>
-<p><span class="math display">\[\frac{numerator}{denominator}\]</span></p>
+<p><span class="math display">\[ \frac{numerator}{denominator} \]</span></p>
 <p>Exact representation as fractions</p>
 <p>A pair of integers</p>
 <p>As soon as division occurs, the exact representation may be lost! (Demo)</p>
