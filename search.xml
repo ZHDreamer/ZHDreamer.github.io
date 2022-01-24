@@ -828,7 +828,7 @@
   </entry>
   <entry>
     <title>20 More Scheme</title>
-    <url>/2022/01/02/20-More-Scheme/</url>
+    <url>/2021/11/14/20-More-Scheme/</url>
     <content><![CDATA[<h2 id="scheme-list">Scheme List</h2>
 <h3 id="scheme-list-definition">Scheme List Definition</h3>
 <p>A scheme list is either:</p>
@@ -884,7 +884,7 @@
   </entry>
   <entry>
     <title>21 Interpreters</title>
-    <url>/2022/01/03/21-Interpreters/</url>
+    <url>/2022/01/02/21-Interpreters/</url>
     <content><![CDATA[<h2 id="interpretation">Interpretation</h2>
 <h3 id="translation">Translation</h3>
 <p>Problem:</p>
