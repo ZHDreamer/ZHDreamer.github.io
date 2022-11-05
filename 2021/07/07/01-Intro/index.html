@@ -24,7 +24,7 @@
 <meta property="og:description" content="学习 CS-61A 个人体会 现在我刚好学到 11 节，期中考试之前的最后一节，算是学过一半了。 当初想要学 CS-61A 是我一个朋友和我介绍的，放假后没什么事干，本这实在不行学个英语也行的态度开始了 61A 的学习。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-07-07T09:31:00.000Z">
-<meta property="article:modified_time" content="2022-05-27T11:53:32.876Z">
+<meta property="article:modified_time" content="2022-09-18T08:34:20.417Z">
 <meta property="article:author" content="ZHDreamer">
 <meta property="article:tag" content="note">
 <meta name="twitter:card" content="summary_large_image">
@@ -63,6 +63,10 @@
     <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
   
 
+
+
+  
+<link rel="stylesheet" href="/css/mac_code_block.css">
 
 
 
@@ -450,6 +454,12 @@
   
 
 
+  
+  
+
+
+
+
 
 
 
@@ -641,6 +651,49 @@
 
 
   <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
 
   <script  src="/js/local-search.js" ></script>
 

@@ -93,47 +93,6 @@
       </tags>
   </entry>
   <entry>
-    <title>04 Environment Diagrams</title>
-    <url>/2021/07/09/04-Environment-Diagrams/</url>
-    <content><![CDATA[<p>A visual tool to keep track of bindings &amp; state of a computer program</p>
-<p>They are helpful for debugging.</p>
-<h2 id="frames">Frames</h2>
-<p>A <strong>frame</strong> keeps track of variable-to-value bindings. Every call expression has a corresponding frame.</p>
-<h3 id="global-frame">Global frame</h3>
-<p><strong>Global frame</strong> is the starting frame.</p>
-<ul>
-<li>It doesn't correspond to a specific call expression.</li>
-</ul>
-<h3 id="parent-frames">Parent frames</h3>
-<ul>
-<li>The parent of a function is the frame in which <strong>it was defined</strong></li>
-<li>If you can't find a variable in the current frame, you check it's parent frame, and so on. If you can't find the variable, <code>NameError</code>.</li>
-</ul>
-<span id="more"></span>
-<h2 id="local-names">Local Names</h2>
-<p>Variable Lookup:</p>
-<ol type="1">
-<li>Lookup name in the current frame</li>
-<li>Lookup name in parent frame, its parent frame, and so on</li>
-<li>Stop at the global frame</li>
-<li>If not found, an error is thrown</li>
-</ol>
-<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">f</span>(<span class="hljs-params">x, y</span>):</span><br>    <span class="hljs-keyword">return</span> g(x)<br><br><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">g</span>(<span class="hljs-params">z</span>):</span><br>    <span class="hljs-keyword">return</span> z + x<br><br><br>result = f(<span class="hljs-number">5</span>, <span class="hljs-number">10</span>)<br></code></pre></td></tr></table></figure>
-<p>When call g, g's parent frame is Global. So name x will not be found, and python will throw an error.</p>
-<h2 id="lambda-expression">Lambda Expression</h2>
-<p>Expression that evaluate to functions</p>
-<p><img src="https://raw.githubusercontent.com/ZHDreamer/markdown-images/master/images/Snipaste_2021-08-13_22-01-53.png" /></p>
-<p> </p>
-]]></content>
-      <categories>
-        <category>SICP</category>
-        <category>CS61-A</category>
-      </categories>
-      <tags>
-        <tag>note</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>03 Control</title>
     <url>/2021/07/08/03-Control/</url>
     <content><![CDATA[<h2 id="print-and-none">Print and None</h2>
@@ -238,6 +197,47 @@
 <p> Functions defined within other function bodies are bound to names in a local frame.</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">make_adder</span>(<span class="hljs-params">n</span>):</span><br>    <span class="hljs-string">&quot;&quot;&quot;Return a function that takes one argument k and returns k + n.</span><br><span class="hljs-string"></span><br><span class="hljs-string">    &gt;&gt;&gt; add_three = make_adder(3)</span><br><span class="hljs-string">    &gt;&gt;&gt; add_three(4)</span><br><span class="hljs-string">    7</span><br><span class="hljs-string">    &quot;&quot;&quot;</span><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">adder</span>(<span class="hljs-params">k</span>):</span><br>        <span class="hljs-keyword">return</span> k + n<br>    <span class="hljs-keyword">return</span> adder<br></code></pre></td></tr></table></figure>
 <p><code>adder</code> is a locally defined functions. When you call <code>make_adder</code> with different <code>n</code>, the return values are <strong>function</strong> <code>adder</code> in the <code>make_adder</code> <strong>frame</strong> with different <code>n</code> value.</p>
+]]></content>
+      <categories>
+        <category>SICP</category>
+        <category>CS61-A</category>
+      </categories>
+      <tags>
+        <tag>note</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>04 Environment Diagrams</title>
+    <url>/2021/07/09/04-Environment-Diagrams/</url>
+    <content><![CDATA[<p>A visual tool to keep track of bindings &amp; state of a computer program</p>
+<p>They are helpful for debugging.</p>
+<h2 id="frames">Frames</h2>
+<p>A <strong>frame</strong> keeps track of variable-to-value bindings. Every call expression has a corresponding frame.</p>
+<h3 id="global-frame">Global frame</h3>
+<p><strong>Global frame</strong> is the starting frame.</p>
+<ul>
+<li>It doesn't correspond to a specific call expression.</li>
+</ul>
+<h3 id="parent-frames">Parent frames</h3>
+<ul>
+<li>The parent of a function is the frame in which <strong>it was defined</strong></li>
+<li>If you can't find a variable in the current frame, you check it's parent frame, and so on. If you can't find the variable, <code>NameError</code>.</li>
+</ul>
+<span id="more"></span>
+<h2 id="local-names">Local Names</h2>
+<p>Variable Lookup:</p>
+<ol type="1">
+<li>Lookup name in the current frame</li>
+<li>Lookup name in parent frame, its parent frame, and so on</li>
+<li>Stop at the global frame</li>
+<li>If not found, an error is thrown</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">f</span>(<span class="hljs-params">x, y</span>):</span><br>    <span class="hljs-keyword">return</span> g(x)<br><br><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">g</span>(<span class="hljs-params">z</span>):</span><br>    <span class="hljs-keyword">return</span> z + x<br><br><br>result = f(<span class="hljs-number">5</span>, <span class="hljs-number">10</span>)<br></code></pre></td></tr></table></figure>
+<p>When call g, g's parent frame is Global. So name x will not be found, and python will throw an error.</p>
+<h2 id="lambda-expression">Lambda Expression</h2>
+<p>Expression that evaluate to functions</p>
+<p><img src="https://raw.githubusercontent.com/ZHDreamer/markdown-images/master/images/Snipaste_2021-08-13_22-01-53.png" /></p>
+<p> </p>
 ]]></content>
       <categories>
         <category>SICP</category>
@@ -550,6 +550,40 @@
       </tags>
   </entry>
   <entry>
+    <title>16 Inheritance</title>
+    <url>/2021/10/03/16-Inheritance/</url>
+    <content><![CDATA[<h2 id="inheritance">Inheritance</h2>
+<h3 id="relationship-of-classes">Relationship of Classes</h3>
+<p>Some classes is subclass of others, they have some attributes and methods of their parent, but also have some different or new attributes and methods.</p>
+<h3 id="using-inheritance">Using Inheritance</h3>
+<p>We can implement specialized classes using inheritance!</p>
+<p>The class definition allows us to specify that a new class inherits from a superclass:</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-class"><span class="hljs-keyword">class</span> &lt;<span class="hljs-title">Class</span> <span class="hljs-title">Name</span>&gt;(<span class="hljs-params">&lt;Superclass Name&gt;</span>):</span><br>    &lt;suite&gt;<br></code></pre></td></tr></table></figure>
+<span id="more"></span>
+<p>We call the more specialized class a <strong>subclass</strong> of the general class and the general class a <strong>superclass</strong> of the specialized class.</p>
+<p>The subclass <strong>inherits</strong> <em>all</em> class attributes of the superclass.</p>
+<p>The subclass can <strong>override</strong> attributes to specify how it is different from the superclass.</p>
+<h3 id="new-dot-expression-rules">New Dot Expression Rules</h3>
+<ol type="1">
+<li>Evaluate <code>&lt;expression&gt;</code>, which yields an object.</li>
+<li><code>&lt;name&gt;</code> is matched against the instance attributes of that object; if an attribute with that name exists, its value is returned.</li>
+<li>If not, the name is looked up in the class, which yields a class attribute value. <strong>If it is not found in the class, look in any superclasses</strong>.</li>
+<li>That value is returned unless it is a function, in which case a bound method is returned instead.</li>
+</ol>
+<h3 id="designing-for-inheritance">Designing for Inheritance</h3>
+<p>Don't repeat yourself</p>
+<p>use existing implementations</p>
+<p>Attributes that have been overridden are still accessible via class objects</p>
+]]></content>
+      <categories>
+        <category>SICP</category>
+        <category>CS61-A</category>
+      </categories>
+      <tags>
+        <tag>note</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>15 Objects</title>
     <url>/2021/09/07/15-Objects/</url>
     <content><![CDATA[<h2 id="classes">Classes</h2>
@@ -687,40 +721,6 @@
       </tags>
   </entry>
   <entry>
-    <title>16 Inheritance</title>
-    <url>/2021/10/03/16-Inheritance/</url>
-    <content><![CDATA[<h2 id="inheritance">Inheritance</h2>
-<h3 id="relationship-of-classes">Relationship of Classes</h3>
-<p>Some classes is subclass of others, they have some attributes and methods of their parent, but also have some different or new attributes and methods.</p>
-<h3 id="using-inheritance">Using Inheritance</h3>
-<p>We can implement specialized classes using inheritance!</p>
-<p>The class definition allows us to specify that a new class inherits from a superclass:</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-class"><span class="hljs-keyword">class</span> &lt;<span class="hljs-title">Class</span> <span class="hljs-title">Name</span>&gt;(<span class="hljs-params">&lt;Superclass Name&gt;</span>):</span><br>    &lt;suite&gt;<br></code></pre></td></tr></table></figure>
-<span id="more"></span>
-<p>We call the more specialized class a <strong>subclass</strong> of the general class and the general class a <strong>superclass</strong> of the specialized class.</p>
-<p>The subclass <strong>inherits</strong> <em>all</em> class attributes of the superclass.</p>
-<p>The subclass can <strong>override</strong> attributes to specify how it is different from the superclass.</p>
-<h3 id="new-dot-expression-rules">New Dot Expression Rules</h3>
-<ol type="1">
-<li>Evaluate <code>&lt;expression&gt;</code>, which yields an object.</li>
-<li><code>&lt;name&gt;</code> is matched against the instance attributes of that object; if an attribute with that name exists, its value is returned.</li>
-<li>If not, the name is looked up in the class, which yields a class attribute value. <strong>If it is not found in the class, look in any superclasses</strong>.</li>
-<li>That value is returned unless it is a function, in which case a bound method is returned instead.</li>
-</ol>
-<h3 id="designing-for-inheritance">Designing for Inheritance</h3>
-<p>Don't repeat yourself</p>
-<p>use existing implementations</p>
-<p>Attributes that have been overridden are still accessible via class objects</p>
-]]></content>
-      <categories>
-        <category>SICP</category>
-        <category>CS61-A</category>
-      </categories>
-      <tags>
-        <tag>note</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>17 Linked Lists &amp; Trees</title>
     <url>/2021/10/03/17-Linked-Lists-Trees/</url>
     <content><![CDATA[<h2 id="linked-list">Linked List</h2>
@@ -797,44 +797,6 @@
       </tags>
   </entry>
   <entry>
-    <title>19 Scheme</title>
-    <url>/2021/11/14/19-Scheme/</url>
-    <content><![CDATA[<p>Scheme is a older language that was influential in the creation of python. By learning Scheme, we'll see that many of the ideas learned about one programming language easily transfer to another.</p>
-<h3 id="scheme-is-a-dialect-of-lisp">Scheme is a Dialect of Lisp</h3>
-<h3 id="scheme-fundamentals">Scheme Fundamentals</h3>
-<p>scheme programs consist of expression, which can be:</p>
-<ul>
-<li>Primitive expression: 2, 3.3, true, +, quotient, ...</li>
-<li>Combinations: (quotient 10 2), (not true), ...</li>
-</ul>
-<p>Numbers are self-evaluating; symbols are bound to values.</p>
-<p>Call expressions include an operator and 0 or more operands in parentheses.</p>
-<p><strong>In python we put the operator outside the parentheses, and call it function. But in scheme we put it inside the parentheses, and call it procedure.</strong></p>
-<figure class="highlight scheme"><table><tr><td class="code"><pre><code class="hljs scheme">&gt; (<span class="hljs-name"><span class="hljs-builtin-name">quotient</span></span> <span class="hljs-number">10</span> <span class="hljs-number">2</span>)<br><span class="hljs-number">5</span><br>&gt; (<span class="hljs-name"><span class="hljs-builtin-name">quotient</span></span> (<span class="hljs-name"><span class="hljs-builtin-name">+</span></span> <span class="hljs-number">8</span> <span class="hljs-number">7</span>) <span class="hljs-number">5</span>)<br><span class="hljs-number">3</span><br></code></pre></td></tr></table></figure>
-<span id="more"></span>
-<h3 id="special-forms">Special Forms</h3>
-<p>A combination that is not a call expression is a special form:</p>
-<ul>
-<li><strong>if</strong> expression: <code>(if &lt;predicate&gt; &lt;consequent&gt; &lt;alternative&gt;)</code></li>
-<li><strong>and</strong> and <strong>or</strong>: <code>(and &lt;e1&gt; ... &lt;en&gt;))</code>, <code>(or &lt;e1&gt; ... &lt;en&gt;)</code></li>
-<li>Specify many conditions: <code>(cond (&lt;pred1&gt; &lt;expr1&gt;) (&lt;pred2&gt; &lt;expr2&gt;) … (else &lt;else-expr&gt;))</code></li>
-<li>Binding symbols: <code>(define &lt;symbol&gt; &lt;expression&gt;)</code></li>
-<li>New procedures: <code>(define (&lt;symbol&gt; &lt;formal parameters&gt;) &lt;body&gt;)</code></li>
-</ul>
-<h3 id="lambda-expression">Lambda Expression</h3>
-<p><code>(lambda (&lt;formal-parameters) &lt;body&gt;)</code></p>
-<p>Two equivalent expression:</p>
-<figure class="highlight scheme"><table><tr><td class="code"><pre><code class="hljs scheme">(<span class="hljs-name"><span class="hljs-builtin-name">define</span></span> (<span class="hljs-name">plus4</span> x) (<span class="hljs-name"><span class="hljs-builtin-name">+</span></span> x <span class="hljs-number">4</span>))<br>(<span class="hljs-name"><span class="hljs-builtin-name">define</span></span> plus4 (<span class="hljs-name"><span class="hljs-builtin-name">lambda</span></span> (x) (<span class="hljs-name"><span class="hljs-builtin-name">+</span></span> x <span class="hljs-number">4</span>)))<br></code></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>SICP</category>
-        <category>CS61-A</category>
-      </categories>
-      <tags>
-        <tag>note</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>20 More Scheme</title>
     <url>/2021/11/14/20-More-Scheme/</url>
     <content><![CDATA[<h2 id="scheme-list">Scheme List</h2>
@@ -881,6 +843,44 @@
 <figure class="highlight scheme"><table><tr><td class="code"><pre><code class="hljs scheme">(<span class="hljs-name"><span class="hljs-builtin-name">define</span></span> (<span class="hljs-name">fact</span> n)<br>    (<span class="hljs-name"><span class="hljs-builtin-name">if</span></span> (<span class="hljs-name"><span class="hljs-builtin-name">=</span></span> n <span class="hljs-number">0</span>)<br>        <span class="hljs-number">1</span><br>        (<span class="hljs-name"><span class="hljs-builtin-name">*</span></span> n (<span class="hljs-name">fact</span> (<span class="hljs-name"><span class="hljs-builtin-name">-</span></span> n <span class="hljs-number">1</span>)))<br>    )<br>)<br></code></pre></td></tr></table></figure>
 <h4 id="tail-calls">Tail calls</h4>
 <p>In this recursive call, the helper function is the last thing to be evaluated. So every frame don't need to open to calculate the return value. It just return what helper function return to it. <figure class="highlight scheme"><table><tr><td class="code"><pre><code class="hljs scheme">(<span class="hljs-name"><span class="hljs-builtin-name">define</span></span> (<span class="hljs-name">fact</span> n)<br>    (<span class="hljs-name"><span class="hljs-builtin-name">define</span></span> (<span class="hljs-name">fact-tail</span> n result)<br>        (<span class="hljs-name"><span class="hljs-builtin-name">if</span></span> (<span class="hljs-name"><span class="hljs-builtin-name">&lt;=</span></span> n <span class="hljs-number">1</span>)<br>            result<br>            (<span class="hljs-name">fact-tail</span> (<span class="hljs-name">-n</span> <span class="hljs-number">1</span>) (<span class="hljs-name"><span class="hljs-builtin-name">*</span></span> n result))<br>        )<br>    )<br>    (<span class="hljs-name">fact-tail</span> n <span class="hljs-number">1</span>)<br>)<br></code></pre></td></tr></table></figure> ### Writing Tail Recursive Functions 1. Identify recursive calls that are not in a tail context. - The last body subexpression in a <code>lambda</code> - the consequent and alternative in a tail context <code>if</code> - All non-predicate sub-expressions in a tail context <code>cond</code> - The last sub-expression in a taill context <code>and</code>, <code>or</code>, <code>begin</code> or <code>let</code> 2. Create a helper function with arguments to accumulate the computation that prevents it from being tail recursive.</p>
+]]></content>
+      <categories>
+        <category>SICP</category>
+        <category>CS61-A</category>
+      </categories>
+      <tags>
+        <tag>note</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>19 Scheme</title>
+    <url>/2021/11/14/19-Scheme/</url>
+    <content><![CDATA[<p>Scheme is a older language that was influential in the creation of python. By learning Scheme, we'll see that many of the ideas learned about one programming language easily transfer to another.</p>
+<h3 id="scheme-is-a-dialect-of-lisp">Scheme is a Dialect of Lisp</h3>
+<h3 id="scheme-fundamentals">Scheme Fundamentals</h3>
+<p>scheme programs consist of expression, which can be:</p>
+<ul>
+<li>Primitive expression: 2, 3.3, true, +, quotient, ...</li>
+<li>Combinations: (quotient 10 2), (not true), ...</li>
+</ul>
+<p>Numbers are self-evaluating; symbols are bound to values.</p>
+<p>Call expressions include an operator and 0 or more operands in parentheses.</p>
+<p><strong>In python we put the operator outside the parentheses, and call it function. But in scheme we put it inside the parentheses, and call it procedure.</strong></p>
+<figure class="highlight scheme"><table><tr><td class="code"><pre><code class="hljs scheme">&gt; (<span class="hljs-name"><span class="hljs-builtin-name">quotient</span></span> <span class="hljs-number">10</span> <span class="hljs-number">2</span>)<br><span class="hljs-number">5</span><br>&gt; (<span class="hljs-name"><span class="hljs-builtin-name">quotient</span></span> (<span class="hljs-name"><span class="hljs-builtin-name">+</span></span> <span class="hljs-number">8</span> <span class="hljs-number">7</span>) <span class="hljs-number">5</span>)<br><span class="hljs-number">3</span><br></code></pre></td></tr></table></figure>
+<span id="more"></span>
+<h3 id="special-forms">Special Forms</h3>
+<p>A combination that is not a call expression is a special form:</p>
+<ul>
+<li><strong>if</strong> expression: <code>(if &lt;predicate&gt; &lt;consequent&gt; &lt;alternative&gt;)</code></li>
+<li><strong>and</strong> and <strong>or</strong>: <code>(and &lt;e1&gt; ... &lt;en&gt;))</code>, <code>(or &lt;e1&gt; ... &lt;en&gt;)</code></li>
+<li>Specify many conditions: <code>(cond (&lt;pred1&gt; &lt;expr1&gt;) (&lt;pred2&gt; &lt;expr2&gt;) … (else &lt;else-expr&gt;))</code></li>
+<li>Binding symbols: <code>(define &lt;symbol&gt; &lt;expression&gt;)</code></li>
+<li>New procedures: <code>(define (&lt;symbol&gt; &lt;formal parameters&gt;) &lt;body&gt;)</code></li>
+</ul>
+<h3 id="lambda-expression">Lambda Expression</h3>
+<p><code>(lambda (&lt;formal-parameters) &lt;body&gt;)</code></p>
+<p>Two equivalent expression:</p>
+<figure class="highlight scheme"><table><tr><td class="code"><pre><code class="hljs scheme">(<span class="hljs-name"><span class="hljs-builtin-name">define</span></span> (<span class="hljs-name">plus4</span> x) (<span class="hljs-name"><span class="hljs-builtin-name">+</span></span> x <span class="hljs-number">4</span>))<br>(<span class="hljs-name"><span class="hljs-builtin-name">define</span></span> plus4 (<span class="hljs-name"><span class="hljs-builtin-name">lambda</span></span> (x) (<span class="hljs-name"><span class="hljs-builtin-name">+</span></span> x <span class="hljs-number">4</span>)))<br></code></pre></td></tr></table></figure>
 ]]></content>
       <categories>
         <category>SICP</category>
@@ -993,6 +993,326 @@
 <h4 id="the-evaluator">The evaluator</h4>
 <p>The evaluator consists of two <em>mutually -recursive</em> components:</p>
 <p><img src="https://raw.githubusercontent.com/ZHDreamer/markdown-images/master/images/Snipaste_2022-01-02_14-48-23.png" /></p>
+]]></content>
+      <categories>
+        <category>SICP</category>
+        <category>CS61-A</category>
+      </categories>
+      <tags>
+        <tag>note</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>22 Macros</title>
+    <url>/2022/01/03/22-Macros/</url>
+    <content><![CDATA[<h2 id="expressions-in-scheme">Expressions in Scheme</h2>
+<h3 id="expressions-as-data">Expressions as data</h3>
+<p>Recall: programs are composed of expressions, but only manipulate values or data.</p>
+<p>In Scheme, expressions are either primitive expressions or lists - which means they’re also a form of data.</p>
+<p>This means we can:</p>
+<ul>
+<li>Assign expressions to variables</li>
+<li>Pass expressions into functions</li>
+<li>Create &amp; return new expression within functions</li>
+</ul>
+<span id="more"></span>
+<h3 id="begin">Begin</h3>
+<p><strong>begin</strong> is a special form takes in any number of expressions, evaluates them in order, and evaluates to the value of the <strong>final expression</strong>.</p>
+<p>begin can make many expressions into one expressions</p>
+<figure class="highlight scheme"><table><tr><td class="code"><pre><code class="hljs scheme">scm&gt; (<span class="hljs-name"><span class="hljs-builtin-name">begin</span></span> (<span class="hljs-name"><span class="hljs-builtin-name">define</span></span> x <span class="hljs-number">1</span>) (<span class="hljs-name"><span class="hljs-builtin-name">define</span></span> y <span class="hljs-number">2</span>) (<span class="hljs-name"><span class="hljs-builtin-name">+</span></span> x y))<br><span class="hljs-number">3</span><br></code></pre></td></tr></table></figure>
+<h3 id="let">Let</h3>
+<figure class="highlight clojure"><table><tr><td class="code"><pre><code class="hljs clojure">(<span class="hljs-name"><span class="hljs-builtin-name">let</span></span> ((<span class="hljs-name">symbol1</span> expr1)  <span class="hljs-comment">; Each symbol is bound to the value of the expression</span><br>      (<span class="hljs-name">symbol2</span> expr2)<br>     ...<br>     )<br>     body              <span class="hljs-comment">; Evaluate to the value of the body using the binding</span><br>)<br></code></pre></td></tr></table></figure>
+<p>The binding are only in the let body.</p>
+<p>The binding is in parallel, which means the result of expressions would not affect each other.</p>
+<h2 id="macros">Macros</h2>
+<p>Macros are a more convenient way to transform or create expressions.</p>
+<p>The <code>define-macro</code> special form will create a macro procedure.</p>
+<p>Macros take in and return expressions, which are then evaluated <strong>in place of</strong> the call to the macro</p>
+<figure class="highlight scheme"><table><tr><td class="code"><pre><code class="hljs scheme">(<span class="hljs-name">define-macro</span> (<span class="hljs-name">twice</span> expr)<br>    (<span class="hljs-name"><span class="hljs-builtin-name">list</span></span> <span class="hljs-symbol">&#x27;begin</span> expr expr))<br>scm&gt; (<span class="hljs-name">twice</span> (<span class="hljs-name">print</span> <span class="hljs-number">2</span>))<br><span class="hljs-number">2</span><br><span class="hljs-number">2</span><br></code></pre></td></tr></table></figure>
+<p>Macros automatically prevents the evaluation of inputs, and automatically calls eval on whatever expression it returns.</p>
+<h3 id="evaluating-macros">Evaluating Macros</h3>
+<ol type="1">
+<li>Evaluate the operator sub-expression, which evaluates to a macro procedure.</li>
+<li>Apply the macro procedure to the operand expressions <strong>without evaluating them first</strong>.</li>
+<li>Evaluate the expression returned by the macro procedure in the frame the macro was called in.</li>
+</ol>
+<h3 id="writing-macros">Writing Macros</h3>
+<p>Because macros take in and return expressions, when writing macros you should think about:</p>
+<ol type="1">
+<li>What types of expressions you’ll take in</li>
+<li>What expression has equivalent behavior to your macro</li>
+</ol>
+<h3 id="for-macro">For Macro</h3>
+<p>Scheme doesn’t have for loops, but we can add them by macros.</p>
+<figure class="highlight scheme"><table><tr><td class="code"><pre><code class="hljs scheme">scm&gt; (<span class="hljs-name"><span class="hljs-builtin-name">map</span></span> (<span class="hljs-name"><span class="hljs-builtin-name">lambda</span></span> (x) (<span class="hljs-name"><span class="hljs-builtin-name">*</span></span> x x)) &#x27;(<span class="hljs-number">1</span> <span class="hljs-number">2</span> <span class="hljs-number">3</span> <span class="hljs-number">4</span>))<br>(<span class="hljs-name">1</span> <span class="hljs-number">4</span> <span class="hljs-number">9</span> <span class="hljs-number">16</span>)<br>scm&gt; (<span class="hljs-name">define-macro</span> (<span class="hljs-name">for</span> var in lst do expr)<br>         (<span class="hljs-name"><span class="hljs-builtin-name">list</span></span> <span class="hljs-symbol">&#x27;map</span> (<span class="hljs-name"><span class="hljs-builtin-name">list</span></span> <span class="hljs-symbol">&#x27;lambda</span> (<span class="hljs-name"><span class="hljs-builtin-name">list</span></span> var) expr) lst))<br>for<br>scm&gt; (<span class="hljs-name">for</span> x in &#x27;(<span class="hljs-number">1</span> <span class="hljs-number">2</span> <span class="hljs-number">3</span> <span class="hljs-number">4</span>) do (<span class="hljs-name"><span class="hljs-builtin-name">*</span></span> x x))<br>(<span class="hljs-name">1</span> <span class="hljs-number">4</span> <span class="hljs-number">9</span> <span class="hljs-number">16</span>)<br></code></pre></td></tr></table></figure>
+<h3 id="quasi-quote">Quasi-quote</h3>
+<p>For normal, you can’t evaluate what inside your quoting. But you can quote by <code>`</code> and unquote by <code>,</code></p>
+<figure class="highlight scheme"><table><tr><td class="code"><pre><code class="hljs scheme">scm&gt; (<span class="hljs-name">define-macro</span> (<span class="hljs-name">for</span> var in lst do expr)<br>         `(map (lambda (,var) ,expr) ,lst))<br></code></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>SICP</category>
+        <category>CS61-A</category>
+      </categories>
+      <tags>
+        <tag>note</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>24 Declarative Programming I</title>
+    <url>/2022/01/17/24-Declarative-Programming-I/</url>
+    <content><![CDATA[<h2 id="declarative-programming">Declarative Programming</h2>
+<h3 id="programming-paradigms">Programming Paradigms</h3>
+<p>Up until now, we’ve been focused (primarily) on <strong>imperative programming</strong></p>
+<p>Imperative program contain explicit instructions to tell the computer <strong>how</strong> to accomplish something. The interpreter then executes those instructions.</p>
+<p>In <strong>declarative programming</strong> we can just tell the computer <strong>what</strong> we want. The interpreter then figures out how to accomplish that.</p>
+<span id="more"></span>
+<h3 id="sql-database-languages">SQL &amp; Database Languages</h3>
+<p>SQL is an example of a (declarative) language with interacts with a <strong>database management system (DBMS)</strong> in order to make data processing easier ant faster.</p>
+<p>It collects records into <strong>tables</strong>, of a collection of rows with a value for each column</p>
+<h2 id="tables-in-sql">Tables in SQL</h2>
+<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> cities <span class="hljs-keyword">AS</span><br>  <span class="hljs-keyword">SELECT</span> <span class="hljs-number">38</span> <span class="hljs-keyword">AS</span> latitude, <span class="hljs-number">122</span> <span class="hljs-keyword">AS</span> longitude, &quot;Berkeley&quot; <span class="hljs-keyword">AS</span> name <span class="hljs-keyword">UNION</span><br>  <span class="hljs-keyword">SELECT</span> <span class="hljs-number">42</span>,	   	     <span class="hljs-number">71</span>,			   &quot;Cambridge&quot;        <span class="hljs-keyword">UNION</span><br>  <span class="hljs-keyword">SELECT</span> <span class="hljs-number">45</span>,			 <span class="hljs-number">93</span>,			   &quot;Minneapolis&quot;;<br></code></pre></td></tr></table></figure>
+<h3 id="sql-basics">SQL Basics</h3>
+<ul>
+<li>A <code>SELECT</code> statement creates a new table, either from scratch or by taking information from an existing table</li>
+<li>A <code>CREATE TABLE</code> statement gives a global name to a table</li>
+</ul>
+<h3 id="selecting-value-literals">Selecting Value Literals</h3>
+<p>A <code>SELECT</code> statement always includes a comma-separated lest of column descriptions.</p>
+<p>A column description is an expression, optionally followed by <code>AS</code> and a column name.</p>
+<p>The <code>UNION</code> of two <code>SELECT</code> statements is a table containing the rows of both of their results.</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> [expression] <span class="hljs-keyword">AS</span> [name], [expression] <span class="hljs-keyword">AS</span> [name], ... ;<br></code></pre></td></tr></table></figure>
+<h3 id="naming-tables">Naming Tables</h3>
+<p>The result of a <code>SELECT</code> statement is displayed to the user, but not stored.</p>
+<p>A <code>CREATE TABLE</code> statement gives the result a name.</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> [name] <span class="hljs-keyword">AS</span> [<span class="hljs-keyword">SELECT</span> statements];<br></code></pre></td></tr></table></figure>
+<h2 id="selecting-from-tables">Selecting From Tables</h2>
+<h3 id="select-statements-project-existing-tables">SELECT Statements Project Existing Tables</h3>
+<p>A <code>SELECT</code> statement can specify an input table using a <code>FROM</code> clause.</p>
+<p>A subset of the rows of the input table can be selected using a <code>WHERE</code> clause.</p>
+<p>Declare the order of the remaining rows using an <code>ORDER BY</code> clause.</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> [columns] <span class="hljs-keyword">FROM</span> [<span class="hljs-keyword">table</span>] <span class="hljs-keyword">WHERE</span> [<span class="hljs-keyword">condition</span>] <span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> [<span class="hljs-keyword">order</span>] [<span class="hljs-keyword">ASC</span><span class="hljs-operator">/</span><span class="hljs-keyword">DESC</span>] LIMIT [number];<br></code></pre></td></tr></table></figure>
+<h2 id="joining-tables">Joining Tables</h2>
+<p>Two tables A &amp; B are joined by a comma to yield all combinations of a row from A &amp; a row from B.</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">FROM</span> parents, dogs;<br></code></pre></td></tr></table></figure>
+<p>The condition on which the tables are joined on is called the <strong>join condition</strong>.</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">FROM</span> parents, dogs <span class="hljs-keyword">WHERE</span> child <span class="hljs-operator">=</span> name <span class="hljs-keyword">AND</span> fur <span class="hljs-operator">=</span> &quot;curly&quot;;<br></code></pre></td></tr></table></figure>
+<h3 id="joining-a-table-with-itself">Joining A Table With Itself</h3>
+<p>Aliasing</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">FROM</span> parents <span class="hljs-keyword">AS</span> a, parents <span class="hljs-keyword">AS</span> b;<br></code></pre></td></tr></table></figure>
+<h2 id="string-expressions">String Expressions</h2>
+<p>String values can be combined to form longer strings.</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql">sqlite<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">SELECT</span> &quot;hello,&quot; <span class="hljs-operator">||</span> &quot; world&quot;;<br>hello, world<br></code></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>SICP</category>
+        <category>CS61-A</category>
+      </categories>
+      <tags>
+        <tag>note</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>23 Streams</title>
+    <url>/2022/01/04/23-Streams/</url>
+    <content><![CDATA[<h3 id="streams">Streams</h3>
+<p>Lazy evaluation</p>
+<figure class="highlight scheme"><table><tr><td class="code"><pre><code class="hljs scheme">(<span class="hljs-name"><span class="hljs-builtin-name">define</span></span> (<span class="hljs-name">ints</span> first)<br>    (<span class="hljs-name"><span class="hljs-builtin-name">cons</span></span> first<br>          (<span class="hljs-name">ints</span> (<span class="hljs-name"><span class="hljs-builtin-name">+</span></span> first <span class="hljs-number">1</span>))<br>    )<br>)<br>scm&gt; (<span class="hljs-name">ints</span> <span class="hljs-number">1</span>)<br>maximum recursion depth exceeded<br><br>(<span class="hljs-name"><span class="hljs-builtin-name">define</span></span> (<span class="hljs-name">ints</span> first)<br>    (<span class="hljs-name">cons-stream</span> first<br>                 (<span class="hljs-name">ints</span> (<span class="hljs-name"><span class="hljs-builtin-name">+</span></span> first <span class="hljs-number">1</span>))<br>    )<br>)<br>scm&gt; (<span class="hljs-name">ints</span> <span class="hljs-number">1</span>)<br>(<span class="hljs-name">1</span> . #[<span class="hljs-name">promise</span> (<span class="hljs-name"><span class="hljs-builtin-name">not</span></span> forced)])<br></code></pre></td></tr></table></figure>
+<p><code>cdr</code> can not force scheme to evaluate the rest of the stream, but <code>cdr-strem</code> can.</p>
+<p>A <strong>stream</strong> is just a regular Scheme pair whose second element is a <strong>promise</strong>.</p>
+<span id="more"></span>
+<h3 id="promises">Promises</h3>
+<p>Promise: an object that delays evaluation of an expression</p>
+<ul>
+<li>The <code>delay</code> special form creates promises</li>
+<li>The <code>force</code> procedure evaluates the expression inside the promise</li>
+</ul>
+<figure class="highlight scheme"><table><tr><td class="code"><pre><code class="hljs scheme">scm&gt; (<span class="hljs-name"><span class="hljs-builtin-name">define</span></span> x (<span class="hljs-name"><span class="hljs-builtin-name">delay</span></span> (<span class="hljs-name">print</span> <span class="hljs-number">5</span>)))<br>x<br>scm&gt; x<br>#[<span class="hljs-name">promise</span> (<span class="hljs-name"><span class="hljs-builtin-name">not</span></span> forced)]<br>scm&gt; (<span class="hljs-name"><span class="hljs-builtin-name">force</span></span> (<span class="hljs-name"><span class="hljs-builtin-name">delay</span></span> (<span class="hljs-name">print</span> <span class="hljs-number">5</span>)))<br><span class="hljs-number">5</span><br>scm&gt; x<br>#[<span class="hljs-name">promise</span> (<span class="hljs-name">forced</span>)]<br></code></pre></td></tr></table></figure>
+<p><code>cons-stream</code> and <code>cdr-stream</code> are syntactic sugar. Achieve the same effect with <code>delay</code> and <code>force</code>.</p>
+<h3 id="recursively-defined-streams">Recursively defined streams</h3>
+<h4 id="constant-stream">Constant stream</h4>
+<p>A constant stream is an infinitely long stream with a number repeated.</p>
+<figure class="highlight scheme"><table><tr><td class="code"><pre><code class="hljs scheme">(<span class="hljs-name"><span class="hljs-builtin-name">define</span></span> (<span class="hljs-name">constant-stream</span> i)<br>    (<span class="hljs-name">cons-stream</span> i (<span class="hljs-name">constant-stream</span> i))<br>)<br></code></pre></td></tr></table></figure>
+<h4 id="natural-number-stream">Natural number stream</h4>
+<figure class="highlight scheme"><table><tr><td class="code"><pre><code class="hljs scheme">(<span class="hljs-name"><span class="hljs-builtin-name">define</span></span> (<span class="hljs-name">nats</span> start)<br>    (<span class="hljs-name">cons-stream</span> start (<span class="hljs-name">nats</span> (<span class="hljs-name"><span class="hljs-builtin-name">+</span></span> start <span class="hljs-number">1</span>)))<br>)<br></code></pre></td></tr></table></figure>
+<p>You can also define it this way:</p>
+<figure class="highlight scheme"><table><tr><td class="code"><pre><code class="hljs scheme">(<span class="hljs-name"><span class="hljs-builtin-name">define</span></span> (<span class="hljs-name">add-stream</span> s1 s2)<br>    (<span class="hljs-name">cons-strsam</span> (<span class="hljs-name"><span class="hljs-builtin-name">+</span></span> (<span class="hljs-name"><span class="hljs-builtin-name">car</span></span> s1) (<span class="hljs-name"><span class="hljs-builtin-name">car</span></span> s2))<br>                 (<span class="hljs-name">add-stream</span> (<span class="hljs-name">cdr-stream</span> s1) (<span class="hljs-name">cdr-stream</span> s2))<br>                 )<br>)<br>(<span class="hljs-name"><span class="hljs-builtin-name">define</span></span> ones (<span class="hljs-name">cons-stream</span> <span class="hljs-number">1</span> ones))<br>(<span class="hljs-name"><span class="hljs-builtin-name">define</span></span> ints (<span class="hljs-name">cons-stream</span> <span class="hljs-number">1</span> (<span class="hljs-name">add-stream</span> ones ints)))<br></code></pre></td></tr></table></figure>
+<h4 id="map-stream">Map-stream</h4>
+<figure class="highlight scheme"><table><tr><td class="code"><pre><code class="hljs scheme">(<span class="hljs-name"><span class="hljs-builtin-name">define</span></span> (<span class="hljs-name">map-stream</span> fn s)<br>    (<span class="hljs-name"><span class="hljs-builtin-name">if</span></span> (<span class="hljs-name"><span class="hljs-builtin-name">null?</span></span> s)<br>        nil<br>        (<span class="hljs-name">cons-stream</span> (<span class="hljs-name">fn</span> (<span class="hljs-name"><span class="hljs-builtin-name">car</span></span> s))<br>                     (<span class="hljs-name">map-stream</span> fn (<span class="hljs-name">cdr-</span>)))<br>    )  <br>)<br></code></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>SICP</category>
+        <category>CS61-A</category>
+      </categories>
+      <tags>
+        <tag>note</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>25 Declarative Programming II</title>
+    <url>/2022/01/17/25-Declarative-Programming-II/</url>
+    <content><![CDATA[<h2 id="aggregation">Aggregation</h2>
+<p><strong>Aggregation</strong> is the process of doing operations on <em>groups of rows</em> instead of just a single row.</p>
+<h3 id="aggregate-function">Aggregate Function</h3>
+<table>
+<thead>
+<tr class="header">
+<th>Aggregation function</th>
+<th>Return value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>MAX</strong>([columns])</td>
+<td>The maximum value in the given column(s)</td>
+</tr>
+<tr class="even">
+<td><strong>MIN</strong>([columns])</td>
+<td>The minimum value in the given column(s)</td>
+</tr>
+<tr class="odd">
+<td><strong>AVG</strong>([column])</td>
+<td>The average value in the given column</td>
+</tr>
+<tr class="even">
+<td><strong>COUNT</strong>([column])</td>
+<td>The number of values in the given column</td>
+</tr>
+<tr class="odd">
+<td><strong>SUM</strong>([column])</td>
+<td>The sum of the values in the given column</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-built_in">AVG</span>(age) <span class="hljs-keyword">AS</span> avg_age <span class="hljs-keyword">FROM</span> dogs;<br></code></pre></td></tr></table></figure>
+<span id="more"></span>
+<h3 id="groups">Groups</h3>
+<p>By default, aggregations performed over all the rows of the table.’</p>
+<p>We can specify that we want to group rows based on values in a particular column using the <code>GROUP BY</code> clause in a <code>SELECT</code> statement.</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> fur, <span class="hljs-built_in">AVG</span>(age) <span class="hljs-keyword">AS</span> avg_age <span class="hljs-keyword">FROM</span> dogs <span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> fur;<br></code></pre></td></tr></table></figure>
+<h3 id="filtering-groups">Filtering Groups</h3>
+<p>To filter groups, use the <code>HAVING [condition]</code> clause.</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> fur, <span class="hljs-built_in">AVG</span>(age) <span class="hljs-keyword">AS</span> avg_age<br>    <span class="hljs-keyword">FROM</span> dogs <span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> fur<br>    <span class="hljs-keyword">HAVING</span> <span class="hljs-built_in">COUNT</span>(<span class="hljs-operator">*</span>) <span class="hljs-operator">&gt;</span> <span class="hljs-number">1</span>;<br></code></pre></td></tr></table></figure>
+<h2 id="mutating-tables">Mutating Tables</h2>
+<h3 id="remove-tables">Remove Tables</h3>
+<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">DROP</span> <span class="hljs-keyword">TABLE</span> [IF <span class="hljs-keyword">EXISTS</span>] [name];<br></code></pre></td></tr></table></figure>
+<h3 id="inserting-records">Inserting Records</h3>
+<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> [<span class="hljs-keyword">table</span>]([columns]) <span class="hljs-keyword">VALUES</span>([<span class="hljs-keyword">values</span>], [<span class="hljs-keyword">values</span>]);<br></code></pre></td></tr></table></figure>
+<h3 id="updating-records">Updating Records</h3>
+<p>To update existing entries in a table:</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql">UPDATE [<span class="hljs-keyword">table</span>] <span class="hljs-keyword">SET</span> [<span class="hljs-keyword">column</span>] <span class="hljs-operator">=</span> [expression] <span class="hljs-keyword">WHERE</span> [<span class="hljs-keyword">condition</span>];<br></code></pre></td></tr></table></figure>
+<p>To delete existing rows in a table:</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">DELETE</span> <span class="hljs-keyword">FROM</span> [<span class="hljs-keyword">table</span>] <span class="hljs-keyword">WHERE</span> [<span class="hljs-keyword">condition</span>];<br></code></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>SICP</category>
+        <category>CS61-A</category>
+      </categories>
+      <tags>
+        <tag>note</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>26 Special Topics I (Security)</title>
+    <url>/2022/01/18/26-Special-Topics-I-Security/</url>
+    <content><![CDATA[<h3 id="http-hypertext-transfer-protocol">HTTP (Hypertext Transfer Protocol)</h3>
+<p>A common data communication protocol on the web</p>
+<h3 id="cookies-web-authentication">Cookies &amp; Web Authentication</h3>
+<p>Track users who have authenticated (logged in)</p>
+<h3 id="cross-site-request-forgery">Cross-Site Request Forgery</h3>
+<p>CSRF attack</p>
+<ul>
+<li>Our browser issues the request</li>
+<li>And dutifully includes authentication cookie</li>
+</ul>
+<h4 id="defense">Defense</h4>
+<ul>
+<li>If you have to click on an unfamiliar link, use Incognito</li>
+<li>Also, some browsers have implemented <a href="https://caniuse.com/same-site-cookie-attribute">'SameSite' cookie attribute</a></li>
+</ul>
+<span id="more"></span>
+<h3 id="phishing">Phishing</h3>
+<ul>
+<li>Attacker creates fake website that appears similar to a real one</li>
+<li>Tricks user to visit site</li>
+<li>User inserts credentials and sensitive data which gets sent to attacker</li>
+<li>Web page then directs to real site or shows maintenance issues</li>
+</ul>
+<h4 id="factor-authentication">2-Factor Authentication</h4>
+<p>Type in your password and authenticate using your mobile device</p>
+<p>But fake website can ask for both your password and your authentication code</p>
+<h4 id="u2f-keys">U2F Keys</h4>
+<p>A secondary method of authentication</p>
+<p>Key Idea: Cannot be phished</p>
+<ul>
+<li><p>The security key itself knows which site it is talking to through the browser:</p></li>
+<li><p>it knows the difference between www.google.com and www.g00gle.com</p></li>
+</ul>
+<p>The touching allows the security key to know that a person is making the request</p>
+<h3 id="sql-injection">SQL Injection</h3>
+<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> balance <span class="hljs-keyword">FROM</span> bank_info<br>    <span class="hljs-keyword">WHERE</span> online_id <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;&lt;INPUT1&gt;&#x27;</span> <span class="hljs-keyword">AND</span> passcode <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;&lt;INPUT2&gt;&#x27;</span>;<br></code></pre></td></tr></table></figure>
+<p><code>INPUT2 = 123'; SELECT * FROM bank_info;</code></p>
+<h4 id="prevention">Prevention</h4>
+<p>Sanitize your inputs</p>
+<h3 id="risk-mitigation">Risk Mitigation</h3>
+<ul>
+<li>Password Manager
+<ul>
+<li>e.g. LastPass, 1Password, Keeper</li>
+<li>Your password manager can have stronger authentication than average website</li>
+</ul></li>
+<li>Even if one of your passwords is leaked, other passwords will still be secure</li>
+</ul>
+<h3 id="cryptography">Cryptography</h3>
+<p>Encrypting data so that only trusted parties can see it</p>
+<p><strong>WPA2</strong> is the most common type of secure network encryption</p>
+]]></content>
+      <categories>
+        <category>SICP</category>
+        <category>CS61-A</category>
+      </categories>
+      <tags>
+        <tag>note</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>27 Special Topics II (CS Theory)</title>
+    <url>/2022/01/21/27-Special-Topics-II-CS-Theory/</url>
+    <content><![CDATA[<h2 id="complexity">Complexity</h2>
+<h3 id="p-vs-np">P vs NP</h3>
+<p>NP: “nondeterministic polynomial time”, types of problems when given a “solution” can be verified if the solution is correct quickly.</p>
+<p>如果一个问题有一个解，且能在多项式时间内证明这是个正解，那么这就是个NP问题</p>
+<p>P: “polynomial time”, types of problems that we can create solutions to quickly.</p>
+<p>如果一个问题是P问题，那么它必须满足在多项式时间nc内验证一个算法问题的实例是否有解 ，其中n是输入长度，c是个常数</p>
+<p>P is a subset of NP, if we can create a solution in polynomial time, then we can verify it in polynomial.</p>
+<span id="more"></span>
+<h3 id="reductions">Reductions</h3>
+<p>We say problem A reduces to problem B if you can easily solve problem A using problem B.</p>
+<p>This implies that problem B must be at least as hard to solve ass problem A. e.g. using a more complicate function to solve a relative easy problem.</p>
+<h3 id="np-complete">NP Complete</h3>
+<p>There are a group of problems in NP which all NP problems reduce to, we call this group <strong>NP complete</strong>.</p>
+<h3 id="implications">Implications</h3>
+<p>Because all problems in NP reduce to NP-complete problems if an efficient solution to an NP-complete problem is found all problem in NP subsequently will have an efficient solution.</p>
+<p>If P=NP, every mathematic problem will be easily solved.</p>
+<h2 id="computability">Computability</h2>
+<h3 id="a-classic-proof-turing-1936">A Classic Proof (Turing, 1936)</h3>
+<p>Can we check to see if a program will always terminate?</p>
+<h4 id="proof-by-contradiction">Proof by Contradiction</h4>
+<p>Let’s say we have a function, halt, which takes in a function f and value x, and returns True if f will terminate when called on x.</p>
+<p>Then we can write a function:</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">foo</span>(<span class="hljs-params">f</span>):</span><br>	<span class="hljs-keyword">if</span> halt(f, f):<br>        <span class="hljs-keyword">while</span> <span class="hljs-literal">True</span>:<br>            <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Trapped&quot;</span>)<br>    <span class="hljs-keyword">else</span>:<br>        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;Treminated!&quot;</span><br></code></pre></td></tr></table></figure>
+<p>What might happen when we call foo(foo)?</p>
+<ol type="1">
+<li>It terminates - so halt(foo, foo) returns False, which means foo(foo) doesn’t terminate</li>
+<li>It’s trapped forever - so halt(foo, foo) returns True, which means foo(foo) terminates</li>
+</ol>
+<p>So that is a paradox. Neither case makes sense, so halt must not exist!</p>
+<p>The halting problem is <strong>undecidable</strong>, which means it is impossible for a computer to solve.</p>
+<p>The function halt reduces to is also undecidable.</p>
+<h3 id="termination-analysis">Termination Analysis</h3>
+<p>Given a program p and an input x, return True if you know it halts, False if you know it doesn’t terminate, or <strong>“I don’t know” otherwise</strong>.</p>
+<p>Goal: Minimize the number of times you have to say “I don’t know”</p>
+<h3 id="another-classic-proof-turing-1949">Another Classic Proof (Turing 1949)</h3>
+<p>Imagine we have a function f which takes in the variables of the program and spits out a number. If that number keeps decreasing, eventually it must hit some “smallest” value. If it hits the smallest value, our program terminates.</p>
 ]]></content>
       <categories>
         <category>SICP</category>
@@ -1154,6 +1474,23 @@ m^n&amp;=F_n(F_m)(f)(x)\\
       </tags>
   </entry>
   <entry>
+    <title>Windows10 alt+tab 出现多个edge标签</title>
+    <url>/2021/08/20/Windows-10-alt-tab-%E5%87%BA%E7%8E%B0%E5%A4%9A%E4%B8%AAedge%E6%A0%87%E7%AD%BE/</url>
+    <content><![CDATA[<p>在edge打开了多个标签页会发现alt+tab出现了edge标签页</p>
+<p><img src="https://raw.githubusercontent.com/ZHDreamer/markdown-images/master/images/20200830093038337.jpg" /></p>
+<p>可以在windows设置里面找到<strong>多任务处理</strong>，修改alt+tab将显示仅打开的窗口</p>
+<p><img src="https://raw.githubusercontent.com/ZHDreamer/markdown-images/master/images/Snipaste_2021-08-20_17-00-23.png" /></p>
+]]></content>
+      <categories>
+        <category>Software</category>
+        <category>Issues</category>
+      </categories>
+      <tags>
+        <tag>Windows10</tag>
+        <tag>edge</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Hexo 问题处理备份</title>
     <url>/2021/08/12/Hexo-%E9%97%AE%E9%A2%98%E5%A4%84%E7%90%86%E5%A4%87%E4%BB%BD/</url>
     <content><![CDATA[<p>Hexo使用起来小毛病很多，防止以后浪费时间再去搜索，在这里备份一下各个问题成功的解决方法。</p>
@@ -1208,23 +1545,6 @@ m^n&amp;=F_n(F_m)(f)(x)\\
       </tags>
   </entry>
   <entry>
-    <title>Windows10 alt+tab 出现多个edge标签</title>
-    <url>/2021/08/20/Windows-10-alt-tab-%E5%87%BA%E7%8E%B0%E5%A4%9A%E4%B8%AAedge%E6%A0%87%E7%AD%BE/</url>
-    <content><![CDATA[<p>在edge打开了多个标签页会发现alt+tab出现了edge标签页</p>
-<p><img src="https://raw.githubusercontent.com/ZHDreamer/markdown-images/master/images/20200830093038337.jpg" /></p>
-<p>可以在windows设置里面找到<strong>多任务处理</strong>，修改alt+tab将显示仅打开的窗口</p>
-<p><img src="https://raw.githubusercontent.com/ZHDreamer/markdown-images/master/images/Snipaste_2021-08-20_17-00-23.png" /></p>
-]]></content>
-      <categories>
-        <category>Software</category>
-        <category>Issues</category>
-      </categories>
-      <tags>
-        <tag>Windows10</tag>
-        <tag>edge</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Windows10 去除资源管理器(文件夹)多余文件夹</title>
     <url>/2021/08/23/Windows-10-%E5%8E%BB%E9%99%A4%E8%B5%84%E6%BA%90%E7%AE%A1%E7%90%86%E5%99%A8-%E6%96%87%E4%BB%B6%E5%A4%B9-%E5%A4%9A%E4%BD%99%E6%96%87%E4%BB%B6%E5%A4%B9/</url>
     <content><![CDATA[<h3 id="关闭导航栏多余文件夹">关闭导航栏多余文件夹</h3>
@@ -1263,326 +1583,6 @@ m^n&amp;=F_n(F_m)(f)(x)\\
       </categories>
       <tags>
         <tag>Windows10</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>22 Macros</title>
-    <url>/2022/01/03/22-Macros/</url>
-    <content><![CDATA[<h2 id="expressions-in-scheme">Expressions in Scheme</h2>
-<h3 id="expressions-as-data">Expressions as data</h3>
-<p>Recall: programs are composed of expressions, but only manipulate values or data.</p>
-<p>In Scheme, expressions are either primitive expressions or lists - which means they’re also a form of data.</p>
-<p>This means we can:</p>
-<ul>
-<li>Assign expressions to variables</li>
-<li>Pass expressions into functions</li>
-<li>Create &amp; return new expression within functions</li>
-</ul>
-<span id="more"></span>
-<h3 id="begin">Begin</h3>
-<p><strong>begin</strong> is a special form takes in any number of expressions, evaluates them in order, and evaluates to the value of the <strong>final expression</strong>.</p>
-<p>begin can make many expressions into one expressions</p>
-<figure class="highlight scheme"><table><tr><td class="code"><pre><code class="hljs scheme">scm&gt; (<span class="hljs-name"><span class="hljs-builtin-name">begin</span></span> (<span class="hljs-name"><span class="hljs-builtin-name">define</span></span> x <span class="hljs-number">1</span>) (<span class="hljs-name"><span class="hljs-builtin-name">define</span></span> y <span class="hljs-number">2</span>) (<span class="hljs-name"><span class="hljs-builtin-name">+</span></span> x y))<br><span class="hljs-number">3</span><br></code></pre></td></tr></table></figure>
-<h3 id="let">Let</h3>
-<figure class="highlight clojure"><table><tr><td class="code"><pre><code class="hljs clojure">(<span class="hljs-name"><span class="hljs-builtin-name">let</span></span> ((<span class="hljs-name">symbol1</span> expr1)  <span class="hljs-comment">; Each symbol is bound to the value of the expression</span><br>      (<span class="hljs-name">symbol2</span> expr2)<br>     ...<br>     )<br>     body              <span class="hljs-comment">; Evaluate to the value of the body using the binding</span><br>)<br></code></pre></td></tr></table></figure>
-<p>The binding are only in the let body.</p>
-<p>The binding is in parallel, which means the result of expressions would not affect each other.</p>
-<h2 id="macros">Macros</h2>
-<p>Macros are a more convenient way to transform or create expressions.</p>
-<p>The <code>define-macro</code> special form will create a macro procedure.</p>
-<p>Macros take in and return expressions, which are then evaluated <strong>in place of</strong> the call to the macro</p>
-<figure class="highlight scheme"><table><tr><td class="code"><pre><code class="hljs scheme">(<span class="hljs-name">define-macro</span> (<span class="hljs-name">twice</span> expr)<br>    (<span class="hljs-name"><span class="hljs-builtin-name">list</span></span> <span class="hljs-symbol">&#x27;begin</span> expr expr))<br>scm&gt; (<span class="hljs-name">twice</span> (<span class="hljs-name">print</span> <span class="hljs-number">2</span>))<br><span class="hljs-number">2</span><br><span class="hljs-number">2</span><br></code></pre></td></tr></table></figure>
-<p>Macros automatically prevents the evaluation of inputs, and automatically calls eval on whatever expression it returns.</p>
-<h3 id="evaluating-macros">Evaluating Macros</h3>
-<ol type="1">
-<li>Evaluate the operator sub-expression, which evaluates to a macro procedure.</li>
-<li>Apply the macro procedure to the operand expressions <strong>without evaluating them first</strong>.</li>
-<li>Evaluate the expression returned by the macro procedure in the frame the macro was called in.</li>
-</ol>
-<h3 id="writing-macros">Writing Macros</h3>
-<p>Because macros take in and return expressions, when writing macros you should think about:</p>
-<ol type="1">
-<li>What types of expressions you’ll take in</li>
-<li>What expression has equivalent behavior to your macro</li>
-</ol>
-<h3 id="for-macro">For Macro</h3>
-<p>Scheme doesn’t have for loops, but we can add them by macros.</p>
-<figure class="highlight scheme"><table><tr><td class="code"><pre><code class="hljs scheme">scm&gt; (<span class="hljs-name"><span class="hljs-builtin-name">map</span></span> (<span class="hljs-name"><span class="hljs-builtin-name">lambda</span></span> (x) (<span class="hljs-name"><span class="hljs-builtin-name">*</span></span> x x)) &#x27;(<span class="hljs-number">1</span> <span class="hljs-number">2</span> <span class="hljs-number">3</span> <span class="hljs-number">4</span>))<br>(<span class="hljs-name">1</span> <span class="hljs-number">4</span> <span class="hljs-number">9</span> <span class="hljs-number">16</span>)<br>scm&gt; (<span class="hljs-name">define-macro</span> (<span class="hljs-name">for</span> var in lst do expr)<br>         (<span class="hljs-name"><span class="hljs-builtin-name">list</span></span> <span class="hljs-symbol">&#x27;map</span> (<span class="hljs-name"><span class="hljs-builtin-name">list</span></span> <span class="hljs-symbol">&#x27;lambda</span> (<span class="hljs-name"><span class="hljs-builtin-name">list</span></span> var) expr) lst))<br>for<br>scm&gt; (<span class="hljs-name">for</span> x in &#x27;(<span class="hljs-number">1</span> <span class="hljs-number">2</span> <span class="hljs-number">3</span> <span class="hljs-number">4</span>) do (<span class="hljs-name"><span class="hljs-builtin-name">*</span></span> x x))<br>(<span class="hljs-name">1</span> <span class="hljs-number">4</span> <span class="hljs-number">9</span> <span class="hljs-number">16</span>)<br></code></pre></td></tr></table></figure>
-<h3 id="quasi-quote">Quasi-quote</h3>
-<p>For normal, you can’t evaluate what inside your quoting. But you can quote by <code>`</code> and unquote by <code>,</code></p>
-<figure class="highlight scheme"><table><tr><td class="code"><pre><code class="hljs scheme">scm&gt; (<span class="hljs-name">define-macro</span> (<span class="hljs-name">for</span> var in lst do expr)<br>         `(map (lambda (,var) ,expr) ,lst))<br></code></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>SICP</category>
-        <category>CS61-A</category>
-      </categories>
-      <tags>
-        <tag>note</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>23 Streams</title>
-    <url>/2022/01/04/23-Streams/</url>
-    <content><![CDATA[<h3 id="streams">Streams</h3>
-<p>Lazy evaluation</p>
-<figure class="highlight scheme"><table><tr><td class="code"><pre><code class="hljs scheme">(<span class="hljs-name"><span class="hljs-builtin-name">define</span></span> (<span class="hljs-name">ints</span> first)<br>    (<span class="hljs-name"><span class="hljs-builtin-name">cons</span></span> first<br>          (<span class="hljs-name">ints</span> (<span class="hljs-name"><span class="hljs-builtin-name">+</span></span> first <span class="hljs-number">1</span>))<br>    )<br>)<br>scm&gt; (<span class="hljs-name">ints</span> <span class="hljs-number">1</span>)<br>maximum recursion depth exceeded<br><br>(<span class="hljs-name"><span class="hljs-builtin-name">define</span></span> (<span class="hljs-name">ints</span> first)<br>    (<span class="hljs-name">cons-stream</span> first<br>                 (<span class="hljs-name">ints</span> (<span class="hljs-name"><span class="hljs-builtin-name">+</span></span> first <span class="hljs-number">1</span>))<br>    )<br>)<br>scm&gt; (<span class="hljs-name">ints</span> <span class="hljs-number">1</span>)<br>(<span class="hljs-name">1</span> . #[<span class="hljs-name">promise</span> (<span class="hljs-name"><span class="hljs-builtin-name">not</span></span> forced)])<br></code></pre></td></tr></table></figure>
-<p><code>cdr</code> can not force scheme to evaluate the rest of the stream, but <code>cdr-strem</code> can.</p>
-<p>A <strong>stream</strong> is just a regular Scheme pair whose second element is a <strong>promise</strong>.</p>
-<span id="more"></span>
-<h3 id="promises">Promises</h3>
-<p>Promise: an object that delays evaluation of an expression</p>
-<ul>
-<li>The <code>delay</code> special form creates promises</li>
-<li>The <code>force</code> procedure evaluates the expression inside the promise</li>
-</ul>
-<figure class="highlight scheme"><table><tr><td class="code"><pre><code class="hljs scheme">scm&gt; (<span class="hljs-name"><span class="hljs-builtin-name">define</span></span> x (<span class="hljs-name"><span class="hljs-builtin-name">delay</span></span> (<span class="hljs-name">print</span> <span class="hljs-number">5</span>)))<br>x<br>scm&gt; x<br>#[<span class="hljs-name">promise</span> (<span class="hljs-name"><span class="hljs-builtin-name">not</span></span> forced)]<br>scm&gt; (<span class="hljs-name"><span class="hljs-builtin-name">force</span></span> (<span class="hljs-name"><span class="hljs-builtin-name">delay</span></span> (<span class="hljs-name">print</span> <span class="hljs-number">5</span>)))<br><span class="hljs-number">5</span><br>scm&gt; x<br>#[<span class="hljs-name">promise</span> (<span class="hljs-name">forced</span>)]<br></code></pre></td></tr></table></figure>
-<p><code>cons-stream</code> and <code>cdr-stream</code> are syntactic sugar. Achieve the same effect with <code>delay</code> and <code>force</code>.</p>
-<h3 id="recursively-defined-streams">Recursively defined streams</h3>
-<h4 id="constant-stream">Constant stream</h4>
-<p>A constant stream is an infinitely long stream with a number repeated.</p>
-<figure class="highlight scheme"><table><tr><td class="code"><pre><code class="hljs scheme">(<span class="hljs-name"><span class="hljs-builtin-name">define</span></span> (<span class="hljs-name">constant-stream</span> i)<br>    (<span class="hljs-name">cons-stream</span> i (<span class="hljs-name">constant-stream</span> i))<br>)<br></code></pre></td></tr></table></figure>
-<h4 id="natural-number-stream">Natural number stream</h4>
-<figure class="highlight scheme"><table><tr><td class="code"><pre><code class="hljs scheme">(<span class="hljs-name"><span class="hljs-builtin-name">define</span></span> (<span class="hljs-name">nats</span> start)<br>    (<span class="hljs-name">cons-stream</span> start (<span class="hljs-name">nats</span> (<span class="hljs-name"><span class="hljs-builtin-name">+</span></span> start <span class="hljs-number">1</span>)))<br>)<br></code></pre></td></tr></table></figure>
-<p>You can also define it this way:</p>
-<figure class="highlight scheme"><table><tr><td class="code"><pre><code class="hljs scheme">(<span class="hljs-name"><span class="hljs-builtin-name">define</span></span> (<span class="hljs-name">add-stream</span> s1 s2)<br>    (<span class="hljs-name">cons-strsam</span> (<span class="hljs-name"><span class="hljs-builtin-name">+</span></span> (<span class="hljs-name"><span class="hljs-builtin-name">car</span></span> s1) (<span class="hljs-name"><span class="hljs-builtin-name">car</span></span> s2))<br>                 (<span class="hljs-name">add-stream</span> (<span class="hljs-name">cdr-stream</span> s1) (<span class="hljs-name">cdr-stream</span> s2))<br>                 )<br>)<br>(<span class="hljs-name"><span class="hljs-builtin-name">define</span></span> ones (<span class="hljs-name">cons-stream</span> <span class="hljs-number">1</span> ones))<br>(<span class="hljs-name"><span class="hljs-builtin-name">define</span></span> ints (<span class="hljs-name">cons-stream</span> <span class="hljs-number">1</span> (<span class="hljs-name">add-stream</span> ones ints)))<br></code></pre></td></tr></table></figure>
-<h4 id="map-stream">Map-stream</h4>
-<figure class="highlight scheme"><table><tr><td class="code"><pre><code class="hljs scheme">(<span class="hljs-name"><span class="hljs-builtin-name">define</span></span> (<span class="hljs-name">map-stream</span> fn s)<br>    (<span class="hljs-name"><span class="hljs-builtin-name">if</span></span> (<span class="hljs-name"><span class="hljs-builtin-name">null?</span></span> s)<br>        nil<br>        (<span class="hljs-name">cons-stream</span> (<span class="hljs-name">fn</span> (<span class="hljs-name"><span class="hljs-builtin-name">car</span></span> s))<br>                     (<span class="hljs-name">map-stream</span> fn (<span class="hljs-name">cdr-</span>)))<br>    )  <br>)<br></code></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>SICP</category>
-        <category>CS61-A</category>
-      </categories>
-      <tags>
-        <tag>note</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>24 Declarative Programming I</title>
-    <url>/2022/01/17/24-Declarative-Programming-I/</url>
-    <content><![CDATA[<h2 id="declarative-programming">Declarative Programming</h2>
-<h3 id="programming-paradigms">Programming Paradigms</h3>
-<p>Up until now, we’ve been focused (primarily) on <strong>imperative programming</strong></p>
-<p>Imperative program contain explicit instructions to tell the computer <strong>how</strong> to accomplish something. The interpreter then executes those instructions.</p>
-<p>In <strong>declarative programming</strong> we can just tell the computer <strong>what</strong> we want. The interpreter then figures out how to accomplish that.</p>
-<span id="more"></span>
-<h3 id="sql-database-languages">SQL &amp; Database Languages</h3>
-<p>SQL is an example of a (declarative) language with interacts with a <strong>database management system (DBMS)</strong> in order to make data processing easier ant faster.</p>
-<p>It collects records into <strong>tables</strong>, of a collection of rows with a value for each column</p>
-<h2 id="tables-in-sql">Tables in SQL</h2>
-<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> cities <span class="hljs-keyword">AS</span><br>  <span class="hljs-keyword">SELECT</span> <span class="hljs-number">38</span> <span class="hljs-keyword">AS</span> latitude, <span class="hljs-number">122</span> <span class="hljs-keyword">AS</span> longitude, &quot;Berkeley&quot; <span class="hljs-keyword">AS</span> name <span class="hljs-keyword">UNION</span><br>  <span class="hljs-keyword">SELECT</span> <span class="hljs-number">42</span>,	   	     <span class="hljs-number">71</span>,			   &quot;Cambridge&quot;        <span class="hljs-keyword">UNION</span><br>  <span class="hljs-keyword">SELECT</span> <span class="hljs-number">45</span>,			 <span class="hljs-number">93</span>,			   &quot;Minneapolis&quot;;<br></code></pre></td></tr></table></figure>
-<h3 id="sql-basics">SQL Basics</h3>
-<ul>
-<li>A <code>SELECT</code> statement creates a new table, either from scratch or by taking information from an existing table</li>
-<li>A <code>CREATE TABLE</code> statement gives a global name to a table</li>
-</ul>
-<h3 id="selecting-value-literals">Selecting Value Literals</h3>
-<p>A <code>SELECT</code> statement always includes a comma-separated lest of column descriptions.</p>
-<p>A column description is an expression, optionally followed by <code>AS</code> and a column name.</p>
-<p>The <code>UNION</code> of two <code>SELECT</code> statements is a table containing the rows of both of their results.</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> [expression] <span class="hljs-keyword">AS</span> [name], [expression] <span class="hljs-keyword">AS</span> [name], ... ;<br></code></pre></td></tr></table></figure>
-<h3 id="naming-tables">Naming Tables</h3>
-<p>The result of a <code>SELECT</code> statement is displayed to the user, but not stored.</p>
-<p>A <code>CREATE TABLE</code> statement gives the result a name.</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> [name] <span class="hljs-keyword">AS</span> [<span class="hljs-keyword">SELECT</span> statements];<br></code></pre></td></tr></table></figure>
-<h2 id="selecting-from-tables">Selecting From Tables</h2>
-<h3 id="select-statements-project-existing-tables">SELECT Statements Project Existing Tables</h3>
-<p>A <code>SELECT</code> statement can specify an input table using a <code>FROM</code> clause.</p>
-<p>A subset of the rows of the input table can be selected using a <code>WHERE</code> clause.</p>
-<p>Declare the order of the remaining rows using an <code>ORDER BY</code> clause.</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> [columns] <span class="hljs-keyword">FROM</span> [<span class="hljs-keyword">table</span>] <span class="hljs-keyword">WHERE</span> [<span class="hljs-keyword">condition</span>] <span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> [<span class="hljs-keyword">order</span>] [<span class="hljs-keyword">ASC</span><span class="hljs-operator">/</span><span class="hljs-keyword">DESC</span>] LIMIT [number];<br></code></pre></td></tr></table></figure>
-<h2 id="joining-tables">Joining Tables</h2>
-<p>Two tables A &amp; B are joined by a comma to yield all combinations of a row from A &amp; a row from B.</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">FROM</span> parents, dogs;<br></code></pre></td></tr></table></figure>
-<p>The condition on which the tables are joined on is called the <strong>join condition</strong>.</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">FROM</span> parents, dogs <span class="hljs-keyword">WHERE</span> child <span class="hljs-operator">=</span> name <span class="hljs-keyword">AND</span> fur <span class="hljs-operator">=</span> &quot;curly&quot;;<br></code></pre></td></tr></table></figure>
-<h3 id="joining-a-table-with-itself">Joining A Table With Itself</h3>
-<p>Aliasing</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">FROM</span> parents <span class="hljs-keyword">AS</span> a, parents <span class="hljs-keyword">AS</span> b;<br></code></pre></td></tr></table></figure>
-<h2 id="string-expressions">String Expressions</h2>
-<p>String values can be combined to form longer strings.</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql">sqlite<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">SELECT</span> &quot;hello,&quot; <span class="hljs-operator">||</span> &quot; world&quot;;<br>hello, world<br></code></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>SICP</category>
-        <category>CS61-A</category>
-      </categories>
-      <tags>
-        <tag>note</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>26 Special Topics I (Security)</title>
-    <url>/2022/01/18/26-Special-Topics-I-Security/</url>
-    <content><![CDATA[<h3 id="http-hypertext-transfer-protocol">HTTP (Hypertext Transfer Protocol)</h3>
-<p>A common data communication protocol on the web</p>
-<h3 id="cookies-web-authentication">Cookies &amp; Web Authentication</h3>
-<p>Track users who have authenticated (logged in)</p>
-<h3 id="cross-site-request-forgery">Cross-Site Request Forgery</h3>
-<p>CSRF attack</p>
-<ul>
-<li>Our browser issues the request</li>
-<li>And dutifully includes authentication cookie</li>
-</ul>
-<h4 id="defense">Defense</h4>
-<ul>
-<li>If you have to click on an unfamiliar link, use Incognito</li>
-<li>Also, some browsers have implemented <a href="https://caniuse.com/same-site-cookie-attribute">'SameSite' cookie attribute</a></li>
-</ul>
-<span id="more"></span>
-<h3 id="phishing">Phishing</h3>
-<ul>
-<li>Attacker creates fake website that appears similar to a real one</li>
-<li>Tricks user to visit site</li>
-<li>User inserts credentials and sensitive data which gets sent to attacker</li>
-<li>Web page then directs to real site or shows maintenance issues</li>
-</ul>
-<h4 id="factor-authentication">2-Factor Authentication</h4>
-<p>Type in your password and authenticate using your mobile device</p>
-<p>But fake website can ask for both your password and your authentication code</p>
-<h4 id="u2f-keys">U2F Keys</h4>
-<p>A secondary method of authentication</p>
-<p>Key Idea: Cannot be phished</p>
-<ul>
-<li><p>The security key itself knows which site it is talking to through the browser:</p></li>
-<li><p>it knows the difference between www.google.com and www.g00gle.com</p></li>
-</ul>
-<p>The touching allows the security key to know that a person is making the request</p>
-<h3 id="sql-injection">SQL Injection</h3>
-<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> balance <span class="hljs-keyword">FROM</span> bank_info<br>    <span class="hljs-keyword">WHERE</span> online_id <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;&lt;INPUT1&gt;&#x27;</span> <span class="hljs-keyword">AND</span> passcode <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;&lt;INPUT2&gt;&#x27;</span>;<br></code></pre></td></tr></table></figure>
-<p><code>INPUT2 = 123'; SELECT * FROM bank_info;</code></p>
-<h4 id="prevention">Prevention</h4>
-<p>Sanitize your inputs</p>
-<h3 id="risk-mitigation">Risk Mitigation</h3>
-<ul>
-<li>Password Manager
-<ul>
-<li>e.g. LastPass, 1Password, Keeper</li>
-<li>Your password manager can have stronger authentication than average website</li>
-</ul></li>
-<li>Even if one of your passwords is leaked, other passwords will still be secure</li>
-</ul>
-<h3 id="cryptography">Cryptography</h3>
-<p>Encrypting data so that only trusted parties can see it</p>
-<p><strong>WPA2</strong> is the most common type of secure network encryption</p>
-]]></content>
-      <categories>
-        <category>SICP</category>
-        <category>CS61-A</category>
-      </categories>
-      <tags>
-        <tag>note</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>25 Declarative Programming II</title>
-    <url>/2022/01/17/25-Declarative-Programming-II/</url>
-    <content><![CDATA[<h2 id="aggregation">Aggregation</h2>
-<p><strong>Aggregation</strong> is the process of doing operations on <em>groups of rows</em> instead of just a single row.</p>
-<h3 id="aggregate-function">Aggregate Function</h3>
-<table>
-<thead>
-<tr class="header">
-<th>Aggregation function</th>
-<th>Return value</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><strong>MAX</strong>([columns])</td>
-<td>The maximum value in the given column(s)</td>
-</tr>
-<tr class="even">
-<td><strong>MIN</strong>([columns])</td>
-<td>The minimum value in the given column(s)</td>
-</tr>
-<tr class="odd">
-<td><strong>AVG</strong>([column])</td>
-<td>The average value in the given column</td>
-</tr>
-<tr class="even">
-<td><strong>COUNT</strong>([column])</td>
-<td>The number of values in the given column</td>
-</tr>
-<tr class="odd">
-<td><strong>SUM</strong>([column])</td>
-<td>The sum of the values in the given column</td>
-</tr>
-</tbody>
-</table>
-<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-built_in">AVG</span>(age) <span class="hljs-keyword">AS</span> avg_age <span class="hljs-keyword">FROM</span> dogs;<br></code></pre></td></tr></table></figure>
-<span id="more"></span>
-<h3 id="groups">Groups</h3>
-<p>By default, aggregations performed over all the rows of the table.’</p>
-<p>We can specify that we want to group rows based on values in a particular column using the <code>GROUP BY</code> clause in a <code>SELECT</code> statement.</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> fur, <span class="hljs-built_in">AVG</span>(age) <span class="hljs-keyword">AS</span> avg_age <span class="hljs-keyword">FROM</span> dogs <span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> fur;<br></code></pre></td></tr></table></figure>
-<h3 id="filtering-groups">Filtering Groups</h3>
-<p>To filter groups, use the <code>HAVING [condition]</code> clause.</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> fur, <span class="hljs-built_in">AVG</span>(age) <span class="hljs-keyword">AS</span> avg_age<br>    <span class="hljs-keyword">FROM</span> dogs <span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> fur<br>    <span class="hljs-keyword">HAVING</span> <span class="hljs-built_in">COUNT</span>(<span class="hljs-operator">*</span>) <span class="hljs-operator">&gt;</span> <span class="hljs-number">1</span>;<br></code></pre></td></tr></table></figure>
-<h2 id="mutating-tables">Mutating Tables</h2>
-<h3 id="remove-tables">Remove Tables</h3>
-<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">DROP</span> <span class="hljs-keyword">TABLE</span> [IF <span class="hljs-keyword">EXISTS</span>] [name];<br></code></pre></td></tr></table></figure>
-<h3 id="inserting-records">Inserting Records</h3>
-<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> [<span class="hljs-keyword">table</span>]([columns]) <span class="hljs-keyword">VALUES</span>([<span class="hljs-keyword">values</span>], [<span class="hljs-keyword">values</span>]);<br></code></pre></td></tr></table></figure>
-<h3 id="updating-records">Updating Records</h3>
-<p>To update existing entries in a table:</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql">UPDATE [<span class="hljs-keyword">table</span>] <span class="hljs-keyword">SET</span> [<span class="hljs-keyword">column</span>] <span class="hljs-operator">=</span> [expression] <span class="hljs-keyword">WHERE</span> [<span class="hljs-keyword">condition</span>];<br></code></pre></td></tr></table></figure>
-<p>To delete existing rows in a table:</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">DELETE</span> <span class="hljs-keyword">FROM</span> [<span class="hljs-keyword">table</span>] <span class="hljs-keyword">WHERE</span> [<span class="hljs-keyword">condition</span>];<br></code></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>SICP</category>
-        <category>CS61-A</category>
-      </categories>
-      <tags>
-        <tag>note</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>27 Special Topics II (CS Theory)</title>
-    <url>/2022/01/21/27-Special-Topics-II-CS-Theory/</url>
-    <content><![CDATA[<h2 id="complexity">Complexity</h2>
-<h3 id="p-vs-np">P vs NP</h3>
-<p>NP: “nondeterministic polynomial time”, types of problems when given a “solution” can be verified if the solution is correct quickly.</p>
-<p>如果一个问题有一个解，且能在多项式时间内证明这是个正解，那么这就是个NP问题</p>
-<p>P: “polynomial time”, types of problems that we can create solutions to quickly.</p>
-<p>如果一个问题是P问题，那么它必须满足在多项式时间nc内验证一个算法问题的实例是否有解 ，其中n是输入长度，c是个常数</p>
-<p>P is a subset of NP, if we can create a solution in polynomial time, then we can verify it in polynomial.</p>
-<span id="more"></span>
-<h3 id="reductions">Reductions</h3>
-<p>We say problem A reduces to problem B if you can easily solve problem A using problem B.</p>
-<p>This implies that problem B must be at least as hard to solve ass problem A. e.g. using a more complicate function to solve a relative easy problem.</p>
-<h3 id="np-complete">NP Complete</h3>
-<p>There are a group of problems in NP which all NP problems reduce to, we call this group <strong>NP complete</strong>.</p>
-<h3 id="implications">Implications</h3>
-<p>Because all problems in NP reduce to NP-complete problems if an efficient solution to an NP-complete problem is found all problem in NP subsequently will have an efficient solution.</p>
-<p>If P=NP, every mathematic problem will be easily solved.</p>
-<h2 id="computability">Computability</h2>
-<h3 id="a-classic-proof-turing-1936">A Classic Proof (Turing, 1936)</h3>
-<p>Can we check to see if a program will always terminate?</p>
-<h4 id="proof-by-contradiction">Proof by Contradiction</h4>
-<p>Let’s say we have a function, halt, which takes in a function f and value x, and returns True if f will terminate when called on x.</p>
-<p>Then we can write a function:</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">foo</span>(<span class="hljs-params">f</span>):</span><br>	<span class="hljs-keyword">if</span> halt(f, f):<br>        <span class="hljs-keyword">while</span> <span class="hljs-literal">True</span>:<br>            <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Trapped&quot;</span>)<br>    <span class="hljs-keyword">else</span>:<br>        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;Treminated!&quot;</span><br></code></pre></td></tr></table></figure>
-<p>What might happen when we call foo(foo)?</p>
-<ol type="1">
-<li>It terminates - so halt(foo, foo) returns False, which means foo(foo) doesn’t terminate</li>
-<li>It’s trapped forever - so halt(foo, foo) returns True, which means foo(foo) terminates</li>
-</ol>
-<p>So that is a paradox. Neither case makes sense, so halt must not exist!</p>
-<p>The halting problem is <strong>undecidable</strong>, which means it is impossible for a computer to solve.</p>
-<p>The function halt reduces to is also undecidable.</p>
-<h3 id="termination-analysis">Termination Analysis</h3>
-<p>Given a program p and an input x, return True if you know it halts, False if you know it doesn’t terminate, or <strong>“I don’t know” otherwise</strong>.</p>
-<p>Goal: Minimize the number of times you have to say “I don’t know”</p>
-<h3 id="another-classic-proof-turing-1949">Another Classic Proof (Turing 1949)</h3>
-<p>Imagine we have a function f which takes in the variables of the program and spits out a number. If that number keeps decreasing, eventually it must hit some “smallest” value. If it hits the smallest value, our program terminates.</p>
-]]></content>
-      <categories>
-        <category>SICP</category>
-        <category>CS61-A</category>
-      </categories>
-      <tags>
-        <tag>note</tag>
       </tags>
   </entry>
 </search>

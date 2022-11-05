@@ -65,6 +65,10 @@
 
 
 
+  
+<link rel="stylesheet" href="/css/mac_code_block.css">
+
+
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
@@ -396,9 +400,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/01/02/21-Interpreters/" title="21 Interpreters">
+                      <a href="/2021/11/14/20-More-Scheme/" title="20 More Scheme">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">21 Interpreters</span>
+                        <span class="hidden-mobile">20 More Scheme</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -406,8 +410,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2021/11/14/20-More-Scheme/" title="20 More Scheme">
-                        <span class="hidden-mobile">20 More Scheme</span>
+                      <a href="/2021/10/03/18-Interface/" title="18 Interface">
+                        <span class="hidden-mobile">18 Interface</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -461,6 +465,12 @@
 
 
   
+
+
+  
+  
+
+
 
 
 
@@ -654,6 +664,49 @@
 
 
   <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
 
   <script  src="/js/local-search.js" ></script>
 
