@@ -1,386 +1,662 @@
+
+
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
 <head>
   <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 5.4.0">
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
-  <link rel="mask-icon" href="/images/logo.svg" color="#222">
-  <meta name="msvalidate.01" content="F6AEE664C45CEBD9B20F0FF05746437D">
-  <meta name="baidu-site-verification" content="code-F3T999W6or">
-
-<link rel="stylesheet" href="/css/main.css">
-
-<link rel="stylesheet" href="https://fonts.loli.net/css?family=Lato:300,300italic,400,400italic,700,700italic%7CSource+Code+Pro:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
-
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
-
-<script class="next-config" data-name="main" type="application/json">{"hostname":"zhdreamer.github.io","root":"/","images":"/images","scheme":"Mist","version":"8.7.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
-<meta name="description" content="学习CS-61A个人体会 现在我刚好学到11节，期中考试之前的最后一节，算是学过一半了。 当初想要学CS-61A是我一个朋友和我介绍的，放假后没什么事干，本这实在不行学个英语也行的态度开始了61A的学习。">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="ZHDreamer">
+  <meta name="keywords" content="python,zhdreamer">
+  
+    <meta name="description" content="学习 CS-61A 个人体会 现在我刚好学到 11 节，期中考试之前的最后一节，算是学过一半了。 当初想要学 CS-61A 是我一个朋友和我介绍的，放假后没什么事干，本这实在不行学个英语也行的态度开始了 61A 的学习。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="01 Intro">
 <meta property="og:url" content="https://zhdreamer.github.io/project/2021/07/07/01-Intro/index.html">
 <meta property="og:site_name" content="数字云烟">
-<meta property="og:description" content="学习CS-61A个人体会 现在我刚好学到11节，期中考试之前的最后一节，算是学过一半了。 当初想要学CS-61A是我一个朋友和我介绍的，放假后没什么事干，本这实在不行学个英语也行的态度开始了61A的学习。">
+<meta property="og:description" content="学习 CS-61A 个人体会 现在我刚好学到 11 节，期中考试之前的最后一节，算是学过一半了。 当初想要学 CS-61A 是我一个朋友和我介绍的，放假后没什么事干，本这实在不行学个英语也行的态度开始了 61A 的学习。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-07-07T09:31:00.000Z">
-<meta property="article:modified_time" content="2022-01-25T02:29:39.889Z">
+<meta property="article:modified_time" content="2022-05-27T11:53:32.876Z">
 <meta property="article:author" content="ZHDreamer">
 <meta property="article:tag" content="note">
-<meta name="twitter:card" content="summary">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>01 Intro - 数字云烟</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
 
-<link rel="canonical" href="https://zhdreamer.github.io/project/2021/07/07/01-Intro/">
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://zhdreamer.github.io/project/2021/07/07/01-Intro/","path":"2021/07/07/01-Intro/","title":"01 Intro"}</script>
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
 
-<script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>01 Intro | 数字云烟</title>
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
   
 
 
 
 
-  <noscript>
-    <link rel="stylesheet" href="/css/noscript.css">
-  </noscript>
-</head>
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"zhdreamer.github.io","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
 
-<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
-  <div class="headband"></div>
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
 
-  <main class="main">
-    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-container">
-  <div class="site-nav-toggle">
-    <div class="toggle" aria-label="切换导航栏" role="button">
-        <span class="toggle-line"></span>
-        <span class="toggle-line"></span>
-        <span class="toggle-line"></span>
-    </div>
-  </div>
 
-  <div class="site-meta">
+  
+<meta name="generator" content="Hexo 5.4.2"></head>
 
-    <a href="/" class="brand" rel="start">
-      <i class="logo-line"></i>
-      <h1 class="site-title">数字云烟</h1>
-      <i class="logo-line"></i>
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
     </a>
-  </div>
 
-  <div class="site-nav-right">
-    <div class="toggle popup-trigger">
-        <i class="fa fa-search fa-fw fa-lg"></i>
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
     </div>
   </div>
-</div>
-
-
-
-<nav class="site-nav">
-  <ul class="main-menu menu">
-        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
-        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li>
-        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li>
-      <li class="menu-item menu-item-search">
-        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
-        </a>
-      </li>
-  </ul>
 </nav>
 
+  
 
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="01 Intro"></span>
+          
+        </div>
 
-  <div class="search-pop-overlay">
-    <div class="popup search-popup"><div class="search-header">
-  <span class="search-icon">
-    <i class="fa fa-search"></i>
-  </span>
-  <div class="search-input-container">
-    <input autocomplete="off" autocapitalize="off" maxlength="80"
-           placeholder="搜索..." spellcheck="false"
-           type="search" class="search-input">
-  </div>
-  <span class="popup-btn-close" role="button">
-    <i class="fa fa-times-circle"></i>
-  </span>
-</div>
-<div class="search-result-container no-result">
-  <div class="search-result-icon">
-    <i class="fa fa-spinner fa-pulse fa-5x"></i>
-  </div>
-</div>
-
-    </div>
-  </div>
-
-</div>
         
-  
-  <div class="toggle sidebar-toggle" role="button">
-    <span class="toggle-line"></span>
-    <span class="toggle-line"></span>
-    <span class="toggle-line"></span>
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2021-07-07 17:31" pubdate>
+          2021年7月7日 下午
+        </time>
+      </span>
+    
   </div>
 
-  <aside class="sidebar">
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.2k 字
+        
+      </span>
+    
 
-    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
-      <ul class="sidebar-nav">
-        <li class="sidebar-nav-toc">
-          文章目录
-        </li>
-        <li class="sidebar-nav-overview">
-          站点概览
-        </li>
-      </ul>
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          19 分钟
+        
+      </span>
+    
 
-      <div class="sidebar-panel-container">
-        <!--noindex-->
-        <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AD%A6%E4%B9%A0cs-61a%E4%B8%AA%E4%BA%BA%E4%BD%93%E4%BC%9A"><span class="nav-number">1.</span> <span class="nav-text">学习CS-61A个人体会</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%92%8C%E5%9B%BD%E5%86%85%E8%AF%BE%E7%A8%8B%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">1.1.</span> <span class="nav-text">和国内课程的区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B5%84%E6%96%99%E4%B8%B0%E5%AF%8C"><span class="nav-number">1.2.</span> <span class="nav-text">资料丰富</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%8C%E6%88%90cs-61a%E5%90%8E%E7%9A%84%E6%84%9F%E5%8F%97"><span class="nav-number">2.</span> <span class="nav-text">完成CS-61A后的感受</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B8%85%E6%99%B0%E7%9A%84%E5%8E%9F%E7%90%86%E8%AF%B4%E6%98%8E"><span class="nav-number">2.1.</span> <span class="nav-text">清晰的原理说明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%A7%E9%87%8F%E7%9A%84%E4%BD%9C%E4%B8%9A%E5%AE%9E%E8%B7%B5"><span class="nav-number">2.2.</span> <span class="nav-text">大量的作业实践</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%92%8C%E6%BC%94%E7%A4%BA"><span class="nav-number">2.3.</span> <span class="nav-text">命令行和演示</span></a></li></ol></li></ol></div>
-        </div>
-        <!--/noindex-->
+    
+    
+  </div>
 
-        <div class="site-overview-wrap sidebar-panel">
-          <div class="site-overview">
-            <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
-  <p class="site-author-name" itemprop="name">ZHDreamer</p>
-  <div class="site-description" itemprop="description">一位完美主义偏执狂的博客</div>
-</div>
-<div class="site-state-wrap site-overview-item animated">
-  <nav class="site-state">
-      <div class="site-state-item site-state-posts">
-        <a href="/archives/">
-          <span class="site-state-item-count">30</span>
-          <span class="site-state-item-name">日志</span>
-        </a>
+
+        
       </div>
-      <div class="site-state-item site-state-categories">
-          <a href="/categories/">
-        <span class="site-state-item-count">6</span>
-        <span class="site-state-item-name">分类</span></a>
-      </div>
-      <div class="site-state-item site-state-tags">
-          <a href="/tags/">
-        <span class="site-state-item-count">5</span>
-        <span class="site-state-item-name">标签</span></a>
-      </div>
-  </nav>
-</div>
 
-
-
-          </div>
-        </div>
-      </div>
+      
     </div>
-  </aside>
-  <div class="sidebar-dimmer"></div>
-
-
-    </header>
-
-    
-  <div class="back-to-top" role="button" aria-label="返回顶部">
-    <i class="fa fa-arrow-up"></i>
-    <span>0%</span>
   </div>
-
-<noscript>
-  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
-</noscript>
-
-
-    <div class="main-inner post posts-expand">
-
-
-  
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://zhdreamer.github.io/project/2021/07/07/01-Intro/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="ZHDreamer">
-      <meta itemprop="description" content="一位完美主义偏执狂的博客">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="数字云烟">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          01 Intro
-        </h1>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2021-07-07 17:31:00" itemprop="dateCreated datePublished" datetime="2021-07-07T17:31:00+08:00">2021-07-07</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/SICP/" itemprop="url" rel="index"><span itemprop="name">SICP</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/SICP/CS61-A/" itemprop="url" rel="index"><span itemprop="name">CS61-A</span></a>
-        </span>
-    </span>
-
-  
 </div>
 
-        </div>
-      </header>
+</div>
 
+  </header>
+
+  <main>
     
-    
-    
-    <div class="post-body" itemprop="articleBody">
-        <h2 id="学习cs-61a个人体会">学习CS-61A个人体会</h2>
-<p>现在我刚好学到11节，期中考试之前的最后一节，算是学过一半了。</p>
-<p>当初想要学CS-61A是我一个朋友和我介绍的，放假后没什么事干，本这实在不行学个英语也行的态度开始了61A的学习。</p>
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">01 Intro</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="学习-cs-61a-个人体会">学习 CS-61A 个人体会</h2>
+<p>现在我刚好学到 11 节，期中考试之前的最后一节，算是学过一半了。 当初想要学 CS-61A 是我一个朋友和我介绍的，放假后没什么事干，本这实在不行学个英语也行的态度开始了 61A 的学习。</p>
 <span id="more"></span>
 <h3 id="和国内课程的区别">和国内课程的区别</h3>
-<p>我就读于西安电子科技大学，目前大一上了2个有关编程的课，大一上的计算机导论与程序设计（C语言），下的Python程序设计，还有一个程序设计（C语言做几个题写报告）。</p>
+<p>我就读于西安电子科技大学，目前大一上了 2 个有关编程的课，大一上的计算机导论与程序设计（C 语言），下的 Python 程序设计，还有一个程序设计（C 语言做几个题写报告）。</p>
 <p>整个大一上下来给我的感觉就是老师讲的东西没有什么用，基本就是照着教材说一遍。教材的编排更偏向于让你学会如何运用一个语音去编写程序，对于算法的教学大多是上机时做题自己参悟出来的。我不知道是不是国内的大学都是这样，反正就我的学习体验来说，这些课程对与提高我对于编程理解的作用是很有限的。</p>
-<p>CS-61A不同的是，它一开始就会教你程序是如何运行的，让你学会如何解释程序的运行，也会教你一些非常神奇的操作，比如各种high-order function。61a的作业量其实是比较大的，但是很多作业都很有趣，比如project系列会让你去完成一个可执行的游戏或者程序，他给你了一个大的框架，你只需要填一些东西，就可以感受到自己写的东西运行起来的快乐。有些题也很烧脑，比如hw03的Extra Questions让你写Church numerals，是一个利用函数定义自然数的程序，最后的程序不过几行，但是可能要花数小时思考。</p>
+<p>CS-61A 不同的是，它一开始就会教你程序是如何运行的，让你学会如何解释程序的运行，也会教你一些非常神奇的操作，比如各种 high-order function。61a 的作业量其实是比较大的，但是很多作业都很有趣，比如 project 系列会让你去完成一个可执行的游戏或者程序，他给你了一个大的框架，你只需要填一些东西，就可以感受到自己写的东西运行起来的快乐。有些题也很烧脑，比如 hw03 的 Extra Questions 让你写 Church numerals，是一个利用函数定义自然数的程序，最后的程序不过几行，但是可能要花数小时思考。</p>
 <h3 id="资料丰富">资料丰富</h3>
-<p>61A的课程资料是完全对外公开的，所以即便不是伯克利的学生也可以运用课程资料自学，作业也可以用自带的python ok来检测，只需加上<code>--local</code>就可以不用填写邮箱，GitHub上也有人上传了作业代码，包括我也上传了<a target="_blank" rel="noopener" href="https://github.com/ZHDreamer/CS-61A-SU-19">我的版本</a>，所以上课和写作业的过程是非常顺畅的。</p>
-<h2 id="完成cs-61a后的感受">完成CS-61A后的感受</h2>
-<p>这门课作为入门课真的非常有意思，老师也挺不错的。在最后一节final lecture上老师鼓励说61A是一门非常难的课，CS也是一门非常难的学科，无论是现在还是未来你都有可能觉得自己不适合CS，但是就算落下一点也没有关系，你还是可以成功毕业，你还是可以找到适合自己的方向。还有就是不要忽视其他学科的学习，因为CS是一个相对闭塞的学科，很可能你会陷入一个信息茧房之中，所以上一些文学、艺术或者历史课都是很有帮助的。什么叫人文关怀，这就叫人文关怀，希望那些恃才傲物的老师多学着点。</p>
+<p>61A 的课程资料是完全对外公开的，所以即便不是伯克利的学生也可以运用课程资料自学，作业也可以用自带的 python ok 来检测，只需加上<code>--local</code>就可以不用填写邮箱，GitHub 上也有人上传了作业代码，包括我也上传了 <a target="_blank" rel="noopener" href="https://github.com/ZHDreamer/CS-61A-SU-19">我的版本</a>，所以上课和写作业的过程是非常顺畅的。</p>
+<h2 id="完成-cs-61a-后的感受">完成 CS-61A 后的感受</h2>
+<p>这门课作为入门课真的非常有意思，老师也挺不错的。在最后一节 final lecture 上老师鼓励说 61A 是一门非常难的课，CS 也是一门非常难的学科，无论是现在还是未来你都有可能觉得自己不适合 CS，但是就算落下一点也没有关系，你还是可以成功毕业，你还是可以找到适合自己的方向。还有就是不要忽视其他学科的学习，因为 CS 是一个相对闭塞的学科，很可能你会陷入一个信息茧房之中，所以上一些文学、艺术或者历史课都是很有帮助的。什么叫人文关怀，这就叫人文关怀，希望那些恃才傲物的老师多学着点。</p>
 <h3 id="清晰的原理说明">清晰的原理说明</h3>
-<p>现在再来回顾一开始上的几节课其实就教了一点Python基础，但是方向是截然不同的，61A更偏向于如何解释程序的运行。比如一开始就教你怎么画Environment Diagrams，介绍了frame的概念。我还记得我们大学的Python期末考就考了局部变量和全局变量，我就做错了，因为我们老师根本没有讲过frame，我还是用c的思维方式来思考的，现在叫我做我不可能做错。上完61A，我可能没学到几个函数怎么用，但是我对Python和类似的语言的理解高了几个层次。</p>
+<p>现在再来回顾一开始上的几节课其实就教了一点 Python 基础，但是方向是截然不同的，61A 更偏向于如何解释程序的运行。比如一开始就教你怎么画 Environment Diagrams，介绍了 frame 的概念。我还记得我们大学的 Python 期末考就考了局部变量和全局变量，我就做错了，因为我们老师根本没有讲过 frame，我还是用 c 的思维方式来思考的，现在叫我做我不可能做错。上完 61A，我可能没学到几个函数怎么用，但是我对 Python 和类似的语言的理解高了几个层次。</p>
 <h3 id="大量的作业实践">大量的作业实践</h3>
-<p>我没有做Disc和Guerrilla，因为笔试我觉得真的没有必要（21的Disc更新换代了，不用自己写纸上了，可以互动了，太NB了）。可想而知真的在UCB学习这门课的压力有多大，几乎做作业的时间是比看课长很多的，如果真的认真做完每一道题和optional questions一定会花费大量时间和精力，但是换来的是一个非常牢固的基础，对于理解任何编程语言都是有帮助的。比如有几节课会学习Scheme的知识，作业是要求用Python写一个Scheme解释器，这就可以帮助你深入理解Python和Scheme是如何运行一段程序的。不过有一点不太好的就是，61A的ok程序有些edge case检测不到，所以有的时候写了个错的程序也能过，所以一定要看好要求。lab14要写RLE算法，我看有些传到GitHub的代码就是错的，只是统计了每个元素出现的次数，而不是真正的RLE。还有就是真的不要去抄别人的解法，自己想才是对自己的锻炼，毕竟没人逼着你上61A。</p>
-<p>还有一点就是abstract的思想非常重要，61A的project通常让你写的不是整个程序，而是程序的一小部分，在做project的时候我根本不了解整个程序是怎么运行的，我只要写好我要写的部分，跟其他模块对接好就行</p>
+<p>我没有做 Disc 和 Guerrilla，因为笔试我觉得真的没有必要（21 的 Disc 更新换代了，不用自己写纸上了，可以互动了，太 NB 了）。可想而知真的在 UCB 学习这门课的压力有多大，几乎做作业的时间是比看课长很多的，如果真的认真做完每一道题和 optional questions 一定会花费大量时间和精力，但是换来的是一个非常牢固的基础，对于理解任何编程语言都是有帮助的。比如有几节课会学习 Scheme 的知识，作业是要求用 Python 写一个 Scheme 解释器，这就可以帮助你深入理解 Python 和 Scheme 是如何运行一段程序的。不过有一点不太好的就是，61A 的 ok 程序有些 edge case 检测不到，所以有的时候写了个错的程序也能过，所以一定要看好要求。lab14 要写 RLE 算法，我看有些传到 GitHub 的代码就是错的，只是统计了每个元素出现的次数，而不是真正的 RLE。还有就是真的不要去抄别人的解法，自己想才是对自己的锻炼，毕竟没人逼着你上 61A。</p>
+<p>还有一点就是 abstract 的思想非常重要，61A 的 project 通常让你写的不是整个程序，而是程序的一小部分，在做 project 的时候我根本不了解整个程序是怎么运行的，我只要写好我要写的部分，跟其他模块对接好就行</p>
 <h3 id="命令行和演示">命令行和演示</h3>
-<p>其实这也是我觉的国内做的很不好的一点，老师上课不做演示，不用命令行。很多人上完课不会用ide或者编辑器，不会使命令行打命令。还是Python期末考有个送分题怎么在命令行运行一个<code>.py</code>文件，很多人不会，很多人都是背的。61A ppt上的代码基本都会运行一遍而且基本都是用shell和vim，课后的Python ok也是要用命令行，也就是说61A的学生如果不会命令行作业都交不了。其实我觉得这些操作都是CS中需要积累的部分，我打算学The Missing Semester of Your CS Education也是想加强这一部分，不了解这些内容不会影响你的分数，但是了解这些起码你能用一些没有GUI的软件，在解决一些问题的时候也能知道自己输入的代码是干嘛的。</p>
-<p>演示这一点我觉得也是很有必要的，一个是老师无形之中就可以教一些高效率的计算机操作和shell命令，还有就是帮助学生理解，有任何问题可以直接敲代码演示。但这对于老师的要求也提高了，毕竟念ppt和做演示不是一个难度啊（笑）。</p>
+<p>其实这也是我觉的国内做的很不好的一点，老师上课不做演示，不用命令行。很多人上完课不会用 ide 或者编辑器，不会使命令行打命令。还是 Python 期末考有个送分题怎么在命令行运行一个<code>.py</code>文件，很多人不会，很多人都是背的。61A ppt 上的代码基本都会运行一遍而且基本都是用 shell 和 vim，课后的 Python ok 也是要用命令行，也就是说 61A 的学生如果不会命令行作业都交不了。其实我觉得这些操作都是 CS 中需要积累的部分，我打算学 The Missing Semester of Your CS Education 也是想加强这一部分，不了解这些内容不会影响你的分数，但是了解这些起码你能用一些没有 GUI 的软件，在解决一些问题的时候也能知道自己输入的代码是干嘛的。</p>
+<p>演示这一点我觉得也是很有必要的，一个是老师无形之中就可以教一些高效率的计算机操作和 shell 命令，还有就是帮助学生理解，有任何问题可以直接敲代码演示。但这对于老师的要求也提高了，毕竟念 ppt 和做演示不是一个难度啊（笑）。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/SICP/" class="category-chain-item">SICP</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/SICP/CS61-A/" class="category-chain-item">CS61-A</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
 
     </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/note/">#note</a>
+      
+    </div>
+  
+</div>
 
-    
-    
-    
 
-    <footer class="post-footer">
-          <div class="post-tags">
-              <a href="/tags/note/" rel="tag"><i class="fa fa-tag"></i> note</a>
-          </div>
+              
+  
 
-        
-
-          <div class="post-nav">
-            <div class="post-nav-item">
-            </div>
-            <div class="post-nav-item">
-                <a href="/2021/07/08/02-Function/" rel="next" title="02 Function">
-                  02 Function <i class="fa fa-chevron-right"></i>
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>01 Intro</div>
+      <div>https://zhdreamer.github.io/project/2021/07/07/01-Intro/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>ZHDreamer</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2021年7月7日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
                 </a>
-            </div>
+              
+            
           </div>
-    </footer>
-  </article>
-</div>
-
-
-
-
-
-
-</div>
-  </main>
-
-  <footer class="footer">
-    <div class="footer-inner">
-
-
-<div class="copyright">
-  &copy; 
-  <span itemprop="copyrightYear">2022</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">ZHDreamer</span>
-</div>
-<div class="wordcount">
-  <span class="post-meta-item">
-    <span class="post-meta-item-icon">
-      <i class="fa fa-chart-line"></i>
-    </span>
-    <span title="站点总字数">60k</span>
-  </span>
-  <span class="post-meta-item">
-    <span class="post-meta-item-icon">
-      <i class="fa fa-coffee"></i>
-    </span>
-    <span title="站点阅读时长">55 分钟</span>
-  </span>
-</div>
-  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
   </div>
 
-<div class="powered-by">
-    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-    <i class="fa fa-user-md"></i>
-    <span id="busuanzi_container_site_uv">
-        本站访客数:<span id="busuanzi_value_site_uv"></span>
-    </span>
-    <span class="post-meta-divider">|</span>
-    <span id="busuanzi_container_site_pv">
-        本站访问量<span id="busuanzi_value_site_pv"></span>
-    </span>
-</div>
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/07/08/02-Function/" title="02 Function">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">02 Function</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
     </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
   </footer>
 
+  <!-- Scripts -->
   
-  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
-<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
 
   
-<script src="/js/third-party/search/local-search.js"></script>
-
-
-
-
+    <script  src="/js/img-lazyload.js" ></script>
   
 
 
 
 
   
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
 
-  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-mml-chtml.js","integrity":"sha256-r+3itOMtGGjap0x+10hu6jW/gZCzxHsoKrOd7gyRSGY="}}</script>
-<script src="/js/third-party/math/mathjax.js"></script>
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
 
 
 
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
 </body>
 </html>
