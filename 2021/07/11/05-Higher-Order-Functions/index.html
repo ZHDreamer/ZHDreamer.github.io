@@ -1,7 +1,7 @@
 
 
 <!DOCTYPE html>
-<html lang="zh-CN" data-default-color-scheme=auto>
+<html lang="en" data-default-color-scheme=auto>
 
 
 
@@ -22,7 +22,7 @@
 <meta property="og:url" content="https://zhdreamer.github.io/project/2021/07/11/05-Higher-Order-Functions/index.html">
 <meta property="og:site_name" content="数字云烟">
 <meta property="og:description" content="Higher-Order Functions Functions are first-class, meaning they can be manipulated as values A higher-order function is:  A function that a function as an argument A function that returns a functi">
-<meta property="og:locale" content="zh_CN">
+<meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://raw.githubusercontent.com/ZHDreamer/markdown-images/master/images/Snipaste_2021-07-11_14-22-12_compressed.jpg">
 <meta property="article:published_time" content="2021-07-11T06:02:00.000Z">
 <meta property="article:modified_time" content="2022-03-26T14:28:04.913Z">
@@ -31,6 +31,8 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://raw.githubusercontent.com/ZHDreamer/markdown-images/master/images/Snipaste_2021-07-11_14-22-12_compressed.jpg">
   
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
   
   
   <title>05 Higher-Order Functions - 数字云烟</title>
@@ -75,7 +77,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"zhdreamer.github.io","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"zhdreamer.github.io","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":40,"cursorChar":"_","loop":false,"scope":["home"]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -101,7 +103,7 @@
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand" href="/">
-      <strong>Fluid</strong>
+      <strong>数字云烟</strong>
     </a>
 
     <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
@@ -121,19 +123,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/">
                 <i class="iconfont icon-home-fill"></i>
-                首页
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/archives/">
-                <i class="iconfont icon-archive-fill"></i>
-                归档
+                Home
               </a>
             </li>
           
@@ -145,7 +135,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/categories/">
                 <i class="iconfont icon-category-fill"></i>
-                分类
+                Categories
               </a>
             </li>
           
@@ -157,7 +147,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/tags/">
                 <i class="iconfont icon-tags-fill"></i>
-                标签
+                Tags
               </a>
             </li>
           
@@ -169,7 +159,19 @@
             <li class="nav-item">
               <a class="nav-link" href="/about/">
                 <i class="iconfont icon-user-fill"></i>
-                关于
+                About
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                Links
               </a>
             </li>
           
@@ -202,7 +204,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="05 Higher-Order Functions"></span>
+            <span id="subtitle">05 Higher-Order Functions</span>
           
         </div>
 
@@ -214,7 +216,7 @@
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
         <time datetime="2021-07-11 14:02" pubdate>
-          2021年7月11日 下午
+          July 11, 2021 2:02 PM
         </time>
       </span>
     
@@ -225,23 +227,22 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.8k 字
+          1.7k words
         
       </span>
     
 
     
-      <span class="post-meta mr-2">
-        <i class="iconfont icon-clock-fill"></i>
-        
-        
-        
-          15 分钟
-        
-      </span>
-    
 
     
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> views
+        </span>
+        
+      
     
   </div>
 
@@ -294,7 +295,8 @@
 <span id="more"></span>
 <h5 id="assert">assert</h5>
 <p><code>assert expression [, arguments]</code> equals to</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> expression:<br>    <span class="hljs-keyword">raise</span> AssertionError(arguments)<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs python"><span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> expression:
+    <span class="hljs-keyword">raise</span> AssertionError(arguments)</code></pre></div>
 <p>It can limit the input to satisfy the domain</p>
 <h5 id="how-to-designing-functions">How to designing functions</h5>
 <p>Give each function exactly <strong>one job</strong>, but make it apply to <strong>many related situations</strong>.</p>
@@ -302,12 +304,44 @@
 <p><img src="https://raw.githubusercontent.com/ZHDreamer/markdown-images/master/images/Snipaste_2021-07-11_14-22-12_compressed.jpg" srcset="/img/loading.gif" lazyload /></p>
 <h4 id="generalizing-over-computational-processes">Generalizing Over Computational Processes</h4>
 <p>The common structure among functions may be a computational process, rather than a number.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">summation</span>(<span class="hljs-params">n, term</span>):</span><br>    total, k = <span class="hljs-number">0</span>, <span class="hljs-number">1</span><br>    <span class="hljs-keyword">while</span> k &lt;= n:<br>        total, k = total + term(k), k + <span class="hljs-number">1</span><br>    <span class="hljs-keyword">return</span> total<br><span class="hljs-comment"># summation takes in a function term, so it is a high-order function.</span><br><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">identity</span>(<span class="hljs-params">x</span>):</span><br>    <span class="hljs-keyword">return</span> x<br><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">cube</span>(<span class="hljs-params">x</span>):</span><br>    <span class="hljs-keyword">return</span> <span class="hljs-built_in">pow</span>(x, <span class="hljs-number">3</span>)<br><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">sum_naturals</span>(<span class="hljs-params">n</span>):</span><br>    <span class="hljs-keyword">return</span> summation(n, identity)<br><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">sum_cubes</span>(<span class="hljs-params">n</span>):</span><br>    <span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">    Sum the first N cubes.</span><br><span class="hljs-string">    </span><br><span class="hljs-string">    &gt;&gt;&gt; sum_cubes(5)</span><br><span class="hljs-string">    225</span><br><span class="hljs-string">    &quot;&quot;&quot;</span><br>    <span class="hljs-keyword">return</span> summation(n, cube)<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">summation</span>(<span class="hljs-params">n, term</span>):</span>
+    total, k = <span class="hljs-number">0</span>, <span class="hljs-number">1</span>
+    <span class="hljs-keyword">while</span> k &lt;= n:
+        total, k = total + term(k), k + <span class="hljs-number">1</span>
+    <span class="hljs-keyword">return</span> total
+<span class="hljs-comment"># summation takes in a function term, so it is a high-order function.</span>
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">identity</span>(<span class="hljs-params">x</span>):</span>
+    <span class="hljs-keyword">return</span> x
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">cube</span>(<span class="hljs-params">x</span>):</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">pow</span>(x, <span class="hljs-number">3</span>)
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">sum_naturals</span>(<span class="hljs-params">n</span>):</span>
+    <span class="hljs-keyword">return</span> summation(n, identity)
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">sum_cubes</span>(<span class="hljs-params">n</span>):</span>
+    <span class="hljs-string">&quot;&quot;&quot;</span>
+<span class="hljs-string">    Sum the first N cubes.</span>
+<span class="hljs-string">    </span>
+<span class="hljs-string">    &gt;&gt;&gt; sum_cubes(5)</span>
+<span class="hljs-string">    225</span>
+<span class="hljs-string">    &quot;&quot;&quot;</span>
+    <span class="hljs-keyword">return</span> summation(n, cube)</code></pre></div>
 <h5 id="doctest">Doctest</h5>
 <p>You can run test lines in comment by typing <code>python -m doctest -v .py</code> . It will be tested in the interactive interpreter. When you write the comment, just write like what it's like in interactive interpreter.</p>
 <h3 id="locally-defined-functions">Locally Defined Functions</h3>
 <p> Functions defined within other function bodies are bound to names in a local frame.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">make_adder</span>(<span class="hljs-params">n</span>):</span><br>    <span class="hljs-string">&quot;&quot;&quot;Return a function that takes one argument k and returns k + n.</span><br><span class="hljs-string"></span><br><span class="hljs-string">    &gt;&gt;&gt; add_three = make_adder(3)</span><br><span class="hljs-string">    &gt;&gt;&gt; add_three(4)</span><br><span class="hljs-string">    7</span><br><span class="hljs-string">    &quot;&quot;&quot;</span><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">adder</span>(<span class="hljs-params">k</span>):</span><br>        <span class="hljs-keyword">return</span> k + n<br>    <span class="hljs-keyword">return</span> adder<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">make_adder</span>(<span class="hljs-params">n</span>):</span>
+    <span class="hljs-string">&quot;&quot;&quot;Return a function that takes one argument k and returns k + n.</span>
+<span class="hljs-string"></span>
+<span class="hljs-string">    &gt;&gt;&gt; add_three = make_adder(3)</span>
+<span class="hljs-string">    &gt;&gt;&gt; add_three(4)</span>
+<span class="hljs-string">    7</span>
+<span class="hljs-string">    &quot;&quot;&quot;</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">adder</span>(<span class="hljs-params">k</span>):</span>
+        <span class="hljs-keyword">return</span> k + n
+    <span class="hljs-keyword">return</span> adder</code></pre></div>
 <p><code>adder</code> is a locally defined functions. When you call <code>make_adder</code> with different <code>n</code>, the return values are <strong>function</strong> <code>adder</code> in the <code>make_adder</code> <strong>frame</strong> with different <code>n</code> value.</p>
 
                 
@@ -367,26 +401,26 @@
     <div class="license-meta">
       
         <div class="license-meta-item">
-          <div>作者</div>
+          <div>Author</div>
           <div>ZHDreamer</div>
         </div>
       
       
         <div class="license-meta-item license-meta-date">
-          <div>发布于</div>
-          <div>2021年7月11日</div>
+          <div>Posted on</div>
+          <div>July 11, 2021</div>
         </div>
       
       
       
         <div class="license-meta-item">
-          <div>许可协议</div>
+          <div>Licensed under</div>
           <div>
             
               
               
                 <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
-                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
                     <i class="iconfont icon-by"></i>
                   </span>
                 </a>
@@ -409,7 +443,7 @@
                       <a href="/2021/07/13/06-Recursion/" title="06 Recursion">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">06 Recursion</span>
-                        <span class="visible-mobile">上一篇</span>
+                        <span class="visible-mobile">Previous</span>
                       </a>
                     
                   </article>
@@ -418,7 +452,7 @@
                     
                       <a href="/2021/07/09/04-Environment-Diagrams/" title="04 Environment Diagrams">
                         <span class="hidden-mobile">04 Environment Diagrams</span>
-                        <span class="visible-mobile">下一篇</span>
+                        <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
                     
@@ -437,7 +471,7 @@
       
   <aside class="sidebar" style="margin-left: -1rem">
     <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;Table of Contents</p>
   <div class="toc-body" id="toc-body"></div>
 </div>
 
@@ -480,6 +514,19 @@
 
 
 
+  <script>
+  Fluid.utils.createScript('https://lib.baomitu.com/mermaid/8.14.0/mermaid.min.js', function() {
+    mermaid.initialize({"theme":"default"});
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('mermaid' in window) {
+        mermaid.init();
+      }
+    });
+  });
+</script>
+
+
 
 
 
@@ -498,7 +545,7 @@
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -506,7 +553,7 @@
       <div class="modal-body mx-3">
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
@@ -526,6 +573,30 @@
        <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
     </div>
   
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
   
   
   
@@ -552,21 +623,6 @@
 <script  src="/js/events.js" ></script>
 <script  src="/js/plugins.js" ></script>
 
-
-  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
-  <script>
-    (function (window, document) {
-      var typing = Fluid.plugins.typing;
-      var subtitle = document.getElementById('subtitle');
-      if (!subtitle || !typing) {
-        return;
-      }
-      var text = subtitle.getAttribute('data-typed-text');
-      
-        typing(text);
-      
-    })(window, document);
-  </script>
 
 
 
@@ -716,6 +772,8 @@
 
   <script  src="/js/local-search.js" ></script>
 
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
 
 
 
@@ -728,7 +786,7 @@
   
 
   <noscript>
-    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
   </noscript>
 </body>
 </html>
