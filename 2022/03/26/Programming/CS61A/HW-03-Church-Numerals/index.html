@@ -1,382 +1,443 @@
-<?xml version="1.0" encoding="utf-8"?>
-<search>
-  <entry>
-    <title>Hexo+Next+GitHub Page 建立博客</title>
-    <url>/2021/08/14/Hexo-Next-GitHub-Page-%E5%BB%BA%E7%AB%8B%E5%8D%9A%E5%AE%A2/</url>
-    <content><![CDATA[<p>虽然 Hexo 和 Next 都有完整的 doc 供你参考，但我觉得还是有必要写这样一篇文章帮助我以及可能会看这篇文章的你记录一下我搭建的过程，以及踩过的坑。</p>
-<span id="more"></span>
-<h2 id="安装依赖">安装依赖</h2>
-<h3 id="安装Git">安装Git</h3>
-<p><a href="https://git-scm.com/download/win">Git下载链接</a></p>
-<p>Git是开源的分布式版本控制系统，用于将网站上传到GitHub。</p>
-<p>下载安装后右键资源管理器会出现Git Bash Here，Git Bash是Git自带的命令行工具，可以在里面打命令（CMD和PowerShell也是可以的）</p>
-<h3 id="配置Git环境">配置Git环境</h3>
-<h4 id="设置user-name和user-email配置信息">设置<code>user.name</code>和<code>user.email</code>配置信息</h4>
-<div class="code-wrapper"><pre><code class="hljs verilog">git <span class="hljs-keyword">config</span> --<span class="hljs-keyword">global</span> user<span class="hljs-variable">.name</span> <span class="hljs-string">&quot;你的GitHub用户名&quot;</span>
-git <span class="hljs-keyword">config</span> --<span class="hljs-keyword">global</span> user<span class="hljs-variable">.email</span> <span class="hljs-string">&quot;你的GitHub注册邮箱&quot;</span></code></pre></div>
-<h4 id="配置SSH">配置SSH</h4>
-<div class="code-wrapper"><pre><code class="hljs excel">ssh-keygen -<span class="hljs-built_in">t</span> rsa -C <span class="hljs-string">&quot;你的GitHub注册邮箱&quot;</span></code></pre></div>
-<p>之后一路回车就好，生成后可以到<code>c:\users\yourname\.ssh</code>中找到<code>id_rsa.pub</code></p>
-<p><img src="https://raw.githubusercontent.com/ZHDreamer/markdown-images/master/images/v2-d1e47103ec1aa8675f68688c5d63bd27_720w.jpg" alt=""></p>
-<p>复制里面的内容（不要用微软Publisher打开，用Editor打开），打开 <a href="https://github.com/settings/keys">GitHub Setting Keys</a> 页面，新建new SSH Key</p>
-<p><img src="https://raw.githubusercontent.com/ZHDreamer/markdown-images/master/images/v2-72a3f22c080e99343c3cc4aabce10e3c_720w.jpg" alt=""></p>
-<p>Title是标题，填入任何你想填的内容即可，Key中复制刚才id_rsa.pub的内容，点击Add SSH Key即可生成SSH key。</p>
-<p>在命令行输入</p>
-<div class="code-wrapper"><pre><code class="hljs angelscript">ssh <span class="hljs-symbol">git@</span>github.com</code></pre></div>
-<p>提示</p>
-<div class="code-wrapper"><pre><code class="hljs applescript">PTY allocation request failed <span class="hljs-keyword">on</span> channel <span class="hljs-number">0</span>
-Hi ZHDreamer! You&#x27;ve successfully authenticated, <span class="hljs-keyword">but</span> GitHub <span class="hljs-keyword">does</span> <span class="hljs-keyword">not</span> provide shell access.
-Connection <span class="hljs-keyword">to</span> github.com closed.</code></pre></div>
-<p>证明配置成功</p>
-<p>GitHub要求每次推送代码都是合法用户，所以每次推送都需要输入账号密码验证推送用户是否是合法用户，为了省去每次输入密码的步骤，采用了SSH，当你推送的时候，Git就会匹配你的私钥跟GitHub上面的公钥是否是配对的，若是匹配就认为你是合法用户，则允许推送。这样可以保证每次的推送都是正确合法的。</p>
-<h3 id="安装Node-js">安装Node.js</h3>
-<p><a href="https://nodejs.org/en/download/">Node.js下载地址</a></p>
-<p>Hexo基于Node.js，安装后输入</p>
-<div class="code-wrapper"><pre><code class="hljs crmsh"><span class="hljs-keyword">node</span> <span class="hljs-title">-v</span>
-npm -v</code></pre></div>
-<p>验证是否成功安装Node.js和npm</p>
-<h2 id="Hexo-的安装与使用">Hexo 的安装与使用</h2>
-<h3 id="安装Hexo">安装Hexo</h3>
-<p>使用npm命令安装Hexo</p>
-<div class="code-wrapper"><pre><code class="hljs avrasm">npm install -g hexo-<span class="hljs-keyword">cli</span></code></pre></div>
-<p>安装完成后就可以用<a href="https://hexo.io/docs/commands">Hexo命令</a>建立博客了</p>
-<div class="code-wrapper"><pre><code class="hljs swift">hexo <span class="hljs-function"><span class="hljs-keyword">init</span> &lt;folder&gt;</span>
-<span class="hljs-function"></span>cd <span class="hljs-operator">&lt;</span>folder<span class="hljs-operator">&gt;</span>
-npm install</code></pre></div>
-<p>此时输入</p>
-<div class="code-wrapper"><pre><code class="hljs ebnf"><span class="hljs-attribute">hexo s</span></code></pre></div>
-<p>即可在<code>localhost:4000</code>看到建立的博客了</p>
-<h3 id="推送到GitHub">推送到GitHub</h3>
-<p><a href="https://hexo.io/docs/one-command-deployment">官方文档</a></p>
-<p>安装 <a href="https://github.com/hexojs/hexo-deployer-git">hexo-deployer-git</a></p>
-<div class="code-wrapper"><pre><code class="hljs ada">npm install hexo-deployer-git <span class="hljs-comment">--save</span></code></pre></div>
-<p>在根目录下有一个<code>_config.yml</code>文件，是Hexo的==站点配置文件==，更改deploy配置</p>
-<div class="code-wrapper"><pre><code class="hljs dts"><span class="hljs-symbol">deploy:</span>
-<span class="hljs-symbol">  type:</span> git
-<span class="hljs-symbol">  repo:</span> https:<span class="hljs-comment">//github.com/ZHDreamer/ZHDreamer.github.io.git</span>
-<span class="hljs-symbol">  branch:</span> master</code></pre></div>
-<h3 id="Hexo的设置">Hexo的设置</h3>
-<p><a href="https://hexo.io/docs/configuration">官方文档</a></p>
-<h2 id="NexT安装与使用">NexT安装与使用</h2>
-<p><a href="https://theme-next.js.org/">官方网站</a> ，其他网站的信息或多或少有些过时，包括<a href="http://theme-next.iissnan.com/">这个网站</a>和GitHub上面的教程</p>
-<h3 id="下载NexT">下载NexT</h3>
-<div class="code-wrapper"><pre><code class="hljs awk">git clone https:<span class="hljs-regexp">//gi</span>thub.com<span class="hljs-regexp">/next-theme/</span>hexo-theme-<span class="hljs-keyword">next</span> themes/<span class="hljs-keyword">next</span></code></pre></div>
-<h3 id="启用NexT">启用NexT</h3>
-<p>在站点配置文件中修改</p>
-<div class="code-wrapper"><pre><code class="hljs vbnet"><span class="hljs-symbol">theme:</span> <span class="hljs-keyword">next</span></code></pre></div>
-<p>此时输入<code>hexo clean</code>清理缓存后再次启动本地服务器，即可看到主题变为NexT</p>
-<h3 id="NexT的设置">NexT的设置</h3>
-<p>在<code>theme\next</code>下有一个<code>_config.yml</code>文件，是NexT的==主题配置文件==，在这个文件中修改NexT设置</p>
-<h3 id="更改NexT主题">更改NexT主题</h3>
-<p>NexT目前提供四种主题，在==主题配置文件==</p>
-<div class="code-wrapper"><pre><code class="hljs vala"><span class="hljs-meta"># Schemes</span>
-scheme: Muse
-<span class="hljs-meta">#scheme: Mist</span>
-<span class="hljs-meta">#scheme: Pisces</span>
-<span class="hljs-meta">#scheme: Gemini</span></code></pre></div>
-<p>去掉主题配置文件中的注释即可切换主题</p>
-<h3 id="添加tags-categories等页面">添加tags,categories等页面</h3>
-<p>在==主题配置文件==</p>
-<div class="code-wrapper"><pre><code class="hljs yml"><span class="hljs-comment"># ---------------------------------------------------------------</span>
-<span class="hljs-comment"># Menu Settings</span>
-<span class="hljs-comment"># ---------------------------------------------------------------</span>
 
-<span class="hljs-comment"># Usage: `Key: /link/ || icon`</span>
-<span class="hljs-comment"># Key is the name of menu item. If the translation for this item is available, the translated text will be loaded, otherwise the Key name will be used. Key is case-senstive.</span>
-<span class="hljs-comment"># Value before `||` delimiter is the target link, value after `||` delimiter is the name of Font Awesome icon.</span>
-<span class="hljs-comment"># External url should start with http:// or https://</span>
-<span class="hljs-attr">menu:</span>
-  <span class="hljs-attr">home:</span> <span class="hljs-string">/</span> <span class="hljs-string">||</span> <span class="hljs-string">fa</span> <span class="hljs-string">fa-home</span>
-  <span class="hljs-comment">#about: /about/ || fa fa-user</span>
-  <span class="hljs-comment">#tags: /tags/ || fa fa-tags</span>
-  <span class="hljs-comment">#categories: /categories/ || fa fa-th</span>
-  <span class="hljs-comment">#archives: /archives/ || fa fa-archive</span>
-  <span class="hljs-comment">#schedule: /schedule/ || fa fa-calendar</span>
-  <span class="hljs-comment">#sitemap: /sitemap.xml || fa fa-sitemap</span>
-  <span class="hljs-comment">#commonweal: /404/ || fa fa-heartbeat</span>
 
-<span class="hljs-comment"># Enable / Disable menu icons / item badges.</span>
-<span class="hljs-attr">menu_settings:</span>
-  <span class="hljs-attr">icons:</span> <span class="hljs-literal">true</span>
-  <span class="hljs-attr">badges:</span> <span class="hljs-literal">false</span></code></pre></div>
-<p>去掉注释即可解锁相应页面</p>
-<div class="code-wrapper"><pre><code class="hljs haxe">hexo <span class="hljs-keyword">new</span> <span class="hljs-type">page</span> <span class="hljs-string">&quot;tags&quot;</span></code></pre></div>
-<p>在<code>source\</code>下会生成一个tags文件夹，<a href="http://xn--index-fg1hyjk07o6o2euxl.md">里面有一个index.md</a>，添加<code>type: &quot;tags&quot;</code></p>
-<div class="code-wrapper"><pre><code class="hljs yaml"><span class="hljs-meta">---</span>
-<span class="hljs-attr">title:</span> <span class="hljs-string">tags</span>
-<span class="hljs-attr">date:</span> <span class="hljs-number">2021-08-13 16:53:54</span>
-<span class="hljs-attr">type:</span> <span class="hljs-string">&quot;tags&quot;</span>
-<span class="hljs-meta">---</span></code></pre></div>
-<p>其他类型的页面都可以这样操作</p>
-]]></content>
-      <categories>
-        <category>Software</category>
-        <category>Hexo</category>
-      </categories>
-      <tags>
-        <tag>bulid</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Windows10 alt+tab 出现多个edge标签</title>
-    <url>/2021/08/20/Windows-10-alt-tab-%E5%87%BA%E7%8E%B0%E5%A4%9A%E4%B8%AAedge%E6%A0%87%E7%AD%BE/</url>
-    <content><![CDATA[<p>在edge打开了多个标签页会发现alt+tab出现了edge标签页</p>
-<p><img src="https://raw.githubusercontent.com/ZHDreamer/markdown-images/master/images/20200830093038337.jpg" alt=""></p>
-<p>可以在windows设置里面找到<strong>多任务处理</strong>，修改alt+tab将显示仅打开的窗口</p>
-<p><img src="https://raw.githubusercontent.com/ZHDreamer/markdown-images/master/images/Snipaste_2021-08-20_17-00-23.png" alt=""></p>
-]]></content>
-      <categories>
-        <category>Software</category>
-        <category>Issues</category>
-      </categories>
-      <tags>
-        <tag>Windows10</tag>
-        <tag>edge</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Hexo 问题处理备份</title>
-    <url>/2021/08/12/Hexo-%E9%97%AE%E9%A2%98%E5%A4%84%E7%90%86%E5%A4%87%E4%BB%BD/</url>
-    <content><![CDATA[<p>Hexo使用起来小毛病很多，防止以后浪费时间再去搜索，在这里备份一下各个问题成功的解决方法。</p>
-<h2 id="NexT-相关问题">NexT 相关问题</h2>
-<h3 id="NexT-项目更新到了新的项目">NexT 项目更新到了新的项目</h3>
-<p>很多老教程安装的NexT是老版本，就会导致以下标注旧版本的种种问题，折腾了一天才发现问题的根源，所以还是多参考官方doc吧</p>
-<div class="code-wrapper"><pre><code class="hljs vim">git clone http<span class="hljs-variable">s:</span>//github.<span class="hljs-keyword">com</span>/iissnan/hexo-theme-<span class="hljs-keyword">next</span> themes/<span class="hljs-keyword">next</span> //旧版本，已经过时
-git clone http<span class="hljs-variable">s:</span>//github.<span class="hljs-keyword">com</span>/<span class="hljs-keyword">next</span>-theme/hexo-theme-<span class="hljs-keyword">next</span> themes/<span class="hljs-keyword">next</span> //新版本</code></pre></div>
-<h3 id="NexT-主题无法显示（旧版本）">NexT 主题无法显示（旧版本）</h3>
-<p>报错<code>&#123;% extends ‘_layout.swig‘ %&#125; &#123;% import ‘_macro/post.swig‘ as post_template %&#125;</code></p>
-<p>原因是Hexo在5.0之后把swig给删除了需要自己手动安装</p>
-<div class="code-wrapper"><pre><code class="hljs coffeescript"><span class="hljs-built_in">npm</span> i hexo-renderer-swig</code></pre></div>
-<span id="more"></span>
-<h3 id="菜单栏修改问题（旧版本）">菜单栏修改问题（旧版本）</h3>
-<p>Next在主题的<code>_config.yml</code>文件中提供菜单栏的修改，只要搜索menu就可以找到，通过去除注释即可以在网页上进行渲染。然而在修改next中的menu时会发现存在这样的报错 “cannot get %20” – 无法找到相应的菜单。出现的原因是官方给的代码中多加了一个空格，导致网页无法渲染，个人除了删除注释外，要将“||”前的空格删除不然会导致菜单没法跳转。</p>
-<div class="code-wrapper"><pre><code class="hljs yaml"><span class="hljs-attr">menu:</span>
-  <span class="hljs-attr">home:</span> <span class="hljs-string">/||</span> <span class="hljs-string">home</span>
-  <span class="hljs-comment">#about: /about/ || user</span>
-  <span class="hljs-attr">tags:</span> <span class="hljs-string">/tags/||</span> <span class="hljs-string">tags</span>
-  <span class="hljs-attr">categories:</span> <span class="hljs-string">/categories/||</span> <span class="hljs-string">th</span>
-  <span class="hljs-attr">archives:</span> <span class="hljs-string">/archives/||</span> <span class="hljs-string">archive</span>
-  <span class="hljs-comment">#schedule: /schedule/ || calendar</span>
-  <span class="hljs-comment">#sitemap: /sitemap.xml || sitemap</span>
-  <span class="hljs-comment">#commonweal: /404/ || heartbeat</span></code></pre></div>
-<h3 id="侧边栏大纲中文无法跳转（旧版本）">侧边栏大纲中文无法跳转（旧版本）</h3>
-<p>英文可以正常跳转，中文不行</p>
-<p>根据报错发现是<code>Blog\themes\next\source\js\src\post-details.js</code>的问题</p>
-<div class="code-wrapper"><pre><code class="hljs js"><span class="hljs-comment">// TOC item animation navigate &amp; prevent #item selector in adress bar.</span>
-$(<span class="hljs-string">&#x27;.post-toc a&#x27;</span>).on(<span class="hljs-string">&#x27;click&#x27;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">e</span>) </span>&#123;
-  e.preventDefault();
-  &lt;!-- targetSelector 解析UTF8的问题 -&gt;
-  <span class="hljs-keyword">var</span> targetSelector = NexT.utils.escapeSelector(<span class="hljs-built_in">this</span>.getAttribute(<span class="hljs-string">&#x27;href&#x27;</span>));
-  &lt;!-- 添加下面这行代码, 重新解析 URL -&gt;
-  targetSelector = <span class="hljs-built_in">decodeURI</span>(<span class="hljs-built_in">this</span>.getAttribute(<span class="hljs-string">&#x27;href&#x27;</span>))
-  <span class="hljs-keyword">var</span> offset = $(targetSelector).offset().top;
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
 
-  hasVelocity ?
-    html.velocity(<span class="hljs-string">&#x27;stop&#x27;</span>).velocity(<span class="hljs-string">&#x27;scroll&#x27;</span>, &#123;
-      <span class="hljs-attr">offset</span>: offset  + <span class="hljs-string">&#x27;px&#x27;</span>,
-      <span class="hljs-attr">mobileHA</span>: <span class="hljs-literal">false</span>
-    &#125;) :
-    $(<span class="hljs-string">&#x27;html, body&#x27;</span>).stop().animate(&#123;
-      <span class="hljs-attr">scrollTop</span>: offset
-    &#125;, <span class="hljs-number">500</span>);
-&#125;);</code></pre></div>
-<h3 id="翻页显示-i-class-fa-fa-angle-right-i-（旧版本）">翻页显示<code>&lt;i class=&quot;fa fa-angle-right&quot;&gt;&lt;/i&gt;</code>（旧版本）</h3>
-<p><img src="https://raw.githubusercontent.com/ZHDreamer/markdown-images/master/images/20191201150136673.png" alt=""></p>
-<p><a href="https://github.com/hexojs/hexo/issues/3794">参考</a></p>
-<p>修改<code>Blog/themes/next/layout/_partials/pagination.swig</code></p>
-<div class="code-wrapper"><pre><code class="hljs handlebars"><span class="xml">&#123;%- if page.prev or page.next %&#125;</span>
-<span class="xml"> <span class="hljs-tag">&lt;<span class="hljs-name">nav</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;pagination&quot;</span>&gt;</span></span>
-<span class="xml">   </span><span class="hljs-template-variable">&#123;&#123;</span>
-<span class="hljs-template-variable">     <span class="hljs-name">paginator</span>(&#123;</span>
-<span class="hljs-template-variable">       <span class="hljs-name">prev_text:</span> <span class="hljs-string">&#x27;&lt;i class=&quot;fa fa-angle-left&quot; aria-label=&quot;&#x27;</span>+__(<span class="hljs-name">&#x27;accessibility.prev_page&#x27;</span>)+<span class="hljs-string">&#x27;&quot;&gt;&lt;/i&gt;&#x27;</span>,</span>
-<span class="hljs-template-variable">       next_text: <span class="hljs-string">&#x27;&lt;i class=&quot;fa fa-angle-right&quot; aria-label=&quot;&#x27;</span>+__(<span class="hljs-name">&#x27;accessibility.next_page&#x27;</span>)+<span class="hljs-string">&#x27;&quot;&gt;&lt;/i&gt;&#x27;</span>,</span>
-<span class="hljs-template-variable">       mid_size: <span class="hljs-number">1</span>,</span>
-<span class="hljs-template-variable">       escape: <span class="hljs-literal">false</span></span>
-<span class="hljs-template-variable">     &#125;)</span>
-<span class="hljs-template-variable">   &#125;&#125;</span><span class="xml"></span>
-<span class="xml"> <span class="hljs-tag">&lt;/<span class="hljs-name">nav</span>&gt;</span></span>
-<span class="xml">&#123;%- endif %&#125;</span></code></pre></div>
-<h3 id="公式渲染出现问题（旧版本）">公式渲染出现问题（旧版本）</h3>
-<p>多行公式<code>\\</code>和下标<code>_</code>无法正常显示</p>
-<h4 id="原因分析">原因分析</h4>
-<p>Hexo默认使用<code>hexo-renderer-marked</code>引擎渲染网页，该引擎会把一些特殊的markdown符号转换为相应的html标签，比如在markdown语法中，下划线<code>_</code>代表斜体，会被渲染引擎处理为<code>&lt;em&gt;</code>标签。</p>
-<p>因为类Latex格式书写的数学公式下划线<code>_</code>表示下标，有特殊的含义，如果被强制转换为<code>&lt;em&gt;</code>标签，那么MathJax引擎在渲染数学公式的时候就会出错。例如，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>x</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">x_i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>​在开始被渲染的时候，处理为$x<code>&lt;em&gt;</code>i<code>&lt;/em&gt;</code>$​，这样MathJax引擎就认为该公式有语法错误，因为不会渲染。</p>
-<p>类似的语义冲突的符号还包括’*', ‘{’, ‘}’, ''等。</p>
-<h4 id="解决方法">解决方法</h4>
-<p>更换Hexo的markdown渲染引擎，<a href="https://link.jianshu.com/?t=https%3A%2F%2Fgithub.com%2Fsun11%2Fhexo-renderer-kramed">hexo-renderer-kramed</a>引擎是在默认的渲染引擎<a href="https://link.jianshu.com/?t=https%3A%2F%2Fgithub.com%2Fhexojs%2Fhexo-renderer-marked">hexo-renderer-marked</a>的基础上修改了一些bug，两者比较接近，也比较轻量级。</p>
-<div class="code-wrapper"><pre><code class="hljs coffeescript"><span class="hljs-built_in">npm</span> uninstall hexo-renderer-marked
-<span class="hljs-built_in">npm</span> install hexo-renderer-kramed</code></pre></div>
-<p>卸载掉旧的渲染引擎，安装新引擎</p>
-<p>然后，跟换引擎后行间公式可以正确渲染了，但是这样还没有完全解决问题，行内公式的渲染还是有问题，因为<code>hexo-renderer-kramed</code>引擎也有语义冲突的问题。接下来到博客根目录下，找到<code>node_modules\kramed\lib\rules\inline.js</code>，把第11行的<code>escape</code>变量的值做相应的修改：</p>
-<div class="code-wrapper"><pre><code class="hljs js"><span class="hljs-comment">//  escape: /^\\([\\`*&#123;&#125;\[\]()#$+\-.!_&gt;])/,</span>
-  <span class="hljs-attr">escape</span>: <span class="hljs-regexp">/^\\([`*\[\]()#$+\-.!_&gt;])/</span></code></pre></div>
-<p>这一步是在原基础上取消了对,{,}的转义(escape)。</p>
-<p>同时把第20行的<code>em</code>变量也要做相应的修改。</p>
-<div class="code-wrapper"><pre><code class="hljs js"><span class="hljs-comment">//  em: /^\b_((?:__|[\s\S])+?)_\b|^\*((?:\*\*|[\s\S])+?)\*(?!\*)/,</span>
-  <span class="hljs-attr">em</span>: <span class="hljs-regexp">/^\*((?:\*\*|[\s\S])+?)\*(?!\*)/</span></code></pre></div>
-<p>重新启动 Hexo 即可解决</p>
-<h3 id="公式渲染出现问题（新版本）">公式渲染出现问题（新版本）</h3>
-<div class="code-wrapper"><pre><code class="hljs coffeescript"><span class="hljs-built_in">npm</span> un hexo-renderer-marked
-<span class="hljs-built_in">npm</span> i hexo-renderer-pandoc</code></pre></div>
-<p>这样以后仍然会有一些问题，<code>\\</code>在一般多行公式无法生效，要加入<code>gather</code>环境才能使其生效，或者直接用多个多行公式</p>
-]]></content>
-      <categories>
-        <category>Software</category>
-        <category>Hexo</category>
-        <category>NexT</category>
-      </categories>
-      <tags>
-        <tag>issues</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Windows10 去除资源管理器(文件夹)多余文件夹</title>
-    <url>/2021/08/23/Windows-10-%E5%8E%BB%E9%99%A4%E8%B5%84%E6%BA%90%E7%AE%A1%E7%90%86%E5%99%A8-%E6%96%87%E4%BB%B6%E5%A4%B9-%E5%A4%9A%E4%BD%99%E6%96%87%E4%BB%B6%E5%A4%B9/</url>
-    <content><![CDATA[<h3 id="关闭导航栏多余文件夹">关闭导航栏多余文件夹</h3>
-<p>正常状态下你的Windows10资源管理器可能是这样的</p>
-<p><img src="https://raw.githubusercontent.com/ZHDreamer/markdown-images/master/images/Snipaste_2021-08-23_14-19-54.png" alt=""></p>
-<p>可以看到左边有很多乱七八糟的文件，因为win10的逻辑是显示所有桌面的文件</p>
-<p><img src="https://raw.githubusercontent.com/ZHDreamer/markdown-images/master/images/Snipaste_2021-08-23_14-20-46.png" alt=""></p>
-<p>在空白处右键关闭库和显示所有文件夹，此时显示逻辑就会回到win7的模式，以我的电脑方式呈现</p>
-<span id="more"></span>
-<h3 id="去除此电脑中多余的文件夹">去除此电脑中多余的文件夹</h3>
-<p><img src="https://raw.githubusercontent.com/ZHDreamer/markdown-images/master/images/Snipaste_2021-08-23_14-09-48.png" alt=""></p>
-<p>通过修改注册表值可以关闭这些文件夹，删掉注释复制下面代码写入<code>.reg</code>文件即可，也可以自行修改保留需要的文件夹</p>
-<div class="code-wrapper"><pre><code class="hljs taggerscript">For Pictures folder:
-[HKEY_LOCAL_MACHINE<span class="hljs-symbol">\S</span>OFTWARE<span class="hljs-symbol">\M</span>icrosoft<span class="hljs-symbol">\W</span>indows<span class="hljs-symbol">\C</span>urrentVersion<span class="hljs-symbol">\E</span>xplorer<span class="hljs-symbol">\F</span>olderDescriptions<span class="hljs-symbol">\&#123;</span>0ddd015d-b06c-45d5-8c4c-f59713854639&#125;<span class="hljs-symbol">\P</span>ropertyBag]
-&quot;ThisPCPolicy&quot;=&quot;Hide&quot;
 
-For Videos folder:
-[HKEY_LOCAL_MACHINE<span class="hljs-symbol">\S</span>OFTWARE<span class="hljs-symbol">\M</span>icrosoft<span class="hljs-symbol">\W</span>indows<span class="hljs-symbol">\C</span>urrentVersion<span class="hljs-symbol">\E</span>xplorer<span class="hljs-symbol">\F</span>olderDescriptions<span class="hljs-symbol">\&#123;</span>35286a68-3c57-41a1-bbb1-0eae73d76c95&#125;<span class="hljs-symbol">\P</span>ropertyBag]
-&quot;ThisPCPolicy&quot;=&quot;Hide&quot;
 
-For Downloads folder:
-[HKEY_LOCAL_MACHINE<span class="hljs-symbol">\S</span>OFTWARE<span class="hljs-symbol">\M</span>icrosoft<span class="hljs-symbol">\W</span>indows<span class="hljs-symbol">\C</span>urrentVersion<span class="hljs-symbol">\E</span>xplorer<span class="hljs-symbol">\F</span>olderDescriptions<span class="hljs-symbol">\&#123;</span>7d83ee9b-2244-4e70-b1f5-5393042af1e4&#125;<span class="hljs-symbol">\P</span>ropertyBag]
-&quot;ThisPCPolicy&quot;=&quot;Hide&quot;
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="ZHDreamer">
+  <meta name="keywords" content="python,zhdreamer">
+  
+    <meta name="description" content="Church Numerals 背景  The logician Alonzo Church invented a system of representing non-negative integers entirely using functions. The purpose was to show that functions are sufficient to describe all o">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Church Numerals">
+<meta property="og:url" content="https://zhdreamer.github.io/project/2022/03/26/Programming/CS61A/HW-03-Church-Numerals/index.html">
+<meta property="og:site_name" content="数字云烟">
+<meta property="og:description" content="Church Numerals 背景  The logician Alonzo Church invented a system of representing non-negative integers entirely using functions. The purpose was to show that functions are sufficient to describe all o">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-03-26T02:28:05.000Z">
+<meta property="article:modified_time" content="2022-11-04T22:47:04.000Z">
+<meta property="article:author" content="ZHDreamer">
+<meta property="article:tag" content="SICP">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>Church Numerals - 数字云烟</title>
 
-For Music folder:
-[HKEY_LOCAL_MACHINE<span class="hljs-symbol">\S</span>OFTWARE<span class="hljs-symbol">\M</span>icrosoft<span class="hljs-symbol">\W</span>indows<span class="hljs-symbol">\C</span>urrentVersion<span class="hljs-symbol">\E</span>xplorer<span class="hljs-symbol">\F</span>olderDescriptions<span class="hljs-symbol">\&#123;</span>a0c69a99-21c8-4671-8703-7934162fcf1d&#125;<span class="hljs-symbol">\P</span>ropertyBag]
-&quot;ThisPCPolicy&quot;=&quot;Hide&quot;
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
-For Documents folder:
-[HKEY_LOCAL_MACHINE<span class="hljs-symbol">\S</span>OFTWARE<span class="hljs-symbol">\M</span>icrosoft<span class="hljs-symbol">\W</span>indows<span class="hljs-symbol">\C</span>urrentVersion<span class="hljs-symbol">\E</span>xplorer<span class="hljs-symbol">\F</span>olderDescriptions<span class="hljs-symbol">\&#123;</span>f42ee2d3-909f-4907-8871-4c22fc0bf756&#125;<span class="hljs-symbol">\P</span>ropertyBag]
-&quot;ThisPCPolicy&quot;=&quot;Hide&quot;
 
-For Desktop folder:
-[HKEY_LOCAL_MACHINE<span class="hljs-symbol">\S</span>OFTWARE<span class="hljs-symbol">\M</span>icrosoft<span class="hljs-symbol">\W</span>indows<span class="hljs-symbol">\C</span>urrentVersion<span class="hljs-symbol">\E</span>xplorer<span class="hljs-symbol">\F</span>olderDescriptions<span class="hljs-symbol">\&#123;</span>B4BFCC3A-DB2C-424C-B029-7FE99A87C641&#125;<span class="hljs-symbol">\P</span>ropertyBag]
-&quot;ThisPCPolicy&quot;=&quot;Hide&quot;
 
-For 3D Objects:
-[-HKEY_LOCAL_MACHINE<span class="hljs-symbol">\S</span>OFTWARE<span class="hljs-symbol">\M</span>icrosoft<span class="hljs-symbol">\W</span>indows<span class="hljs-symbol">\C</span>urrentVersion<span class="hljs-symbol">\E</span>xplorer<span class="hljs-symbol">\M</span>yComputer<span class="hljs-symbol">\N</span>ameSpace<span class="hljs-symbol">\&#123;</span>0DB7E03F-FC29-4DC6-9020-FF41B59E513A&#125;]
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
 
-Some 3rd party 32-bit programs may still show these unnecessary 6 folders in “Browse” dialog box
-Code below is to remove them
-[HKEY_LOCAL_MACHINE<span class="hljs-symbol">\S</span>OFTWARE<span class="hljs-symbol">\W</span>ow6432Node<span class="hljs-symbol">\M</span>icrosoft<span class="hljs-symbol">\W</span>indows<span class="hljs-symbol">\C</span>urrentVersion<span class="hljs-symbol">\E</span>xplorer<span class="hljs-symbol">\F</span>olderDescriptions<span class="hljs-symbol">\&#123;</span>0ddd015d-b06c-45d5-8c4c-f59713854639&#125;<span class="hljs-symbol">\P</span>ropertyBag]
-&quot;ThisPCPolicy&quot;=&quot;Hide&quot;
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
 
-[HKEY_LOCAL_MACHINE<span class="hljs-symbol">\S</span>OFTWARE<span class="hljs-symbol">\W</span>ow6432Node<span class="hljs-symbol">\M</span>icrosoft<span class="hljs-symbol">\W</span>indows<span class="hljs-symbol">\C</span>urrentVersion<span class="hljs-symbol">\E</span>xplorer<span class="hljs-symbol">\F</span>olderDescriptions<span class="hljs-symbol">\&#123;</span>35286a68-3c57-41a1-bbb1-0eae73d76c95&#125;<span class="hljs-symbol">\P</span>ropertyBag]
-&quot;ThisPCPolicy&quot;=&quot;Hide&quot;
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
 
-[HKEY_LOCAL_MACHINE<span class="hljs-symbol">\S</span>OFTWARE<span class="hljs-symbol">\W</span>ow6432Node<span class="hljs-symbol">\M</span>icrosoft<span class="hljs-symbol">\W</span>indows<span class="hljs-symbol">\C</span>urrentVersion<span class="hljs-symbol">\E</span>xplorer<span class="hljs-symbol">\F</span>olderDescriptions<span class="hljs-symbol">\&#123;</span>7d83ee9b-2244-4e70-b1f5-5393042af1e4&#125;<span class="hljs-symbol">\P</span>ropertyBag]
-&quot;ThisPCPolicy&quot;=&quot;Hide&quot;
+  <link  rel="stylesheet" href="https://lib.baomitu.com/KaTeX/0.16.2/katex.min.css" />
 
-[HKEY_LOCAL_MACHINE<span class="hljs-symbol">\S</span>OFTWARE<span class="hljs-symbol">\W</span>ow6432Node<span class="hljs-symbol">\M</span>icrosoft<span class="hljs-symbol">\W</span>indows<span class="hljs-symbol">\C</span>urrentVersion<span class="hljs-symbol">\E</span>xplorer<span class="hljs-symbol">\F</span>olderDescriptions<span class="hljs-symbol">\&#123;</span>a0c69a99-21c8-4671-8703-7934162fcf1d&#125;<span class="hljs-symbol">\P</span>ropertyBag]
-&quot;ThisPCPolicy&quot;=&quot;Hide&quot;
 
-[HKEY_LOCAL_MACHINE<span class="hljs-symbol">\S</span>OFTWARE<span class="hljs-symbol">\W</span>ow6432Node<span class="hljs-symbol">\M</span>icrosoft<span class="hljs-symbol">\W</span>indows<span class="hljs-symbol">\C</span>urrentVersion<span class="hljs-symbol">\E</span>xplorer<span class="hljs-symbol">\F</span>olderDescriptions<span class="hljs-symbol">\&#123;</span>f42ee2d3-909f-4907-8871-4c22fc0bf756&#125;<span class="hljs-symbol">\P</span>ropertyBag]
-&quot;ThisPCPolicy&quot;=&quot;Hide&quot;
 
-[HKEY_LOCAL_MACHINE<span class="hljs-symbol">\S</span>OFTWARE<span class="hljs-symbol">\W</span>ow6432Node<span class="hljs-symbol">\M</span>icrosoft<span class="hljs-symbol">\W</span>indows<span class="hljs-symbol">\C</span>urrentVersion<span class="hljs-symbol">\E</span>xplorer<span class="hljs-symbol">\F</span>olderDescriptions<span class="hljs-symbol">\&#123;</span>B4BFCC3A-DB2C-424C-B029-7FE99A87C641&#125;<span class="hljs-symbol">\P</span>ropertyBag]
-&quot;ThisPCPolicy&quot;=&quot;Hide&quot;
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
 
-[-HKEY_LOCAL_MACHINE<span class="hljs-symbol">\S</span>OFTWARE<span class="hljs-symbol">\W</span>OW6432Node<span class="hljs-symbol">\M</span>icrosoft<span class="hljs-symbol">\W</span>indows<span class="hljs-symbol">\C</span>urrentVersion<span class="hljs-symbol">\E</span>xplorer<span class="hljs-symbol">\M</span>yComputer<span class="hljs-symbol">\N</span>ameSpace<span class="hljs-symbol">\&#123;</span>0DB7E03F-FC29-4DC6-9020-FF41B59E513A&#125;]</code></pre></div>
-<p>想要复原也很简单，只需执行</p>
-<div class="code-wrapper"><pre><code class="hljs taggerscript">[HKEY_LOCAL_MACHINE<span class="hljs-symbol">\S</span>OFTWARE<span class="hljs-symbol">\M</span>icrosoft<span class="hljs-symbol">\W</span>indows<span class="hljs-symbol">\C</span>urrentVersion<span class="hljs-symbol">\E</span>xplorer<span class="hljs-symbol">\F</span>olderDescriptions<span class="hljs-symbol">\&#123;</span>0ddd015d-b06c-45d5-8c4c-f59713854639&#125;<span class="hljs-symbol">\P</span>ropertyBag]
-&quot;ThisPCPolicy&quot;=&quot;Show&quot;
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
 
-[HKEY_LOCAL_MACHINE<span class="hljs-symbol">\S</span>OFTWARE<span class="hljs-symbol">\M</span>icrosoft<span class="hljs-symbol">\W</span>indows<span class="hljs-symbol">\C</span>urrentVersion<span class="hljs-symbol">\E</span>xplorer<span class="hljs-symbol">\F</span>olderDescriptions<span class="hljs-symbol">\&#123;</span>35286a68-3c57-41a1-bbb1-0eae73d76c95&#125;<span class="hljs-symbol">\P</span>ropertyBag]
-&quot;ThisPCPolicy&quot;=&quot;Show&quot;
 
-[HKEY_LOCAL_MACHINE<span class="hljs-symbol">\S</span>OFTWARE<span class="hljs-symbol">\M</span>icrosoft<span class="hljs-symbol">\W</span>indows<span class="hljs-symbol">\C</span>urrentVersion<span class="hljs-symbol">\E</span>xplorer<span class="hljs-symbol">\F</span>olderDescriptions<span class="hljs-symbol">\&#123;</span>7d83ee9b-2244-4e70-b1f5-5393042af1e4&#125;<span class="hljs-symbol">\P</span>ropertyBag]
-&quot;ThisPCPolicy&quot;=&quot;Show&quot;
 
-[HKEY_LOCAL_MACHINE<span class="hljs-symbol">\S</span>OFTWARE<span class="hljs-symbol">\M</span>icrosoft<span class="hljs-symbol">\W</span>indows<span class="hljs-symbol">\C</span>urrentVersion<span class="hljs-symbol">\E</span>xplorer<span class="hljs-symbol">\F</span>olderDescriptions<span class="hljs-symbol">\&#123;</span>a0c69a99-21c8-4671-8703-7934162fcf1d&#125;<span class="hljs-symbol">\P</span>ropertyBag]
-&quot;ThisPCPolicy&quot;=&quot;Show&quot;
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
 
-[HKEY_LOCAL_MACHINE<span class="hljs-symbol">\S</span>OFTWARE<span class="hljs-symbol">\M</span>icrosoft<span class="hljs-symbol">\W</span>indows<span class="hljs-symbol">\C</span>urrentVersion<span class="hljs-symbol">\E</span>xplorer<span class="hljs-symbol">\F</span>olderDescriptions<span class="hljs-symbol">\&#123;</span>f42ee2d3-909f-4907-8871-4c22fc0bf756&#125;<span class="hljs-symbol">\P</span>ropertyBag]
-&quot;ThisPCPolicy&quot;=&quot;Show&quot;
 
-[HKEY_LOCAL_MACHINE<span class="hljs-symbol">\S</span>OFTWARE<span class="hljs-symbol">\M</span>icrosoft<span class="hljs-symbol">\W</span>indows<span class="hljs-symbol">\C</span>urrentVersion<span class="hljs-symbol">\E</span>xplorer<span class="hljs-symbol">\F</span>olderDescriptions<span class="hljs-symbol">\&#123;</span>B4BFCC3A-DB2C-424C-B029-7FE99A87C641&#125;<span class="hljs-symbol">\P</span>ropertyBag]
-&quot;ThisPCPolicy&quot;=&quot;Show&quot;
+<link  rel="stylesheet" href="/css/main.css" />
 
-[HKEY_LOCAL_MACHINE<span class="hljs-symbol">\S</span>OFTWARE<span class="hljs-symbol">\M</span>icrosoft<span class="hljs-symbol">\W</span>indows<span class="hljs-symbol">\C</span>urrentVersion<span class="hljs-symbol">\E</span>xplorer<span class="hljs-symbol">\M</span>yComputer<span class="hljs-symbol">\N</span>ameSpace<span class="hljs-symbol">\&#123;</span>0DB7E03F-FC29-4DC6-9020-FF41B59E513A&#125;]
 
-[HKEY_LOCAL_MACHINE<span class="hljs-symbol">\S</span>OFTWARE<span class="hljs-symbol">\W</span>ow6432Node<span class="hljs-symbol">\M</span>icrosoft<span class="hljs-symbol">\W</span>indows<span class="hljs-symbol">\C</span>urrentVersion<span class="hljs-symbol">\E</span>xplorer<span class="hljs-symbol">\F</span>olderDescriptions<span class="hljs-symbol">\&#123;</span>0ddd015d-b06c-45d5-8c4c-f59713854639&#125;<span class="hljs-symbol">\P</span>ropertyBag]
-&quot;ThisPCPolicy&quot;=&quot;Show&quot;
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
 
-[HKEY_LOCAL_MACHINE<span class="hljs-symbol">\S</span>OFTWARE<span class="hljs-symbol">\W</span>ow6432Node<span class="hljs-symbol">\M</span>icrosoft<span class="hljs-symbol">\W</span>indows<span class="hljs-symbol">\C</span>urrentVersion<span class="hljs-symbol">\E</span>xplorer<span class="hljs-symbol">\F</span>olderDescriptions<span class="hljs-symbol">\&#123;</span>35286a68-3c57-41a1-bbb1-0eae73d76c95&#125;<span class="hljs-symbol">\P</span>ropertyBag]
-&quot;ThisPCPolicy&quot;=&quot;Show&quot;
 
-[HKEY_LOCAL_MACHINE<span class="hljs-symbol">\S</span>OFTWARE<span class="hljs-symbol">\W</span>ow6432Node<span class="hljs-symbol">\M</span>icrosoft<span class="hljs-symbol">\W</span>indows<span class="hljs-symbol">\C</span>urrentVersion<span class="hljs-symbol">\E</span>xplorer<span class="hljs-symbol">\F</span>olderDescriptions<span class="hljs-symbol">\&#123;</span>7d83ee9b-2244-4e70-b1f5-5393042af1e4&#125;<span class="hljs-symbol">\P</span>ropertyBag]
-&quot;ThisPCPolicy&quot;=&quot;Show&quot;
 
-[HKEY_LOCAL_MACHINE<span class="hljs-symbol">\S</span>OFTWARE<span class="hljs-symbol">\W</span>ow6432Node<span class="hljs-symbol">\M</span>icrosoft<span class="hljs-symbol">\W</span>indows<span class="hljs-symbol">\C</span>urrentVersion<span class="hljs-symbol">\E</span>xplorer<span class="hljs-symbol">\F</span>olderDescriptions<span class="hljs-symbol">\&#123;</span>a0c69a99-21c8-4671-8703-7934162fcf1d&#125;<span class="hljs-symbol">\P</span>ropertyBag]
-&quot;ThisPCPolicy&quot;=&quot;Show&quot;
+  
+<link rel="stylesheet" href="/css/mac_code_block.css">
 
-[HKEY_LOCAL_MACHINE<span class="hljs-symbol">\S</span>OFTWARE<span class="hljs-symbol">\W</span>ow6432Node<span class="hljs-symbol">\M</span>icrosoft<span class="hljs-symbol">\W</span>indows<span class="hljs-symbol">\C</span>urrentVersion<span class="hljs-symbol">\E</span>xplorer<span class="hljs-symbol">\F</span>olderDescriptions<span class="hljs-symbol">\&#123;</span>f42ee2d3-909f-4907-8871-4c22fc0bf756&#125;<span class="hljs-symbol">\P</span>ropertyBag]
-&quot;ThisPCPolicy&quot;=&quot;Show&quot;
 
-[HKEY_LOCAL_MACHINE<span class="hljs-symbol">\S</span>OFTWARE<span class="hljs-symbol">\W</span>ow6432Node<span class="hljs-symbol">\M</span>icrosoft<span class="hljs-symbol">\W</span>indows<span class="hljs-symbol">\C</span>urrentVersion<span class="hljs-symbol">\E</span>xplorer<span class="hljs-symbol">\F</span>olderDescriptions<span class="hljs-symbol">\&#123;</span>B4BFCC3A-DB2C-424C-B029-7FE99A87C641&#125;<span class="hljs-symbol">\P</span>ropertyBag]
-&quot;ThisPCPolicy&quot;=&quot;Show&quot;
 
-[HKEY_LOCAL_MACHINE<span class="hljs-symbol">\S</span>OFTWARE<span class="hljs-symbol">\W</span>OW6432Node<span class="hljs-symbol">\M</span>icrosoft<span class="hljs-symbol">\W</span>indows<span class="hljs-symbol">\C</span>urrentVersion<span class="hljs-symbol">\E</span>xplorer<span class="hljs-symbol">\M</span>yComputer<span class="hljs-symbol">\N</span>ameSpace<span class="hljs-symbol">\&#123;</span>0DB7E03F-FC29-4DC6-9020-FF41B59E513A&#125;]</code></pre></div>
-<h3 id="去除快速访问">去除快速访问</h3>
-<p>在注册表<code>HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer</code>中新建<code>DWORD</code>，命名为<code>HubMode</code>，更改键值为1即可，想要恢复改成0即可</p>
-<p><img src="https://raw.githubusercontent.com/ZHDreamer/markdown-images/master/images/Snipaste_2021-08-25_00-19-06.png" alt=""></p>
-<h3 id="去除外接硬盘重复显示">去除外接硬盘重复显示</h3>
-<p>去除</p>
-<div class="code-wrapper"><pre><code class="hljs taggerscript">[-HKEY_LOCAL_MACHINE<span class="hljs-symbol">\S</span>OFTWARE<span class="hljs-symbol">\M</span>icrosoft<span class="hljs-symbol">\W</span>indows<span class="hljs-symbol">\C</span>urrentVersion<span class="hljs-symbol">\E</span>xplorer<span class="hljs-symbol">\D</span>esktop<span class="hljs-symbol">\N</span>ameSpace<span class="hljs-symbol">\D</span>elegateFolders<span class="hljs-symbol">\&#123;</span>F5FB2C77-0E2F-4A16-A381-3E560C68BC83&#125;]
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"zhdreamer.github.io","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":40,"cursorChar":"_","loop":false,"scope":["home"]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":1},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
 
-[-HKEY_LOCAL_MACHINE<span class="hljs-symbol">\S</span>OFTWARE<span class="hljs-symbol">\W</span>OW6432Node<span class="hljs-symbol">\M</span>icrosoft<span class="hljs-symbol">\W</span>indows<span class="hljs-symbol">\C</span>urrentVersion<span class="hljs-symbol">\E</span>xplorer<span class="hljs-symbol">\D</span>esktop<span class="hljs-symbol">\N</span>ameSpace<span class="hljs-symbol">\D</span>elegateFolders<span class="hljs-symbol">\&#123;</span>F5FB2C77-0E2F-4A16-A381-3E560C68BC83&#125;]</code></pre></div>
-<p>恢复</p>
-<div class="code-wrapper"><pre><code class="hljs taggerscript">[HKEY_LOCAL_MACHINE<span class="hljs-symbol">\S</span>OFTWARE<span class="hljs-symbol">\M</span>icrosoft<span class="hljs-symbol">\W</span>indows<span class="hljs-symbol">\C</span>urrentVersion<span class="hljs-symbol">\E</span>xplorer<span class="hljs-symbol">\D</span>esktop<span class="hljs-symbol">\N</span>ameSpace<span class="hljs-symbol">\D</span>elegateFolders<span class="hljs-symbol">\&#123;</span>F5FB2C77-0E2F-4A16-A381-3E560C68BC83&#125;]
-@=&quot;Removable Drives&quot;
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
 
-[HKEY_LOCAL_MACHINE<span class="hljs-symbol">\S</span>OFTWARE<span class="hljs-symbol">\W</span>OW6432Node<span class="hljs-symbol">\M</span>icrosoft<span class="hljs-symbol">\W</span>indows<span class="hljs-symbol">\C</span>urrentVersion<span class="hljs-symbol">\E</span>xplorer<span class="hljs-symbol">\D</span>esktop<span class="hljs-symbol">\N</span>ameSpace<span class="hljs-symbol">\D</span>elegateFolders<span class="hljs-symbol">\&#123;</span>F5FB2C77-0E2F-4A16-A381-3E560C68BC83&#125;]
-@=&quot;Removable Drives&quot;</code></pre></div>
-<h3 id="去除OneDrive">去除OneDrive</h3>
-<p>去除</p>
-<div class="code-wrapper"><pre><code class="hljs scss"><span class="hljs-selector-attr">[HKEY_CLASSES_ROOT\CLSID\&#123;018D5C66-4533-4307-9B53-224DE2ED1FE6&#125;]</span>
-@=<span class="hljs-string">&quot;OneDrive&quot;</span>
-<span class="hljs-string">&quot;System.IsPinnedToNameSpaceTree&quot;</span>=<span class="hljs-attribute">dword</span>:<span class="hljs-number">00000000</span>
 
-[HKEY_CLASSES_ROOT\Wow6432Node\CLSID\&#123;018D5C66-4533-4307-9B53-224DE2ED1FE6&#125;]
-@=<span class="hljs-string">&quot;OneDrive&quot;</span>
-<span class="hljs-string">&quot;System.IsPinnedToNameSpaceTree&quot;</span>=<span class="hljs-attribute">dword</span>:<span class="hljs-number">00000000</span></code></pre></div>
-<p>恢复</p>
-<div class="code-wrapper"><pre><code class="hljs scss"><span class="hljs-selector-attr">[HKEY_CLASSES_ROOT\CLSID\&#123;018D5C66-4533-4307-9B53-224DE2ED1FE6&#125;]</span>
-@=<span class="hljs-string">&quot;OneDrive&quot;</span>
-<span class="hljs-string">&quot;System.IsPinnedToNameSpaceTree&quot;</span>=<span class="hljs-attribute">dword</span>:<span class="hljs-number">00000001</span>
+  
+<meta name="generator" content="Hexo 5.4.2"></head>
 
-[HKEY_CLASSES_ROOT\Wow6432Node\CLSID\&#123;018D5C66-4533-4307-9B53-224DE2ED1FE6&#125;]
-@=<span class="hljs-string">&quot;OneDrive&quot;</span>
-<span class="hljs-string">&quot;System.IsPinnedToNameSpaceTree&quot;</span>=<span class="hljs-attribute">dword</span>:<span class="hljs-number">00000001</span></code></pre></div>
-<h3 id="最终效果">最终效果</h3>
-<p><img src="https://raw.githubusercontent.com/ZHDreamer/markdown-images/master/images/Snipaste_2021-08-25_00-28-12.png" alt=""></p>
-<p>因为平时我需要用到OneDrive，所以没有去除。可以看到整个资源管理器清爽了很多。</p>
-]]></content>
-      <categories>
-        <category>Software</category>
-        <category>Issues</category>
-      </categories>
-      <tags>
-        <tag>Windows10</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Church Numerals</title>
-    <url>/2022/03/26/Programming/CS61A/HW-03-Church-Numerals/</url>
-    <content><![CDATA[<h1>Church Numerals</h1>
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>数字云烟</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                Links
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">Church Numerals</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-03-26 10:28" pubdate>
+          March 26, 2022 10:28 AM
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          5.1k words
+        
+      </span>
+    
+
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> views
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar category-bar" style="margin-right: -1rem">
+    
+
+
+
+
+
+<div class="category-list">
+  
+  
+    
+    
+    
+    <div class="category row nomargin-x">
+      <a class="category-item 
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="Programming"
+        id="heading-e6f43c40ab1c07cd29e4e83e4ef6bf85" role="tab" data-toggle="collapse" href="#collapse-e6f43c40ab1c07cd29e4e83e4ef6bf85"
+        aria-expanded="true"
+      >
+        Programming
+        <span class="list-group-count">(3)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse show" id="collapse-e6f43c40ab1c07cd29e4e83e4ef6bf85"
+           role="tabpanel" aria-labelledby="heading-e6f43c40ab1c07cd29e4e83e4ef6bf85">
+        
+        
+          
+          
+  <div class="category-post-list">
+    
+    
+  </div>
+
+          
+  
+    
+    
+    
+    <div class="category-sub row nomargin-x">
+      <a class="category-subitem collapsed
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="Algorithm"
+        id="heading-4afa80e77a07f7488ce4d1bdd8c4977a" role="tab" data-toggle="collapse" href="#collapse-4afa80e77a07f7488ce4d1bdd8c4977a"
+        aria-expanded="false"
+      >
+        Algorithm
+        <span class="list-group-count">(1)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse " id="collapse-4afa80e77a07f7488ce4d1bdd8c4977a"
+           role="tabpanel" aria-labelledby="heading-4afa80e77a07f7488ce4d1bdd8c4977a">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/2022/11/20/Programming/Algorithm/Is-quick-sort-better-than-merge-sort/" title="快速排序真的比归并排序好吗？"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">快速排序真的比归并排序好吗？</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+    
+    
+    
+    <div class="category-sub row nomargin-x">
+      <a class="category-subitem 
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="CS61A"
+        id="heading-6967a2c7c19fa61c072a4b0a1072e9c7" role="tab" data-toggle="collapse" href="#collapse-6967a2c7c19fa61c072a4b0a1072e9c7"
+        aria-expanded="true"
+      >
+        CS61A
+        <span class="list-group-count">(1)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse show" id="collapse-6967a2c7c19fa61c072a4b0a1072e9c7"
+           role="tabpanel" aria-labelledby="heading-6967a2c7c19fa61c072a4b0a1072e9c7">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/2022/03/26/Programming/CS61A/HW-03-Church-Numerals/" title="Church Numerals"
+           class="list-group-item list-group-item-action
+           active">
+          <span class="category-post">Church Numerals</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+    
+    
+    
+    <div class="category-sub row nomargin-x">
+      <a class="category-subitem collapsed
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="Princeton Algorithm"
+        id="heading-f3bd4f70064ff3760f13c3673050b5c3" role="tab" data-toggle="collapse" href="#collapse-f3bd4f70064ff3760f13c3673050b5c3"
+        aria-expanded="false"
+      >
+        Princeton Algorithm
+        <span class="list-group-count">(1)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse " id="collapse-f3bd4f70064ff3760f13c3673050b5c3"
+           role="tabpanel" aria-labelledby="heading-f3bd4f70064ff3760f13c3673050b5c3">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/2022/11/05/Programming/Princeton%20Algorithm/Hello,%20World/" title="Hello, World"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Hello, World</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+        
+      </div>
+    </div>
+  
+</div>
+
+
+  </aside>
+
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Church Numerals</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1>Church Numerals</h1>
 <h2 id="背景">背景</h2>
 <blockquote>
 <p>The logician Alonzo Church invented a system of representing non-negative integers entirely using functions. The purpose was to show that functions are sufficient to describe all of number theory: if we have functions, we do not need to assume that numbers exist, but instead we can invent them.</p>
@@ -667,136 +728,423 @@ c100.7 8.3 195.3 44 280 108 55.3 42 101.7 93 139 153l9 14c2.7-4 5.7-8.7 9-14
 <span class="hljs-string">    &quot;&quot;&quot;</span>
     <span class="hljs-string">&quot;*** YOUR CODE HERE ***&quot;</span>
     <span class="hljs-keyword">return</span> n(m)</code></pre></div>
-]]></content>
-      <categories>
-        <category>Programming</category>
-        <category>CS61A</category>
-      </categories>
-      <tags>
-        <tag>SICP</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Hello, World</title>
-    <url>/2022/11/05/Programming/Princeton%20Algorithm/Hello,%20World/</url>
-    <content><![CDATA[<h1>Hello, World</h1>
-<p>一个非常基本的 Assignment，让你熟悉 Java IO 操作以及官方提供的 algs4 库。</p>
-<p>但是仍然有一点值得注意，<code>RandomWord.java</code> 中用到了 [[Knuth’s method]]: when reading the <em>i</em>th word, select it with probability <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mi mathvariant="normal">/</mi><mi>i</mi></mrow><annotation encoding="application/x-tex">1/i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1/</span><span class="mord mathnormal">i</span></span></span></span> to be the champion, replacing the previous champion.</p>
-<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;
-    String champion = <span class="hljs-string">&quot;&quot;</span>;
-    <span class="hljs-keyword">double</span> i = <span class="hljs-number">1</span>;
 
-    <span class="hljs-keyword">while</span> (!StdIn.isEmpty()) &#123;
-        String input = StdIn.readString();
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
 
-        <span class="hljs-keyword">if</span> (StdRandom.bernoulli(<span class="hljs-number">1</span> / i)) &#123;
-            champion = input;
-        &#125;
-        i++;
-    &#125;
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Programming/" class="category-chain-item">Programming</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/Programming/CS61A/" class="category-chain-item">CS61A</a>
+  
+  
 
-    StdOut.println(champion);
-&#125;</code></pre></div>
-<p>这非常启发我，我意识到 Knuth 不仅是用于洗牌，它可以是任意一种只用看一遍（YOLO?）就可以满足某种随机需求的算法，在之后的 [[Randomize Queue]] 中也会有应用。</p>
-<h1>Links</h1>
-<p><a href="https://coursera.cs.princeton.edu/algs4/assignments/hello/specification.php">Programming Assignment 0: Hello, World</a></p>
-]]></content>
-      <categories>
-        <category>Programming</category>
-        <category>Princeton Algorithm</category>
-      </categories>
-      <tags>
-        <tag>Algorithm</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>快速排序真的比归并排序好吗？</title>
-    <url>/2022/11/20/Programming/Algorithm/Is-quick-sort-better-than-merge-sort/</url>
-    <content><![CDATA[<p>貌似中文社区非常公认一点：快速排序是最快的排序算法，这也是为什么它被称为快速排序。在搜索引擎搜索快速排序得到约 278,000,000 条结果，但是归并排序只有 60,100,000 条，可见快速排序在中文社区里讨论度是非常高的。</p>
-<p>但是快速排序真的是<strong>最快</strong>或者说<strong>最好</strong>的排序算法吗？</p>
-<p>答案是不一定的，在某些情况下，快速排序是最快的，但是在某些情况下快速排序并不比归并快，而且因为其不稳定的特点让其更加不如归并排序。</p>
-<h2 id="Java-实测">Java 实测</h2>
-<p>我用 java 分别实现了两个算法最最最基础的版本，没有经过任何优化，得到了如下结果：</p>
-<div class="code-wrapper"><pre><code class="hljs text">Test array:random
-Time usage
-         n     MergeSortTD       QuickSort
-        10          259 us          150 us
-       100           87 us           77 us
-      1000          164 us          201 us
-     10000          993 us        1,101 us
-    100000        9,647 us        9,166 us
-   1000000      109,610 us      103,811 us
+  
 
-Memory usage
-         n     MergeSortTD       QuickSort
-        10           74 kB           82 kB
-       100           78 kB           86 kB
-      1000           78 kB           74 kB
-     10000           74 kB           82 kB
-    100000          468 kB           82 kB
-   1000000        4,145 kB          554 kB</code></pre></div>
-<p>快排确实要更快，但是这是针对 <code>int[]</code> 的结果，那我们再来看看对于 <code>Integer[]</code> 的结果：</p>
-<div class="code-wrapper"><pre><code class="hljs text">Test array:random
-Time usage
-         n     MergeSortTD       QuickSort
-        10          176 us          102 us
-       100          336 us          174 us
-      1000          364 us          300 us
-     10000        1,734 us        2,159 us
-    100000       18,549 us       16,756 us
-   1000000      365,085 us      377,646 us
+      </span>
+    
+  
+</span>
 
-Memory usage
-         n     MergeSortTD       QuickSort
-        10           84 kB           82 kB
-       100           82 kB           82 kB
-      1000           78 kB           74 kB
-     10000           78 kB           74 kB
-    100000          421 kB           28 kB
-   1000000        4,753 kB          752 kB</code></pre></div>
-<p>可以看到速度基本就差不多了，当然这里的结果不一定就是准确的，根据我的测试不同的电脑运行测试会得到不同的结果，在我的笔记本上是如上的结果，但是台式机上，快排是明显更快的。</p>
-<p>会得到这样的结果，主要是因为快排的<strong>比较次数</strong>多于归并，而归并的<strong>移动次数</strong>多于快排。Java 的 primitive type 类型如 <code>int</code> 是直接用在内存里储存的，而 reference type 如 <code>Integer</code> 只是一个引用。primitive type 可以直接比较，但是 reference type 需要调用 <code>compareTo</code> 接口。</p>
-<p>这是一个非常严重的问题，因为对于元素的移动消耗的时间是确定的，但是 <code>compareTo</code> 不保证消耗的时间，如果一个类要消耗比较多的时间才能计算出比较值，那么归并排序是一定更快的。</p>
-<h2 id="时间复杂度意味着一切吗？">时间复杂度意味着一切吗？</h2>
-<p>我们都知道快排和归并的时间复杂度如下：</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">Sort</th>
-<th style="text-align:center">Best case</th>
-<th style="text-align:center">Avg case</th>
-<th style="text-align:center">Worst case</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">Merge</td>
-<td style="text-align:center">~NlgN</td>
-<td style="text-align:center">~NlgN</td>
-<td style="text-align:center">~NlgN</td>
-</tr>
-<tr>
-<td style="text-align:center">quick</td>
-<td style="text-align:center">~NlgN</td>
-<td style="text-align:center">~2NlgN</td>
-<td style="text-align:center">~N²/2</td>
-</tr>
-</tbody>
-</table>
-<p>这个时间复杂度是参照<strong>比较</strong>的次数计算下来的。</p>
-<p>其实时间复杂度是 order-of-growth，算法消耗时间随着输入 n 增长的级数。它并不意味着程序的运行时间快慢，或者说它发明出来就是为了将算法实际性能剥离出来，方便我们比较不同的算法。</p>
-<p>在 Java 库函数中对于 primitive type array 采用的是快排，对于 reference type 用的是归并排序。一方面是因为归并排序是<strong>稳定的</strong>。对于 primitive type 稳定性无所谓，因为值相同的变量是没有任何区别的，而值相同 reference type 很可能是不同的变量，所以稳定性对于 reference type 是有意义的。</p>
-<p>另一方面归并每次 split 都是平均的，也就是说理论上归并排序的递归树要更加完全，虽然这点在优化的快排中可以解决，但是归并同样也可以解决复制次数多导致的慢速问题。</p>
-<p>最后一点快排不保证最坏情况下依然是 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>N</mi><mi>l</mi><mi>g</mi><mi>N</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(NlgN)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.01968em;">Nl</span><span class="mord mathnormal" style="margin-right:0.03588em;">g</span><span class="mord mathnormal" style="margin-right:0.10903em;">N</span><span class="mclose">)</span></span></span></span> 的表现，会退化为 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><msup><mi>N</mi><mn>2</mn></msup><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(N^2)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.0641em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.10903em;">N</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span>。这点我不认为是一个很大的问题，因为其实很好优化，但是仍然会有概率整个算法突然就从不到一秒就能算出来到几分钟甚至几个小时才有结果，这显然是我们不想看到的。</p>
-<p>算法的运行速度与各个操作的时间、电脑型号、编程语言等等等等都是有关系的，所以其实很难说时间复杂度差不多的情况下，哪个算法是更快的。所以时间复杂度差不多的情况下，算法的性质往往要比其速度重要得多。</p>
-<p><s>所以成为光荣的归并排序党吧！</s></p>
-]]></content>
-      <categories>
-        <category>Programming</category>
-        <category>Algorithm</category>
-      </categories>
-      <tags>
-        <tag>Algorithm</tag>
-      </tags>
-  </entry>
-</search>
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/SICP/">#SICP</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Church Numerals</div>
+      <div>https://zhdreamer.github.io/project/2022/03/26/Programming/CS61A/HW-03-Church-Numerals/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>ZHDreamer</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>March 26, 2022 10:28 AM</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Updated on</div>
+          <div>November 5, 2022 6:47 AM</div>
+        </div>
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="NC - Non-commercial">
+                    <i class="iconfont icon-nc"></i>
+                  </span>
+                </a>
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="SA - Share-alike">
+                    <i class="iconfont icon-sa"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/11/05/Programming/Princeton%20Algorithm/Hello,%20World/" title="Hello, World">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Hello, World</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/08/23/Windows-10-%E5%8E%BB%E9%99%A4%E8%B5%84%E6%BA%90%E7%AE%A1%E7%90%86%E5%99%A8-%E6%96%87%E4%BB%B6%E5%A4%B9-%E5%A4%9A%E4%BD%99%E6%96%87%E4%BB%B6%E5%A4%B9/" title="Windows10 去除资源管理器(文件夹)多余文件夹">
+                        <span class="hidden-mobile">Windows10 去除资源管理器(文件夹)多余文件夹</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;Table of Contents</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+  <script>
+  Fluid.utils.createScript('https://lib.baomitu.com/mermaid/8.14.0/mermaid.min.js', function() {
+    mermaid.initialize({"theme":"default"});
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('mermaid' in window) {
+        mermaid.init();
+      }
+    });
+  });
+</script>
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href='https://hexo.io' target='_blank' rel='nofollow noopener'><span>Hexo</span></a> <i class='iconfont icon-love'></i> <a href='https://github.com/fluid-dev/hexo-theme-fluid' target='_blank' rel='nofollow noopener'><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        
+        <span id="busuanzi_value_site_pv"></span>
+         Page Views
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        
+        <span id="busuanzi_value_site_uv"></span>
+         Unique Visitors
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>

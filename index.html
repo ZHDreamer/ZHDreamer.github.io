@@ -67,7 +67,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"zhdreamer.github.io","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":40,"cursorChar":"_","loop":false,"scope":["home"]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"zhdreamer.github.io","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":40,"cursorChar":"_","loop":false,"scope":["home"]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":1},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -232,15 +232,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2022/01/21/27-Special-Topics-II-CS-Theory/" target="_self">
-          27 Special Topics II (CS Theory)
+        <a href="/2022/11/20/Programming/Algorithm/Is-quick-sort-better-than-merge-sort/" target="_self">
+          快速排序真的比归并排序好吗？
         </a>
       </h1>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/2022/01/21/27-Special-Topics-II-CS-Theory/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/2022/11/20/Programming/Algorithm/Is-quick-sort-better-than-merge-sort/" target="_self">
         <div>
-          Complexity P vs NP NP: “nondeterministic polynomial time”, types of problems when given a “solution” can be verified if the solution is correct quickly. 如果一个问题有一个解，且能在多项式时间内证明这是个正解，那么这就是个NP问题 P: “
+          貌似中文社区非常公认一点：快速排序是最快的排序算法，这也是为什么它被称为快速排序。在搜索引擎搜索快速排序得到约 278,000,000 条结果，但是归并排序只有 60,100,000 条，可见快速排序在中文社区里讨论度是非常高的。 但是快速排序真的是最快或者说最好的排序算法吗？ 答案是不一定的，在某些情况下，快速排序是最快的，但是在某些情况下快速排序并不比归并快，而且因为其不稳定的特点让其更加不如
         </div>
       </a>
 
@@ -248,8 +248,8 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2022-01-21 13:49" pubdate>
-              2022-01-21
+            <time datetime="2022-11-20 02:51" pubdate>
+              2022-11-20
             </time>
           </div>
         
@@ -264,12 +264,12 @@
     
       <span class="category-chain">
         
-  <a href="/categories/SICP/" class="category-chain-item">SICP</a>
+  <a href="/categories/Programming/" class="category-chain-item">Programming</a>
   
   
     <span>></span>
     
-  <a href="/categories/SICP/CS61-A/" class="category-chain-item">CS61-A</a>
+  <a href="/categories/Programming/Algorithm/" class="category-chain-item">Algorithm</a>
   
   
 
@@ -286,7 +286,7 @@
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/note/">#note</a>
+              <a href="/tags/Algorithm/">#Algorithm</a>
             
           </div>
         
@@ -300,15 +300,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2022/01/18/26-Special-Topics-I-Security/" target="_self">
-          26 Special Topics I (Security)
+        <a href="/2022/11/05/Programming/Princeton%20Algorithm/Hello,%20World/" target="_self">
+          Hello, World
         </a>
       </h1>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/2022/01/18/26-Special-Topics-I-Security/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/2022/11/05/Programming/Princeton%20Algorithm/Hello,%20World/" target="_self">
         <div>
-          HTTP (Hypertext Transfer Protocol) A common data communication protocol on the web Cookies &amp; Web Authentication Track users who have authenticated (logged in) Cross-Site Request Forgery CSRF
+          Hello, World 一个非常基本的 Assignment，让你熟悉 Java IO 操作以及官方提供的 algs4 库。 但是仍然有一点值得注意，RandomWord.java 中用到了 [[Knuth’s method]]: when reading the ith word, select it with probability 1/i1/i1/i to be the champion,
         </div>
       </a>
 
@@ -316,8 +316,8 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2022-01-18 02:35" pubdate>
-              2022-01-18
+            <time datetime="2022-11-05 10:10" pubdate>
+              2022-11-05
             </time>
           </div>
         
@@ -332,12 +332,12 @@
     
       <span class="category-chain">
         
-  <a href="/categories/SICP/" class="category-chain-item">SICP</a>
+  <a href="/categories/Programming/" class="category-chain-item">Programming</a>
   
   
     <span>></span>
     
-  <a href="/categories/SICP/CS61-A/" class="category-chain-item">CS61-A</a>
+  <a href="/categories/Programming/Princeton-Algorithm/" class="category-chain-item">Princeton Algorithm</a>
   
   
 
@@ -354,7 +354,7 @@
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/note/">#note</a>
+              <a href="/tags/Algorithm/">#Algorithm</a>
             
           </div>
         
@@ -368,15 +368,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2022/01/17/25-Declarative-Programming-II/" target="_self">
-          25 Declarative Programming II
+        <a href="/2022/03/26/Programming/CS61A/HW-03-Church-Numerals/" target="_self">
+          Church Numerals
         </a>
       </h1>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/2022/01/17/25-Declarative-Programming-II/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/2022/03/26/Programming/CS61A/HW-03-Church-Numerals/" target="_self">
         <div>
-          Aggregation Aggregation is the process of doing operations on groups of rows instead of just a single row. Aggregate Function    Aggregation function Return value     MAX([columns]) The m
+          Church Numerals 背景  The logician Alonzo Church invented a system of representing non-negative integers entirely using functions. The purpose was to show that functions are sufficient to describe all o
         </div>
       </a>
 
@@ -384,8 +384,8 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2022-01-17 09:21" pubdate>
-              2022-01-17
+            <time datetime="2022-03-26 10:28" pubdate>
+              2022-03-26
             </time>
           </div>
         
@@ -400,12 +400,12 @@
     
       <span class="category-chain">
         
-  <a href="/categories/SICP/" class="category-chain-item">SICP</a>
+  <a href="/categories/Programming/" class="category-chain-item">Programming</a>
   
   
     <span>></span>
     
-  <a href="/categories/SICP/CS61-A/" class="category-chain-item">CS61-A</a>
+  <a href="/categories/Programming/CS61A/" class="category-chain-item">CS61A</a>
   
   
 
@@ -422,7 +422,7 @@
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/note/">#note</a>
+              <a href="/tags/SICP/">#SICP</a>
             
           </div>
         
@@ -436,15 +436,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2022/01/17/24-Declarative-Programming-I/" target="_self">
-          24 Declarative Programming I
+        <a href="/2021/08/23/Windows-10-%E5%8E%BB%E9%99%A4%E8%B5%84%E6%BA%90%E7%AE%A1%E7%90%86%E5%99%A8-%E6%96%87%E4%BB%B6%E5%A4%B9-%E5%A4%9A%E4%BD%99%E6%96%87%E4%BB%B6%E5%A4%B9/" target="_self">
+          Windows10 去除资源管理器(文件夹)多余文件夹
         </a>
       </h1>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/2022/01/17/24-Declarative-Programming-I/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/2021/08/23/Windows-10-%E5%8E%BB%E9%99%A4%E8%B5%84%E6%BA%90%E7%AE%A1%E7%90%86%E5%99%A8-%E6%96%87%E4%BB%B6%E5%A4%B9-%E5%A4%9A%E4%BD%99%E6%96%87%E4%BB%B6%E5%A4%B9/" target="_self">
         <div>
-          Declarative Programming Programming Paradigms Up until now, we’ve been focused (primarily) on imperative programming Imperative program contain explicit instructions to tell the computer how to acc
+          关闭导航栏多余文件夹 正常状态下你的Windows10资源管理器可能是这样的  可以看到左边有很多乱七八糟的文件，因为win10的逻辑是显示所有桌面的文件  在空白处右键关闭库和显示所有文件夹，此时显示逻辑就会回到win7的模式，以我的电脑方式呈现
         </div>
       </a>
 
@@ -452,8 +452,8 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2022-01-17 02:19" pubdate>
-              2022-01-17
+            <time datetime="2021-08-23 14:15" pubdate>
+              2021-08-23
             </time>
           </div>
         
@@ -468,12 +468,12 @@
     
       <span class="category-chain">
         
-  <a href="/categories/SICP/" class="category-chain-item">SICP</a>
+  <a href="/categories/Software/" class="category-chain-item">Software</a>
   
   
     <span>></span>
     
-  <a href="/categories/SICP/CS61-A/" class="category-chain-item">CS61-A</a>
+  <a href="/categories/Software/Issues/" class="category-chain-item">Issues</a>
   
   
 
@@ -490,7 +490,7 @@
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/note/">#note</a>
+              <a href="/tags/Windows10/">#Windows10</a>
             
           </div>
         
@@ -504,15 +504,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2022/01/04/23-Streams/" target="_self">
-          23 Streams
+        <a href="/2021/08/20/Windows-10-alt-tab-%E5%87%BA%E7%8E%B0%E5%A4%9A%E4%B8%AAedge%E6%A0%87%E7%AD%BE/" target="_self">
+          Windows10 alt+tab 出现多个edge标签
         </a>
       </h1>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/2022/01/04/23-Streams/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/2021/08/20/Windows-10-alt-tab-%E5%87%BA%E7%8E%B0%E5%A4%9A%E4%B8%AAedge%E6%A0%87%E7%AD%BE/" target="_self">
         <div>
-          Streams Lazy evaluation (define (ints first)     (cons first           (ints (+ first 1))     ) ) scm&gt; (ints 1) maximum recursion depth exceeded  (define (ints first)     (cons-stream first
+          在edge打开了多个标签页会发现alt+tab出现了edge标签页  可以在windows设置里面找到多任务处理，修改alt+tab将显示仅打开的窗口
         </div>
       </a>
 
@@ -520,8 +520,8 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2022-01-04 03:36" pubdate>
-              2022-01-04
+            <time datetime="2021-08-20 16:55" pubdate>
+              2021-08-20
             </time>
           </div>
         
@@ -536,12 +536,12 @@
     
       <span class="category-chain">
         
-  <a href="/categories/SICP/" class="category-chain-item">SICP</a>
+  <a href="/categories/Software/" class="category-chain-item">Software</a>
   
   
     <span>></span>
     
-  <a href="/categories/SICP/CS61-A/" class="category-chain-item">CS61-A</a>
+  <a href="/categories/Software/Issues/" class="category-chain-item">Issues</a>
   
   
 
@@ -558,7 +558,9 @@
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/note/">#note</a>
+              <a href="/tags/Windows10/">#Windows10</a>
+            
+              <a href="/tags/edge/">#edge</a>
             
           </div>
         
@@ -572,15 +574,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2022/01/03/22-Macros/" target="_self">
-          22 Macros
+        <a href="/2021/08/14/Hexo-Next-GitHub-Page-%E5%BB%BA%E7%AB%8B%E5%8D%9A%E5%AE%A2/" target="_self">
+          Hexo+Next+GitHub Page 建立博客
         </a>
       </h1>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/2022/01/03/22-Macros/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/2021/08/14/Hexo-Next-GitHub-Page-%E5%BB%BA%E7%AB%8B%E5%8D%9A%E5%AE%A2/" target="_self">
         <div>
-          Expressions in Scheme Expressions as data Recall: programs are composed of expressions, but only manipulate values or data. In Scheme, expressions are either primitive expressions or lists - which
+          虽然 Hexo 和 Next 都有完整的 doc 供你参考，但我觉得还是有必要写这样一篇文章帮助我以及可能会看这篇文章的你记录一下我搭建的过程，以及踩过的坑。
         </div>
       </a>
 
@@ -588,8 +590,8 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2022-01-03 05:46" pubdate>
-              2022-01-03
+            <time datetime="2021-08-14 00:24" pubdate>
+              2021-08-14
             </time>
           </div>
         
@@ -604,12 +606,12 @@
     
       <span class="category-chain">
         
-  <a href="/categories/SICP/" class="category-chain-item">SICP</a>
+  <a href="/categories/Software/" class="category-chain-item">Software</a>
   
   
     <span>></span>
     
-  <a href="/categories/SICP/CS61-A/" class="category-chain-item">CS61-A</a>
+  <a href="/categories/Software/Hexo/" class="category-chain-item">Hexo</a>
   
   
 
@@ -626,7 +628,7 @@
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/note/">#note</a>
+              <a href="/tags/bulid/">#bulid</a>
             
           </div>
         
@@ -640,15 +642,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2022/01/02/21-Interpreters/" target="_self">
-          21 Interpreters
+        <a href="/2021/08/12/Hexo-%E9%97%AE%E9%A2%98%E5%A4%84%E7%90%86%E5%A4%87%E4%BB%BD/" target="_self">
+          Hexo 问题处理备份
         </a>
       </h1>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/2022/01/02/21-Interpreters/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/2021/08/12/Hexo-%E9%97%AE%E9%A2%98%E5%A4%84%E7%90%86%E5%A4%87%E4%BB%BD/" target="_self">
         <div>
-          Interpretation Translation Problem:  Computer can only understand one language, binary Humans can't really write a program using only 0s and 1s  Solution:  Programming languages like Python,
+          Hexo使用起来小毛病很多，防止以后浪费时间再去搜索，在这里备份一下各个问题成功的解决方法。 NexT 相关问题 NexT 项目更新到了新的项目 很多老教程安装的NexT是老版本，就会导致以下标注旧版本的种种问题，折腾了一天才发现问题的根源，所以还是多参考官方doc吧 git clone https://github.com/iissnan/hexo-theme-next themes/next
         </div>
       </a>
 
@@ -656,8 +658,8 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2022-01-02 02:24" pubdate>
-              2022-01-02
+            <time datetime="2021-08-12 12:30" pubdate>
+              2021-08-12
             </time>
           </div>
         
@@ -672,13 +674,20 @@
     
       <span class="category-chain">
         
-  <a href="/categories/SICP/" class="category-chain-item">SICP</a>
+  <a href="/categories/Software/" class="category-chain-item">Software</a>
   
   
     <span>></span>
     
-  <a href="/categories/SICP/CS61-A/" class="category-chain-item">CS61-A</a>
+  <a href="/categories/Software/Hexo/" class="category-chain-item">Hexo</a>
   
+  
+    <span>></span>
+    
+  <a href="/categories/Software/Hexo/NexT/" class="category-chain-item">NexT</a>
+  
+  
+
   
 
   
@@ -694,211 +703,7 @@
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/note/">#note</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/11/14/20-More-Scheme/" target="_self">
-          20 More Scheme
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2021/11/14/20-More-Scheme/" target="_self">
-        <div>
-          Scheme List Scheme List Definition A scheme list is either:  nil composed of a first element (car) and the rest (cdr) of the scheme list
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-11-14 04:13" pubdate>
-              2021-11-14
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/SICP/" class="category-chain-item">SICP</a>
-  
-  
-    <span>></span>
-    
-  <a href="/categories/SICP/CS61-A/" class="category-chain-item">CS61-A</a>
-  
-  
-
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/note/">#note</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/11/14/19-Scheme/" target="_self">
-          19 Scheme
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2021/11/14/19-Scheme/" target="_self">
-        <div>
-          Scheme is a older language that was influential in the creation of python. By learning Scheme, we'll see that many of the ideas learned about one programming language easily transfer to another. Sche
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-11-14 04:13" pubdate>
-              2021-11-14
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/SICP/" class="category-chain-item">SICP</a>
-  
-  
-    <span>></span>
-    
-  <a href="/categories/SICP/CS61-A/" class="category-chain-item">CS61-A</a>
-  
-  
-
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/note/">#note</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/10/03/18-Interface/" target="_self">
-          18 Interface
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2021/10/03/18-Interface/" target="_self">
-        <div>
-          Describe how you can interact with an object without necessarily implementing it. Magic Methods These are specially named methods that are callable outside the ordinary dot notation. example:__init
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-10-03 16:07" pubdate>
-              2021-10-03
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/SICP/" class="category-chain-item">SICP</a>
-  
-  
-    <span>></span>
-    
-  <a href="/categories/SICP/CS61-A/" class="category-chain-item">CS61-A</a>
-  
-  
-
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/note/">#note</a>
+              <a href="/tags/issues/">#issues</a>
             
           </div>
         
@@ -907,12 +712,6 @@
   </div>
 
 
-
-  <nav aria-label="navigation">
-    <span class="pagination" id="pagination">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/#board">2</a><a class="page-number" href="/page/3/#board">3</a><a class="extend next" rel="next" href="/page/2/#board"><i class="iconfont icon-arrowright"></i></a>
-    </span>
-  </nav>
 
 
 
@@ -960,7 +759,7 @@
     <div class="footer-inner">
   
     <div class="footer-content">
-       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+       <a href='https://hexo.io' target='_blank' rel='nofollow noopener'><span>Hexo</span></a> <i class='iconfont icon-love'></i> <a href='https://github.com/fluid-dev/hexo-theme-fluid' target='_blank' rel='nofollow noopener'><span>Fluid</span></a> 
     </div>
   
   
@@ -971,16 +770,16 @@
   
     
       <span id="busuanzi_container_site_pv" style="display: none">
-        总访问量 
+        
         <span id="busuanzi_value_site_pv"></span>
-         次
+         Page Views
       </span>
     
     
       <span id="busuanzi_container_site_uv" style="display: none">
-        总访客数 
+        
         <span id="busuanzi_value_site_uv"></span>
-         人
+         Unique Visitors
       </span>
     
     
